@@ -20,16 +20,16 @@ import { getCanonicalDomain } from "../../services/emailService.js";
 
 export default function AuthPage({
   onSignIn, onSignUp, authError, initialEmail = "", initialMode = "",
-  onForgotPassword, recoveryMode = false, recoverySessionReady = false, onCompletePasswordReset,
+  onForgotPassword, onVerifyRecoveryOtp, recoveryMode = false, recoverySessionReady = false, onCompletePasswordReset,
   onGoHome, onModeChange, orgParam = ""
 }) {
   const [mode, setMode] = useState(() => {
     if (recoveryMode) return "recovery";
-    if (initialMode === "signup" || initialMode === "signin") return initialMode;
+    if (initialMode === "signup" || initialMode === "signin" || initialMode === "forgot") return initialMode;
     try {
       const params = new URLSearchParams(window.location.search);
       const urlMode = params.get("mode");
-      if (urlMode === "signup" || urlMode === "signin") return urlMode;
+      if (urlMode === "signup" || urlMode === "signin" || urlMode === "forgot" || urlMode === "recovery") return urlMode;
       if (orgParam || params.get("join") || params.get("org") || params.get("ref_org")) return "signup";
     } catch {}
     return "signin";
@@ -40,7 +40,7 @@ export default function AuthPage({
   }, [recoveryMode]);
 
   useEffect(() => {
-    if (!recoveryMode && (initialMode === "signup" || initialMode === "signin")) {
+    if (!recoveryMode && (initialMode === "signup" || initialMode === "signin" || initialMode === "forgot")) {
       setMode(initialMode);
     }
   }, [initialMode, recoveryMode]);
@@ -79,6 +79,9 @@ export default function AuthPage({
   const [forgotResult, setForgotResult] = useState(null);
   const [forgotError, setForgotError] = useState("");
   const [showOtpManualInput, setShowOtpManualInput] = useState(false);
+  const [otpCode, setOtpCode] = useState("");
+  const [verifyingOtp, setVerifyingOtp] = useState(false);
+  const [otpError, setOtpError] = useState("");
 
   // Set new password (recovery mode) states
   const [newPassword, setNewPassword] = useState("");
@@ -110,7 +113,7 @@ export default function AuthPage({
     if (recoveryMode && !recoverySessionReady) {
       const timer = setTimeout(() => {
         if (!recoverySessionReady) {
-          const hasTokens = hashParams.get("access_token") || params.get("access_token") || params.get("code");
+          const hasTokens = hashParams.get("access_token") || params.get("access_token") || params.get("code") || params.get("token_hash") || hashParams.get("token_hash") || params.get("token") || hashParams.get("token");
           if (!hasTokens) {
             setRecoveryLinkError("This password reset link is incomplete, invalid, or has expired.");
           }
@@ -250,6 +253,26 @@ export default function AuthPage({
       setForgotError(err?.message || "An unexpected error occurred. Please try again.");
     } finally {
       setSendingReset(false);
+    }
+  }
+
+  async function handleVerifyOtpSubmit(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (!otpCode.trim() || !email.trim() || verifyingOtp) return;
+    setOtpError("");
+    setVerifyingOtp(true);
+    try {
+      const result = await onVerifyRecoveryOtp?.(email.trim(), otpCode.trim());
+      if (result?.success) {
+        setRecoveryLinkError("");
+        setMode("recovery");
+      } else {
+        setOtpError(result?.error || "Invalid or expired recovery code. Please request a new link.");
+      }
+    } catch (err) {
+      setOtpError(err?.message || "Could not verify code. Please try again.");
+    } finally {
+      setVerifyingOtp(false);
     }
   }
 
@@ -850,6 +873,57 @@ export default function AuthPage({
                 >
                   {sendingReset ? "Sending reset link..." : "Send reset link"}
                 </button>
+                <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid #E2E8F0", textAlign: "center" }}>
+                  <button
+                    type="button"
+                    onClick={() => { setShowOtpManualInput(!showOtpManualInput); setOtpError(""); }}
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      color: "#2563EB",
+                      fontSize: 12,
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      padding: 0
+                    }}
+                  >
+                    {showOtpManualInput ? "Hide code entry" : "Have a 6-digit recovery code? Enter it here"}
+                  </button>
+
+                  {showOtpManualInput && (
+                    <div style={{ marginTop: 12, textAlign: "left" }}>
+                      <label style={styles.label}>Recovery Code</label>
+                      <div style={styles.inputWrap}>
+                        <Lock size={15} color="#94A3B8" style={styles.inputIcon} />
+                        <input
+                          type="text"
+                          inputMode="numeric"
+                          maxLength={8}
+                          value={otpCode}
+                          onChange={(e) => { setOtpCode(e.target.value); setOtpError(""); }}
+                          className="auth-input"
+                          style={styles.input}
+                          placeholder="e.g. 123456"
+                        />
+                      </div>
+                      {otpError && (
+                        <div style={{ ...styles.errorBox, marginTop: 8, padding: 8, fontSize: 12 }}>
+                          {otpError}
+                        </div>
+                      )}
+                      <button
+                        type="button"
+                        disabled={verifyingOtp || !otpCode.trim() || !email.trim()}
+                        onClick={handleVerifyOtpSubmit}
+                        className="auth-submit"
+                        style={{ ...styles.submit, marginTop: 10, opacity: verifyingOtp || !otpCode.trim() ? 0.75 : 1 }}
+                      >
+                        {verifyingOtp ? "Verifying..." : "Verify Code & Set Password"}
+                      </button>
+                    </div>
+                  )}
+                </div>
+
                 <div style={styles.switchRow}>
                   <span className="auth-switch" style={styles.switchLink} onClick={() => setMode("signin")}>
                     Back to sign in
@@ -883,6 +957,71 @@ export default function AuthPage({
                 >
                   Request a new reset link
                 </button>
+
+                <div style={{ marginTop: 14, paddingTop: 14, borderTop: "1px solid #E2E8F0", textAlign: "center" }}>
+                  <button
+                    type="button"
+                    onClick={() => { setShowOtpManualInput(!showOtpManualInput); setOtpError(""); }}
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      color: "#2563EB",
+                      fontSize: 12,
+                      fontWeight: 600,
+                      cursor: "pointer",
+                      padding: 0
+                    }}
+                  >
+                    {showOtpManualInput ? "Hide code entry" : "Have a 6-digit recovery code? Enter it here"}
+                  </button>
+
+                  {showOtpManualInput && (
+                    <div style={{ marginTop: 12, textAlign: "left" }}>
+                      <label style={styles.label}>Account Email</label>
+                      <div style={styles.inputWrap}>
+                        <Mail size={15} color="#94A3B8" style={styles.inputIcon} />
+                        <input
+                          type="email"
+                          required
+                          value={email}
+                          onChange={(e) => { setEmail(e.target.value); setOtpError(""); }}
+                          className="auth-input"
+                          style={styles.input}
+                          placeholder="you@example.com"
+                        />
+                      </div>
+                      <label style={{ ...styles.label, marginTop: 10 }}>Recovery Code</label>
+                      <div style={styles.inputWrap}>
+                        <Lock size={15} color="#94A3B8" style={styles.inputIcon} />
+                        <input
+                          type="text"
+                          inputMode="numeric"
+                          maxLength={8}
+                          value={otpCode}
+                          onChange={(e) => { setOtpCode(e.target.value); setOtpError(""); }}
+                          className="auth-input"
+                          style={styles.input}
+                          placeholder="e.g. 123456"
+                        />
+                      </div>
+                      {otpError && (
+                        <div style={{ ...styles.errorBox, marginTop: 8, padding: 8, fontSize: 12 }}>
+                          {otpError}
+                        </div>
+                      )}
+                      <button
+                        type="button"
+                        disabled={verifyingOtp || !otpCode.trim() || !email.trim()}
+                        onClick={handleVerifyOtpSubmit}
+                        className="auth-submit"
+                        style={{ ...styles.submit, marginTop: 10, opacity: verifyingOtp || !otpCode.trim() ? 0.75 : 1 }}
+                      >
+                        {verifyingOtp ? "Verifying..." : "Verify Code & Set Password"}
+                      </button>
+                    </div>
+                  )}
+                </div>
+
                 <div style={styles.switchRow}>
                   <span className="auth-switch" style={styles.switchLink} onClick={() => setMode("signin")}>Back to sign in</span>
                 </div>

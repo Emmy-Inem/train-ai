@@ -18,7 +18,23 @@ export function parsePublicLocation(location) {
   else if (path === "/contact") view = "contact";
   else if (path === "/login" || path === "/signin") view = "auth";
   else if (path === "/signup" || path === "/register") view = "auth";
+  else if (path === "/reset-password" || path === "/forgot-password") view = "auth";
   else if (params.get("view") === "auth" || orgTarget) view = "auth";
-  return { view, certCode: certCode || null, inviteToken: params.get("invite") || params.get("token") || params.get("invite_token") || null,
-    authMode: ["signin", "signup"].includes(params.get("mode")) ? params.get("mode") : ["/signup", "/register"].includes(path) || orgTarget ? "signup" : "", orgTarget };
+
+  const explicitMode = params.get("mode");
+  const authMode = ["signin", "signup", "forgot", "recovery"].includes(explicitMode)
+    ? explicitMode
+    : ["/reset-password", "/forgot-password"].includes(path)
+    ? "forgot"
+    : ["/signup", "/register"].includes(path) || orgTarget
+    ? "signup"
+    : "";
+
+  return {
+    view,
+    certCode: certCode || null,
+    inviteToken: params.get("invite") || params.get("token") || params.get("invite_token") || null,
+    authMode,
+    orgTarget
+  };
 }

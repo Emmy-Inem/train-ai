@@ -32,6 +32,7 @@ export default function App() {
   const {
     session, loading, authError, signIn, signUp, signOut, isDemoMode,
     isPasswordRecovery, recoverySessionReady, sendPasswordReset, verifyRecoveryOtp, completePasswordReset,
+    cancelPasswordRecovery,
   } = useAuth();
 
   // Platform Owner's separate login - PRD Section 10: "not login from
@@ -365,6 +366,16 @@ export default function App() {
           recoveryMode
           recoverySessionReady={recoverySessionReady}
           onCompletePasswordReset={completePasswordReset}
+          onForgotPassword={sendPasswordReset}
+          onVerifyRecoveryOtp={verifyRecoveryOtp}
+          onSignIn={signIn}
+          onSignUp={signUp}
+          authError={authError}
+          onGoHome={() => {
+            cancelPasswordRecovery();
+            try { window.history.pushState({}, "", "/"); } catch {}
+            setPublicView("landing");
+          }}
         />
       </>
     );

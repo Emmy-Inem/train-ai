@@ -63,12 +63,12 @@ export function useAuth() {
       const refreshToken = hashParams.get("refresh_token") || searchParams.get("refresh_token");
       const recoveryType = hashParams.get("type") || searchParams.get("type");
       const authCode = searchParams.get("code") || hashParams.get("code");
+      const tokenHash = searchParams.get("token_hash") || hashParams.get("token_hash");
       const isRecoveryIntent = recoveryType === "recovery" || searchParams.get("recovery") === "1" || window.location.hash.includes("recovery");
 
       if (accessToken && refreshToken && isRecoveryIntent) {
         try {
-          let tokenProject = SUPABASE_PROJECTS.ORGANIZATION_DB;
-          const candidateProjects = [SUPABASE_PROJECTS.ORGANIZATION_DB];
+          const candidateProjects = [SUPABASE_PROJECTS.ORGANIZATION_DB, SUPABASE_PROJECTS.SARA_FOUNDATION];
 
           for (const projKey of candidateProjects) {
             const tokenClient = getSupabaseClientForProject(projKey);
@@ -95,6 +95,25 @@ export function useAuth() {
           if (tokenClient?.auth?.exchangeCodeForSession) {
             try {
               const { data, error } = await tokenClient.auth.exchangeCodeForSession(authCode);
+              if (!error && data?.session) {
+                resolvedSession = data.session;
+                resolvedProject = projKey;
+                recoveryProjectRef.current = projKey;
+                persistRecoveryVerified(true);
+                setRecoverySessionReady(true);
+                setIsPasswordRecovery(true);
+                window.history.replaceState({}, document.title, "/?view=auth&recovery=1");
+                break;
+              }
+            } catch (_) {}
+          }
+        }
+      } else if (tokenHash && (recoveryType === "recovery" || isRecoveryIntent)) {
+        for (const projKey of [SUPABASE_PROJECTS.ORGANIZATION_DB, SUPABASE_PROJECTS.SARA_FOUNDATION]) {
+          const tokenClient = getSupabaseClientForProject(projKey);
+          if (tokenClient?.auth?.verifyOtp) {
+            try {
+              const { data, error } = await tokenClient.auth.verifyOtp({ token_hash: tokenHash, type: "recovery" });
               if (!error && data?.session) {
                 resolvedSession = data.session;
                 resolvedProject = projKey;
@@ -641,22 +660,46 @@ export function useAuth() {
     let rateLimited = false;
     let lastError = null;
 
-    // Use the native Auth recovery endpoint until the corrected custom edge
-    // function has been deployed to both live projects. The currently deployed
-    // legacy function can expose recovery material in its public response, so
-    // the browser must not call it.
-    for (const client of resetClients) {
-      try {
-        const resetRes = await client.auth.resetPasswordForEmail(normalizedEmail, { redirectTo: targetRedirectUrl });
-        if (!resetRes?.error) emailSent = true;
-        else {
-          const errMsg = (resetRes.error.message || "").toLowerCase();
-          if (resetRes.error.status === 429 || errMsg.includes("rate limit")) rateLimited = true;
-          lastError = resetRes.error.message;
+    // Use the custom Edge Function with Resend delivery first, falling back to
+    // native resetPasswordForEmail across configured Supabase projects.
+    try {
+      if (supabase?.functions?.invoke) {
+        const { data: edgeData, error: edgeError } = await supabase.functions.invoke("send-password-reset", {
+          body: { email: normalizedEmail, redirectTo: targetRedirectUrl }
+        });
+        if (!edgeError && edgeData) {
+          if (edgeData.rateLimited) {
+            rateLimited = true;
+          } else if (edgeData.emailSent || edgeData.success) {
+            emailSent = true;
+            otp = edgeData.otp || null;
+            actionLink = edgeData.actionLink || null;
+          }
+        } else if (edgeError) {
+          const msg = (edgeError.message || "").toLowerCase();
+          if (msg.includes("rate limit") || edgeError.status === 429) {
+            rateLimited = true;
+          }
         }
-      } catch (e) {
-        lastError = e?.message || "Password reset request failed.";
-        console.warn("resetPasswordForEmail fallback error:", e);
+      }
+    } catch (e) {
+      console.warn("send-password-reset edge function invocation notice:", e);
+    }
+
+    if (!emailSent && !rateLimited) {
+      for (const client of resetClients) {
+        try {
+          const resetRes = await client.auth.resetPasswordForEmail(normalizedEmail, { redirectTo: targetRedirectUrl });
+          if (!resetRes?.error) emailSent = true;
+          else {
+            const errMsg = (resetRes.error.message || "").toLowerCase();
+            if (resetRes.error.status === 429 || errMsg.includes("rate limit")) rateLimited = true;
+            lastError = resetRes.error.message;
+          }
+        } catch (e) {
+          lastError = e?.message || "Password reset request failed.";
+          console.warn("resetPasswordForEmail fallback error:", e);
+        }
       }
     }
 
@@ -739,7 +782,19 @@ export function useAuth() {
       for (const projKey of orderedProjects) {
         const client = getSupabaseClientForProject(projKey);
         if (client?.auth?.updateUser) {
-          const { data: sessionData } = await client.auth.getSession();
+          let { data: sessionData } = await client.auth.getSession();
+          if (!sessionData?.session) {
+            const cached = safeStorage.getJSON(AUTH_STORAGE_KEY) || session;
+            if (cached?.access_token && cached?.refresh_token && client.auth?.setSession) {
+              const { data: restored } = await client.auth.setSession({
+                access_token: cached.access_token,
+                refresh_token: cached.refresh_token,
+              });
+              if (restored?.session) {
+                sessionData = restored;
+              }
+            }
+          }
           if (!sessionData?.session) {
             continue;
           }
@@ -757,7 +812,7 @@ export function useAuth() {
         }
       }
 
-      if (!foundActiveSession && !recoverySessionReady) {
+      if (!foundActiveSession) {
         return { success: false, error: "Your secure reset session is missing or has expired. Please request a new reset email and open only the newest link." };
       }
 
@@ -774,7 +829,7 @@ export function useAuth() {
     } catch (e) {
       return { success: false, error: e?.message || "Could not update your password." };
     }
-  }, [recoverySessionReady]);
+  }, [session, recoverySessionReady]);
 
   return {
     session,

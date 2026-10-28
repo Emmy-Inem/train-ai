@@ -207,7 +207,7 @@ export function PlatformOwnerLoginScreen({ onAuthenticated }) {
 
         <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 6, marginBottom: 12 }}>
           <a
-            href="/?view=auth"
+            href="/?view=auth&mode=forgot"
             style={{ fontSize: 12, color: "#2563EB", fontWeight: 600, textDecoration: "none" }}
             onMouseEnter={(e) => { e.currentTarget.style.textDecoration = "underline"; }}
             onMouseLeave={(e) => { e.currentTarget.style.textDecoration = "none"; }}
