@@ -428,6 +428,19 @@ export async function assignCourseToCohortOrLearners({
   };
   const { data: rpcResult, error: rpcError } = await supabase.rpc("assign_course_to_cohort_members", rpcArgs);
   if (!rpcError) {
+    // If scope is individual, safeguard against older DB RPC versions that erroneously inserted into cohort_courses
+    if (scope !== "cohort") {
+      try {
+        await supabase
+          .from("cohort_courses")
+          .delete()
+          .eq("cohort_id", cohortId)
+          .eq("course_id", courseId);
+      } catch (cleanupErr) {
+        console.warn("Could not prune cohort_courses for individual assignment:", cleanupErr);
+      }
+    }
+
     const assignedCount = Number(rpcResult?.assigned_count || 0);
     return {
       success: true,
@@ -469,14 +482,15 @@ export async function assignCourseToCohortOrLearners({
       throw new Error("Please select at least one individual member to assign this course.");
     }
 
-    // Also record in cohort_courses so the cohort curriculum acknowledges this course
-    const { error: cohortCourseError } = await supabase
-      .from("cohort_courses")
-      .upsert(
-        { cohort_id: cohortId, course_id: courseId, due_at: dueAt || null },
-        { onConflict: "cohort_id,course_id", ignoreDuplicates: true }
-      );
-    if (cohortCourseError) throw cohortCourseError;
+    // Do NOT upsert into cohort_courses for individual assignments; cohort_courses
+    // is reserved for cohort-wide curriculum. Clean up any historical entry.
+    try {
+      await supabase
+        .from("cohort_courses")
+        .delete()
+        .eq("cohort_id", cohortId)
+        .eq("course_id", courseId);
+    } catch {}
   }
 
   // 2. Fetch existing cohort_learner_courses to prevent duplicates

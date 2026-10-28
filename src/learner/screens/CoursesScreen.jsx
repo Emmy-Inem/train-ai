@@ -311,8 +311,11 @@ export function CoursesScreen({
   const trackDisplayName = getTrackDisplayName(userTrackKey);
 
   // 2. Filter available courses for ONLY those in the learner's specific track
-  const userTrackCourses = allAvailableCourses.filter(c => doesCourseMatchTrack(c, userTrackKey));
-  const fallbackTrackCourses = userTrackCourses.length > 0 ? userTrackCourses : allAvailableCourses;
+  // Prioritize courses the learner is assigned to or enrolled in
+  const assignedOrEnrolled = allAvailableCourses.filter(c => c.assigned || c.enrolled);
+  const relevantPool = assignedOrEnrolled.length > 0 ? assignedOrEnrolled : allAvailableCourses;
+  const userTrackCourses = relevantPool.filter(c => doesCourseMatchTrack(c, userTrackKey));
+  const fallbackTrackCourses = userTrackCourses.length > 0 ? userTrackCourses : relevantPool;
 
   // 3. Queue only UNCOMPLETED courses needed to start/continue with
   // When a course reaches 100% completion, it is automatically removed from this queue,
@@ -377,9 +380,9 @@ export function CoursesScreen({
 
   // Filtering logic
   const filteredCatalogUnsorted = allAvailableCourses.filter(c => {
-    if (showMyCoursesOnly && !c.enrolled) return false;
+    if (showMyCoursesOnly && !c.enrolled && !c.assigned) return false;
     if (courseSourceTab === "assigned") {
-      if (!c.assigned && !c.enrolled && c.source !== "assigned") return false;
+      if (!c.assigned && !c.enrolled && !c.isCompliance && c.source !== "assigned") return false;
     }
     if (courseSourceTab === "internal") {
       if (!c.isInternal && c.source !== "internal") return false;
@@ -555,45 +558,50 @@ export function CoursesScreen({
           
           {/* Source Tabs */}
           <div className="tai-scrollx tai-gap8" style={{ paddingBottom: 2 }}>
-            {[
-              { id: "all", label: "All Courses", count: allAvailableCourses.length },
-              { id: "assigned", label: "Assigned to Me", count: allAvailableCourses.filter(c => c.assigned || c.enrolled || c.source === "assigned").length },
-              { id: "internal", label: "Internal Courses", count: allAvailableCourses.filter(c => c.isInternal || c.source === "internal").length },
-              { id: "partners", label: "External Partners", count: allAvailableCourses.filter(c => c.partner || c.source === "partner").length },
-              { id: "bookmarks", label: "Bookmarked", count: allAvailableCourses.filter(c => bookmarkedIds[c.id] || ((c.progress || 0) > 0 && (c.progress || 0) < 100)).length }
-            ].map((tab) => {
-              const isActive = !showMyCoursesOnly && courseSourceTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => { setShowMyCoursesOnly(false); setCourseSourceTab(tab.id); }}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 8,
-                    padding: "8px 16px",
-                    borderRadius: 8,
-                    border: isActive ? "1.5px solid var(--primary)" : "1px solid var(--border)",
-                    background: isActive ? "var(--primary)" : "var(--surface-2)",
-                    color: isActive ? "#FFFFFF" : "var(--text)",
-                    fontWeight: isActive ? 800 : 600,
-                    fontSize: 13,
-                    cursor: "pointer",
-                    whiteSpace: "nowrap",
-                    boxShadow: isActive ? "0 4px 12px rgba(37, 99, 235, 0.25)" : "none"
-                  }}
-                >
-                  <span>{tab.label}</span>
-                  <span style={{
-                    fontSize: 11, fontWeight: 800, padding: "2px 7px", borderRadius: 99,
-                    background: isActive ? "rgba(255,255,255,0.25)" : "var(--surface)",
-                    color: isActive ? "#FFFFFF" : "var(--text-3)"
-                  }}>
-                    {tab.count}
-                  </span>
-                </button>
-              );
-            })}
+            {(() => {
+              const assignedCount = allAvailableCourses.filter(c => c.assigned || c.enrolled || c.isCompliance || c.source === "assigned").length;
+              const tabs = [
+                ...(assignedCount > 0 ? [{ id: "assigned", label: "Assigned to Me", count: assignedCount }] : []),
+                { id: "all", label: "All Courses", count: allAvailableCourses.length },
+                ...(assignedCount === 0 ? [{ id: "assigned", label: "Assigned to Me", count: 0 }] : []),
+                { id: "internal", label: "Internal Courses", count: allAvailableCourses.filter(c => c.isInternal || c.source === "internal").length },
+                { id: "partners", label: "External Partners", count: allAvailableCourses.filter(c => c.partner || c.source === "partner").length },
+                { id: "bookmarks", label: "Bookmarked", count: allAvailableCourses.filter(c => bookmarkedIds[c.id] || ((c.progress || 0) > 0 && (c.progress || 0) < 100)).length }
+              ];
+              return tabs.map((tab) => {
+                const isActive = !showMyCoursesOnly && courseSourceTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => { setShowMyCoursesOnly(false); setCourseSourceTab(tab.id); }}
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 8,
+                      padding: "8px 16px",
+                      borderRadius: 8,
+                      border: isActive ? "1.5px solid var(--primary)" : "1px solid var(--border)",
+                      background: isActive ? "var(--primary)" : "var(--surface-2)",
+                      color: isActive ? "#FFFFFF" : "var(--text)",
+                      fontWeight: isActive ? 800 : 600,
+                      fontSize: 13,
+                      cursor: "pointer",
+                      whiteSpace: "nowrap",
+                      boxShadow: isActive ? "0 4px 12px rgba(37, 99, 235, 0.25)" : "none"
+                    }}
+                  >
+                    <span>{tab.label}</span>
+                    <span style={{
+                      fontSize: 11, fontWeight: 800, padding: "2px 7px", borderRadius: 99,
+                      background: isActive ? "rgba(255,255,255,0.25)" : "var(--surface)",
+                      color: isActive ? "#FFFFFF" : "var(--text-3)"
+                    }}>
+                      {tab.count}
+                    </span>
+                  </button>
+                );
+              });
+            })()}
           </div>
 
           {/* Search + Enrolled Toggle */}
@@ -756,6 +764,16 @@ export function CoursesScreen({
                     {course.isCompliance && (
                       <span style={{ background: "#DC2626", color: "#FFFFFF", fontSize: 10, fontWeight: 900, padding: "3px 8px", borderRadius: 6, letterSpacing: "0.03em", boxShadow: "0 2px 8px rgba(220,38,38,0.4)" }}>
                         MANDATORY COMPLIANCE
+                      </span>
+                    )}
+                    {course.isCohortAssigned && !course.isCompliance && (
+                      <span style={{ background: "#2563EB", color: "#FFFFFF", fontSize: 10, fontWeight: 900, padding: "3px 8px", borderRadius: 6, letterSpacing: "0.03em", boxShadow: "0 2px 8px rgba(37,99,235,0.4)" }}>
+                        COHORT CURRICULUM
+                      </span>
+                    )}
+                    {course.assigned && !course.isCohortAssigned && !course.isCompliance && (
+                      <span style={{ background: "#059669", color: "#FFFFFF", fontSize: 10, fontWeight: 900, padding: "3px 8px", borderRadius: 6, letterSpacing: "0.03em", boxShadow: "0 2px 8px rgba(5,150,105,0.4)" }}>
+                        ASSIGNED TO YOU
                       </span>
                     )}
                     {course.applicationStatus === "pending" && (

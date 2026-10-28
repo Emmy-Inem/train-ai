@@ -1626,21 +1626,43 @@ export async function fetchMyMysteryBoxes(userId) {
 // tabs.
 export async function fetchCohortAssignedCourses(cohortId, userId = null) {
   if (!supabase || !cohortId) return [];
-  let learnerQuery = supabase.from("cohort_learner_courses")
-    .select("id, course_id, user_id, courses(id, title, description)").eq("cohort_id", cohortId);
-  if (userId) learnerQuery = learnerQuery.eq("user_id", userId);
-  const [cohortResult, learnerResult] = await Promise.all([
+  // When userId is provided (learner querying their curriculum), query both cohort_courses
+  // and all cohort_learner_courses for this cohort. This allows us to determine if a course
+  // was assigned strictly to other individuals (and thus should NOT be shown to this learner).
+  const [cohortResult, allLearnerCoursesResult] = await Promise.all([
     supabase.from("cohort_courses").select("id, course_id, due_at, courses(id, title, description)").eq("cohort_id", cohortId),
-    learnerQuery,
+    supabase.from("cohort_learner_courses").select("id, course_id, user_id, courses(id, title, description)").eq("cohort_id", cohortId),
   ]);
-  const error = cohortResult.error || learnerResult.error;
+  const error = cohortResult.error || allLearnerCoursesResult.error;
   if (error) throw new Error("Could not load cohort courses. Please retry.", { cause: error });
-  const data = cohortResult.data;
-  const learnerCourseRows = learnerResult.data;
-  const mergedByCourseId = new Map();
-  for (const row of data || []) {
+  const data = cohortResult.data || [];
+  const allLearnerCourseRows = allLearnerCoursesResult.data || [];
+
+  // Map courses to the set of learners specifically assigned to them in cohort_learner_courses
+  const individualAssigneesByCourse = new Map();
+  for (const row of allLearnerCourseRows) {
     const cid = row.course_id || row.courses?.id;
     if (!cid) continue;
+    if (!individualAssigneesByCourse.has(cid)) {
+      individualAssigneesByCourse.set(cid, new Set());
+    }
+    if (row.user_id) {
+      individualAssigneesByCourse.get(cid).add(row.user_id);
+    }
+  }
+
+  const mergedByCourseId = new Map();
+
+  // Cohort curriculum: if a course has individual-only assignments in this cohort,
+  // only learners in that assignment set should see it. If it has no individual restrictions,
+  // it is truly cohort-wide and visible to all cohort members.
+  for (const row of data) {
+    const cid = row.course_id || row.courses?.id;
+    if (!cid) continue;
+    if (userId && individualAssigneesByCourse.has(cid) && !individualAssigneesByCourse.get(cid).has(userId)) {
+      // Assigned to other individuals in this cohort, NOT to this user
+      continue;
+    }
     mergedByCourseId.set(cid, {
       id: row.id,
       course_id: cid,
@@ -1648,7 +1670,9 @@ export async function fetchCohortAssignedCourses(cohortId, userId = null) {
       courses: row.courses ? { ...row.courses, progress: 0 } : { id: cid, title: "Assigned Course", description: "", progress: 0 },
     });
   }
-  for (const row of learnerCourseRows || []) {
+
+  // Individual learner courses for this specific user
+  for (const row of allLearnerCourseRows) {
     if (userId && row.user_id && row.user_id !== userId) continue;
     const cid = row.course_id || row.courses?.id;
     if (!cid || mergedByCourseId.has(cid)) continue;
@@ -1659,6 +1683,7 @@ export async function fetchCohortAssignedCourses(cohortId, userId = null) {
       courses: row.courses ? { ...row.courses, progress: 0 } : { id: cid, title: "Assigned Course", description: "", progress: 0 },
     });
   }
+
   const courseIds = Array.from(mergedByCourseId.keys());
   if (userId && courseIds.length > 0) {
     const { data: enrollments, error: progressError } = await supabase
@@ -1675,6 +1700,38 @@ export async function fetchCohortAssignedCourses(cohortId, userId = null) {
     }
   }
   return Array.from(mergedByCourseId.values());
+}
+
+/**
+ * Returns the set of course IDs that were individually assigned to OTHER members of the cohort,
+ * but NOT to the current user. Used to prevent individual assignments from leaking into
+ * another learner's course catalog.
+ */
+export async function fetchOtherIndividualAssignedCourseIds(cohortId, userId) {
+  if (!supabase || !cohortId || !userId) return new Set();
+  const { data, error } = await supabase
+    .from("cohort_learner_courses")
+    .select("course_id, user_id")
+    .eq("cohort_id", cohortId);
+  if (error || !data) return new Set();
+
+  const assignedToUser = new Set();
+  const assignedToOthers = new Set();
+  for (const row of data) {
+    if (!row.course_id) continue;
+    if (row.user_id === userId) {
+      assignedToUser.add(row.course_id);
+    } else {
+      assignedToOthers.add(row.course_id);
+    }
+  }
+  const strictlyOthers = new Set();
+  for (const cid of assignedToOthers) {
+    if (!assignedToUser.has(cid)) {
+      strictlyOthers.add(cid);
+    }
+  }
+  return strictlyOthers;
 }
 
 export async function fetchCohortMembers(cohortId) {

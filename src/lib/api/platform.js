@@ -2695,7 +2695,6 @@ export async function batchAssignTrackCoursesToCohort({ cohortId, userIds, cours
           enrollmentsToUpsert.push({
             user_id: uId,
             course_id: cId,
-            status: "enrolled",
             progress_percentage: 0,
           });
         }

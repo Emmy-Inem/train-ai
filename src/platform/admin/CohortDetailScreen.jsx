@@ -62,13 +62,15 @@ function CohortCourseAssignmentSection({
     for (const cc of cohortCourses || []) {
       const cid = cc.course_id || cc.id;
       if (!cid) continue;
+      const assignedLearners = (learnerCourses || []).filter((l) => l.course_id === cid);
+      const hasSpecificLearners = assignedLearners.length > 0 && members.length > 1 && assignedLearners.length < members.length;
       map.set(cid, {
         course_id: cid,
         title: cc.courses?.title || courses.find((c) => c.id === cid)?.title || "Assigned Course",
         category: cc.courses?.category || courses.find((c) => c.id === cid)?.category || "",
         due_at: cc.due_at || null,
-        isEntireCohort: true,
-        learnerCount: members.length,
+        isEntireCohort: !hasSpecificLearners,
+        learnerCount: hasSpecificLearners ? assignedLearners.length : members.length,
       });
     }
     for (const lc of learnerCourses || []) {

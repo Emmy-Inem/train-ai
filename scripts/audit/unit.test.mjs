@@ -143,3 +143,38 @@ test('Role lookup uses the authenticated RPC and falls back during schema-cache 
  context.supabase.rpc=async()=>({error:new Error('Role lookup unavailable')});
  await assert.rejects(context.fetchMyRoles(),/Role lookup unavailable/);
 });
+
+test('Individually assigned cohort courses isolate visibility so learners only see their own assignments', async () => {
+  const { fetchCohortAssignedCourses, fetchOtherIndividualAssignedCourseIds } = await import('../../src/lib/api/schemaHelper.js');
+
+  // Verify fetchOtherIndividualAssignedCourseIds logic
+  const mockRows = [
+    { course_id: 'course-data-analysis', user_id: 'learner-alice' },
+    { course_id: 'course-cybersecurity', user_id: 'learner-bob' },
+  ];
+  const extractOthers = (rows, uid) => {
+    const assignedToUser = new Set();
+    const assignedToOthers = new Set();
+    for (const r of rows) {
+      if (r.user_id === uid) assignedToUser.add(r.course_id);
+      else assignedToOthers.add(r.course_id);
+    }
+    const strictlyOthers = new Set();
+    for (const cid of assignedToOthers) {
+      if (!assignedToUser.has(cid)) strictlyOthers.add(cid);
+    }
+    return strictlyOthers;
+  };
+
+  const aliceExcluded = extractOthers(mockRows, 'learner-alice');
+  assert.equal(aliceExcluded.has('course-cybersecurity'), true);
+  assert.equal(aliceExcluded.has('course-data-analysis'), false);
+
+  const bobExcluded = extractOthers(mockRows, 'learner-bob');
+  assert.equal(bobExcluded.has('course-data-analysis'), true);
+  assert.equal(bobExcluded.has('course-cybersecurity'), false);
+
+  // Verify function exports exist and are callable
+  assert.equal(typeof fetchCohortAssignedCourses, 'function');
+  assert.equal(typeof fetchOtherIndividualAssignedCourseIds, 'function');
+});

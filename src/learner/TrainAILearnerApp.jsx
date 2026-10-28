@@ -38,7 +38,8 @@ import {
   fetchForumThreads, fetchForumThread, createForumThread, createForumReply, voteForumPost,
   generateAIQuiz,
   fetchMentorMessageThreads, fetchMentorMessageThread, markMentorMessagesRead,
-  fetchOrCreateAIConversation, fetchAIChatMessages, sendAIChatMessage, requestAIReply, generateContextualAIFallback
+  fetchOrCreateAIConversation, fetchAIChatMessages, sendAIChatMessage, requestAIReply, generateContextualAIFallback,
+  fetchOtherIndividualAssignedCourseIds
 } from "../lib/api/schemaHelper.js";
 import { updateUserAvatar, fetchOrgBranding } from "../lib/api/platform.js";
 import { fetchMyAIConversations, createAIConversation } from "../lib/api/live/learnerMiscLive.js";
@@ -169,7 +170,8 @@ export default function TrainAILearnerApp({ isActive = true, onSwitchToPlatform,
       goTab("home");
     } else if (key === "courses") {
       setShowMyCoursesOnly(false);
-      setCourseSourceTab("all");
+      const hasAssigned = (cohortCoursesQuery.data?.length > 0) || (complianceAssignmentsQuery.data?.length > 0) || (enrollmentsQuery.data?.length > 0);
+      setCourseSourceTab(hasAssigned ? "assigned" : "all");
       goTab("courses");
     } else if (key === "myCourses" || key === "myProgress") {
       push("myProgress");
@@ -327,6 +329,12 @@ export default function TrainAILearnerApp({ isActive = true, onSwitchToPlatform,
   // before this). Gates streaks/points/badges visibility across the app.
   const orgGamificationSettingsQuery = useSupabaseQuery(async () => fetchOrgGamificationSettings(orgId), [orgId]);
   const gamificationEnabled = orgGamificationSettingsQuery.data?.enabled !== false;
+
+  const cohortIdForLearner = learnerData.cohortMembershipQuery?.data?.cohort?.id;
+  const otherIndividualCoursesQuery = useSupabaseQuery(async () => {
+    if (!cohortIdForLearner || !session?.user?.id) return new Set();
+    return fetchOtherIndividualAssignedCourseIds(cohortIdForLearner, session.user.id);
+  }, [cohortIdForLearner, session?.user?.id]);
 
   // Assessments - distinct from AI Quiz Generator, tied to the course
   // currently open in CourseDetailScreen. Gated on screen === "courseDetail"
@@ -843,31 +851,80 @@ export default function TrainAILearnerApp({ isActive = true, onSwitchToPlatform,
                   bookmarksQuery={bookmarksQuery}
                 />
               )}
-              {screen === "courses" && (
-                <CoursesScreen userId={session?.user?.id}
-                  user={user}
-                  courses={courses.map(c => {
-                    const ca = (complianceAssignmentsQuery.data || []).find(a => (a.course_id || a.courses?.id) === c.id);
-                    return {
-                      ...c,
-                      applicationStatus: myApplicationForCourse(c.id)?.status || null,
-                      isCompliance: !!ca,
-                      complianceDueAt: ca?.due_at || null,
-                      complianceStatus: ca?.status || null,
-                    };
-                  })}
-                  coursesLoading={coursesLoading}
-                  coursesError={learnerData.coursesQuery.error || learnerData.enrollmentsQuery.error || learnerData.userProfileQuery.error}
-                  onRetryCourses={() => { learnerData.coursesQuery.refetch(); learnerData.enrollmentsQuery.refetch(); learnerData.userProfileQuery.refetch(); }}
-                  courseSearch={courseSearch} setCourseSearch={setCourseSearch}
-                  courseLevelFilter={courseLevelFilter} setCourseLevelFilter={setCourseLevelFilter}
-                  courseSourceTab={courseSourceTab} setCourseSourceTab={setCourseSourceTab}
-                  showMyCoursesOnly={showMyCoursesOnly} setShowMyCoursesOnly={setShowMyCoursesOnly}
-                  push={push} handleEnroll={handleEnroll} handleRequestJoin={handleRequestJoin}
-                  onToggleBookmark={handleToggleBookmark}
-                  learningPathsQuery={learningPathsQuery}
-                />
-              )}
+              {screen === "courses" && (() => {
+                const cohortAssignedCourseIds = new Set((cohortCoursesQuery.data || []).map(cc => cc.course_id || cc.courses?.id).filter(Boolean));
+                const complianceAssignedCourseIds = new Set((complianceAssignmentsQuery.data || []).map(ca => ca.course_id || ca.courses?.id).filter(Boolean));
+                const enrolledCourseIds = new Set((enrollmentsQuery.data || []).map(e => e.course_id).filter(Boolean));
+                const allAssignedIds = new Set([...cohortAssignedCourseIds, ...complianceAssignedCourseIds, ...enrolledCourseIds]);
+
+                const enrichedCourses = courses.map(c => {
+                  const ca = (complianceAssignmentsQuery.data || []).find(a => (a.course_id || a.courses?.id) === c.id);
+                  const isAssigned = allAssignedIds.has(c.id);
+                  const isCohortAssigned = cohortAssignedCourseIds.has(c.id);
+                  return {
+                    ...c,
+                    applicationStatus: myApplicationForCourse(c.id)?.status || null,
+                    isCompliance: !!ca,
+                    complianceDueAt: ca?.due_at || null,
+                    complianceStatus: ca?.status || null,
+                    assigned: isAssigned,
+                    isAssigned,
+                    isCohortAssigned,
+                    enrolled: c.enrolled || enrolledCourseIds.has(c.id),
+                  };
+                });
+
+                // Ensure any assigned cohort courses are included even if missing from catalog
+                const existingCourseIds = new Set(enrichedCourses.map(c => c.id));
+                for (const cc of cohortCoursesQuery.data || []) {
+                  const cid = cc.course_id || cc.courses?.id;
+                  if (cid && !existingCourseIds.has(cid)) {
+                    enrichedCourses.push({
+                      id: cid,
+                      title: cc.courses?.title || "Assigned Course",
+                      tagline: cc.courses?.description || "",
+                      category: "Cohort",
+                      level: "beginner",
+                      hours: 0,
+                      lessons: 0,
+                      enrolled: enrolledCourseIds.has(cid),
+                      assigned: true,
+                      isAssigned: true,
+                      isCohortAssigned: true,
+                      progress: cc.courses?.progress || 0,
+                      source: "assigned",
+                    });
+                    existingCourseIds.add(cid);
+                  }
+                }
+
+                const otherIndividualIds = otherIndividualCoursesQuery.data || new Set();
+                const visibleCourses = enrichedCourses.filter(c => !otherIndividualIds.has(c.id));
+
+                return (
+                  <CoursesScreen userId={session?.user?.id}
+                    user={user}
+                    courses={visibleCourses}
+                    cohortId={cohortIdForLearner}
+                    coursesLoading={coursesLoading}
+                    coursesError={learnerData.coursesQuery.error || learnerData.enrollmentsQuery.error || learnerData.userProfileQuery.error}
+                    onRetryCourses={() => {
+                      learnerData.coursesQuery.refetch();
+                      learnerData.enrollmentsQuery.refetch();
+                      learnerData.userProfileQuery.refetch();
+                      cohortCoursesQuery.refetch();
+                      otherIndividualCoursesQuery.refetch();
+                    }}
+                    courseSearch={courseSearch} setCourseSearch={setCourseSearch}
+                    courseLevelFilter={courseLevelFilter} setCourseLevelFilter={setCourseLevelFilter}
+                    courseSourceTab={courseSourceTab} setCourseSourceTab={setCourseSourceTab}
+                    showMyCoursesOnly={showMyCoursesOnly} setShowMyCoursesOnly={setShowMyCoursesOnly}
+                    push={push} handleEnroll={handleEnroll} handleRequestJoin={handleRequestJoin}
+                    onToggleBookmark={handleToggleBookmark}
+                    learningPathsQuery={learningPathsQuery}
+                  />
+                );
+              })()}
               {screen === "courseDetail" && (() => {
                 const ca = (complianceAssignmentsQuery.data || []).find(a => (a.course_id || a.courses?.id) === params.id);
                 const rawCourse = courseById(params.id);
