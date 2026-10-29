@@ -18,7 +18,7 @@
 - The authorized reset-email test was accepted by the provider; the user confirmed receipt and that the link opens the new-password screen. No password was changed by the agent.
 - Removed fabricated owner sessions following failed authentication. Sign-in uses the unified authentication client once per candidate address and distinguishes an invalid password from an invalid API key.
 - Ahmad's supplied account is confirmed, has a password, is not banned, has active Sara Foundation membership and is already a learner in CAP Cohort 3. Its unrelated suspended organization membership was left intact.
-- Samad's supplied address initially had no Auth account or matching profile. The user explicitly authorized a new learner invitation and CAP Cohort 3 assignment. The native invitation created the account; cohort assignment is blocked by missing seat credits as recorded below.
+- Samad's supplied address initially had no Auth account or matching profile. The user explicitly authorized a new learner invitation and CAP Cohort 3 assignment. The native invitation created the account; active organization membership and CAP Cohort 3 assignment are verified below.
 - Invitation callbacks now open password setup for both native invitation tokens and token-hash links. Ordinary signup links do not enter password setup.
 
 ## Course media and content
@@ -38,13 +38,20 @@
 
 ## Validation and evidence
 
-- 43 automated tests passed, including media parsing, preservation of lesson identity/content, failed-save behavior, recovery response handling, atomic limiter use and approved redirect checks.
+- 44 automated tests passed, including media parsing, preservation of lesson identity/content, failed-save behavior, recovery response handling, atomic limiter use, approved redirect checks and individual complimentary-seat authorization.
 - Production website build passed.
 - Domain configuration: `vercel-migration/verified-domains.png`.
 - Four unpublished production courses: `vercel-migration/unpublished-courses.png`.
+- Samad active in CAP Cohort 3 and all cohort members covered: `vercel-migration/cohort-access-confirmed.png`.
 
 ## Samad invitation outcome
 
-The native invitation was sent and the new Auth account/profile were confirmed in production. Invitation acceptance is pending the learner. The attempted atomic membership/cohort transaction rolled back because Sara Foundation has 852 active members and zero recorded seat credits. No cohort membership was created. A one-time free grant of 853 seats has been proposed to the user; no paid seats were purchased and no capacity checks were bypassed.
+The native invitation was sent and the new Auth account/profile were confirmed in production. Invitation acceptance is pending the learner. Samad is now an active Sara Foundation member in CAP Cohort 3.
 
-Latest application deployment: `ecdcca919de5be9167bdad56e5789f491ec54df6`, Vercel state `READY`. Root, www and sand hostnames serve the same application bundle.
+The original membership transaction correctly rolled back because Sara Foundation has zero recorded organization seat credits. The user clarified that free access should cover cohort members rather than the entire organization. Applied individual, nontransferable complimentary-seat allowances to the 34 distinct existing cohort members plus Samad (35 people). Verified that zero current cohort members lack an allowance. No general organization seat credits were issued and no payment was charged.
+
+The allowance table is inaccessible to ordinary authenticated/anonymous clients; only privileged database operations can issue allowances. Its membership check matches both user and organization. Ordinary full-capacity invitations still fail and shareable-link requests still queue. Tenant, role and cohort membership checks continue to apply. Tests verify same-user/same-organization scoping and deny self-issued allowances. Existing suspended memberships were not reactivated. Future cohort members require their own allowance or normal available seats.
+
+Migration: `202610290001_individual_complimentary_seats.sql`. Production cohort-specific rows were applied separately under the user's explicit authorization.
+
+Application deployment `ecdcca919de5be9167bdad56e5789f491ec54df6` was verified `READY`; root, www and sand hostnames served the same application bundle. Later commits record the database migration and audit evidence.
