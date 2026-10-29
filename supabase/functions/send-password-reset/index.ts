@@ -13,6 +13,7 @@ function isAllowedHost(host: string): boolean {
     h === "www.trainailtd.com" ||
     h.endsWith(".trainailtd.com") ||
     h === "train-ai-app.vercel.app" ||
+    h === "train-ai-sand.vercel.app" ||
     
     h === "localhost" ||
     h === "127.0.0.1" ||

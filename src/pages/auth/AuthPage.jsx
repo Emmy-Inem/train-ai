@@ -764,37 +764,9 @@ export default function AuthPage({
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
                       <Clock size={18} color="#C2410C" style={{ flexShrink: 0, marginTop: 1 }} />
                       <div style={{ fontSize: 12.5, color: "#9A3412", lineHeight: 1.45 }}>
-                        <strong>Email delivery could not be confirmed.</strong> Check the address, then use Resend email below. If the message still does not arrive, contact <a href="mailto:info@trainailtd.com" style={{ color: "#9A3412", fontWeight: 700 }}>info@trainailtd.com</a>.
+                        <strong>Request received.</strong> If an account exists for this email address, check your inbox and spam folder for the reset link. If the message still does not arrive, contact <a href="mailto:info@trainailtd.com" style={{ color: "#9A3412", fontWeight: 700 }}>info@trainailtd.com</a>.
                       </div>
                     </div>
-                  </div>
-                )}
-
-                {/* A direct action link is only rendered when the server safely
-                    returns one. Native Supabase recovery emails contain the link. */}
-                {forgotResult.actionLink && (
-                  <div style={{ marginBottom: 14 }}>
-                    <a
-                      href={forgotResult.actionLink}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: 6,
-                        width: "100%",
-                        padding: "10px 14px",
-                        background: "#2563EB",
-                        color: "#FFFFFF",
-                        textDecoration: "none",
-                        borderRadius: 8,
-                        fontWeight: 700,
-                        fontSize: 13,
-                        boxSizing: "border-box"
-                      }}
-                    >
-                      <span>Open Reset Link Directly</span>
-                      <ArrowRight size={14} />
-                    </a>
                   </div>
                 )}
 

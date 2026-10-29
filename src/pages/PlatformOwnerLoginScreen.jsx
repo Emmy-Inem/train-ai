@@ -93,28 +93,6 @@ export function PlatformOwnerLoginScreen({ onAuthenticated }) {
 
       const { data, error: signInError } = await client.auth.signInWithPassword({ email: cleanEmail, password });
       if (signInError || !data?.session) {
-        // Platform Owner resilience during single-database migration
-        if (isOwner && password === "SaraF123$") {
-          const ownerSession = {
-            access_token: `po_session_${Date.now()}`,
-            token_type: "bearer",
-            expires_in: 604800,
-            refresh_token: `po_refresh_${Date.now()}`,
-            user: {
-              id: data?.user?.id || "4b09bdd5-5fa5-4fc2-a56c-04eb27055471",
-              email: "trainailtd@gmail.com",
-              user_metadata: {
-                display_name: "Platform Owner",
-                role: "super_admin",
-              },
-              confirmed_at: new Date().toISOString(),
-            },
-          };
-          resetPasswordRateLimit(email);
-          onAuthenticated(ownerSession);
-          return;
-        }
-
         const updated = recordFailedPasswordAttempt(email);
         setRateLimit(updated);
         if (updated.isLocked) {

@@ -103,39 +103,4 @@ export function getYouTubeEmbedId(courseId, lessonId, courseTitle = "", category
  * Universal video source parser supporting direct HTML5 videos (mp4, webm),
  * YouTube URLs/IDs, Vimeo URLs, and topic video fallbacks.
  */
-export function parseVideoSource(rawUrl, courseId, lessonId) {
-  const cleanUrl = typeof rawUrl === "string" ? rawUrl.trim() : "";
-
-  // 1. Direct HTML5 video file
-  if (cleanUrl && cleanUrl.match(/\.(mp4|webm|ogg|mov|m3u8)(\?.*)?$/i)) {
-    return { type: "html5", src: cleanUrl };
-  }
-
-  // 2. YouTube URL
-  if (cleanUrl) {
-    const ytMatch = cleanUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/i);
-    if (ytMatch) {
-      return { type: "youtube", videoId: ytMatch[1] };
-    }
-  }
-
-  // 3. Vimeo URL
-  if (cleanUrl) {
-    const vimeoMatch = cleanUrl.match(/(?:vimeo\.com\/(?:video\/)?|player\.vimeo\.com\/video\/)(\d+)/i);
-    if (vimeoMatch) {
-      return { type: "vimeo", videoId: vimeoMatch[1] };
-    }
-  }
-
-  // 4. If plain 11-char string that looks like a YouTube ID
-  if (cleanUrl && /^[a-zA-Z0-9_-]{11}$/.test(cleanUrl)) {
-    return { type: "youtube", videoId: cleanUrl };
-  }
-
-  // 5. If it's a generic web video URL
-  if (cleanUrl.startsWith("http://") || cleanUrl.startsWith("https://") || cleanUrl.startsWith("blob:")) {
-    return { type: "html5", src: cleanUrl };
-  }
-
-  return { type: "none" };
-}
+export { parseVideoSource } from "./videoSource.js";

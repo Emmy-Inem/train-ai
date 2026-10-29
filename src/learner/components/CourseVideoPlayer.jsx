@@ -47,7 +47,16 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
   const scrubberRef = useRef(null);
 
   // Parse video source
-  const source = parseVideoSource(youtubeVideoId || videoUrl, courseId, lessonId);
+  const source = parseVideoSource(videoUrl?.trim() || youtubeVideoId, courseId, lessonId);
+  const [retryCount, setRetryCount] = useState(0);
+  const sourceKey = `${lessonId}:${source.type}:${source.src || source.videoId || ""}`;
+  const youtubeOrigin = "https://www.youtube.com";
+  useEffect(() => {
+    setIsPlaying(false);
+    setCurrentTime(0);
+    setDuration(durationMinutes * 60);
+    setVideoError(false);
+  }, [sourceKey, retryCount]);
 
   // Sync duration if durationMinutes changes
   useEffect(() => {
@@ -65,7 +74,7 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
           func: func,
           args: args
         }),
-        "*"
+        youtubeOrigin
       );
     }
   };
@@ -73,6 +82,7 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
   // Bidirectional YouTube Iframe Message Listener & State Synchronizer
   useEffect(() => {
     const handleWindowMessage = (e) => {
+      if (source.type !== "youtube" || e.source !== iframeRef.current?.contentWindow || e.origin !== youtubeOrigin) return;
       if (!e.data) return;
       let data = null;
       if (typeof e.data === "string") {
@@ -87,7 +97,14 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
       if (!data) return;
 
       // Handle info delivery events from YouTube API
-      if (data.event === "infoDelivery" && data.info) {
+      if (data.event === "onError") {
+        setVideoError(true);
+        setIsPlaying(false);
+      } else if (data.event === "onReady") {
+        setVideoError(false);
+        sendYouTubeCommand("addEventListener", ["onStateChange"]);
+        sendYouTubeCommand("addEventListener", ["onError"]);
+      } else if (data.event === "infoDelivery" && data.info) {
         const info = data.info;
         if (typeof info.currentTime === "number") {
           setCurrentTime(info.currentTime);
@@ -144,21 +161,24 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
     return () => {
       window.removeEventListener("message", handleWindowMessage);
     };
-  }, [duration, onProgress, onEnded]);
+  }, [sourceKey, duration, onProgress, onEnded]);
 
   // Handle iframe initial load: establish listening connection
   const handleIframeLoad = () => {
     if (iframeRef.current?.contentWindow) {
       iframeRef.current.contentWindow.postMessage(
         JSON.stringify({ event: "listening", id: source.videoId }),
-        "*"
+        youtubeOrigin
       );
+      sendYouTubeCommand("addEventListener", ["onStateChange"]);
+      sendYouTubeCommand("addEventListener", ["onError"]);
     }
   };
 
   // Expose imperative methods to parent (for Chapters, Notes, and External Controls)
   useImperativeHandle(ref, () => ({
     seekTo: (seconds) => {
+      if (!["html5", "youtube"].includes(source.type) || videoError) return;
       const targetSec = Math.max(0, Math.min(seconds, duration || 9999));
       setCurrentTime(targetSec);
       onProgress?.(targetSec, duration);
@@ -166,7 +186,7 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
       if (source.type === "html5" && videoRef.current) {
         videoRef.current.currentTime = targetSec;
         if (!isPlaying) {
-          videoRef.current.play().catch(() => {});
+          videoRef.current.play().catch(() => setIsPlaying(false));
           setIsPlaying(true);
         }
       } else if (source.type === "youtube") {
@@ -178,9 +198,10 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
       }
     },
     play: () => {
+      if (!["html5", "youtube"].includes(source.type) || videoError) return;
       setIsPlaying(true);
       if (source.type === "html5" && videoRef.current) {
-        videoRef.current.play().catch(() => {});
+        videoRef.current.play().catch(() => setIsPlaying(false));
       } else if (source.type === "youtube") {
         sendYouTubeCommand("playVideo");
       }
@@ -196,7 +217,7 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
     setSpeed: (spd) => handleSpeedChange(spd),
     setQuality: (q) => handleQualityChange(q),
     toggleMute: () => handleMuteToggle()
-  }), [source.type, duration, isPlaying, playbackSpeed, isMuted]);
+  }), [sourceKey, videoError, duration, isPlaying, playbackSpeed, isMuted]);
 
   // HTML5 Video Handlers
   const handleTimeUpdate = () => {
@@ -220,12 +241,13 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
   };
 
   const handlePlayPauseToggle = () => {
+    if (source.type === "none" || videoError) return;
     const nextPlay = !isPlaying;
     setIsPlaying(nextPlay);
 
     if (source.type === "html5" && videoRef.current) {
       if (nextPlay) {
-        videoRef.current.play().catch(() => {});
+        videoRef.current.play().catch(() => setIsPlaying(false));
       } else {
         videoRef.current.pause();
       }
@@ -492,7 +514,9 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
         {source.type === "html5" && (
           <video
             ref={videoRef}
+            key={`${sourceKey}:${retryCount}`}
             src={source.src}
+            controls
             onTimeUpdate={handleTimeUpdate}
             onLoadedMetadata={handleLoadedMetadata}
             onEnded={handleEnded}
@@ -517,7 +541,7 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
         {source.type === "youtube" && (
           <iframe
             ref={iframeRef}
-            key={source.videoId}
+            key={`${sourceKey}:${retryCount}`}
             title={lessonTitle}
             src={`https://www.youtube.com/embed/${source.videoId}?enablejsapi=1&rel=0&modestbranding=1&controls=1&playsinline=1${typeof window !== "undefined" && window.location.origin ? `&origin=${encodeURIComponent(window.location.origin)}` : ""}`}
             onLoad={handleIframeLoad}
@@ -539,9 +563,9 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
         {/* Case 3: Vimeo Embed Stream */}
         {source.type === "vimeo" && (
           <iframe
-            key={source.videoId}
+            key={`${sourceKey}:${retryCount}`}
             title={lessonTitle}
-            src={`https://player.vimeo.com/video/${source.videoId}?responsive=1&dnt=1`}
+            src={`https://player.vimeo.com/video/${source.videoId}?responsive=1&dnt=1${source.hash ? `&h=${encodeURIComponent(source.hash)}` : ""}`}
             style={{
               position: "absolute",
               top: 0,
@@ -568,7 +592,8 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
               background: "#0F172A",
               color: "#FFFFFF",
               padding: 24,
-              textAlign: "center"
+              textAlign: "center",
+              zIndex: 2
             }}
           >
             <div className="tai-decoration-icon" style={{ width: 52, height: 52, borderRadius: "50%", background: "rgba(59, 130, 246, 0.25)", border: "1px solid rgba(165, 180, 252, 0.3)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>
@@ -576,8 +601,11 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
             </div>
             <div style={{ fontWeight: 800, fontSize: 16, marginBottom: 4 }}>{lessonTitle}</div>
             <div style={{ fontSize: 13, color: "#94A3B8", maxWidth: 440, lineHeight: 1.45 }}>
-              Interactive simulated player active. Use the liquid glass controls below to test scrubbing, chapter seeking, and playback speeds.
+              {source.type === "none"
+                ? "This lesson does not have a playable video link. Please ask your instructor to add or restore the lesson video."
+                : "The video could not be played. Check your connection, then retry. If it still fails, ask your instructor to check the video link and sharing settings."}
             </div>
+            {source.type !== "none" && <button className="tai-btn" style={{ marginTop: 16 }} onClick={() => setRetryCount(count => count + 1)}>Retry video</button>}
           </div>
         )}
 
@@ -614,7 +642,7 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
       {/* =========================================================================
           UNIVERSAL LIQUID GLASS CINEMA CONTROL BAR
           ========================================================================= */}
-      <div className="tai-video-glass-bar">
+      {source.type !== "none" && source.type !== "vimeo" && !videoError && <div className="tai-video-glass-bar">
         
         {/* Interactive Scrub Progress Bar with Preview Tooltip */}
         <div
@@ -800,7 +828,7 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
             </button>
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   );
 });

@@ -40,3 +40,8 @@ verify_jwt = false
 # slot-locking, and service-role checks before creating a calendar event.
 [functions.book-demo-appointment]
 verify_jwt = false
+
+# Signed-out learners must be able to request recovery. The handler enforces
+# its own hashed email/IP rate limits and never returns recovery credentials.
+[functions.send-password-reset]
+verify_jwt = false

@@ -1,6 +1,7 @@
 import { supabase, activeProject } from "../supabaseClient.js";
 import { fetchMemberLearningInterests } from "./capProgram.js";
 import { sharePendingRead } from "../pendingReads.js";
+import { saveCourseLessons } from "../lessonPersistence.js";
 import { fetchProfilesByUserIds } from "./schemaHelper.js";
 import { isRealDatabaseId, isMockDataEnabled } from "../mockDataManager.js";
 import { resolveOrganizationId } from "./dataReferences.js";
@@ -1768,21 +1769,7 @@ export async function deleteCourse(courseId) {
 
 export async function replaceCourseLessons(courseId, lessons) {
   if (!supabase) return;
-  // Simplest correct strategy given the builder always submits the full,
-  // reordered list: delete existing rows for this course and re-insert in
-  // the new order, writing order_index from array position.
-  const { error: delErr } = await supabase.from("lessons").delete().eq("course_id", courseId);
-  if (delErr) throw delErr;
-  if (!lessons.length) return;
-  const rows = lessons.map((l, i) => ({
-    course_id: courseId,
-    title: l.title,
-    duration_minutes: l.duration,
-    video_url: l.videoUrl || null,
-    order_index: i,
-  }));
-  const { error } = await supabase.from("lessons").insert(rows);
-  if (error) throw error;
+  return saveCourseLessons(supabase, courseId, lessons);
 }
 
 export async function fetchLearningPathsAdmin(orgId) {

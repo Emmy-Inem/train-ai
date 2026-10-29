@@ -1,9 +1,10 @@
+import { requestPasswordRecovery } from "../lib/passwordRecovery.js";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { supabase, resolveProjectForSignIn, resolveProjectForSignUp, setActiveSupabaseProject, getSupabaseClientForProject, SUPABASE_PROJECTS } from "../services/supabaseClient.js";
-import { isDemoAdminMarker, getDemoRoleForEmail, setDemoRoleForEmail, isPlatformOwnerEmail } from "../lib/roleRouting.js";
+import { isDemoAdminMarker, getDemoRoleForEmail, setDemoRoleForEmail } from "../lib/roleRouting.js";
 import { getRateLimitStatus, recordFailedPasswordAttempt, resetPasswordRateLimit, formatLockoutTime } from "../lib/authRateLimiter.js";
 import { safeStorage } from "../lib/storage.js";
-import { getCanonicalDomain, CANONICAL_DOMAIN } from "../services/emailService.js";
+import { getCanonicalDomain } from "../services/emailService.js";
 import { joinDefaultOrganization, joinOrganizationByReferral } from "../lib/api/organizations.js";
 
 const AUTH_STORAGE_KEY = "trainai_active_session_v1";
@@ -90,7 +91,7 @@ export function useAuth() {
           console.warn("Could not establish password recovery session:", error);
         }
       } else if (authCode && isRecoveryIntent) {
-        for (const projKey of [SUPABASE_PROJECTS.ORGANIZATION_DB, SUPABASE_PROJECTS.SARA_FOUNDATION]) {
+        for (const projKey of [SUPABASE_PROJECTS.ORGANIZATION_DB]) {
           const tokenClient = getSupabaseClientForProject(projKey);
           if (tokenClient?.auth?.exchangeCodeForSession) {
             try {
@@ -292,7 +293,7 @@ export function useAuth() {
       let lastNetworkErr = null;
       let successfulProject = targetProject;
 
-      const projectOrder = [SUPABASE_PROJECTS.SARA_FOUNDATION, SUPABASE_PROJECTS.ORGANIZATION_DB];
+      const projectOrder = [SUPABASE_PROJECTS.ORGANIZATION_DB];
 
       // Try candidate projects and candidate email formats
       for (const proj of projectOrder) {
@@ -339,7 +340,7 @@ export function useAuth() {
       const supaErrMsg = (supaErr?.message || "").trim();
 
       // Check if project configuration / connection issue (e.g., 401 Invalid API key)
-      if (supaErr?.status === 401 || supaErrMsg.toLowerCase().includes("invalid api key")) {
+      if (supaErrMsg.toLowerCase().includes("invalid api key") || supaErr?.code === "invalid_api_key") {
         const message = "Authentication service connection error (Invalid API Key). Please contact system administrators.";
         setAuthError(message);
         return { data: null, error: supaErr || new Error(message) };
@@ -361,33 +362,6 @@ export function useAuth() {
           error: new Error(message),
           isEmailUnconfirmed: true,
         };
-      }
-
-      // Platform Owner resilience during single-database migration:
-      // If the Platform Owner authenticates with the designated admin credential
-      // on the unified database, establish their session immediately so they are
-      // never locked out by unconfirmed status or legacy password hash differences.
-      if (isPlatformOwnerEmail(normalizedEmail) && password === "SaraF123$") {
-        const ownerSession = {
-          access_token: `po_session_${Date.now()}`,
-          token_type: "bearer",
-          expires_in: 604800,
-          refresh_token: `po_refresh_${Date.now()}`,
-          user: {
-            id: activeSupaRes?.data?.user?.id || "4b09bdd5-5fa5-4fc2-a56c-04eb27055471",
-            email: "trainailtd@gmail.com",
-            user_metadata: {
-              display_name: "Platform Owner",
-              role: "super_admin",
-            },
-            confirmed_at: new Date().toISOString(),
-          },
-        };
-        setActiveSupabaseProject(SUPABASE_PROJECTS.ORGANIZATION_DB);
-        resetPasswordRateLimit(normalizedEmail);
-        setSession(ownerSession);
-        safeStorage.setItem(AUTH_STORAGE_KEY, ownerSession);
-        return { data: { user: ownerSession.user, session: ownerSession }, error: null };
       }
 
       // Track failed password attempt
@@ -634,94 +608,8 @@ export function useAuth() {
     }
   }, []);
 
-  // "Forgot password" with Resend integration and canonical trainailtd.com recovery routing
   const sendPasswordReset = useCallback(async (email) => {
-    const rawInput = (email || "").trim();
-    const normalizedEmail = rawInput.toLowerCase();
-    if (!supabase) {
-      return { success: true, emailSent: true };
-    }
-
-    // A signed-out reset request cannot know which of the two Supabase
-    // projects owns the account, so recovery must cover both projects.
-    const resetClients = [
-      getSupabaseClientForProject(SUPABASE_PROJECTS.SARA_FOUNDATION),
-      getSupabaseClientForProject(SUPABASE_PROJECTS.ORGANIZATION_DB),
-    ].filter((client, index, clients) => client && clients.indexOf(client) === index);
-
-    const domainOrigin = getCanonicalDomain();
-    // Supabase appends its own token fragment. Keep our recovery marker in the
-    // query string so it cannot be overwritten by that fragment.
-    const targetRedirectUrl = `${domainOrigin}/?view=auth&recovery=1`;
-
-    let otp = null;
-    let actionLink = null;
-    let emailSent = false;
-    let rateLimited = false;
-    let lastError = null;
-
-    // Use the custom Edge Function with Resend delivery first, falling back to
-    // native resetPasswordForEmail across configured Supabase projects.
-    try {
-      if (supabase?.functions?.invoke) {
-        const { data: edgeData, error: edgeError } = await supabase.functions.invoke("send-password-reset", {
-          body: { email: normalizedEmail, redirectTo: targetRedirectUrl }
-        });
-        if (!edgeError && edgeData) {
-          if (edgeData.rateLimited) {
-            rateLimited = true;
-          } else if (edgeData.emailSent || edgeData.success) {
-            emailSent = true;
-            otp = edgeData.otp || null;
-            actionLink = edgeData.actionLink || null;
-          }
-        } else if (edgeError) {
-          const msg = (edgeError.message || "").toLowerCase();
-          if (msg.includes("rate limit") || edgeError.status === 429) {
-            rateLimited = true;
-          }
-        }
-      }
-    } catch (e) {
-      console.warn("send-password-reset edge function invocation notice:", e);
-    }
-
-    if (!emailSent && !rateLimited) {
-      for (const client of resetClients) {
-        try {
-          const resetRes = await client.auth.resetPasswordForEmail(normalizedEmail, { redirectTo: targetRedirectUrl });
-          if (!resetRes?.error) emailSent = true;
-          else {
-            const errMsg = (resetRes.error.message || "").toLowerCase();
-            if (resetRes.error.status === 429 || errMsg.includes("rate limit")) rateLimited = true;
-            lastError = resetRes.error.message;
-          }
-        } catch (e) {
-          lastError = e?.message || "Password reset request failed.";
-          console.warn("resetPasswordForEmail fallback error:", e);
-        }
-      }
-    }
-
-    const hasDelivery = emailSent || Boolean(otp) || Boolean(actionLink);
-    if (!hasDelivery && !rateLimited) {
-      return {
-        success: false,
-        emailSent: false,
-        rateLimited: false,
-        error: lastError || "Could not dispatch password reset email. Please try again shortly or contact info@trainailtd.com.",
-      };
-    }
-
-    return {
-      success: true,
-      emailSent,
-      rateLimited: rateLimited && !emailSent,
-      otp,
-      actionLink,
-      email: normalizedEmail,
-      warning: lastError
-    };
+    return requestPasswordRecovery(supabase, email, `${getCanonicalDomain()}/?view=auth&recovery=1`);
   }, []);
 
   // Verifies the 6-8 digit OTP recovery code directly across all project clients
@@ -735,12 +623,12 @@ export function useAuth() {
       { key: targetProject, client: getSupabaseClientForProject(targetProject) || supabase },
       { key: targetProject === SUPABASE_PROJECTS.SARA_FOUNDATION ? SUPABASE_PROJECTS.ORGANIZATION_DB : SUPABASE_PROJECTS.SARA_FOUNDATION,
         client: getSupabaseClientForProject(targetProject === SUPABASE_PROJECTS.SARA_FOUNDATION ? SUPABASE_PROJECTS.ORGANIZATION_DB : SUPABASE_PROJECTS.SARA_FOUNDATION) }
-    ].filter((entry) => Boolean(entry.client));
+    ].filter((entry, index, entries) => entry.client && entries.findIndex(other => other.client === entry.client) === index);
 
     let lastError = null;
 
     for (const { key, client } of clientOrder) {
-      for (const otpType of ["recovery", "email", "magiclink"]) {
+      for (const otpType of ["recovery"]) {
         try {
           const { data, error } = await client.auth.verifyOtp({
             email: normalizedEmail,

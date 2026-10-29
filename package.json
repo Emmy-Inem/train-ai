@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build && node scripts/generate-seo-pages.mjs",
     "preview": "vite preview",
-    "test": "node --test scripts/audit/unit.test.mjs scripts/audit/website.test.mjs",
+    "test": "node --test scripts/audit/unit.test.mjs scripts/audit/website.test.mjs scripts/audit/reliability.test.mjs",
     "test:database": "node scripts/audit/replay-local.mjs && node scripts/audit/database-regression.mjs && node scripts/audit/instructor-regression.mjs && node scripts/audit/website-database-regression.mjs",
     "test:database:start": "node scripts/audit/start-local-database.mjs",
     "test:database:stop": "node scripts/audit/stop-local-database.mjs",
