@@ -1,0 +1,23 @@
+# Deploy application source only. Local credentials, audit artifacts and private
+# documents in the workspace must never be uploaded with a CLI deployment.
+*
+!package.json
+!package-lock.json
+!index.html
+!vite.config.js
+!vercel.json
+!src
+!src/**
+!public
+!public/**
+!scripts
+scripts/*
+!scripts/generate-seo-pages.mjs
+!supabase
+supabase/*
+!supabase/functions
+supabase/functions/*
+!supabase/functions/_shared
+supabase/functions/_shared/*
+!supabase/functions/_shared/paymentCatalog.js
+!supabase/functions/_shared/paymentValidation.js
