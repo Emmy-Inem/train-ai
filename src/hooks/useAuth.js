@@ -1,4 +1,4 @@
-import { requestPasswordRecovery } from "../lib/passwordRecovery.js";
+import { requestPasswordRecovery, isPasswordSetupLocation } from "../lib/passwordRecovery.js";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { supabase, resolveProjectForSignIn, resolveProjectForSignUp, setActiveSupabaseProject, getSupabaseClientForProject, SUPABASE_PROJECTS } from "../services/supabaseClient.js";
 import { isDemoAdminMarker, getDemoRoleForEmail, setDemoRoleForEmail } from "../lib/roleRouting.js";
@@ -65,7 +65,7 @@ export function useAuth() {
       const recoveryType = hashParams.get("type") || searchParams.get("type");
       const authCode = searchParams.get("code") || hashParams.get("code");
       const tokenHash = searchParams.get("token_hash") || hashParams.get("token_hash");
-      const isRecoveryIntent = recoveryType === "recovery" || searchParams.get("recovery") === "1" || window.location.hash.includes("recovery");
+      const isRecoveryIntent = isPasswordSetupLocation(window.location);
 
       if (accessToken && refreshToken && isRecoveryIntent) {
         try {
@@ -114,7 +114,7 @@ export function useAuth() {
           const tokenClient = getSupabaseClientForProject(projKey);
           if (tokenClient?.auth?.verifyOtp) {
             try {
-              const { data, error } = await tokenClient.auth.verifyOtp({ token_hash: tokenHash, type: "recovery" });
+              const { data, error } = await tokenClient.auth.verifyOtp({ token_hash: tokenHash, type: recoveryType === "invite" ? "invite" : "recovery" });
               if (!error && data?.session) {
                 resolvedSession = data.session;
                 resolvedProject = projKey;
@@ -197,6 +197,7 @@ export function useAuth() {
     const hash = window.location.hash || "";
     const search = window.location.search || "";
     if (
+      isPasswordSetupLocation(window.location) ||
       hash.includes("type=recovery") ||
       hash.includes("type%3Drecovery") ||
       search.includes("type=recovery") ||

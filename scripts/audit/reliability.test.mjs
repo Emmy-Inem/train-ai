@@ -1,8 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { saveCourseLessons } from '../../src/lib/lessonPersistence.js';
-import { requestPasswordRecovery } from '../../src/lib/passwordRecovery.js';
+import { requestPasswordRecovery, isPasswordSetupLocation } from '../../src/lib/passwordRecovery.js';
 import { parseVideoSource } from '../../src/lib/videoSource.js';
+
+test('Invitation and recovery callbacks require password setup while ordinary sign-in does not', () => {
+  assert.equal(isPasswordSetupLocation({hash:'#access_token=fixture&type=invite'}),true);
+  assert.equal(isPasswordSetupLocation({search:'?token_hash=fixture&type=invite'}),true);
+  assert.equal(isPasswordSetupLocation({hash:'#access_token=fixture&type=recovery'}),true);
+  assert.equal(isPasswordSetupLocation({search:'?view=auth&recovery=1'}),true);
+  assert.equal(isPasswordSetupLocation({hash:'#access_token=fixture&type=signup'}),false);
+  assert.equal(isPasswordSetupLocation({search:'?view=auth'}),false);
+});
 
 test('Video URLs support Shorts, mobile, privacy embeds and reordered query parameters', () => {
   for (const value of ['https://youtube.com/shorts/abcdefghijk', 'https://m.youtube.com/watch?feature=share&v=abcdefghijk', 'https://www.youtube-nocookie.com/embed/abcdefghijk', 'youtu.be/abcdefghijk?t=5', 'abcdefghijk']) {

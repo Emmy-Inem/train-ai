@@ -1,3 +1,10 @@
+export function isPasswordSetupLocation(location) {
+  const search = new URLSearchParams(location.search || "");
+  const hash = new URLSearchParams((location.hash || "").replace(/^#/, ""));
+  const type = hash.get("type") || search.get("type");
+  return type === "recovery" || type === "invite" || search.get("recovery") === "1";
+}
+
 export async function requestPasswordRecovery(client, email, redirectTo) {
   const normalizedEmail = String(email || "").trim().toLowerCase();
   const failure = error => ({ success: false, emailSent: false, error, email: normalizedEmail });
