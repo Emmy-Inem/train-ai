@@ -10,6 +10,9 @@ test('Video URLs support Shorts, mobile, privacy embeds and reordered query para
   }
   assert.deepEqual(parseVideoSource('https://vimeo.com/123456/privatehash'), { type: 'vimeo', videoId: '123456', hash: 'privatehash' });
   assert.equal(parseVideoSource('https://storage.example/video.mp4?token=fixture').type, 'html5');
+  assert.equal(parseVideoSource(' https://mega.nz/folder/folder-id#folder-key/folder/subfolder').type, 'external');
+  assert.equal(parseVideoSource('https://mega.nz/file/file-id#file-key').src, 'https://mega.nz/embed/file-id#file-key');
+  assert.equal(parseVideoSource('https://mega.nz/#!file-id!file-key').type, 'mega');
   for (const value of ['', null, 'javascript:alert(1)', 'https://youtube.com/playlist?list=PL123', 'https://youtube.com/watch?v=invalid']) assert.equal(parseVideoSource(value).type, 'none');
 });
 

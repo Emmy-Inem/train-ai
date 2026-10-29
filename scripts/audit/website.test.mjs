@@ -133,6 +133,22 @@ test('Recovery limiter failure does not send email or generate a recovery token'
  const handler=await edge('send-password-reset',{db:{rpc:async()=>({error:{message:'unavailable'}}),auth:{admin:{generateLink:async()=>{called=true;return {}}}}}});
  assert.equal((await handler(post({email:'person@example.invalid'}))).status,503);assert.equal(called,false);
 });
+
+test('Recovery uses the atomic limiter, allows the destination site and never returns its secret link',async()=>{
+ for(const [input,expected] of [['https://train-ai-sand.vercel.app/?recovery=1','https://train-ai-sand.vercel.app/?recovery=1'],['https://attacker.vercel.app/','https://trainailtd.com/?view=auth&recovery=1']]){
+  let redirect,mailCalls=0,limitCalls=0;
+  const db={rpc:async()=>{limitCalls++;return {data:true}},auth:{admin:{generateLink:async args=>{redirect=args.options.redirectTo;return {data:{properties:{action_link:'https://secret.invalid/recovery-token'}}}}}}};
+  const handler=await edge('send-password-reset',{db,env:{RESEND_API_KEY:'fixture'},provider:async()=>{mailCalls++;return new Response('{}',{status:200})}});
+  const response=await handler(post({email:'person@example.invalid',redirectTo:input}));
+  assert.equal(response.status,200);assert.equal(redirect,expected);assert.equal(limitCalls,1);assert.equal(mailCalls,1);
+  const body=await response.json();assert.equal(body.emailSent,true);assert.equal(body.actionLink,undefined);assert.equal(body.otp,undefined);
+ }
+});
+
+test('Unknown recovery accounts receive a neutral response without claiming email delivery',async()=>{
+ const handler=await edge('send-password-reset',{db:{rpc:async()=>({data:true}),auth:{admin:{generateLink:async()=>({error:{message:'User not found'}})}}}});
+ const response=await handler(post({email:'unknown@example.invalid'}));assert.equal(response.status,200);assert.equal((await response.json()).emailSent,false);
+});
 test('Organization invitation endpoint rejects a platform-owner grant',async()=>{
  let inserted=false;
  const db={from:table=>{const q={select:()=>q,eq:()=>q,maybeSingle:async()=>({data:table==='organizations'?{name:'Fixture'}:{role:'admin'}}),then:fn=>Promise.resolve({data:[{role:'admin'}]}).then(fn),insert:()=>{inserted=true;return q;}};return q;}};

@@ -39,7 +39,7 @@ function safeRedirect(value: unknown) {
     const candidate = new URL(String(value || fallback));
     const isHttps = candidate.protocol === "https:";
     const isLocalHttp = candidate.protocol === "http:" && (candidate.hostname === "localhost" || candidate.hostname === "127.0.0.1");
-    return (isHttps || isLocalHttp) && isAllowedHost(candidate.hostname)
+    return (isHttps || isLocalHttp) && !candidate.username && !candidate.password && isAllowedHost(candidate.hostname)
       ? candidate.toString()
       : fallback;
   } catch {

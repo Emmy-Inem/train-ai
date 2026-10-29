@@ -35,7 +35,7 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
   const [showSpeedMenu, setShowSpeedMenu] = useState(false);
   const [showQualityMenu, setShowQualityMenu] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [videoQuality, setVideoQuality] = useState("1080p HD");
+  const [videoQuality, setVideoQuality] = useState("Auto");
   const [captionsEnabled, setCaptionsEnabled] = useState(true);
   const [videoError, setVideoError] = useState(false);
   const [isHoveringScrubber, setIsHoveringScrubber] = useState(false);
@@ -51,11 +51,13 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
   const [retryCount, setRetryCount] = useState(0);
   const sourceKey = `${lessonId}:${source.type}:${source.src || source.videoId || ""}`;
   const youtubeOrigin = "https://www.youtube.com";
+  const showFallback = source.type === "none" || source.type === "external" || videoError;
   useEffect(() => {
     setIsPlaying(false);
     setCurrentTime(0);
     setDuration(durationMinutes * 60);
     setVideoError(false);
+    setVideoQuality("Auto");
   }, [sourceKey, retryCount]);
 
   // Sync duration if durationMinutes changes
@@ -469,8 +471,8 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
         style={{
           position: "relative",
           width: "100%",
-          paddingBottom: isFullscreen ? 0 : "56.25%",
-          height: isFullscreen ? "100%" : 0,
+          paddingBottom: isFullscreen || showFallback ? 0 : "56.25%",
+          height: isFullscreen ? "100%" : showFallback ? "auto" : 0,
           flex: isFullscreen ? "1 1 auto" : "none",
           background: "#000",
           overflow: "hidden",
@@ -561,6 +563,14 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
         )}
 
         {/* Case 3: Vimeo Embed Stream */}
+        {source.type === "mega" && <iframe
+          key={`${sourceKey}:${retryCount}`}
+          title={lessonTitle}
+          src={source.src}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: "none" }}
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+          allowFullScreen
+        />}
         {source.type === "vimeo" && (
           <iframe
             key={`${sourceKey}:${retryCount}`}
@@ -580,11 +590,13 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
         )}
 
         {/* Case 4: No Video Source or Error Fallback */}
-        {(source.type === "none" || videoError) && (
+        {showFallback && (
           <div
             style={{
-              position: "absolute",
+              position: isFullscreen ? "absolute" : "relative",
               inset: 0,
+              minHeight: 260,
+              boxSizing: "border-box",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -601,11 +613,14 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
             </div>
             <div style={{ fontWeight: 800, fontSize: 16, marginBottom: 4 }}>{lessonTitle}</div>
             <div style={{ fontSize: 13, color: "#94A3B8", maxWidth: 440, lineHeight: 1.45 }}>
-              {source.type === "none"
+              {source.type === "external"
+                ? "This lesson contains videos in a shared MEGA folder. Open the folder, choose a video, and press play. Return here to continue the lesson and mark it complete."
+                : source.type === "none"
                 ? "This lesson does not have a playable video link. Please ask your instructor to add or restore the lesson video."
                 : "The video could not be played. Check your connection, then retry. If it still fails, ask your instructor to check the video link and sharing settings."}
             </div>
-            {source.type !== "none" && <button className="tai-btn" style={{ marginTop: 16 }} onClick={() => setRetryCount(count => count + 1)}>Retry video</button>}
+            {source.type === "external" && <a className="tai-btn" href={source.src} target="_blank" rel="noopener noreferrer" style={{ marginTop: 16, color: "#fff", background: "#2563eb", padding: "10px 16px", borderRadius: 8 }}>Open lesson videos in MEGA</a>}
+            {source.type !== "none" && source.type !== "external" && <button className="tai-btn" style={{ marginTop: 16 }} onClick={() => setRetryCount(count => count + 1)}>Retry video</button>}
           </div>
         )}
 
@@ -633,16 +648,16 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
           <span style={{ fontSize: 11.5, fontWeight: 800, color: "#FFFFFF", wordBreak: "break-word", lineHeight: 1.25 }}>
             {lessonTitle}
           </span>
-          <span style={{ fontSize: 10.5, color: "#93C5FD", fontWeight: 700, flexShrink: 0, background: "rgba(59, 130, 246, 0.25)", padding: "1px 6px", borderRadius: 4, border: "1px solid rgba(165, 180, 252, 0.3)" }}>
+          {["youtube", "html5"].includes(source.type) && <span style={{ fontSize: 10.5, color: "#93C5FD", fontWeight: 700, flexShrink: 0, background: "rgba(59, 130, 246, 0.25)", padding: "1px 6px", borderRadius: 4, border: "1px solid rgba(165, 180, 252, 0.3)" }}>
             {videoQuality}
-          </span>
+          </span>}
         </div>
       </div>
 
       {/* =========================================================================
           UNIVERSAL LIQUID GLASS CINEMA CONTROL BAR
           ========================================================================= */}
-      {source.type !== "none" && source.type !== "vimeo" && !videoError && <div className="tai-video-glass-bar">
+      {["html5", "youtube"].includes(source.type) && !videoError && <div className="tai-video-glass-bar">
         
         {/* Interactive Scrub Progress Bar with Preview Tooltip */}
         <div
