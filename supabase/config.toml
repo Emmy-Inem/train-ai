@@ -44,6 +44,10 @@ verify_jwt = false
 [functions.stripe-verify]
 verify_jwt = false
 
+# Read-only maintenance endpoint; it requires the server service-role credential.
+[functions.course-video-audit]
+verify_jwt = false
+
 # Public booking endpoint. It performs its own origin, validation, rate-limit,
 # slot-locking, and service-role checks before creating a calendar event.
 [functions.book-demo-appointment]

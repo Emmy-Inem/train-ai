@@ -1,0 +1,427 @@
+{
+  "verifiedAt": "2026-10-30T06:19:08.029Z",
+  "before": {
+    "courses": 56,
+    "lessons": 141
+  },
+  "after": {
+    "courses": 56,
+    "lessons": 144,
+    "publishedCourses": 54,
+    "coursesWithoutVideo": 0,
+    "lessonsWithoutVideo": 0,
+    "nonPlayableSourcePages": 0
+  },
+  "republished": [
+    {
+      "id": "e05d855a-1b43-45c8-9f5f-3bb216d6d7e2",
+      "title": "Advanced React Development"
+    },
+    {
+      "id": "d0000000-0000-0000-0000-000000000020",
+      "title": "AI Fundamentals"
+    },
+    {
+      "id": "d0000000-0000-0000-0000-000000000023",
+      "title": "Data Literacy for Teams"
+    },
+    {
+      "id": "1e880270-4245-4922-afea-831dfa17934e",
+      "title": "Data Science Fundamentals"
+    },
+    {
+      "id": "d0000000-0000-0000-0000-000000000021",
+      "title": "Leadership Essentials"
+    },
+    {
+      "id": "7489a5a0-c2ae-4cae-82b9-8e49d4aea95f",
+      "title": "Venture capital"
+    },
+    {
+      "id": "d0000000-0000-0000-0000-000000000022",
+      "title": "Workplace Compliance 101"
+    }
+  ],
+  "selections": [
+    {
+      "courseId": "22e1e3ff-d38b-47c0-b13f-38f629fc2ef7",
+      "course": " Node.js Foundations",
+      "lessonId": "14f4e14d-5a17-47a1-ab2e-e5bffe7e2afd",
+      "lesson": "The power of the command and how to use Node",
+      "url": "https://www.youtube.com/watch?v=TlB_eWDSMt4",
+      "title": "Node.js Tutorial for Beginners: Learn Node in 1 Hour",
+      "channel": "Programming with Mosh",
+      "durationSeconds": 4696
+    },
+    {
+      "courseId": "d7c9550e-befd-444a-a7fe-e9c34c997ad8",
+      "course": "Advanced CSS Positioning & Styling",
+      "lessonId": "6d599969-7aaf-4a15-831e-b1b2a3b8184d",
+      "lesson": "Absolute Positioning in CSS",
+      "url": "https://www.youtube.com/watch?v=P6UgYq3J3Qs",
+      "title": "CSS Positioning: Position absolute and relative explained",
+      "channel": "Kevin Powell",
+      "durationSeconds": 511
+    },
+    {
+      "courseId": "f0db8219-223f-408e-b24a-5e1738d47ae9",
+      "course": "Advanced MongoDB & Best Practices",
+      "lessonId": "41e7581e-d531-42fa-a9c0-2f2a69a06c1e",
+      "lesson": "MongoDB Relationships",
+      "url": "https://www.youtube.com/watch?v=ZBRuUcV7bFc",
+      "title": "MongoDB Schema Design | Embedding or Referencing? MongoDB Tutorials",
+      "channel": "Neeraj Garg",
+      "durationSeconds": 306
+    },
+    {
+      "courseId": "e05d855a-1b43-45c8-9f5f-3bb216d6d7e2",
+      "course": "Advanced React Development",
+      "lessonId": "e8b83a1d-4346-484c-bc48-c4b60fc5e5e6",
+      "lesson": "Context API and State Management",
+      "url": "https://www.youtube.com/watch?v=ngVvDegsAW8",
+      "title": "State Management in React | Context API useContext | React Tutorials for Beginners",
+      "channel": "Dave Gray",
+      "durationSeconds": 2371
+    },
+    {
+      "courseId": "d0000000-0000-0000-0000-000000000020",
+      "course": "AI Fundamentals",
+      "lessonId": "11d186b9-4df4-4c5a-b12c-b8797024fc9f",
+      "lesson": "AI in your daily workflow",
+      "url": "https://www.youtube.com/watch?v=TZe5UqlUg0c",
+      "title": "7 Best AI Tools You NEED to Try (Free & Powerful!) 💡",
+      "channel": "Kevin Stratvert",
+      "durationSeconds": 469
+    },
+    {
+      "courseId": "d0000000-0000-0000-0000-000000000020",
+      "course": "AI Fundamentals",
+      "lessonId": "686ced26-d269-4861-a025-4eb327b33748",
+      "lesson": "What is AI, really?",
+      "url": "https://www.youtube.com/watch?v=qYNweeDHiyU",
+      "title": "AI, Machine Learning, Deep Learning and Generative AI Explained",
+      "channel": "IBM Technology",
+      "durationSeconds": 601
+    },
+    {
+      "courseId": "4becfdfa-af05-44c6-b962-929c16d606f1",
+      "course": "API Deployment & Production",
+      "lessonId": "92b8ee34-4bee-4be4-b03d-84dc654ae469",
+      "lesson": "Why do we need APIs",
+      "url": "https://www.youtube.com/watch?v=GJn6jVgf5UQ",
+      "title": "How to Deploy Node.js Express App on Render for FREE in 2026 | Step-by-Step Tutorial",
+      "channel": "Programming with Kumaresan ",
+      "durationSeconds": 471
+    },
+    {
+      "courseId": "3549ad6d-18dd-4292-b8cf-b1f311a88f7a",
+      "course": "APIs & Backend Integration",
+      "lessonId": "65179b57-17f4-4c0b-9b63-78e11c3e37ff",
+      "lesson": "Application programming interfaces: APIs",
+      "url": "https://www.youtube.com/watch?v=pKd0Rpw7O48",
+      "title": "How to build a REST API with Node js & Express",
+      "channel": "Programming with Mosh",
+      "durationSeconds": 3520
+    },
+    {
+      "courseId": "4e1c9e1d-0856-4aec-aceb-b5bbfa799ae1",
+      "course": "Authentication & Security (Part 1)",
+      "lessonId": "d032dbfe-2cad-48cc-80c4-608327f02f98",
+      "lesson": " AUTHENTICATION AND SECURITY ",
+      "url": "https://www.youtube.com/watch?v=tx7veA2E2Ww",
+      "title": "Secure Your Node.js App: Authentication with bcrypt, Passport, and Express-Session (MongoDB Guide)",
+      "channel": "WebiGeeks",
+      "durationSeconds": 3298
+    },
+    {
+      "courseId": "99d0613d-ff17-498b-85a0-59eb90a8c878",
+      "course": "Authentication & Security (Part 2)",
+      "lessonId": "ad708591-749f-4f3f-978b-4728568fa41f",
+      "lesson": "Part 2",
+      "url": "https://www.youtube.com/watch?v=nn1yP_aI7SI",
+      "title": "Authentication with Node.js and Passport.js: Username/Password, Google OAuth and React integration",
+      "channel": "manfra․io",
+      "durationSeconds": 4854
+    },
+    {
+      "courseId": "d0000000-0000-0000-0000-000000000023",
+      "course": "Data Literacy for Teams",
+      "lessonId": "240ca447-3433-4ce1-a36e-ecc4e0ddecf2",
+      "lesson": "Reading a dashboard",
+      "url": "https://www.youtube.com/watch?v=OYbPOhK0wPo",
+      "title": "Telling a Story with Data | Dashboard Build Demo",
+      "channel": "Maven Analytics",
+      "durationSeconds": 821
+    },
+    {
+      "courseId": "92713ab5-716c-40a9-b4c4-83fb2fd6ab23",
+      "course": "EJS & Templating",
+      "lessonId": "f5ad10b3-2ae9-459f-a532-6ba53bf88511",
+      "lesson": "Embedded JavaScript",
+      "url": "https://www.youtube.com/watch?v=lYVKbAn5Od0",
+      "title": "Node.js Express EJS Layouts and Partials Tutorial",
+      "channel": "Raddy",
+      "durationSeconds": 1620
+    },
+    {
+      "courseId": "a1891669-ed6b-44ce-973d-4d86efd3e32f",
+      "course": "Entrepreneurship I – Ideation",
+      "lessonId": "b993b68d-d35e-4c44-8b49-c006e47db260",
+      "lesson": "Facing Failure",
+      "url": "https://www.youtube.com/watch?v=Ihs4VFZWwn4",
+      "title": "The Power of an Entrepreneurial Mindset | Bill Roche | TEDxLangleyED",
+      "channel": "TEDx Talks",
+      "durationSeconds": 981
+    },
+    {
+      "courseId": "00ad5529-382e-431d-8a9c-58fa18f54865",
+      "course": "Express.js with Node.js",
+      "lessonId": "e194e630-4451-4a47-bb39-c255cf0b86b3",
+      "lesson": "Express.js with Node.js",
+      "url": "https://www.youtube.com/watch?v=SccSCuHhOw0",
+      "title": "Learn Express JS In 35 Minutes",
+      "channel": "Web Dev Simplified",
+      "durationSeconds": 2163
+    },
+    {
+      "courseId": "96a6a005-4ee3-4d4f-9a61-a4dbc50ce718",
+      "course": "Foundations of Web Structure with HTML",
+      "lessonId": "a07ee614-6ce9-4f6b-86e0-454c2fc396af",
+      "lesson": "Introduction to HTML & What We Are Building",
+      "url": "https://www.youtube.com/watch?v=qz0aGYrrlhU",
+      "title": "HTML Tutorial for Beginners: HTML Crash Course",
+      "channel": "Programming with Mosh",
+      "durationSeconds": 4174
+    },
+    {
+      "courseId": "56b386c7-26d3-48d6-9a0f-41b854952f04",
+      "course": "Getting Started with Train AI (Demo Course)",
+      "lessonId": "38728e6c-d52f-4542-a0f6-026329efb601",
+      "lesson": "Navigating Your Dashboard",
+      "url": "https://www.youtube.com/watch?v=hD0G9uEWgRc",
+      "title": "How to develop an effective study routine for school + university 📚",
+      "channel": "UnJaded Jade",
+      "durationSeconds": 616
+    },
+    {
+      "courseId": "56b386c7-26d3-48d6-9a0f-41b854952f04",
+      "course": "Getting Started with Train AI (Demo Course)",
+      "lessonId": "62dd0aa3-7d70-4b7a-881a-0fb02cfa4611",
+      "lesson": "Completing Your First Assessment",
+      "url": "https://www.youtube.com/watch?v=lZ2hkZGzeGE",
+      "title": "A Clever Way to Study for Exams",
+      "channel": "Gohar Khan",
+      "durationSeconds": 30
+    },
+    {
+      "courseId": "56b386c7-26d3-48d6-9a0f-41b854952f04",
+      "course": "Getting Started with Train AI (Demo Course)",
+      "lessonId": "cbb022a9-e4a3-411d-8a40-3c441f08ad77",
+      "lesson": "Welcome to Train AI",
+      "url": "https://www.youtube.com/watch?v=C3mf25AHL4w",
+      "title": "8 Learning Tips and Tricks to Boost Study Skills for Online Learning",
+      "channel": "Coursera",
+      "durationSeconds": 43
+    },
+    {
+      "courseId": "ac23e6cf-36cf-4fe3-847b-30db0b6d5f44",
+      "course": "Git, GitHub & Version Control",
+      "lessonId": "bb925b04-301c-4e1f-be2d-f420630ddf36",
+      "lesson": "GIT,GITHUB AND VERSION CONTROL.",
+      "url": "https://www.youtube.com/watch?v=mAFoROnOfHs",
+      "title": "Git & GitHub Crash Course for Beginners [2026]",
+      "channel": "freeCodeCamp.org",
+      "durationSeconds": 4880
+    },
+    {
+      "courseId": "2180fa22-b69f-48f2-9e15-737755d88812",
+      "course": "Intermediate Bootstrap & Advanced CSS",
+      "lessonId": "f291aebb-9624-4ce7-bd98-89f8efe21cdb",
+      "lesson": "Bootstrap Carousel (Part 1)",
+      "url": "https://www.youtube.com/watch?v=ku_97a6Bgkg",
+      "title": "Carousel Slider Bootstrap 5 | Slider Carousel Tutorial",
+      "channel": "Adrian Twarog",
+      "durationSeconds": 863
+    },
+    {
+      "courseId": "99c7afba-7a7c-4f67-9317-6d5e9abae88d",
+      "course": "Intermediate CSS & Layout Design",
+      "lessonId": "4dc84fd4-d4ec-4ccd-a408-7a3b29ead415",
+      "lesson": "Creating a Personal Website",
+      "url": "https://www.youtube.com/watch?v=n4R2E7O-Ngo",
+      "title": "CSS Full Course for Beginners | Complete All-in-One Tutorial | 11 Hours",
+      "channel": "Dave Gray",
+      "durationSeconds": 40087
+    },
+    {
+      "courseId": "99e0fc29-1406-4f37-a132-adb5ae0deb23",
+      "course": "Intermediate HTML & Website Publishing",
+      "lessonId": "6542a82d-c7f4-4a2b-8f56-48d2b2dfc059",
+      "lesson": "HTML Tables Explained",
+      "url": "https://www.youtube.com/watch?v=mJgBOIoGihA",
+      "title": "HTML Full Course for Beginners | Complete All-in-One Tutorial | 4 Hours",
+      "channel": "Dave Gray",
+      "durationSeconds": 14854
+    },
+    {
+      "courseId": "eae75900-5115-40fd-b9ec-dd24436e4d2c",
+      "course": "Intermediate Java script",
+      "lessonId": "4876c436-8f6b-4d32-bff7-f1b6973626ca",
+      "lesson": "Random Number Generation",
+      "url": "https://www.youtube.com/watch?v=K2upGO5Bb48",
+      "title": "Random number generator in JavaScript ⁉",
+      "channel": "Bro Code",
+      "durationSeconds": 517
+    },
+    {
+      "courseId": "5ad5728e-6e43-447a-8229-7728ea426adb",
+      "course": "Introduction to Bootstrap",
+      "lessonId": "0015e1f5-93e9-4a72-a13b-a7211afda1a1",
+      "lesson": "What Is Bootstrap & Installation",
+      "url": "https://www.youtube.com/watch?v=-qfEOE4vtxE",
+      "title": "Bootstrap CSS Framework - Full Course for Beginners",
+      "channel": "freeCodeCamp.org",
+      "durationSeconds": 9982
+    },
+    {
+      "courseId": "ee3a4554-ac22-4e11-ba29-0555d69e3404",
+      "course": "Introduction to CSS Styling",
+      "lessonId": "e49fedf1-6d29-450a-981e-8c50cb51388f",
+      "lesson": "Introduction to CSS & Why It Matters",
+      "url": "https://www.youtube.com/watch?v=0W6qz0-aDaM",
+      "title": "CSS Introduction and Tutorial for Beginners",
+      "channel": "Dave Gray",
+      "durationSeconds": 888
+    },
+    {
+      "courseId": "329cfff6-a2bc-4b15-8571-ef17ae18ed31",
+      "course": "Introduction to JavaScript",
+      "lessonId": "29a6b37b-2171-44b7-91c5-fb37d550dc00",
+      "lesson": "Introduction to JavaScript & Alerts",
+      "url": "https://www.youtube.com/watch?v=W6NZfCO5SIk",
+      "title": "JavaScript Course for Beginners – Your First Step to Web Development",
+      "channel": "Programming with Mosh",
+      "durationSeconds": 2897
+    },
+    {
+      "courseId": "e204995b-c348-40eb-a3b4-4efbcfc75e3b",
+      "course": "JavaScript Functions & Logic",
+      "lessonId": "c6cd8188-166e-45cc-a4a1-b31ff2aa2924",
+      "lesson": "String Case Challenges",
+      "url": "https://www.youtube.com/watch?v=FOD408a0EzU",
+      "title": "How To Create/Use Functions - JavaScript Essentials",
+      "channel": "Web Dev Simplified",
+      "durationSeconds": 574
+    },
+    {
+      "courseId": "6243e465-1d0b-4023-867e-706f68695cc8",
+      "course": "jQuery Events & Animations",
+      "lessonId": "dc402235-d47f-4a48-beca-49acc13e621a",
+      "lesson": "Adding Event Listeners with Jquery",
+      "url": "https://www.youtube.com/watch?v=VlWsJHsVb-E",
+      "title": "jQuery Crash Course [2] - Events",
+      "channel": "Traversy Media",
+      "durationSeconds": 1459
+    },
+    {
+      "courseId": "003f85ed-c999-46d4-9857-96e68ac9e0b2",
+      "course": "jQuery Fundamentals",
+      "lessonId": "fb493b68-cef6-4dc7-bc0c-6a01a0a866cd",
+      "lesson": "What is Jquery",
+      "url": "https://www.youtube.com/watch?v=HgvIox6ehkM",
+      "title": "jQuery Full Course | jQuery Tutorial For Beginners | jQuery Certification Training | Edureka",
+      "channel": "edureka!",
+      "durationSeconds": 12347
+    },
+    {
+      "courseId": "d0000000-0000-0000-0000-000000000021",
+      "course": "Leadership Essentials",
+      "lessonId": "4cf2b335-75f4-408e-a341-8e014dd5d404",
+      "lesson": "Leading without authority",
+      "url": "https://www.youtube.com/watch?v=26YI1ctY6eY",
+      "title": "Leadership and Persuasion: Influencing Without Authority",
+      "channel": "Columbia Business School",
+      "durationSeconds": 2186
+    },
+    {
+      "courseId": "89b42d14-8e8d-4f86-b013-eab088bd3408",
+      "course": "MongoDB Basics",
+      "lessonId": "375c68d5-7a7b-4c14-a080-48a2953f5e0a",
+      "lesson": "MONGODB",
+      "url": "https://www.youtube.com/watch?v=c2M-rlkkT5o",
+      "title": "Learn MongoDB in 1 hour 🍃",
+      "channel": "Bro Code",
+      "durationSeconds": 3600
+    },
+    {
+      "courseId": "8c4792c0-4fb0-4eda-bb1f-3e3e6db0db6a",
+      "course": "React.js Foundations",
+      "lessonId": "789b925b-f535-447a-85dd-1b9b47e16da0",
+      "lesson": "REACT.js",
+      "url": "https://www.youtube.com/watch?v=SqcY0GlETPk",
+      "title": "React Tutorial for Beginners",
+      "channel": "Programming with Mosh",
+      "durationSeconds": 4804
+    },
+    {
+      "courseId": "08cbcbf0-86ab-4059-b86c-059fc6cd9148",
+      "course": "SQL & Relational Databases",
+      "lessonId": "908ac8f1-5cfd-459a-9dfb-9b1b5a55e87e",
+      "lesson": " SQL( Structured Query Language)",
+      "url": "https://www.youtube.com/watch?v=7S_tz1z_5bA",
+      "title": "SQL Course for Beginners [Full Course]",
+      "channel": "Programming with Mosh",
+      "durationSeconds": 11419
+    },
+    {
+      "courseId": "4b192b96-4b01-4e28-bf36-f85f71cefba6",
+      "course": "UI/UX Design Fundamentals",
+      "lessonId": "d41f9a59-2894-4069-8597-6ea4a70e1ad1",
+      "lesson": "Introduction to UI & UX Design",
+      "url": "https://www.youtube.com/watch?v=ODpB9-MCa5s",
+      "title": "UI/UX Explained In 8 Minutes | UI/UX Design For Beginners | UI/UX Design Basics | Simplilearn",
+      "channel": "Simplilearn",
+      "durationSeconds": 498
+    },
+    {
+      "courseId": "d0000000-0000-0000-0000-000000000022",
+      "course": "Workplace Compliance 101",
+      "lessonId": "ff098995-6ad8-4a40-a8de-d7d23b245422",
+      "lesson": "Key policies overview",
+      "url": "https://www.youtube.com/watch?v=DxWDtTIWdkE",
+      "title": "Workplace Ethics and Code of Conduct  Soft Skills | Skills training | TutorialsPoint",
+      "channel": "TutorialsPoint",
+      "durationSeconds": 917
+    },
+    {
+      "courseId": "d0000000-0000-0000-0000-000000000024",
+      "course": "Advanced Project Management",
+      "lessonId": "ec872893-8f45-41b3-a864-fd4313264067",
+      "lesson": "Project Management: Planning, Risk and Delivery",
+      "url": "https://www.youtube.com/watch?v=uWPIsaYpY7U",
+      "title": "Project Management Full Course In 8 Hours | Project Management Training | Simplilearn",
+      "channel": "Simplilearn",
+      "durationSeconds": 29166
+    },
+    {
+      "courseId": "1e880270-4245-4922-afea-831dfa17934e",
+      "course": "Data Science Fundamentals",
+      "lessonId": "9cd85e15-94ab-47b7-ae5a-fa0910285c67",
+      "lesson": "Data Science Foundations with Python",
+      "url": "https://www.youtube.com/watch?v=MPqoDNJGdcw",
+      "title": "Complete Data Science Course FREE [2026] | Data Science Tutorial for Beginners | Intellipaat",
+      "channel": "Intellipaat",
+      "durationSeconds": 37594
+    },
+    {
+      "courseId": "7489a5a0-c2ae-4cae-82b9-8e49d4aea95f",
+      "course": "Venture capital",
+      "lessonId": "7af3f763-9507-4774-af29-be34bf035d17",
+      "lesson": "How Startup Fundraising Works",
+      "url": "https://www.youtube.com/watch?v=zBUhQPPS9AY",
+      "title": "How Startup Fundraising Works | Startup School",
+      "channel": "Y Combinator",
+      "durationSeconds": 1692
+    }
+  ]
+}
