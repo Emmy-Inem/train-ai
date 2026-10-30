@@ -100,7 +100,7 @@ export function AIInsightsCard({ session, credits, consumeCredit, onBuyCredits, 
     <div className="tai-card tai-mt12" style={{ borderColor: "var(--border)", borderRadius: 10 }}>
       <div className="tai-row tai-between">
         <div className="tai-row tai-gap8">
-          
+
           <div className="tai-title-sm">AI Insights</div>
         </div>
         <button

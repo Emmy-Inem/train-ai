@@ -332,7 +332,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
             {/* ---- Buy seats ---- */}
             <div className="ta-card">
               <div className="ta-row ta-gap8">
-                
+
                 <div style={{ fontWeight: 600, fontSize: 15 }}>Buy seats</div>
               </div>
               <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
@@ -429,7 +429,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
             <div className="ta-card">
               <div className="ta-row ta-between" style={{ gap: 10, flexWrap: "wrap" }}>
                 <div className="ta-row ta-gap8">
-                  
+
                   <div style={{ fontWeight: 600, fontSize: 15 }}>Seat allocation</div>
                 </div>
                 <span style={{ fontSize: 11.5, color: "var(--text-3)" }}>
@@ -485,7 +485,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
             {/* ---- Purchase history ---- */}
             <div className="ta-card">
               <div className="ta-row ta-gap8">
-                
+
                 <div style={{ fontWeight: 600, fontSize: 15 }}>Purchase history</div>
               </div>
               <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
@@ -564,7 +564,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
               <div className="ta-row ta-between" style={{ gap: 12, flexWrap: "wrap" }}>
                 <div>
                   <div className="ta-row ta-gap8" style={{ alignItems: "center" }}>
-                    
+
                     <div style={{ fontWeight: 600, fontSize: 15 }}>Learner AI Credit Requests</div>
                   </div>
                   <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
@@ -729,7 +729,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
           <div style={{ padding: 24 }}>
             <div className="ta-row ta-between" style={{ marginBottom: 16 }}>
               <div className="ta-row ta-gap8" style={{ alignItems: "center" }}>
-                
+
                 <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Grant AI Credits Directly</div>
               </div>
               <button className="ta-iconbtn" onClick={() => setGrantModalOpen(false)}>

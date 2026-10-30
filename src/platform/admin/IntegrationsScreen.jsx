@@ -68,7 +68,7 @@ export function IntegrationsScreen({ orgId, userId, orgSelector, setScreen, isPl
         <TopBar title="Integrations" sub="Connect webhooks for platform events" orgSelector={orgSelector} onNavigate={setScreen} />
         <div className="ta-content">
           <div className="ta-card" style={{ textAlign: "center", padding: 40 }}>
-            
+
             <div style={{ fontWeight: 700, fontSize: 15 }}>Integrations is an {minTierLabelFor("integrations")}-plan feature</div>
             <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 6 }}>
               This organization is on the {orgTier[0].toUpperCase() + orgTier.slice(1)} plan. Upgrade to {minTierLabelFor("integrations")} to connect webhooks and use the API.
@@ -186,7 +186,7 @@ export function IntegrationsScreen({ orgId, userId, orgSelector, setScreen, isPl
 
         <div className="ta-card">
           <div className="ta-row ta-gap8">
-            
+
             <div className="ta-title" style={{ margin: 0 }}>Recent dispatch log</div>
           </div>
           <div className="ta-table-wrap">

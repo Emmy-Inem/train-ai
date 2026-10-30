@@ -219,7 +219,7 @@ export function PayoutsScreen({ orgId, orgSelector, setScreen, currentUserId }) 
         {tab === "access" && (
           <div className="ta-card" style={{ borderRadius: 10 }}>
             <div className="ta-row ta-gap8">
-              
+
               <div style={{ fontWeight: 600, fontSize: 15 }}>Who is allowed to withdraw</div>
             </div>
             <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>

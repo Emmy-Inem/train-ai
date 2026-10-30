@@ -465,7 +465,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
 
           {dynamicCertificates.length === 0 ? (
             <div className="tai-card" style={{ textAlign: "center", padding: "40px 20px", borderRadius: 10 }}>
-              
+
               <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>No Certificates Earned Yet</div>
               <div style={{ fontSize: 13, color: "var(--text-3)", marginTop: 4, maxWidth: 440, margin: "4px auto 16px" }}>
                 Complete all modules and assignments in an enrolled course to earn your verified credential.

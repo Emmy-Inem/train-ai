@@ -243,7 +243,7 @@ function PlatformBillingPanel() {
   return (
     <div className="ta-card ta-mt16 ta-fade">
       <div className="ta-row ta-gap8">
-        
+
         <div className="ta-title" style={{ fontSize: 15 }}>Organization payments</div>
       </div>
       <div style={{ fontSize: 11.5, color: "var(--text-2)", marginTop: 6, marginBottom: 10 }}>
@@ -394,7 +394,7 @@ export function PlatformUserReferralTracker({
       <div className="ta-row ta-between" style={{ gap: 12, flexWrap: "wrap", paddingBottom: 16, borderBottom: "1px solid var(--border)" }}>
         <div>
           <div className="ta-row ta-gap8">
-            
+
             <div className="ta-title" style={{ fontSize: 16 }}>
               Platform-Wide User Tracking by Date &amp; Organization Shareable Invite Link
             </div>

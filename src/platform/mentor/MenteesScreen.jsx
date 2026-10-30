@@ -354,7 +354,7 @@ export function MenteesScreen({ mentorId, orgSelector, setScreen, setSelectedLea
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               <div className="ta-row ta-between" style={{ alignItems: "center" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  
+
                   <div className="ta-title" style={{ fontSize: 18 }}>Give Certificate to {certModalUser.name || "Learner"}</div>
                 </div>
                 <button className="ta-btn ta-btn-ghost ta-btn-sm" onClick={() => setCertModalUser(null)}><X size={16} /></button>

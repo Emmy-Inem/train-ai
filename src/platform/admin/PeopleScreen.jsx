@@ -1388,7 +1388,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
                     {!membersQuery.loading && linkFilteredMembers.length === 0 && (
                       <tr>
                         <td colSpan={8} className="ta-empty" style={{ padding: "32px 16px", textAlign: "center" }}>
-                          
+
                           <div style={{ fontWeight: 700, fontSize: 14 }}>No link users found matching criteria</div>
                           <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 4 }}>
                             Share your link above to invite learners and watch them appear here automatically in real time.
@@ -1752,7 +1752,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
         {tab === "privileges" && (
           <div className="ta-card">
             <div className="ta-row ta-gap8">
-              
+
               <div style={{ fontWeight: 600, fontSize: 15 }}>Privileges &amp; roles</div>
             </div>
             <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 4 }}>
@@ -2223,7 +2223,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <div className="ta-row ta-between" style={{ alignItems: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                
+
                 <div className="ta-title" style={{ fontSize: 18 }}>Issue Certificate to {certModalUser.display_name || "Member"}</div>
               </div>
               <button className="ta-btn ta-btn-ghost ta-btn-sm" onClick={() => setCertModalUser(null)}><X size={16} /></button>

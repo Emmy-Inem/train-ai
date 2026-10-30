@@ -1259,7 +1259,7 @@ export function ScheduleView({ push, back }) {
       <TopBar title="Schedule & Live Sessions" sub="Join live mentor workshops, critiques, and cohort sessions" onBack={back} />
 
       <div className="tai-card" style={{ textAlign: "center", padding: "40px 20px" }}>
-        
+
         <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>No published live sessions</div>
         <p style={{ color: "var(--text-2)", fontSize: 13, lineHeight: 1.55, maxWidth: 460, margin: "8px auto 0" }}>
           Live sessions will appear here after an instructor schedules them for your cohort.

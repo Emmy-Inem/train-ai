@@ -466,7 +466,7 @@ export function ProfileScreen({
           <div className="tai-card" style={{ borderRadius: 12, padding: "clamp(16px, 3vw, 24px)" }}>
             <div className="tai-row tai-between" style={{ marginBottom: 14, alignItems: "center", flexWrap: "wrap", gap: 8 }}>
               <div className="tai-row tai-gap10" style={{ alignItems: "center" }}>
-                
+
                 <h2 className="tai-title-sm" style={{ margin: 0 }}>Earned Certificates & Credentials</h2>
               </div>
               <span style={{ fontSize: 12, fontWeight: 600, color: "var(--text-3)" }}>
@@ -527,7 +527,7 @@ export function ProfileScreen({
           {feedbackNotes && feedbackNotes.length > 0 && (
             <div className="tai-card" style={{ borderRadius: 12, padding: "clamp(16px, 3vw, 24px)" }}>
               <div className="tai-row tai-gap10" style={{ marginBottom: 14, alignItems: "center" }}>
-                
+
                 <h2 className="tai-title-sm" style={{ margin: 0 }}>Instructor & Mentor Feedback</h2>
               </div>
               <div className="tai-col tai-gap10">
@@ -1109,7 +1109,7 @@ export function ProfileScreen({
             style={{ width: "100%", maxWidth: 440, background: "var(--surface)", borderRadius: 12 }}
           >
             <div className="tai-row tai-gap10">
-              
+
               <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Request Account Deletion?</div>
             </div>
             <p style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.55, marginTop: 12 }}>

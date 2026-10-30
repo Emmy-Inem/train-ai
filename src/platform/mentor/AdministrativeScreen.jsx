@@ -399,7 +399,7 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
               {refundsQuery.loading && <div className="ta-empty"><LoadingSkeleton label="Loading dispute requests..." rows={3} /></div>}
               {!refundsQuery.loading && (refundsQuery.data || []).length === 0 && (
                 <div style={{ textAlign: "center", padding: 32 }}>
-                  
+
                   <div style={{ fontWeight: 700, fontSize: 15, color: "var(--text)" }}>Zero Active Disputes</div>
                   <div style={{ fontSize: 12.5, color: "var(--text-3)", marginTop: 4 }}>Your teaching satisfaction rating is in excellent standing with no unresolved learner disputes.</div>
                 </div>

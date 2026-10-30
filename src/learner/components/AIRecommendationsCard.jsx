@@ -95,7 +95,7 @@ export function AIRecommendationsCard({ user, courses = [], session, goTab, maxI
     <section className="tai-card tai-home-recommendations" aria-label="AI recommendations">
       <div className="tai-row tai-between tai-recommendation-heading">
         <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-          
+
           <div className="tai-title-sm">AI Recommended for you</div>
         </div>
         {showSeeAll && goTab && (

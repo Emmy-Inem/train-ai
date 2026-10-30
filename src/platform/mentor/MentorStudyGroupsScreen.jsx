@@ -264,7 +264,7 @@ export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
               <div style={{ marginTop: 22 }}>
                 <div className="ta-row ta-between" style={{ marginBottom: 10 }}>
                   <div className="ta-row ta-gap8">
-                    
+
                     <span style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>Circle Members ({members.length})</span>
                   </div>
                   <button
@@ -338,7 +338,7 @@ export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
                   to post one at all, so that panel was permanently empty. */}
               <div style={{ marginTop: 22, paddingTop: 18, borderTop: "1px solid var(--border)" }}>
                 <div className="ta-row ta-gap8" style={{ marginBottom: 10 }}>
-                  
+
                   <span style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>Announcements to This Group</span>
                 </div>
 

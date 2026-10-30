@@ -1273,7 +1273,7 @@ export function DashboardSwitcher({ currentDashboard, availableDashboards, roleL
     >
       <div className="ta-row ta-between">
         <div className="ta-row ta-gap8">
-          
+
           <div className="ta-title" style={{ fontSize: 18 }}>Dashboard Switcher</div>
         </div>
         <div className="ta-row ta-gap8">

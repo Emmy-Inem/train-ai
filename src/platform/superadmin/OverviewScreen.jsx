@@ -580,7 +580,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
 
           <div className="ta-card" style={{ padding: "20px 22px", background: "var(--surface)", border: "1px solid var(--border)" }}>
             <div className="ta-row ta-gap8" style={{ paddingBottom: 12, borderBottom: "1px solid var(--border)" }}>
-              
+
               <div className="ta-title" style={{ fontSize: 15, fontWeight: 600 }}>Platform Health</div>
             </div>
             <div style={{ fontSize: 11.5, color: "var(--text-2)", marginTop: 10, lineHeight: 1.4 }}>
@@ -597,7 +597,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
 
           <div className="ta-card" style={{ padding: "20px 22px", background: "var(--surface)", border: "1px solid var(--border)" }}>
             <div className="ta-row ta-gap8" style={{ paddingBottom: 12, borderBottom: "1px solid var(--border)" }}>
-              
+
               <div className="ta-title" style={{ fontSize: 15, fontWeight: 600 }}>Tenant Churn History</div>
             </div>
             <div style={{ fontSize: 11.5, color: "var(--text-2)", marginTop: 10, lineHeight: 1.4 }}>
@@ -612,7 +612,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
 
           <div className="ta-card" style={{ padding: "20px 22px", background: "var(--surface)", border: "1px solid var(--border)" }}>
             <div className="ta-row ta-gap8" style={{ paddingBottom: 12, borderBottom: "1px solid var(--border)" }}>
-              
+
               <div className="ta-title" style={{ fontSize: 15, fontWeight: 600 }}>Campaign Attribution</div>
             </div>
             <div style={{ fontSize: 11.5, color: "var(--text-2)", marginTop: 10, lineHeight: 1.4 }}>

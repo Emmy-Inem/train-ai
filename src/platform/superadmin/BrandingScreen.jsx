@@ -268,7 +268,7 @@ export function BrandingScreen({ orgSelector } = {}) {
         <div className="ta-card" style={{ padding: 24, borderRadius: 10, background: themeMode === "dark" ? "#0F172A" : "var(--surface)", color: themeMode === "dark" ? "#F8FAFC" : "var(--text)" }}>
           <div className="ta-row ta-between" style={{ paddingBottom: 12, borderBottom: "1px solid var(--border)" }}>
             <div className="ta-row ta-gap8">
-              
+
               <span style={{ fontWeight: 700, fontSize: 14 }}>Live Learner Portal Preview</span>
             </div>
             <Tag tone="primary">Live Preview</Tag>

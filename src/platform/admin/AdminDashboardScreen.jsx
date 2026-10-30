@@ -42,7 +42,7 @@ export function AdminDashboardScreen({ orgId, profileQuery, setScreen, orgSelect
         <TopBar title="Dashboard" sub="Your organization dashboard" orgSelector={orgSelector} />
         <div className="ta-content">
           <div className="ta-card" style={{ textAlign: "center", padding: 48, maxWidth: 480, margin: "40px auto" }}>
-            
+
             <div style={{ fontWeight: 700, fontSize: 16 }}>Activate your organization to unlock the dashboard</div>
             <div style={{ fontSize: 13, color: "var(--text-2)", marginTop: 8, lineHeight: 1.5 }}>
               {orgQuery.data.name || "Your organization"} is on a trial with no active plan yet. Choose Starter or Growth to unlock the full admin dashboard, or talk to us about Enterprise.

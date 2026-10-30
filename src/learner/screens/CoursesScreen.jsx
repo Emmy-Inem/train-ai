@@ -892,7 +892,7 @@ export function CoursesScreen({
         <div className="tai-row tai-between" style={{ marginBottom: 16 }}>
           <div>
             <div className="tai-row tai-gap8">
-              
+
               <h2 style={{ fontSize: 19, fontWeight: 600, letterSpacing: "-0.02em", margin: 0, color: "var(--text)" }}>
                 Live Workshop &amp; Studio Replays
               </h2>

@@ -112,7 +112,7 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
         {/* ---- The sequence ---- */}
         <div className="ta-card">
           <div className="ta-row ta-gap8">
-            
+
             <div style={{ fontWeight: 600, fontSize: 15 }}>Course sequence</div>
           </div>
           <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
@@ -212,7 +212,7 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
         <div className="ta-card">
           <div className="ta-row ta-between" style={{ gap: 10, flexWrap: "wrap" }}>
             <div className="ta-row ta-gap8">
-              
+
               <div style={{ fontWeight: 600, fontSize: 15 }}>Add a course to this path</div>
             </div>
             <div className="ta-search" style={{ flex: "0 1 240px", minWidth: 160 }}>

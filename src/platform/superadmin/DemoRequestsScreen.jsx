@@ -385,7 +385,7 @@ export function DemoRequestsScreen({ orgSelector }) {
               gap: 12,
             }}
           >
-            
+
             <div style={{ fontSize: 16, fontWeight: 700, color: "var(--text)" }}>No demo requests found</div>
             <p style={{ fontSize: 13, color: "var(--text-2)", margin: 0, maxWidth: 440 }}>
               {searchQuery

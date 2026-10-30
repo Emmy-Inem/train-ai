@@ -542,7 +542,7 @@ export function StudyGroupScreen({
 
             ) : posts.length === 0 ? (
               <div className="tai-card tai-empty" style={{ padding: 36, textAlign: "center", borderRadius: 14 }}>
-                
+
                 <div style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>No posts in this group yet</div>
                 <div style={{ fontSize: 12.5, color: "var(--text-3)", marginTop: 4 }}>
                   {isMember ? "Be the first to share an update, question, or study notes!" : "Join this group to get the discussion started!"}
@@ -746,7 +746,7 @@ export function StudyGroupScreen({
               }}
             >
               <div className="tai-row tai-gap8" style={{ alignItems: "center", marginBottom: 12 }}>
-                
+
                 <span style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>Updates from your instructor</span>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -795,7 +795,7 @@ export function StudyGroupScreen({
               }}
             >
               <div className="tai-row tai-gap8" style={{ alignItems: "center", marginBottom: 12 }}>
-                
+
                 <span style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>Study Group Guidelines</span>
               </div>
               <ul style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.6, paddingLeft: 18, margin: 0 }}>
@@ -822,7 +822,7 @@ export function StudyGroupScreen({
           >
             <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 14 }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                
+
                 <span style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>Group Roster ({members.length}/{maxMembers})</span>
               </div>
             </div>

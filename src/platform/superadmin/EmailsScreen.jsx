@@ -217,7 +217,7 @@ export function EmailsScreen() {
         <div className="ta-card ta-mt16 anim-stagger" style={{ borderRadius: 10 }}>
           <div className="ta-row ta-between">
             <div className="ta-row ta-gap8">
-              
+
               <div className="ta-title">Campaign History</div>
             </div>
             <button

@@ -685,7 +685,7 @@ export function CohortDetailScreen({ orgId, cohortId, currentUserId, session, on
                 <div className="ta-card" style={{ borderRadius: 10, border: "1px solid var(--border)", background: "var(--surface)" }}>
                   <div className="ta-row ta-between" style={{ alignItems: "center", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
                     <div className="ta-row ta-gap8" style={{ alignItems: "center" }}>
-                      
+
                       <span style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>
                         Cohort Instructors &amp; Mentors ({instructors.length})
                       </span>

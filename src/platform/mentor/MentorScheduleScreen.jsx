@@ -299,7 +299,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
               {sessionsQuery.loading && <div className="ta-empty"><LoadingSkeleton label="Loading sessions..." rows={3} /></div>}
               {!sessionsQuery.loading && filteredSessions.length === 0 && (
                 <div className="ta-card" style={{ textAlign: "center", padding: 36 }}>
-                  
+
                   <div style={{ fontWeight: 700, fontSize: 15, color: "var(--text)" }}>No sessions matching filter</div>
                   <div style={{ fontSize: 12.5, color: "var(--text-3)", marginTop: 4 }}>Booked and requested 1:1 sessions will appear here.</div>
                 </div>

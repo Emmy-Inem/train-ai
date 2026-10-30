@@ -247,7 +247,7 @@ export function EmailCenterScreen({ orgId, orgSelector, setScreen, currentUserId
             {/* ---- Audience ---- */}
             <div className="ta-card" style={{ borderRadius: 10 }}>
               <div className="ta-row ta-gap8">
-                
+
                 <div style={{ fontWeight: 600, fontSize: 15 }}>Who receives this</div>
               </div>
               <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
@@ -341,7 +341,7 @@ export function EmailCenterScreen({ orgId, orgSelector, setScreen, currentUserId
             {/* ---- Message ---- */}
             <div className="ta-card" style={{ borderRadius: 10 }}>
               <div className="ta-row ta-gap8">
-                
+
                 <div style={{ fontWeight: 600, fontSize: 15 }}>Message</div>
               </div>
 

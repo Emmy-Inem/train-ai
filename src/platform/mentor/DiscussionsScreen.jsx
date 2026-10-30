@@ -225,7 +225,7 @@ export function DiscussionsScreen({ mentorId, orgSelector }) {
           {discussionsQuery.loading && <div className="ta-empty"><LoadingSkeleton label="Loading Q&amp;A discussions..." rows={3} /></div>}
           {!discussionsQuery.loading && filteredDiscussions.length === 0 && (
             <div className="ta-card" style={{ textAlign: "center", padding: 36 }}>
-              
+
               <div style={{ fontWeight: 700, fontSize: 15, color: "var(--text)" }}>No questions match your current filter</div>
               <div style={{ fontSize: 12.5, color: "var(--text-3)", marginTop: 4 }}>All student questions in this category have been addressed.</div>
             </div>

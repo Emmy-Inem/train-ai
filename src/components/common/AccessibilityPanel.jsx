@@ -103,7 +103,7 @@ export default function AccessibilityPanel({ onClose }) {
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            
+
             <div style={{ fontWeight: 600, fontSize: 15.5, color: "#10142A" }}>Accessibility options</div>
           </div>
           <button

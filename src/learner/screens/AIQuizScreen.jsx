@@ -778,7 +778,7 @@ export function AIQuizScreen({
           {/* QUIZ RESULT VIEW */}
           {quizStage === "result" && quizResult && (
             <div className="tai-card" style={{ maxWidth: 680, margin: "0 auto", width: "100%", padding: 32, textAlign: "center", borderRadius: 10 }}>
-              
+
               <h2 style={{ fontSize: 24, fontWeight: 600, color: "var(--text)", margin: "0 0 6px" }}>
                 {Math.round(quizResult.score || 0)}% Score
               </h2>

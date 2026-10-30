@@ -914,7 +914,7 @@ export default function AuthPage({
             <h1 style={styles.h1}>Choose a new password</h1>
             {recoveryLinkError ? (
               <div style={{ textAlign: "center", padding: "10px 0" }}>
-                
+
                 <p style={{ ...styles.sub, color: "#991B1B", fontWeight: 700, fontSize: 14, marginBottom: 6 }}>
                   This reset link cannot be used
                 </p>
@@ -1000,7 +1000,7 @@ export default function AuthPage({
               </div>
             ) : resetSuccess ? (
               <div style={{ textAlign: "center", padding: "16px 0" }}>
-                
+
                 <p style={{ ...styles.sub, color: "#16A34A", fontWeight: 700, fontSize: 14 }}>
                   Password updated successfully!
                 </p>
@@ -2021,7 +2021,7 @@ export default function AuthPage({
             }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  
+
                   <span style={{ fontSize: 16, fontWeight: 600, color: "#0F172A" }}>Activate Organization Plan</span>
                 </div>
                 <button

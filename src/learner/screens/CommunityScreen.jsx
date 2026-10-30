@@ -713,7 +713,7 @@ function PostCard({
 
             {reportSubmitted ? (
               <div style={{ textAlign: "center", padding: "16px 0" }}>
-                
+
                 <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 4 }}>Thank you for keeping our community safe</div>
                 <div style={{ fontSize: 12.5, color: "var(--text-3)", marginBottom: 16 }}>
                   Our moderators have received your report and will review this content.
@@ -1595,7 +1595,7 @@ export function CommunityScreen({
 <div className="tai-community-groups-card tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
             <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                
+
                 <span style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Study Groups</span>
               </div>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
@@ -1727,7 +1727,7 @@ export function CommunityScreen({
 <div className="tai-community-cohort-card tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
             <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                
+
                 <span style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Cohort Learning Space</span>
                 {cohort && (
                   <span className="tai-tag" style={{ background: "rgba(16, 185, 129, 0.12)", color: "#10B981", border: "1px solid rgba(16, 185, 129, 0.25)" }}>
@@ -1860,7 +1860,7 @@ export function CommunityScreen({
 <div className="tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
             <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 14 }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                
+
                 <span style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>Top Contributors</span>
               </div>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
@@ -1914,7 +1914,7 @@ export function CommunityScreen({
 <div className="tai-community-mentors-card tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
             <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 14 }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                
+
                 <span style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Instructors & Mentors</span>
               </div>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
@@ -1989,7 +1989,7 @@ export function CommunityScreen({
           >
             <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 10 }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                
+
                 <span style={{ fontWeight: 600, fontSize: 14.5 }}>Direct Messages</span>
               </div>
               <span style={{ fontSize: 11.5, fontWeight: 500, color: "var(--primary)", display: "flex", alignItems: "center", gap: 2 }}>
