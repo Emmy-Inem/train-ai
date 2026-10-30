@@ -36,6 +36,14 @@ verify_jwt = false
 [functions.stripe-webhook]
 verify_jwt = false
 
+# Checkout handlers validate the caller with auth.getUser. The legacy-only
+# gateway check rejects sessions issued by the project's current signing keys.
+[functions.stripe-initialize]
+verify_jwt = false
+
+[functions.stripe-verify]
+verify_jwt = false
+
 # Public booking endpoint. It performs its own origin, validation, rate-limit,
 # slot-locking, and service-role checks before creating a calendar event.
 [functions.book-demo-appointment]
