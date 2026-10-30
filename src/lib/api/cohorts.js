@@ -428,19 +428,6 @@ export async function assignCourseToCohortOrLearners({
   };
   const { data: rpcResult, error: rpcError } = await supabase.rpc("assign_course_to_cohort_members", rpcArgs);
   if (!rpcError) {
-    // If scope is individual, safeguard against older DB RPC versions that erroneously inserted into cohort_courses
-    if (scope !== "cohort") {
-      try {
-        await supabase
-          .from("cohort_courses")
-          .delete()
-          .eq("cohort_id", cohortId)
-          .eq("course_id", courseId);
-      } catch (cleanupErr) {
-        console.warn("Could not prune cohort_courses for individual assignment:", cleanupErr);
-      }
-    }
-
     const assignedCount = Number(rpcResult?.assigned_count || 0);
     return {
       success: true,
@@ -454,7 +441,7 @@ export async function assignCourseToCohortOrLearners({
   }
   // Keep compatibility during a rolling deployment, but never hide a real
   // RPC failure once the function exists.
-  if (rpcError.code !== "PGRST202" && !String(rpcError.message || "").includes("assign_course_to_cohort_members")) {
+  if (!["PGRST202", "42883"].includes(rpcError.code)) {
     throw rpcError;
   }
 
@@ -465,14 +452,14 @@ export async function assignCourseToCohortOrLearners({
       .from("cohort_members")
       .select("user_id")
       .eq("cohort_id", cohortId);
-    if (memberErr) console.warn("Could not fetch cohort members:", memberErr);
+    if (memberErr) throw memberErr;
     targetUserIds = (memberRows || []).map((m) => m.user_id).filter(Boolean);
 
     // Upsert into cohort_courses (cohort-level track syllabus)
     const { error: cohortCourseError } = await supabase
       .from("cohort_courses")
       .upsert(
-        { cohort_id: cohortId, course_id: courseId, due_at: dueAt || null },
+        { cohort_id: cohortId, course_id: courseId, due_at: dueAt || null, assignment_scope: "cohort" },
         { onConflict: "cohort_id,course_id", ignoreDuplicates: false }
       );
     if (cohortCourseError) throw cohortCourseError;
@@ -481,16 +468,6 @@ export async function assignCourseToCohortOrLearners({
     if (!targetUserIds.length) {
       throw new Error("Please select at least one individual member to assign this course.");
     }
-
-    // Do NOT upsert into cohort_courses for individual assignments; cohort_courses
-    // is reserved for cohort-wide curriculum. Clean up any historical entry.
-    try {
-      await supabase
-        .from("cohort_courses")
-        .delete()
-        .eq("cohort_id", cohortId)
-        .eq("course_id", courseId);
-    } catch {}
   }
 
   // 2. Fetch existing cohort_learner_courses to prevent duplicates

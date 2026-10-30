@@ -2474,9 +2474,10 @@ export async function fetchCohortDetail(cohortId) {
   const ccRows = cohortCourses || [];
   const lcProfiles = await fetchProfilesByUserIds(lcRows.map((l) => l.user_id));
   const courseIds = [...new Set([...lcRows.map((l) => l.course_id), ...ccRows.map((c) => c.course_id)].filter(Boolean))];
-  const { data: coursesForLc } = courseIds.length
+  const { data: coursesForLc, error: assignedCourseError } = courseIds.length
     ? await supabase.from("courses").select("id, title").in("id", courseIds)
     : { data: [] };
+  if (assignedCourseError) throw new Error("Could not load assigned courses. Please retry.", { cause: assignedCourseError });
   const coursesById = Object.fromEntries((coursesForLc || []).map((c) => [c.id, c]));
   const learnerCoursesOut = lcRows.map((l) => ({
     ...l,

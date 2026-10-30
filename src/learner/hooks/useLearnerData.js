@@ -120,7 +120,24 @@ export function useLearnerData(session, screen, params) {
       you: r.user_id === session?.user?.id,
     }));
   }, [session?.user?.id]);
-  const coursesQuery = useSupabaseQuery(async () => fetchPublishedCourses(orgId), [orgId]);
+  const cohortMembershipQuery = useSupabaseQuery(async () => {
+    if (!session?.user?.id) return null;
+    return fetchMyCohortMembership(session.user.id);
+  }, [session?.user?.id]);
+  // Also refresh on return to the app when Realtime is unavailable.
+  useEffect(() => {
+    if (!session?.user?.id) return;
+    const refresh = () => { if (!document.hidden) cohortMembershipQuery.refetch(); };
+    window.addEventListener("focus", refresh);
+    const timer = window.setInterval(refresh, 60000);
+    return () => { window.removeEventListener("focus", refresh); window.clearInterval(timer); };
+  }, [session?.user?.id, cohortMembershipQuery.refetch]);
+  const cohortId = (screen === "cohort" ? params?.id || params?.cohortId : null) || cohortMembershipQuery.data?.cohort?.id || null;
+  const cohortCoursesQuery = useSupabaseQuery(async () => {
+    if (!cohortId) return [];
+    return fetchCohortAssignedCourses(cohortId, session?.user?.id);
+  }, [cohortId, session?.user?.id]);
+  const coursesQuery = useSupabaseQuery(async () => fetchPublishedCourses(orgId), [orgId, session?.user?.id]);
   const enrollmentsQuery = useSupabaseQuery(async () => {
     if (!session?.user?.id) return [];
     return fetchMyEnrollments(session.user.id);
@@ -142,7 +159,11 @@ export function useLearnerData(session, screen, params) {
     const bookmarkedIds = new Set(bookmarksQuery.data || []);
     
     const instructorNames = courseInstructorsQuery.data || {};
-    const dbCourses = (coursesQuery.data || []).map((c, i) => {
+    const catalog = new Map((coursesQuery.data || []).map(c => [c.id, c]));
+    for (const assignment of cohortCoursesQuery.data || []) {
+      if (assignment.courses) catalog.set(assignment.course_id, assignment.courses);
+    }
+    const dbCourses = [...catalog.values()].map((c, i) => {
       const enrollment = enrollmentByCourseId.get(c.id);
       return {
         id: c.id,
@@ -354,19 +375,19 @@ export function useLearnerData(session, screen, params) {
   // instead of querying anything. The posts query is gated on the resolved
   // cohort id, the same "dependent query" pattern memberStatsQuery below
   // uses against communityPeopleQuery's ids.
-  const cohortMembershipQuery = useSupabaseQuery(async () => {
-    if (!session?.user?.id) return null;
-    return fetchMyCohortMembership(session.user.id);
-  }, [session?.user?.id]);
-  // Also refresh on return to the app when Realtime is unavailable.
+  // Focus/polling also covers deployments without Realtime on assignment tables.
   useEffect(() => {
     if (!session?.user?.id) return;
-    const refresh = () => { if (!document.hidden) cohortMembershipQuery.refetch(); };
+    const refresh = () => {
+      if (document.hidden) return;
+      cohortCoursesQuery.refetch();
+      enrollmentsQuery.refetch();
+      coursesQuery.refetch();
+    };
     window.addEventListener("focus", refresh);
     const timer = window.setInterval(refresh, 60000);
     return () => { window.removeEventListener("focus", refresh); window.clearInterval(timer); };
-  }, [session?.user?.id, cohortMembershipQuery.refetch]);
-  const cohortId = params?.id || params?.cohortId || cohortMembershipQuery.data?.cohort?.id || null;
+  }, [session?.user?.id, cohortId]);
   const cohortPostsQuery = useSupabaseQuery(async () => {
     if (!cohortId) return [];
     return fetchCohortPostsFeed(cohortId);
@@ -381,10 +402,6 @@ export function useLearnerData(session, screen, params) {
   // Cohort "Assigned Courses" and "Members" - PRD 7.4, a real gap found and
   // fixed (cohort_courses had RLS enabled with zero policies until
   // 0124_cohort_courses_rls_fix.sql - nothing had ever queried it before).
-  const cohortCoursesQuery = useSupabaseQuery(async () => {
-    if (!cohortId) return [];
-    return fetchCohortAssignedCourses(cohortId, session?.user?.id);
-  }, [cohortId]);
   const cohortMembersQuery = useSupabaseQuery(async () => {
     if (!cohortId) return [];
     return fetchCohortMembers(cohortId);
@@ -474,6 +491,13 @@ export function useLearnerData(session, screen, params) {
       .on("postgres_changes", { event: "*", schema: "public", table: "certificates" }, () => {
         myCertificatesQuery.refetch();
       })
+      .on("postgres_changes", { event: "*", schema: "public", table: "cohort_courses" }, () => {
+        cohortCoursesQuery.refetch();
+      })
+      .on("postgres_changes", { event: "*", schema: "public", table: "cohort_learner_courses" }, () => {
+        cohortCoursesQuery.refetch();
+        enrollmentsQuery.refetch();
+      })
       .on("postgres_changes", { event: "*", schema: "public", table: "cohort_posts" }, () => {
         cohortPostsQuery.refetch();
       })
@@ -486,6 +510,7 @@ export function useLearnerData(session, screen, params) {
       .on("postgres_changes", { event: "*", schema: "public", table: "cohort_members" }, () => {
         cohortMembershipQuery.refetch();
         cohortMembersQuery.refetch();
+        cohortCoursesQuery.refetch();
       })
       .on("postgres_changes", { event: "*", schema: "public", table: "course_applications" }, () => {
         // applications refetch

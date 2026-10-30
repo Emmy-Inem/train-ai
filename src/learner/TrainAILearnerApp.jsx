@@ -874,40 +874,16 @@ export default function TrainAILearnerApp({ isActive = true, onSwitchToPlatform,
                   };
                 });
 
-                // Ensure any assigned cohort courses are included even if missing from catalog
-                const existingCourseIds = new Set(enrichedCourses.map(c => c.id));
-                for (const cc of cohortCoursesQuery.data || []) {
-                  const cid = cc.course_id || cc.courses?.id;
-                  if (cid && !existingCourseIds.has(cid)) {
-                    enrichedCourses.push({
-                      id: cid,
-                      title: cc.courses?.title || "Assigned Course",
-                      tagline: cc.courses?.description || "",
-                      category: "Cohort",
-                      level: "beginner",
-                      hours: 0,
-                      lessons: 0,
-                      enrolled: enrolledCourseIds.has(cid),
-                      assigned: true,
-                      isAssigned: true,
-                      isCohortAssigned: true,
-                      progress: cc.courses?.progress || 0,
-                      source: "assigned",
-                    });
-                    existingCourseIds.add(cid);
-                  }
-                }
-
                 const otherIndividualIds = otherIndividualCoursesQuery.data || new Set();
-                const visibleCourses = enrichedCourses.filter(c => !otherIndividualIds.has(c.id));
+                const visibleCourses = enrichedCourses.filter(c => c.isAssigned || !otherIndividualIds.has(c.id));
 
                 return (
                   <CoursesScreen userId={session?.user?.id}
                     user={user}
                     courses={visibleCourses}
                     cohortId={cohortIdForLearner}
-                    coursesLoading={coursesLoading}
-                    coursesError={learnerData.coursesQuery.error || learnerData.enrollmentsQuery.error || learnerData.userProfileQuery.error}
+                    coursesLoading={coursesLoading || cohortCoursesQuery.loading || enrollmentsQuery.loading}
+                    coursesError={learnerData.coursesQuery.error || learnerData.enrollmentsQuery.error || learnerData.userProfileQuery.error || cohortCoursesQuery.error}
                     onRetryCourses={() => {
                       learnerData.coursesQuery.refetch();
                       learnerData.enrollmentsQuery.refetch();

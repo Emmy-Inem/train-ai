@@ -1626,62 +1626,31 @@ export async function fetchMyMysteryBoxes(userId) {
 // tabs.
 export async function fetchCohortAssignedCourses(cohortId, userId = null) {
   if (!supabase || !cohortId) return [];
-  // When userId is provided (learner querying their curriculum), query both cohort_courses
-  // and all cohort_learner_courses for this cohort. This allows us to determine if a course
-  // was assigned strictly to other individuals (and thus should NOT be shown to this learner).
-  const [cohortResult, allLearnerCoursesResult] = await Promise.all([
-    supabase.from("cohort_courses").select("id, course_id, due_at, courses(id, title, description)").eq("cohort_id", cohortId),
-    supabase.from("cohort_learner_courses").select("id, course_id, user_id, courses(id, title, description)").eq("cohort_id", cohortId),
+  // Scope is explicit; learners never need another learner's assignment rows.
+  let learnerQuery = supabase.from("cohort_learner_courses")
+    .select("id, course_id, user_id").eq("cohort_id", cohortId);
+  if (userId) learnerQuery = learnerQuery.eq("user_id", userId);
+  const [cohortResult, learnerResult] = await Promise.all([
+    supabase.from("cohort_courses").select("id, course_id, due_at, assignment_scope")
+      .eq("cohort_id", cohortId).eq("assignment_scope", "cohort"),
+    learnerQuery,
   ]);
-  const error = cohortResult.error || allLearnerCoursesResult.error;
+  const error = cohortResult.error || learnerResult.error;
   if (error) throw new Error("Could not load cohort courses. Please retry.", { cause: error });
-  const data = cohortResult.data || [];
-  const allLearnerCourseRows = allLearnerCoursesResult.data || [];
-
-  // Map courses to the set of learners specifically assigned to them in cohort_learner_courses
-  const individualAssigneesByCourse = new Map();
-  for (const row of allLearnerCourseRows) {
-    const cid = row.course_id || row.courses?.id;
-    if (!cid) continue;
-    if (!individualAssigneesByCourse.has(cid)) {
-      individualAssigneesByCourse.set(cid, new Set());
-    }
-    if (row.user_id) {
-      individualAssigneesByCourse.get(cid).add(row.user_id);
-    }
-  }
-
   const mergedByCourseId = new Map();
-
-  // Cohort curriculum: if a course has individual-only assignments in this cohort,
-  // only learners in that assignment set should see it. If it has no individual restrictions,
-  // it is truly cohort-wide and visible to all cohort members.
-  for (const row of data) {
-    const cid = row.course_id || row.courses?.id;
-    if (!cid) continue;
-    if (userId && individualAssigneesByCourse.has(cid) && !individualAssigneesByCourse.get(cid).has(userId)) {
-      // Assigned to other individuals in this cohort, NOT to this user
-      continue;
-    }
-    mergedByCourseId.set(cid, {
-      id: row.id,
-      course_id: cid,
-      due_at: row.due_at || null,
-      courses: row.courses ? { ...row.courses, progress: 0 } : { id: cid, title: "Assigned Course", description: "", progress: 0 },
-    });
+  for (const row of [...(cohortResult.data || []), ...(learnerResult.data || [])]) {
+    if (!row.course_id || mergedByCourseId.has(row.course_id)) continue;
+    mergedByCourseId.set(row.course_id, { ...row, due_at: row.due_at || null });
   }
-
-  // Individual learner courses for this specific user
-  for (const row of allLearnerCourseRows) {
-    if (userId && row.user_id && row.user_id !== userId) continue;
-    const cid = row.course_id || row.courses?.id;
-    if (!cid || mergedByCourseId.has(cid)) continue;
-    mergedByCourseId.set(cid, {
-      id: row.id,
-      course_id: cid,
-      due_at: null,
-      courses: row.courses ? { ...row.courses, progress: 0 } : { id: cid, title: "Assigned Course", description: "", progress: 0 },
-    });
+  if (mergedByCourseId.size) {
+    const { data: courses, error: courseError } = await supabase.from("courses")
+      .select("*").in("id", [...mergedByCourseId.keys()]);
+    if (courseError) throw new Error("Could not load assigned course details. Please retry.", { cause: courseError });
+    const byId = new Map((courses || []).filter(c => c.is_published && !c.archived_at).map(c => [c.id, c]));
+    for (const [id, assignment] of mergedByCourseId) {
+      if (!byId.has(id)) { mergedByCourseId.delete(id); continue; }
+      assignment.courses = { ...byId.get(id), progress: 0 };
+    }
   }
 
   const courseIds = Array.from(mergedByCourseId.keys());

@@ -61,16 +61,14 @@ function CohortCourseAssignmentSection({
     const map = new Map();
     for (const cc of cohortCourses || []) {
       const cid = cc.course_id || cc.id;
-      if (!cid) continue;
-      const assignedLearners = (learnerCourses || []).filter((l) => l.course_id === cid);
-      const hasSpecificLearners = assignedLearners.length > 0 && members.length > 1 && assignedLearners.length < members.length;
+      if (!cid || cc.assignment_scope === "individuals") continue;
       map.set(cid, {
         course_id: cid,
         title: cc.courses?.title || courses.find((c) => c.id === cid)?.title || "Assigned Course",
         category: cc.courses?.category || courses.find((c) => c.id === cid)?.category || "",
         due_at: cc.due_at || null,
-        isEntireCohort: !hasSpecificLearners,
-        learnerCount: hasSpecificLearners ? assignedLearners.length : members.length,
+        isEntireCohort: true,
+        learnerCount: members.length,
       });
     }
     for (const lc of learnerCourses || []) {
@@ -78,13 +76,12 @@ function CohortCourseAssignmentSection({
       if (!cid) continue;
       if (!map.has(cid)) {
         const assignedLearners = (learnerCourses || []).filter((l) => l.course_id === cid);
-        const isAll = members.length > 0 && assignedLearners.length >= members.length;
         map.set(cid, {
           course_id: cid,
           title: lc.courses?.title || courses.find((c) => c.id === cid)?.title || "Assigned Course",
           category: lc.courses?.category || courses.find((c) => c.id === cid)?.category || "",
           due_at: null,
-          isEntireCohort: isAll,
+          isEntireCohort: false,
           learnerCount: assignedLearners.length,
         });
       }

@@ -545,6 +545,10 @@ export function CohortScreen({
           ========================================================================= */}
       {tab === "courses" && (
         <div className="tai-col tai-gap16">
+          {cohortCoursesQuery?.loading && <div className="tai-empty"><LoadingSkeleton label="Loading your assigned courses..." rows={3} /></div>}
+          {!cohortCoursesQuery?.loading && !cohortCoursesQuery?.error && assignedCourses.length === 0 && (
+            <div className="tai-empty">No courses have been assigned to you in this cohort yet.</div>
+          )}
           <div className="tai-card" style={{ padding: "14px 16px", borderRadius: 10, border: "1px solid var(--border)" }}>
             <div className="tai-row tai-between" style={{ fontSize: 12.5, fontWeight: 700, marginBottom: 6 }}>
               <span style={{ color: "var(--text-2)" }}>Cohort Assigned-Course Completion Rate</span>
