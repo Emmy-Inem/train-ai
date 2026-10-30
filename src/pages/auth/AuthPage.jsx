@@ -724,7 +724,7 @@ export default function AuthPage({
                             borderRadius: 6,
                             padding: "6px 12px",
                             fontSize: 12,
-                            fontWeight: 700,
+                            fontWeight: 500,
                             cursor: "pointer",
                             display: "inline-flex",
                             alignItems: "center",
@@ -914,7 +914,7 @@ export default function AuthPage({
             <h1 style={styles.h1}>Choose a new password</h1>
             {recoveryLinkError ? (
               <div style={{ textAlign: "center", padding: "10px 0" }}>
-                <AlertCircle size={40} color="#DC2626" style={{ margin: "0 auto 12px" }} />
+                
                 <p style={{ ...styles.sub, color: "#991B1B", fontWeight: 700, fontSize: 14, marginBottom: 6 }}>
                   This reset link cannot be used
                 </p>
@@ -1000,7 +1000,7 @@ export default function AuthPage({
               </div>
             ) : resetSuccess ? (
               <div style={{ textAlign: "center", padding: "16px 0" }}>
-                <CheckCircle2 size={40} color="#16A34A" style={{ margin: "0 auto 12px" }} />
+                
                 <p style={{ ...styles.sub, color: "#16A34A", fontWeight: 700, fontSize: 14 }}>
                   Password updated successfully!
                 </p>
@@ -1228,7 +1228,7 @@ export default function AuthPage({
               }}>
                 <Building2 size={18} color="#2563EB" style={{ flexShrink: 0, marginTop: 2 }} />
                 <div>
-                  <div style={{ fontSize: 12.5, fontWeight: 800, color: "#1E40AF" }}>
+                  <div style={{ fontSize: 12.5, fontWeight: 600, color: "#1E40AF" }}>
                     Joining {orgInfo.name}
                   </div>
                   <div style={{ fontSize: 11.5, color: "#1E3A8A", marginTop: 2, lineHeight: 1.45 }}>
@@ -1267,7 +1267,7 @@ export default function AuthPage({
                     <span style={{ fontSize: 13, fontWeight: 700, color: "#0F172A" }}>
                       {orgInfo?.name ? `Learner under ${orgInfo.name}` : "Individual learner"}
                     </span>
-                    <span className="role-picker-badge" style={{ fontSize: 10, fontWeight: 700, color: "#2563EB", background: "#EFF6FF", padding: "1px 6px", borderRadius: 4, marginLeft: "auto", flexShrink: 0 }}>
+                    <span className="role-picker-badge" style={{ fontSize: 10, fontWeight: 500, color: "#2563EB", background: "#EFF6FF", padding: "1px 6px", borderRadius: 4, marginLeft: "auto", flexShrink: 0 }}>
                       {orgInfo?.name ? "INVITED" : "RECOMMENDED"}
                     </span>
                   </div>
@@ -1446,7 +1446,7 @@ export default function AuthPage({
                             alignItems: "center",
                             justifyContent: "space-between",
                             fontSize: 10.5,
-                            fontWeight: 700,
+                            fontWeight: 500,
                             color: "#64748B",
                             textTransform: "uppercase",
                             letterSpacing: "0.05em",
@@ -1535,7 +1535,7 @@ export default function AuthPage({
                                     <span
                                       style={{
                                         fontSize: 10,
-                                        fontWeight: 700,
+                                        fontWeight: 500,
                                         padding: "2px 6px",
                                         borderRadius: 999,
                                         background: isFoundation ? "#D1FAE5" : "#E0E7FF",
@@ -1574,7 +1574,7 @@ export default function AuthPage({
                                 borderTop: "1px solid #E2E8F0",
                                 color: "#2563EB",
                                 fontSize: 12,
-                                fontWeight: 700,
+                                fontWeight: 500,
                               }}
                             >
                               <Plus size={14} color="#2563EB" style={{ flexShrink: 0 }} />
@@ -1626,7 +1626,7 @@ export default function AuthPage({
                           <span style={{ color: "#94A3B8", textTransform: "none", fontWeight: 500 }}>(Optional)</span>
                         </label>
                         {validatingPromo && (
-                          <span style={{ fontSize: 11, color: "#2563EB", fontWeight: 700 }}>Checking code...</span>
+                          <span style={{ fontSize: 11, color: "#2563EB", fontWeight: 500 }}>Checking code...</span>
                         )}
                       </div>
                       <div style={styles.inputWrap}>
@@ -1670,7 +1670,7 @@ export default function AuthPage({
                         >
                           <Sparkles size={15} color="#10B981" style={{ flexShrink: 0, marginTop: 2 }} />
                           <div>
-                            <div style={{ fontWeight: 800, color: "#047857" }}>
+                            <div style={{ fontWeight: 600, color: "#047857" }}>
                               {promoValidation.name || "Foundation Grant Verified"}
                             </div>
                             <div style={{ fontSize: 11, color: "#065F46", marginTop: 2 }}>
@@ -1804,7 +1804,7 @@ export default function AuthPage({
                     <div style={{ fontSize: 12, color: "#B91C1C", lineHeight: 1.45 }}>
                       Too many failed password trials (10/10). To safeguard your account, sign-in attempts have been suspended.
                     </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 8, fontSize: 12, fontWeight: 700, color: "#DC2626" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 8, fontSize: 12, fontWeight: 500, color: "#DC2626" }}>
                       <Clock size={13} />
                       <span>Cooldown remaining: {formatLockoutTime(rateLimit.remainingMs)}</span>
                     </div>
@@ -1839,7 +1839,7 @@ export default function AuthPage({
                           borderRadius: 6,
                           padding: "6px 12px",
                           fontSize: 12,
-                          fontWeight: 700,
+                          fontWeight: 500,
                           cursor: "pointer",
                           display: "inline-flex",
                           alignItems: "center",
@@ -1873,7 +1873,7 @@ export default function AuthPage({
                           borderRadius: 6,
                           padding: "6px 12px",
                           fontSize: 12,
-                          fontWeight: 700,
+                          fontWeight: 500,
                           cursor: "pointer",
                           display: "inline-flex",
                           alignItems: "center",
@@ -1933,7 +1933,7 @@ export default function AuthPage({
                     borderRadius: 6,
                     padding: "6px 12px",
                     fontSize: 12,
-                    fontWeight: 700,
+                    fontWeight: 500,
                     cursor: (resendingEmail || !email) ? "not-allowed" : "pointer",
                     display: "inline-flex",
                     alignItems: "center",
@@ -2021,8 +2021,8 @@ export default function AuthPage({
             }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <CreditCard size={18} color="#2563EB" />
-                  <span style={{ fontSize: 16, fontWeight: 800, color: "#0F172A" }}>Activate Organization Plan</span>
+                  
+                  <span style={{ fontSize: 16, fontWeight: 600, color: "#0F172A" }}>Activate Organization Plan</span>
                 </div>
                 <button
                   type="button"
@@ -2041,7 +2041,7 @@ export default function AuthPage({
                 marginBottom: 16
               }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-                  <span style={{ fontSize: 13, fontWeight: 800, color: "#0F172A" }}>Organisation plan activation</span>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: "#0F172A" }}>Organisation plan activation</span>
                 </div>
                 <div style={{ fontSize: 11.5, color: "#64748B", marginTop: 4, lineHeight: 1.4 }}>
                   Includes <strong>25 Team Seats</strong>, <strong>200 AI Credits</strong>, Cohort tracking, and unlimited LMS courses.
@@ -2060,7 +2060,7 @@ export default function AuthPage({
                       padding: "6px 10px",
                       borderRadius: 6,
                       fontSize: 12,
-                      fontWeight: 700,
+                      fontWeight: 500,
                       border: selectedCurrency === c ? "1.5px solid #2563EB" : "1px solid #E2E8F0",
                       background: selectedCurrency === c ? "#EFF6FF" : "#FFFFFF",
                       color: selectedCurrency === c ? "#1E40AF" : "#64748B",
@@ -2092,7 +2092,7 @@ export default function AuthPage({
 
               {/* Alternative Promo Code shortcut inside modal */}
               <div style={{ marginBottom: 16 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#64748B", textTransform: "uppercase", marginBottom: 4 }}>
+                <div style={{ fontSize: 11, fontWeight: 500, color: "#64748B", textTransform: "uppercase", marginBottom: 4 }}>
                   Have a Foundation Code instead?
                 </div>
                 <div style={{ display: "flex", gap: 6 }}>
@@ -2129,7 +2129,7 @@ export default function AuthPage({
                       background: "#0F172A",
                       color: "#FFF",
                       fontSize: 11,
-                      fontWeight: 700,
+                      fontWeight: 500,
                       border: "none",
                       cursor: "pointer"
                     }}
@@ -2154,7 +2154,7 @@ export default function AuthPage({
                     border: "1px solid #CBD5E1",
                     background: "#FFFFFF",
                     fontSize: 13,
-                    fontWeight: 700,
+                    fontWeight: 500,
                     color: "#475569",
                     cursor: "pointer"
                   }}
@@ -2173,7 +2173,7 @@ export default function AuthPage({
                     border: "none",
                     background: "#2563EB",
                     fontSize: 13,
-                    fontWeight: 800,
+                    fontWeight: 600,
                     color: "#FFFFFF",
                     cursor: "pointer",
                     display: "flex",
@@ -2203,7 +2203,7 @@ const styles = {
     width: "100%", maxWidth: 400, background: "#FFFFFF", borderRadius: 10, padding: "32px 28px",
     border: "1px solid #E2E8F0", boxShadow: "0 1px 3px rgba(15,23,42,0.04), 0 6px 18px -3px rgba(15,23,42,0.03)",
   },
-  h1: { fontSize: 20, fontWeight: 800, margin: "0 0 4px", color: "#0F172A", letterSpacing: "-0.02em" },
+  h1: { fontSize: 20, fontWeight: 600, margin: "0 0 4px", color: "#0F172A", letterSpacing: "-0.02em" },
   sub: { fontSize: 13, color: "#64748B", margin: "0 0 20px", lineHeight: 1.5 },
   label: { fontSize: 11, fontWeight: 700, color: "#475569", textTransform: "uppercase", letterSpacing: ".06em" },
   inputWrap: { position: "relative", marginTop: 6 },

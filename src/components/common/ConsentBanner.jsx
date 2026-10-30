@@ -145,7 +145,7 @@ export default function ConsentBanner({ session }) {
             <Cookie size={17} color="#2563EB" />
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontWeight: 800, fontSize: 15, color: "#10142A" }}>We value your privacy</div>
+            <div style={{ fontWeight: 600, fontSize: 15, color: "#10142A" }}>We value your privacy</div>
             <p style={{ marginTop: 4, marginBottom: 0, fontSize: 12.5, color: "#656C86", lineHeight: 1.45 }}>
               We use cookies for essential functionality and, with your consent, for analytics and marketing.
               You can change your choices anytime from Profile &gt; Privacy &amp; Data.

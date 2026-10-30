@@ -84,10 +84,10 @@ export function AlmostThereNudge({ userId, user = {}, achievements = [], onView 
           <Trophy size={17} />
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontWeight: 800, fontSize: 14 }}>{best.title}</div>
+          <div style={{ fontWeight: 600, fontSize: 14 }}>{best.title}</div>
           <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 2 }}>{best.detail}</div>
         </div>
-        <div style={{ fontSize: 13, fontWeight: 800, color: "var(--success)", flexShrink: 0 }}>{best.percent}%</div>
+        <div style={{ fontSize: 13, fontWeight: 600, color: "var(--success)", flexShrink: 0 }}>{best.percent}%</div>
       </div>
       <div className="tai-mt10"><ProgressBar value={best.percent} height={6} /></div>
     </div>

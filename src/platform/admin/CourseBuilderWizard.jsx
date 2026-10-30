@@ -185,7 +185,7 @@ export function CourseBuilderWizard({ isOpen, onClose, orgId, currentUserId, onC
                 border: `1px solid ${active ? "var(--primary)" : "var(--border)"}`,
                 background: active ? "var(--primary-tint)" : done ? "var(--surface-2)" : "transparent",
                 color: active ? "var(--primary)" : done ? "var(--text)" : "var(--text-3)",
-                cursor: i < step ? "pointer" : "default", fontSize: 12, fontWeight: 700,
+                cursor: i < step ? "pointer" : "default", fontSize: 12, fontWeight: 500,
               }}
             >
               {done ? <CheckCircle2 size={14} /> : <Icon size={14} />}
@@ -299,7 +299,7 @@ export function CourseBuilderWizard({ isOpen, onClose, orgId, currentUserId, onC
             {lessons.map((lesson, idx) => (
               <div key={idx} className="ta-card" style={{ padding: 12, background: "var(--surface-2)" }}>
                 <div className="ta-row ta-between" style={{ gap: 8 }}>
-                  <div style={{ fontSize: 12, fontWeight: 800, color: "var(--text-3)" }}>Lesson {idx + 1}</div>
+                  <div style={{ fontSize: 12, fontWeight: 600, color: "var(--text-3)" }}>Lesson {idx + 1}</div>
                   <div className="ta-row ta-gap6">
                     <button className="ta-iconbtn" disabled={idx === 0} onClick={() => moveLesson(idx, -1)} aria-label="Move up"><ArrowUp size={13} /></button>
                     <button className="ta-iconbtn" disabled={idx === lessons.length - 1} onClick={() => moveLesson(idx, 1)} aria-label="Move down"><ArrowDown size={13} /></button>
@@ -384,7 +384,7 @@ export function CourseBuilderWizard({ isOpen, onClose, orgId, currentUserId, onC
       {step === 3 && (
         <div className="ta-mt16">
           <div className="ta-card" style={{ padding: 16 }}>
-            <div style={{ fontWeight: 800, fontSize: 15, overflowWrap: "anywhere" }}>{form.title.trim() || "Untitled course"}</div>
+            <div style={{ fontWeight: 600, fontSize: 15, overflowWrap: "anywhere" }}>{form.title.trim() || "Untitled course"}</div>
             {form.description.trim() && (
               <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 6, overflowWrap: "anywhere" }}>{form.description.trim()}</div>
             )}

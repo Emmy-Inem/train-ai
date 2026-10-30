@@ -103,7 +103,7 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
           ].map((k) => (
             <div key={k.label} className="ta-card" style={{ padding: "14px 18px", borderRadius: 10 }}>
               <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>{k.label}</div>
-              <div style={{ fontSize: 22, fontWeight: 800, marginTop: 4, textTransform: "capitalize" }}>{k.value}</div>
+              <div style={{ fontSize: 22, fontWeight: 600, marginTop: 4, textTransform: "capitalize" }}>{k.value}</div>
               <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>{k.hint}</div>
             </div>
           ))}
@@ -112,8 +112,8 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
         {/* ---- The sequence ---- */}
         <div className="ta-card">
           <div className="ta-row ta-gap8">
-            <BookOpen size={17} color="var(--primary)" />
-            <div style={{ fontWeight: 800, fontSize: 15 }}>Course sequence</div>
+            
+            <div style={{ fontWeight: 600, fontSize: 15 }}>Course sequence</div>
           </div>
           <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
             Learners work through these top to bottom. A locked step opens only once the step above it is complete.
@@ -135,7 +135,7 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
                       <div style={{
                         width: 26, height: 26, borderRadius: "50%", flexShrink: 0,
                         background: "var(--primary-tint)", color: "var(--primary)",
-                        display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 800,
+                        display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 600,
                       }}>{idx + 1}</div>
                       <div style={{ minWidth: 0 }}>
                         <div style={{ fontSize: 13.5, fontWeight: 700, overflowWrap: "anywhere" }}>
@@ -212,8 +212,8 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
         <div className="ta-card">
           <div className="ta-row ta-between" style={{ gap: 10, flexWrap: "wrap" }}>
             <div className="ta-row ta-gap8">
-              <Plus size={17} color="var(--primary)" />
-              <div style={{ fontWeight: 800, fontSize: 15 }}>Add a course to this path</div>
+              
+              <div style={{ fontWeight: 600, fontSize: 15 }}>Add a course to this path</div>
             </div>
             <div className="ta-search" style={{ flex: "0 1 240px", minWidth: 160 }}>
               <Search size={14} />
@@ -596,7 +596,7 @@ export function LearningPathsScreen({ orgId, orgSelector, setScreen }) {
                   borderRadius: 8,
                   background: "#2563EB",
                   color: "#FFFFFF",
-                  fontWeight: 700,
+                  fontWeight: 500,
                   fontSize: 12.5,
                   border: "none",
                   display: "inline-flex",
@@ -654,7 +654,7 @@ export function LearningPathsScreen({ orgId, orgSelector, setScreen }) {
                   <div style={{ position: "absolute", top: 10, right: 10 }}>
                     <Tag tone={p.isPublished ? "success" : "default"}>{p.isPublished ? "Published" : "Draft"}</Tag>
                   </div>
-                  <div style={{ position: "absolute", bottom: 8, left: 12, right: 12, color: "#FFFFFF", fontWeight: 800, fontSize: 14.5, textShadow: "0 2px 4px rgba(0,0,0,0.6)", lineHeight: 1.25, wordBreak: "break-word" }}>
+                  <div style={{ position: "absolute", bottom: 8, left: 12, right: 12, color: "#FFFFFF", fontWeight: 600, fontSize: 14.5, textShadow: "0 2px 4px rgba(0,0,0,0.6)", lineHeight: 1.25, wordBreak: "break-word" }}>
                     {p.title}
                   </div>
                 </div>

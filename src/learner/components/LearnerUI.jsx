@@ -127,7 +127,7 @@ export const TOKENS = `
   .tai-header-left { display: flex; align-items: center; gap: 14px; min-width: 0; }
   .tai-header-brand { display: flex; align-items: center; gap: 8px; cursor: pointer; text-decoration: none; flex-shrink: 0; }
   .tai-header-brand-mark { width: 28px; height: 28px; border-radius: 6px; background: #2563EB; display: flex; align-items: center; justify-content: center; color: #fff; }
-  .tai-header-brand-name { font-size: 15px; font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
+  .tai-header-brand-name { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; }
   .tai-header-search {
     display: flex; align-items: center; gap: 6px;
     background: var(--glass-surface); backdrop-filter: var(--glass-blur-sm); -webkit-backdrop-filter: var(--glass-blur-sm);
@@ -352,7 +352,7 @@ export const TOKENS = `
   .tai-topbar { display:flex; justify-content:space-between; align-items:center; flex-wrap: nowrap; gap: 10px; padding: 6px 0 14px; width: 100%; box-sizing: border-box; }
   .tai-topbar > .tai-row.tai-gap12 { min-width: 0; flex: 1; }
   .tai-topbar-actions { flex-wrap: nowrap; justify-content: flex-end; gap: 8px; flex-shrink: 0; }
-  .tai-h1 { font-size: clamp(17px, 3.5vw, 20px); font-weight: 800; letter-spacing: -0.02em; margin:0; color: var(--text); word-break: break-word; line-height: 1.25; }
+  .tai-h1 { font-size: clamp(17px, 3.5vw, 20px); font-weight: 600; letter-spacing: -0.02em; margin:0; color: var(--text); word-break: break-word; line-height: 1.25; }
   .tai-sub { font-size: 12px; color: var(--text-2); margin: 2px 0 0; font-weight: 500; word-break: break-word; line-height: 1.35; }
   .tai-iconbtn {
     width:32px; height:32px; border-radius:8px;
@@ -409,7 +409,7 @@ export const TOKENS = `
   .tai-col { display:flex; flex-direction:column; }
   .tai-mt4 { margin-top:4px; } .tai-mt6 { margin-top:6px; } .tai-mt8 { margin-top:8px; } .tai-mt10 { margin-top:10px; } .tai-mt12 { margin-top:12px; } .tai-mt14 { margin-top:14px; } .tai-mt16 { margin-top:16px; } .tai-mt20 { margin-top:20px; } .tai-mt24 { margin-top:24px; }
   .tai-label { font-size:11px; font-weight:700; color: var(--text-3); text-transform:uppercase; letter-spacing:.06em; }
-  .tai-title-sm { font-size:15px; font-weight:800; letter-spacing: -0.01em; color: var(--text); }
+  .tai-title-sm { font-size:15px; font-weight: 600; letter-spacing: -0.01em; color: var(--text); }
   .tai-body-text { font-size: 13px; color: var(--text-2); line-height:1.5; }
   
   .tai-btn { border:none; cursor:pointer; border-radius: 8px; font-weight:600; font-size:13px; padding: 8px 14px; min-height: 36px; white-space: nowrap; flex-shrink: 0;
@@ -504,7 +504,7 @@ export const TOKENS = `
   .tai-navitem-label {
     max-width: 0; opacity: 0; transform: scale(0.7);
     overflow: hidden; white-space: nowrap; margin-left: 0;
-    font-size: 12px; font-weight: 800; letter-spacing: 0.02em;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
     transition: max-width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
                 opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
@@ -880,7 +880,7 @@ export function LearnerHeader({
               <span style={{
                 position: "absolute", top: 4, right: 4, minWidth: 14, height: 14,
                 borderRadius: 99, background: "var(--danger)", color: "#fff",
-                fontSize: 9, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 9, fontWeight: 600, display: "flex", alignItems: "center", justifyContent: "center",
                 padding: "0 2px", border: "1.5px solid #fff"
               }}>
                 {unreadNotifs}
@@ -1164,7 +1164,7 @@ export function StatTile({ icon: Icon, value, label, tone }) {
           {Icon && <Icon size={18} color={tone ? `var(--${tone})` : "var(--primary)"} />}
         </div>
       </div>
-      <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: "-0.02em", marginTop: 10, color: "var(--text)" }}>{value}</div>
+      <div style={{ fontSize: 20, fontWeight: 600, letterSpacing: "-0.02em", marginTop: 10, color: "var(--text)" }}>{value}</div>
       <div className="tai-label" style={{ fontSize: 11, marginTop: 2 }}>{label}</div>
     </div>
   );
@@ -1259,8 +1259,8 @@ export function ScheduleView({ push, back }) {
       <TopBar title="Schedule & Live Sessions" sub="Join live mentor workshops, critiques, and cohort sessions" onBack={back} />
 
       <div className="tai-card" style={{ textAlign: "center", padding: "40px 20px" }}>
-        <Calendar size={30} color="var(--text-3)" style={{ margin: "0 auto 12px" }} />
-        <div style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>No published live sessions</div>
+        
+        <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>No published live sessions</div>
         <p style={{ color: "var(--text-2)", fontSize: 13, lineHeight: 1.55, maxWidth: 460, margin: "8px auto 0" }}>
           Live sessions will appear here after an instructor schedules them for your cohort.
         </p>

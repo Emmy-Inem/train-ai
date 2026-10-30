@@ -133,10 +133,10 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
                 <DollarSign size={18} />
               </div>
             </div>
-            <div style={{ fontSize: 32, fontWeight: 900, color: "var(--primary)", marginTop: 10, letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: 32, fontWeight: 600, color: "var(--primary)", marginTop: 10, letterSpacing: "-0.02em" }}>
               ${availableBalance.toFixed(2)}
             </div>
-            <div className="ta-row ta-gap6 ta-mt10" style={{ fontSize: 12, color: "var(--success)", fontWeight: 700 }}>
+            <div className="ta-row ta-gap6 ta-mt10" style={{ fontSize: 12, color: "var(--success)", fontWeight: 500 }}>
               <CheckCircle2 size={14} /> Ready for instant transfer
             </div>
           </div>
@@ -148,7 +148,7 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
                 <Wallet size={18} />
               </div>
             </div>
-            <div style={{ fontSize: 32, fontWeight: 900, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: 32, fontWeight: 600, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
               ${totalEarnings.toFixed(2)}
             </div>
             <div className="ta-row ta-gap6 ta-mt10" style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>
@@ -163,7 +163,7 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
                 <Clock size={18} />
               </div>
             </div>
-            <div style={{ fontSize: 32, fontWeight: 900, color: "#F59E0B", marginTop: 10, letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: 32, fontWeight: 600, color: "#F59E0B", marginTop: 10, letterSpacing: "-0.02em" }}>
               ${pendingEarnings.toFixed(2)}
             </div>
             <div className="ta-row ta-gap6 ta-mt10" style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>
@@ -187,7 +187,7 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
                 style={{
                   padding: "7px 16px",
                   fontSize: 12.5,
-                  fontWeight: 700,
+                  fontWeight: 500,
                   cursor: "pointer",
                   border: "none"
                 }}
@@ -202,7 +202,7 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
           <div className="ta-card" style={{ padding: "20px 22px", background: "var(--surface)", border: "1px solid var(--border)" }}>
             <div className="ta-row ta-between" style={{ paddingBottom: 14, borderBottom: "1px solid var(--border)" }}>
               <div>
-                <div className="ta-title" style={{ fontSize: 16, fontWeight: 800 }}>Detailed Transaction History</div>
+                <div className="ta-title" style={{ fontSize: 16, fontWeight: 600 }}>Detailed Transaction History</div>
                 <div className="ta-sub" style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Itemized credits from live sessions, capstone grading, and workshops</div>
               </div>
               <button className="ta-btn ta-btn-outline ta-btn-sm" onClick={() => earningsQuery.refetch()}>
@@ -236,7 +236,7 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
                         <span style={{ color: "var(--text-2)", fontWeight: 500 }}>{e.learner_name || "Enrolled Learner"}</span>
                       </td>
                       <td>
-                        <span style={{ fontWeight: 800, color: "var(--text)", fontSize: 14 }}>+${Number(e.amount || 0).toFixed(2)}</span>
+                        <span style={{ fontWeight: 600, color: "var(--text)", fontSize: 14 }}>+${Number(e.amount || 0).toFixed(2)}</span>
                       </td>
                       <td>
                         <Tag tone={e.status === "available" || e.status === "paid" ? "success" : e.status === "pending" ? "warning" : "default"}>
@@ -258,7 +258,7 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: 20 }}>
             
             <div className="ta-card" style={{ padding: "22px 24px", background: "var(--surface)", border: "1px solid var(--border)" }}>
-              <div className="ta-title" style={{ fontSize: 16, fontWeight: 800 }}>Request a Payout Withdrawal</div>
+              <div className="ta-title" style={{ fontSize: 16, fontWeight: 600 }}>Request a Payout Withdrawal</div>
               <div className="ta-sub" style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Transfer your available balance to your preferred payout method</div>
 
               {!payoutsEnabled && (
@@ -340,7 +340,7 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
 
               <button
                 className="ta-btn ta-btn-primary ta-mt20"
-                style={{ width: "100%", padding: "11px 16px", fontWeight: 800, fontSize: 13.5 }}
+                style={{ width: "100%", padding: "11px 16px", fontWeight: 600, fontSize: 13.5 }}
                 disabled={submitting || availableBalance <= 0 || !payoutAmount}
                 onClick={handleRequestPayout}
               >
@@ -349,7 +349,7 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
             </div>
 
             <div className="ta-card" style={{ padding: "22px 24px", background: "var(--surface)", border: "1px solid var(--border)" }}>
-              <div className="ta-title" style={{ fontSize: 16, fontWeight: 800 }}>Payout Request History</div>
+              <div className="ta-title" style={{ fontSize: 16, fontWeight: 600 }}>Payout Request History</div>
               <div className="ta-sub" style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Track automated disbursement confirmations and bank clearing times</div>
 
               <div className="ta-table-wrap ta-mt14">
@@ -370,7 +370,7 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
                     )}
                     {(payoutsQuery.data || []).map(p => (
                       <tr key={p.id}>
-                        <td style={{ fontWeight: 800, color: "var(--text)" }}>${Number(p.amount || 0).toFixed(2)}</td>
+                        <td style={{ fontWeight: 600, color: "var(--text)" }}>${Number(p.amount || 0).toFixed(2)}</td>
                         <td style={{ textTransform: "capitalize" }}>{(p.payment_method?.type || "bank_transfer").replace(/_/g, " ")}</td>
                         <td>
                           <Tag tone={p.status === "completed" ? "success" : p.status === "rejected" ? "danger" : "warning"}>
@@ -392,14 +392,14 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
 
         {tab === "refunds" && (
           <div className="ta-card" style={{ padding: "22px 24px", background: "var(--surface)", border: "1px solid var(--border)" }}>
-            <div className="ta-title" style={{ fontSize: 16, fontWeight: 800 }}>Student Refund &amp; Dispute Resolutions</div>
+            <div className="ta-title" style={{ fontSize: 16, fontWeight: 600 }}>Student Refund &amp; Dispute Resolutions</div>
             <div className="ta-sub" style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Review session rescheduling disputes and cancellation appeals</div>
 
             <div className="ta-col ta-gap12 ta-mt16 anim-stagger">
               {refundsQuery.loading && <div className="ta-empty"><LoadingSkeleton label="Loading dispute requests..." rows={3} /></div>}
               {!refundsQuery.loading && (refundsQuery.data || []).length === 0 && (
                 <div style={{ textAlign: "center", padding: 32 }}>
-                  <ShieldCheck size={32} color="#10B981" style={{ marginBottom: 8 }} />
+                  
                   <div style={{ fontWeight: 700, fontSize: 15, color: "var(--text)" }}>Zero Active Disputes</div>
                   <div style={{ fontSize: 12.5, color: "var(--text-3)", marginTop: 4 }}>Your teaching satisfaction rating is in excellent standing with no unresolved learner disputes.</div>
                 </div>
@@ -409,7 +409,7 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
                 <div key={r.id} style={{ padding: "14px 16px", background: "var(--surface-2)", borderRadius: 8, border: "1px solid var(--border)" }}>
                   <div className="ta-row ta-between" style={{ flexWrap: "wrap", gap: 8 }}>
                     <div>
-                      <div style={{ fontWeight: 800, fontSize: 14 }}>{r.user_profiles?.display_name || "Learner"} - {r.reason}</div>
+                      <div style={{ fontWeight: 600, fontSize: 14 }}>{r.user_profiles?.display_name || "Learner"} - {r.reason}</div>
                       <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Submitted: {new Date(r.created_at).toLocaleString()}</div>
                     </div>
                     <Tag tone={r.status === "approved" ? "success" : r.status === "declined" ? "danger" : "warning"}>{r.status}</Tag>

@@ -137,7 +137,7 @@ export function SupportQueueScreen({ currentUserId }) {
                   <Tag tone="primary">{f.category}</Tag>
                 </div>
                 <div style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.45 }}>{f.message}</div>
-                {f.rating > 0 && <div style={{ fontSize: 11.5, color: "var(--warning, #D97706)", marginTop: 6, fontWeight: 700 }}>★ {f.rating}/5 stars</div>}
+                {f.rating > 0 && <div style={{ fontSize: 11.5, color: "var(--warning, #D97706)", marginTop: 6, fontWeight: 500 }}>★ {f.rating}/5 stars</div>}
               </div>
             ))}
           </div>

@@ -49,19 +49,19 @@ export function MemberLearningTrack({ orgId, userId, cohortId = null, member = n
           <div className="ta-row ta-gap6" style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>
             <BookOpen size={12} /> Total Courses
           </div>
-          <div style={{ fontSize: 20, fontWeight: 800, marginTop: 4 }}>{courses.length}</div>
+          <div style={{ fontSize: 20, fontWeight: 600, marginTop: 4 }}>{courses.length}</div>
         </div>
         <div className="ta-card" style={{ padding: "12px 14px", borderRadius: 10 }}>
           <div className="ta-row ta-gap6" style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>
             <CheckCircle2 size={12} color="#10B981" /> Completed
           </div>
-          <div style={{ fontSize: 20, fontWeight: 800, marginTop: 4 }}>{completedCount}</div>
+          <div style={{ fontSize: 20, fontWeight: 600, marginTop: 4 }}>{completedCount}</div>
         </div>
         <div className="ta-card" style={{ padding: "12px 14px", borderRadius: 10 }}>
           <div className="ta-row ta-gap6" style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>
             <Award size={12} color="var(--primary)" /> Average Progress
           </div>
-          <div style={{ fontSize: 20, fontWeight: 800, marginTop: 4 }}>{avgProgress}%</div>
+          <div style={{ fontSize: 20, fontWeight: 600, marginTop: 4 }}>{avgProgress}%</div>
         </div>
       </div>
 
@@ -81,12 +81,12 @@ export function MemberLearningTrack({ orgId, userId, cohortId = null, member = n
                   <div className="ta-row ta-gap8" style={{ alignItems: "center" }}>
                     <Layers size={16} color="var(--primary)" />
                     <div>
-                      <div style={{ fontWeight: 800, fontSize: 14 }}>{path.title}</div>
+                      <div style={{ fontWeight: 600, fontSize: 14 }}>{path.title}</div>
                       {path.description && <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2 }}>{path.description}</div>}
                     </div>
                   </div>
                   <div className="ta-row ta-gap8" style={{ alignItems: "center" }}>
-                    <span style={{ fontSize: 12, fontWeight: 700 }}>{pathProgress}% Track Progress</span>
+                    <span style={{ fontSize: 12, fontWeight: 500 }}>{pathProgress}% Track Progress</span>
                     <Tag tone={isCompleted ? "success" : path.status === "assigned" ? "default" : "primary"}>
                       {isCompleted ? "Completed" : (path.status ? String(path.status).replace(/_/g, " ") : "In Progress")}
                     </Tag>
@@ -128,7 +128,7 @@ export function MemberLearningTrack({ orgId, userId, cohortId = null, member = n
                               alignItems: "center",
                               justifyContent: "center",
                               fontSize: 11,
-                              fontWeight: 700,
+                              fontWeight: 500,
                               flexShrink: 0,
                             }}
                           >
@@ -147,7 +147,7 @@ export function MemberLearningTrack({ orgId, userId, cohortId = null, member = n
                           <div style={{ width: 80, height: 5, background: "var(--surface-3)", borderRadius: 3, overflow: "hidden" }}>
                             <div style={{ width: `${Math.min(100, course.progress || 0)}%`, height: "100%", background: courseDone ? "#10B981" : "var(--primary)" }} />
                           </div>
-                          <span style={{ fontSize: 12, fontWeight: 700, minWidth: 34, textAlign: "right" }}>{course.progress || 0}%</span>
+                          <span style={{ fontSize: 12, fontWeight: 500, minWidth: 34, textAlign: "right" }}>{course.progress || 0}%</span>
                           {courseDone ? (
                             <Tag tone="success">Done</Tag>
                           ) : course.progress > 0 ? (
@@ -168,7 +168,7 @@ export function MemberLearningTrack({ orgId, userId, cohortId = null, member = n
 
       {/* Enrolled Courses list */}
       <div className="ta-card" style={{ padding: 16, borderRadius: 10, border: "1px solid var(--border)" }}>
-        <div style={{ fontWeight: 800, fontSize: 14, marginBottom: 12 }}>
+        <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 12 }}>
           {tracks.length > 0 ? "All Assigned Coursework" : "Assigned Courses & Modules"}
         </div>
         {courses.length === 0 && (
@@ -199,7 +199,7 @@ export function MemberLearningTrack({ orgId, userId, cohortId = null, member = n
                     </div>
                   </div>
                   <div className="ta-row ta-gap8" style={{ alignItems: "center", flexShrink: 0 }}>
-                    <span style={{ fontSize: 12, fontWeight: 700 }}>{course.progress || 0}%</span>
+                    <span style={{ fontSize: 12, fontWeight: 500 }}>{course.progress || 0}%</span>
                     {isDone ? (
                       <Tag tone="success">Completed</Tag>
                     ) : course.progress > 0 ? (

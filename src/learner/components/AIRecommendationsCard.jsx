@@ -95,11 +95,11 @@ export function AIRecommendationsCard({ user, courses = [], session, goTab, maxI
     <section className="tai-card tai-home-recommendations" aria-label="AI recommendations">
       <div className="tai-row tai-between tai-recommendation-heading">
         <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-          <Brain size={16} color="var(--primary)" />
+          
           <div className="tai-title-sm">AI Recommended for you</div>
         </div>
         {showSeeAll && goTab && (
-          <span className="tai-link" style={{ cursor: "pointer", fontSize: 12, fontWeight: 700 }} onClick={() => goTab("ai")}>
+          <span className="tai-link" style={{ cursor: "pointer", fontSize: 12, fontWeight: 500 }} onClick={() => goTab("ai")}>
             Open AI Coach
           </span>
         )}
@@ -129,7 +129,7 @@ export function AIRecommendationsCard({ user, courses = [], session, goTab, maxI
                 >
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                      <span className="tai-tag" style={{ textTransform: "capitalize", fontSize: 10, fontWeight: 800 }}>
+                      <span className="tai-tag" style={{ textTransform: "capitalize", fontSize: 10, fontWeight: 600 }}>
                         {r.type || "AI Suggestion"}
                       </span>
                       {r.priority && (
@@ -139,14 +139,14 @@ export function AIRecommendationsCard({ user, courses = [], session, goTab, maxI
                             fontSize: 10,
                             background: `var(--${priorityTone(r.priority)}-bg, rgba(37,99,235,0.1))`,
                             color: `var(--${priorityTone(r.priority)}, #2563EB)`,
-                            fontWeight: 700,
+                            fontWeight: 500,
                           }}
                         >
                           {r.priority}
                         </span>
                       )}
                     </div>
-                    <div style={{ fontWeight: 800, fontSize: 13.5, marginTop: 4, color: "var(--text)" }}>{r.title}</div>
+                    <div style={{ fontWeight: 600, fontSize: 13.5, marginTop: 4, color: "var(--text)" }}>{r.title}</div>
                     {r.description && <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 2, lineHeight: 1.4 }}>{r.description}</div>}
                     {r.reason && <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 3, fontStyle: "italic" }}>{r.reason}</div>}
                   </div>

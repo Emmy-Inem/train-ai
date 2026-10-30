@@ -247,8 +247,8 @@ export function EmailCenterScreen({ orgId, orgSelector, setScreen, currentUserId
             {/* ---- Audience ---- */}
             <div className="ta-card" style={{ borderRadius: 10 }}>
               <div className="ta-row ta-gap8">
-                <Users size={17} color="var(--primary)" />
-                <div style={{ fontWeight: 800, fontSize: 15 }}>Who receives this</div>
+                
+                <div style={{ fontWeight: 600, fontSize: 15 }}>Who receives this</div>
               </div>
               <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
                 Every option here is resolved from your own organization's members, so a send can never
@@ -341,8 +341,8 @@ export function EmailCenterScreen({ orgId, orgSelector, setScreen, currentUserId
             {/* ---- Message ---- */}
             <div className="ta-card" style={{ borderRadius: 10 }}>
               <div className="ta-row ta-gap8">
-                <Mail size={17} color="var(--primary)" />
-                <div style={{ fontWeight: 800, fontSize: 15 }}>Message</div>
+                
+                <div style={{ fontWeight: 600, fontSize: 15 }}>Message</div>
               </div>
 
               <div className="ta-label ta-mt12">Subject</div>
@@ -404,7 +404,7 @@ export function EmailCenterScreen({ orgId, orgSelector, setScreen, currentUserId
               <div key={t.name} className="ta-card" style={{ borderRadius: 10 }}>
                 <div className="ta-row ta-between" style={{ gap: 10, flexWrap: "wrap" }}>
                   <div style={{ minWidth: 0 }}>
-                    <div style={{ fontWeight: 800, fontSize: 14 }}>{t.name}</div>
+                    <div style={{ fontWeight: 600, fontSize: 14 }}>{t.name}</div>
                     <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 3 }}>{t.subject}</div>
                   </div>
                   <button className="ta-btn ta-btn-primary ta-btn-sm" onClick={() => { applyTemplate(t); setTab("compose"); }}>

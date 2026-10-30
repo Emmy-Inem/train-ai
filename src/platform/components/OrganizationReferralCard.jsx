@@ -86,11 +86,11 @@ export function OrganizationReferralCard({ orgId, orgName, orgSlug, showToast, m
           </div>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-              <span style={{ fontSize: 13.5, fontWeight: 800, color: "var(--text)" }}>
+              <span style={{ fontSize: 13.5, fontWeight: 600, color: "var(--text)" }}>
                 Organization Shareable Invite &amp; Referral Link
               </span>
               <span style={{
-                fontSize: 10, fontWeight: 700, color: "#2563EB",
+                fontSize: 10, fontWeight: 500, color: "#2563EB",
                 background: "#EFF6FF", padding: "2px 7px", borderRadius: 4,
                 textTransform: "uppercase", letterSpacing: ".04em"
               }}>
@@ -134,7 +134,7 @@ export function OrganizationReferralCard({ orgId, orgName, orgSlug, showToast, m
           type="button"
           className="ta-btn ta-btn-primary ta-btn-sm"
           onClick={handleCopyLink}
-          style={{ display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 700 }}
+          style={{ display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 500 }}
         >
           {copied ? <Check size={14} color="#FFFFFF" /> : <Copy size={14} />}
           {copied ? "Copied!" : "Copy Link"}
@@ -171,7 +171,7 @@ export function OrganizationReferralCard({ orgId, orgName, orgSlug, showToast, m
               className={referralFilter === "shareable_link" ? "ta-btn ta-btn-primary ta-btn-sm" : "ta-btn ta-btn-outline ta-btn-sm"}
               onClick={() => onToggleReferralFilter(referralFilter === "shareable_link" ? "all" : "shareable_link")}
               title="Filter user directory to show all members and prospective learners from this link"
-              style={{ display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 700 }}
+              style={{ display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 500 }}
             >
               <Users size={14} />
               {referralFilter === "shareable_link"
@@ -186,7 +186,7 @@ export function OrganizationReferralCard({ orgId, orgName, orgSlug, showToast, m
         <PortalModal isOpen={showQr} onClose={() => setShowQr(false)} maxWidth={360} zIndex={10000}>
           <div style={{ textAlign: "center", padding: "10px 0" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-              <div style={{ fontWeight: 800, fontSize: 16 }}>Organization QR Code</div>
+              <div style={{ fontWeight: 600, fontSize: 16 }}>Organization QR Code</div>
               <button className="ta-btn ta-btn-ghost ta-btn-sm" onClick={() => setShowQr(false)}><X size={16} /></button>
             </div>
             <p style={{ fontSize: 12.5, color: "var(--text-2)", marginBottom: 16 }}>

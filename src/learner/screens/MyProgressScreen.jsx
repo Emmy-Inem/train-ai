@@ -100,7 +100,7 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
       >
         <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14 }}>
           <div style={{ minWidth: 0, flex: 1 }}>
-            <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 900, letterSpacing: "-0.025em", margin: "0 0 4px", lineHeight: 1.2 }}>
+            <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 600, letterSpacing: "-0.025em", margin: "0 0 4px", lineHeight: 1.2 }}>
               My Learning Progress
             </h1>
             <p className="tai-hero-desc" style={{ fontSize: 13, margin: 0, maxWidth: 620, lineHeight: 1.45 }}>
@@ -109,7 +109,7 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
           </div>
 
           <div className="tai-hero-subcard" style={{ textAlign: "right", flexShrink: 0, padding: "10px 16px", borderRadius: 10 }}>
-            <div style={{ fontSize: 18, fontWeight: 900, color: "#34D399" }}>{weeklyDone} / {weeklyGoal} Lessons Done</div>
+            <div style={{ fontSize: 18, fontWeight: 600, color: "#34D399" }}>{weeklyDone} / {weeklyGoal} Lessons Done</div>
             <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>{weeklyPct}% Sprint Met</div>
           </div>
         </div>
@@ -119,9 +119,9 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
           position: "relative", zIndex: 1, marginTop: 16,
           padding: "12px 16px", borderRadius: 10
         }}>
-          <div className="tai-row tai-between" style={{ fontSize: 12, fontWeight: 700, marginBottom: 8, color: "var(--text)" }}>
+          <div className="tai-row tai-between" style={{ fontSize: 12, fontWeight: 500, marginBottom: 8, color: "var(--text)" }}>
             <span>Weekly Sprint Progress ({weeklyPct}% Target Met)</span>
-            <span style={{ color: "#34D399", fontSize: 12, fontWeight: 700 }}>
+            <span style={{ color: "#34D399", fontSize: 12, fontWeight: 500 }}>
               {weeklyRemaining} of {weeklyGoal} lessons remaining
             </span>
           </div>
@@ -141,7 +141,7 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
               <BookOpen size={18} color="var(--primary)" />
             </div>
             <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--text)" }}>{inProgressCount} Active</div>
+              <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{inProgressCount} Active</div>
               <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Courses in Progress</div>
             </div>
           </div>
@@ -153,7 +153,7 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
               <GraduationCap size={18} color="#10B981" />
             </div>
             <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--text)" }}>{completedCount}</div>
+              <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{completedCount}</div>
               <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Completed Courses</div>
             </div>
           </div>
@@ -165,7 +165,7 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
               <Clock size={18} color="#F59E0B" />
             </div>
             <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--text)" }}>{user.totalHours || 0} hrs</div>
+              <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{user.totalHours || 0} hrs</div>
               <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Total Learning Time</div>
             </div>
           </div>
@@ -177,7 +177,7 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
               <Flame size={18} color="#3B82F6" />
             </div>
             <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--text)" }}>{user.streak || 0} Days</div>
+              <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{user.streak || 0} Days</div>
               <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Active Study Streak</div>
             </div>
           </div>
@@ -193,14 +193,14 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
         <div className="tai-card" style={{ padding: 22, borderRadius: 10 }}>
           <div className="tai-row tai-between" style={{ marginBottom: 16 }}>
             <div>
-              <h3 style={{ fontSize: 16, fontWeight: 800, margin: "0 0 2px", color: "var(--text)" }}>
+              <h3 style={{ fontSize: 16, fontWeight: 600, margin: "0 0 2px", color: "var(--text)" }}>
                 Study Time Overview
               </h3>
               <div style={{ fontSize: 12.5, color: "var(--text-3)" }}>
                 {user.totalHours || 0} total learning hours logged
               </div>
             </div>
-            <span className="tai-tag" style={{ background: "rgba(16, 185, 129, 0.1)", color: "#10B981", fontWeight: 700 }}>
+            <span className="tai-tag" style={{ background: "rgba(16, 185, 129, 0.1)", color: "#10B981", fontWeight: 500 }}>
               Active
             </span>
           </div>
@@ -208,15 +208,15 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--surface-3)", padding: "14px 16px", borderRadius: 8 }}>
               <span style={{ fontSize: 13, color: "var(--text-2)", fontWeight: 600 }}>Weekly Completed Lessons</span>
-              <span style={{ fontSize: 15, fontWeight: 800, color: "var(--text)" }}>{weeklyDone} / {weeklyGoal}</span>
+              <span style={{ fontSize: 15, fontWeight: 600, color: "var(--text)" }}>{weeklyDone} / {weeklyGoal}</span>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--surface-3)", padding: "14px 16px", borderRadius: 8 }}>
               <span style={{ fontSize: 13, color: "var(--text-2)", fontWeight: 600 }}>Total Curriculum Lessons Done</span>
-              <span style={{ fontSize: 15, fontWeight: 800, color: "var(--text)" }}>{user.lessonsCompleted || 0}</span>
+              <span style={{ fontSize: 15, fontWeight: 600, color: "var(--text)" }}>{user.lessonsCompleted || 0}</span>
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--surface-3)", padding: "14px 16px", borderRadius: 8 }}>
               <span style={{ fontSize: 13, color: "var(--text-2)", fontWeight: 600 }}>Overall Curriculum Mastery</span>
-              <span style={{ fontSize: 15, fontWeight: 800, color: "var(--primary)" }}>{user.mastery || 0}%</span>
+              <span style={{ fontSize: 15, fontWeight: 600, color: "var(--primary)" }}>{user.mastery || 0}%</span>
             </div>
           </div>
         </div>
@@ -225,14 +225,14 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
         <div className="tai-card" style={{ padding: 22, borderRadius: 10 }}>
           <div className="tai-row tai-between" style={{ marginBottom: 16 }}>
             <div>
-              <h3 style={{ fontSize: 16, fontWeight: 800, margin: "0 0 2px", color: "var(--text)" }}>
+              <h3 style={{ fontSize: 16, fontWeight: 600, margin: "0 0 2px", color: "var(--text)" }}>
                 Target Skills Mastery
               </h3>
               <div style={{ fontSize: 12.5, color: "var(--text-3)" }}>
                 Evaluated from enrolled courses &amp; tracks
               </div>
             </div>
-            <span className="tai-tag" style={{ background: "rgba(37, 99, 235, 0.1)", color: "var(--primary)", fontWeight: 700 }}>
+            <span className="tai-tag" style={{ background: "rgba(37, 99, 235, 0.1)", color: "var(--primary)", fontWeight: 500 }}>
               Level {user.level || 1}
             </span>
           </div>
@@ -244,7 +244,7 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
                   <span style={{ color: "var(--text)" }}>{skill.name}</span>
                   <div className="tai-row tai-gap6">
                     <span style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>{skill.status}</span>
-                    <span style={{ color: "var(--primary)", fontWeight: 800 }}>{skill.mastery}%</span>
+                    <span style={{ color: "var(--primary)", fontWeight: 600 }}>{skill.mastery}%</span>
                   </div>
                 </div>
                 <ProgressBar value={skill.mastery} height={7} />
@@ -261,7 +261,7 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
       <div>
         <div className="tai-row tai-between" style={{ marginBottom: 16, flexWrap: "wrap", gap: 12, alignItems: "center" }}>
           <div>
-            <h2 style={{ fontSize: 18, fontWeight: 900, color: "var(--text)", margin: 0 }}>
+            <h2 style={{ fontSize: 18, fontWeight: 600, color: "var(--text)", margin: 0 }}>
               Enrolled Courses &amp; Modules
             </h2>
           </div>
@@ -288,7 +288,7 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
           {filteredCourses.length === 0 && (
             <div className="tai-card" style={{ textAlign: "center", padding: "clamp(32px, 5vw, 48px) 20px", borderRadius: 10 }}>
               <BookOpen size={36} color="var(--text-3)" style={{ margin: "0 auto 12px", opacity: 0.6 }} />
-              <div style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>
+              <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>
                 {filterStatus === "completed" ? "No completed courses yet" : filterStatus === "in_progress" ? "No courses in progress" : "No enrolled courses yet"}
               </div>
               <div style={{ fontSize: 13, color: "var(--text-3)", marginTop: 4, maxWidth: 440, margin: "4px auto 16px" }}>
@@ -330,13 +330,13 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
                       <div className="tai-row tai-gap8" style={{ marginBottom: 6, flexWrap: "wrap" }}>
                         <Tag tone={isCompleted ? "success" : "primary"}>{course.category}</Tag>
                         {isCompleted && (
-                          <span style={{ fontSize: 11.5, fontWeight: 800, color: "var(--success)", background: "rgba(16, 185, 129, 0.1)", padding: "2px 8px", borderRadius: 6, display: "inline-flex", alignItems: "center", gap: 4 }}>
+                          <span style={{ fontSize: 11.5, fontWeight: 600, color: "var(--success)", background: "rgba(16, 185, 129, 0.1)", padding: "2px 8px", borderRadius: 6, display: "inline-flex", alignItems: "center", gap: 4 }}>
                             <Check size={12} /> Certified
                           </span>
                         )}
                       </div>
 
-                      <h3 style={{ fontSize: 16.5, fontWeight: 800, color: "var(--text)", margin: "0 0 6px", lineHeight: 1.4 }}>
+                      <h3 style={{ fontSize: 16.5, fontWeight: 600, color: "var(--text)", margin: "0 0 6px", lineHeight: 1.4 }}>
                         {course.title}
                       </h3>
 
@@ -357,7 +357,7 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
                       <span style={{ color: "var(--text-2)", fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", marginRight: 8 }}>
                         {isCompleted ? "Course Completed • 100%" : `Next: ${course.nextLesson || "Continue Lesson"}`}
                       </span>
-                      <span style={{ color: isCompleted ? "var(--success)" : "var(--primary)", fontWeight: 800, background: isCompleted ? "rgba(16, 185, 129, 0.12)" : "var(--primary-tint)", padding: "2px 8px", borderRadius: 6 }}>
+                      <span style={{ color: isCompleted ? "var(--success)" : "var(--primary)", fontWeight: 600, background: isCompleted ? "rgba(16, 185, 129, 0.12)" : "var(--primary-tint)", padding: "2px 8px", borderRadius: 6 }}>
                         {course.progress}%
                       </span>
                     </div>
@@ -371,7 +371,7 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
 
                       <button
                         className="tai-btn tai-btn-primary tai-btn-sm"
-                        style={{ padding: "8px 18px", borderRadius: 8, fontWeight: 700 }}
+                        style={{ padding: "8px 18px", borderRadius: 8, fontWeight: 500 }}
                         onClick={(e) => { e.stopPropagation(); push("courseDetail", { id: course.id }); }}
                       >
                         {isCompleted ? "Review Syllabus →" : "Resume Lesson →"}

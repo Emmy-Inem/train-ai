@@ -59,7 +59,7 @@ function StepIndicator({ stepIndex }) {
               style={{
                 width: 26, height: 26, borderRadius: "50%", flexShrink: 0,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 12, fontWeight: 700,
+                fontSize: 12, fontWeight: 500,
                 background: i < stepIndex ? "var(--success)" : i === stepIndex ? "#2563EB" : "var(--surface-2)",
                 color: i <= stepIndex ? "#fff" : "var(--text-3)",
               }}

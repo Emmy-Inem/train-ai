@@ -96,22 +96,22 @@ export function AdminAnalyticsScreen({ orgId, orgSelector, setScreen, isPlatform
         <div className="ta-grid ta-grid-4 anim-stagger">
           <div className="ta-card" style={{ background: "var(--surface-3)", minWidth: 0 }}>
             <div style={{ fontSize: 11.5, color: "var(--text-2)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Overall readiness</div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: "var(--primary)", margin: "4px 0 8px" }}>{statsQuery.data?.completionRate || 0}%</div>
+            <div style={{ fontSize: 20, fontWeight: 600, color: "var(--primary)", margin: "4px 0 8px" }}>{statsQuery.data?.completionRate || 0}%</div>
             <ProgressBar value={statsQuery.data?.completionRate || 0} />
           </div>
           <div className="ta-card" style={{ background: "var(--surface-3)", minWidth: 0 }}>
             <div style={{ fontSize: 11.5, color: "var(--text-2)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Active learners</div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: "var(--text)", margin: "4px 0 8px" }}>{statsQuery.data?.activeStudents || 0}</div>
+            <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)", margin: "4px 0 8px" }}>{statsQuery.data?.activeStudents || 0}</div>
             <ProgressBar value={statsQuery.data?.completionRate || 0} />
           </div>
           <div className="ta-card" style={{ background: "var(--surface-3)", minWidth: 0 }}>
             <div style={{ fontSize: 11.5, color: "var(--text-2)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>AI Coach usage</div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: "var(--text)", margin: "4px 0 6px" }}>{aiByFeatureQuery.data?.coach ?? 0}</div>
+            <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)", margin: "4px 0 6px" }}>{aiByFeatureQuery.data?.coach ?? 0}</div>
             <div style={{ fontSize: 10.5, color: "var(--text-3)" }}>Real AI Coach replies logged for your organization</div>
           </div>
           <div className="ta-card" style={{ background: "var(--surface-3)", minWidth: 0 }}>
             <div style={{ fontSize: 11.5, color: "var(--text-2)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Quiz Generator usage</div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: "var(--text)", margin: "4px 0 6px" }}>{aiByFeatureQuery.data?.quiz ?? 0}</div>
+            <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)", margin: "4px 0 6px" }}>{aiByFeatureQuery.data?.quiz ?? 0}</div>
             <div style={{ fontSize: 10.5, color: "var(--text-3)" }}>Real AI-generated quizzes created - the honest proxy for credits used, since no separate credits-balance table exists</div>
           </div>
         </div>
@@ -204,15 +204,15 @@ export function AdminAnalyticsScreen({ orgId, orgSelector, setScreen, isPlatform
           <div className="ta-label">General Overview</div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 160px), 1fr))", gap: 12, marginTop: 14 }}>
             <div style={{ background: "var(--surface-2)", padding: "12px 14px", borderRadius: 8 }}>
-              <div style={{ fontSize: 22, fontWeight: 900, color: "var(--text)" }}>{generalOverviewQuery.data?.studyGroupCount ?? 0}</div>
+              <div style={{ fontSize: 22, fontWeight: 600, color: "var(--text)" }}>{generalOverviewQuery.data?.studyGroupCount ?? 0}</div>
               <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2 }}>Study groups</div>
             </div>
             <div style={{ background: "var(--surface-2)", padding: "12px 14px", borderRadius: 8 }}>
-              <div style={{ fontSize: 22, fontWeight: 900, color: "var(--text)" }}>{generalOverviewQuery.data?.certificatesIssued ?? 0}</div>
+              <div style={{ fontSize: 22, fontWeight: 600, color: "var(--text)" }}>{generalOverviewQuery.data?.certificatesIssued ?? 0}</div>
               <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2 }}>Certificates issued</div>
             </div>
             <div style={{ background: "var(--surface-2)", padding: "12px 14px", borderRadius: 8 }}>
-              <div style={{ fontSize: 22, fontWeight: 900, color: "var(--primary)" }}>{generalOverviewQuery.data?.avgAssessmentScore != null ? `${generalOverviewQuery.data.avgAssessmentScore}%` : "0%"}</div>
+              <div style={{ fontSize: 22, fontWeight: 600, color: "var(--primary)" }}>{generalOverviewQuery.data?.avgAssessmentScore != null ? `${generalOverviewQuery.data.avgAssessmentScore}%` : "0%"}</div>
               <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2 }}>Avg. score</div>
             </div>
           </div>
@@ -225,15 +225,15 @@ export function AdminAnalyticsScreen({ orgId, orgSelector, setScreen, isPlatform
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 160px), 1fr))", gap: 12 }}>
             <div style={{ background: "var(--surface-2)", padding: "12px 14px", borderRadius: 8 }}>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--text)" }}>{aiUsageQuery.loading ? "..." : (aiUsage?.total ?? 0).toLocaleString()}</div>
+              <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{aiUsageQuery.loading ? "..." : (aiUsage?.total ?? 0).toLocaleString()}</div>
               <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2 }}>All time</div>
             </div>
             <div style={{ background: "var(--surface-2)", padding: "12px 14px", borderRadius: 8 }}>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--text)" }}>{aiUsageQuery.loading ? "..." : (aiUsage?.last30d ?? 0).toLocaleString()}</div>
+              <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{aiUsageQuery.loading ? "..." : (aiUsage?.last30d ?? 0).toLocaleString()}</div>
               <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2 }}>Last 30 days</div>
             </div>
             <div style={{ background: "var(--surface-2)", padding: "12px 14px", borderRadius: 8 }}>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--primary)" }}>{aiUsageQuery.loading ? "..." : (aiUsage?.last7d ?? 0).toLocaleString()}</div>
+              <div style={{ fontSize: 20, fontWeight: 600, color: "var(--primary)" }}>{aiUsageQuery.loading ? "..." : (aiUsage?.last7d ?? 0).toLocaleString()}</div>
               <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2 }}>Last 7 days</div>
             </div>
           </div>

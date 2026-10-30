@@ -43,7 +43,7 @@ const SCREENS = [
         {/* Welcome Greeting */}
         <div className="pst-welcome-banner">
           <div>
-            <h3>Welcome back, Olamide 👋</h3>
+            <h3>Welcome back, Olamide</h3>
             <p>You’re 74% through <strong>Foundations of Applied AI</strong>. Keep your momentum going!</p>
           </div>
           <div className="pst-streak-pill">

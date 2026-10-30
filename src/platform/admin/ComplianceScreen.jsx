@@ -227,7 +227,7 @@ export function ComplianceScreen({ orgId, orgSelector, setScreen, currentUserId 
         <div className="ta-grid ta-grid-4 anim-stagger">
           <div className="ta-card">
             <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Total Enrolled Learners</div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: "var(--text)", marginTop: 4 }}>
+            <div style={{ fontSize: 24, fontWeight: 600, color: "var(--text)", marginTop: 4 }}>
               {learnerProgress.length}
             </div>
             <div style={{ fontSize: 11.5, color: "var(--primary)", marginTop: 4, fontWeight: 600 }}>Active across tracks</div>
@@ -235,7 +235,7 @@ export function ComplianceScreen({ orgId, orgSelector, setScreen, currentUserId 
 
           <div className="ta-card">
             <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Cohort Avg Progress</div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: "var(--text)", marginTop: 4 }}>
+            <div style={{ fontSize: 24, fontWeight: 600, color: "var(--text)", marginTop: 4 }}>
               {learnerProgress.length ? Math.round(learnerProgress.reduce((sum, r) => sum + (r.avgProgress || 0), 0) / learnerProgress.length) : 0}%
             </div>
             <div style={{ fontSize: 11.5, color: "var(--success)", marginTop: 4, fontWeight: 600 }}>On track pace</div>
@@ -243,7 +243,7 @@ export function ComplianceScreen({ orgId, orgSelector, setScreen, currentUserId 
 
           <div className="ta-card">
             <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Overdue Compliance</div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: totalOverdue > 0 ? "var(--danger)" : "var(--text)", marginTop: 4 }}>
+            <div style={{ fontSize: 24, fontWeight: 600, color: totalOverdue > 0 ? "var(--danger)" : "var(--text)", marginTop: 4 }}>
               {totalOverdue}
             </div>
             <div style={{ fontSize: 11.5, color: totalOverdue > 0 ? "var(--danger)" : "var(--text-3)", marginTop: 4, fontWeight: 600 }}>
@@ -253,7 +253,7 @@ export function ComplianceScreen({ orgId, orgSelector, setScreen, currentUserId 
 
           <div className="ta-card">
             <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>At-Risk Learners</div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: behindLearners.length > 0 ? "#F59E0B" : "var(--text)", marginTop: 4 }}>
+            <div style={{ fontSize: 24, fontWeight: 600, color: behindLearners.length > 0 ? "#F59E0B" : "var(--text)", marginTop: 4 }}>
               {behindLearners.length}
             </div>
             <div style={{ fontSize: 11.5, color: behindLearners.length > 0 ? "#F59E0B" : "var(--success)", marginTop: 4, fontWeight: 600 }}>
@@ -405,12 +405,12 @@ export function ComplianceScreen({ orgId, orgSelector, setScreen, currentUserId 
                   {expandedLearnerId === l.learnerId && (
                     <div className="ta-row ta-gap16 ta-mt10" style={{ flexWrap: "wrap" }}>
                       <div style={{ flex: 1, minWidth: 160 }}>
-                        <div style={{ fontSize: 11, fontWeight: 700, color: "var(--success)" }}>COMPLETED</div>
+                        <div style={{ fontSize: 11, fontWeight: 500, color: "var(--success)" }}>COMPLETED</div>
                         {l.completedSkills.length === 0 && <div style={{ fontSize: 11.5, color: "var(--text-3)" }}>None yet</div>}
                         {l.completedSkills.map((s) => <div key={s.category} style={{ fontSize: 12 }}>{s.category} - {s.avgProgress}%</div>)}
                       </div>
                       <div style={{ flex: 1, minWidth: 160 }}>
-                        <div style={{ fontSize: 11, fontWeight: 700, color: "var(--danger)" }}>GAPS</div>
+                        <div style={{ fontSize: 11, fontWeight: 500, color: "var(--danger)" }}>GAPS</div>
                         {l.gapSkills.length === 0 && <div style={{ fontSize: 11.5, color: "var(--text-3)" }}>None</div>}
                         {l.gapSkills.map((s) => <div key={s.category} style={{ fontSize: 12 }}>{s.category} - {s.avgProgress}%</div>)}
                       </div>
@@ -512,7 +512,7 @@ export function ComplianceScreen({ orgId, orgSelector, setScreen, currentUserId 
                     {isExpanded && (
                       <tr>
                         <td colSpan={7} style={{ background: "var(--surface-3)", padding: 12 }}>
-                          <div style={{ fontSize: 11.5, fontWeight: 700, color: "var(--text-2)", marginBottom: 8 }}>
+                          <div style={{ fontSize: 11.5, fontWeight: 500, color: "var(--text-2)", marginBottom: 8 }}>
                             ASSIGNED LEARNERS ({courseLearnerRows.length})
                           </div>
                           <div className="ta-col ta-gap6">
@@ -545,7 +545,7 @@ export function ComplianceScreen({ orgId, orgSelector, setScreen, currentUserId 
         zIndex={9999}
       >
         <div className="ta-row ta-between">
-          <div style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>Assign course to learners</div>
+          <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Assign course to learners</div>
           <button className="ta-btn ta-btn-ghost ta-btn-sm" onClick={closeAssignModal} aria-label="Close"><X size={16} /></button>
         </div>
 

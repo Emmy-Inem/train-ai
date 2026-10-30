@@ -132,7 +132,7 @@ export function ForumsScreen({ orgSelector, setScreen }) {
                     <Tag tone={cat.is_general ? undefined : "success"}>{cat.is_general ? "General" : (cat.courses?.title || "Course")}</Tag>
                     <span style={{ fontSize: 12, color: "var(--text-2)" }}>{cat.thread_count} thread{cat.thread_count === 1 ? "" : "s"}</span>
                   </div>
-                  <div style={{ fontWeight: 800, fontSize: 16, marginTop: 10, cursor: "pointer" }} onClick={() => setSelectedForumId(cat.id)}>{cat.title}</div>
+                  <div style={{ fontWeight: 600, fontSize: 16, marginTop: 10, cursor: "pointer" }} onClick={() => setSelectedForumId(cat.id)}>{cat.title}</div>
                   {cat.description && <div style={{ fontSize: 13, color: "var(--text-2)", marginTop: 6 }}>{cat.description}</div>}
                   <div className="ta-row ta-gap8 ta-mt12">
                     <button className="ta-btn ta-btn-outline ta-btn-sm" onClick={() => setSelectedForumId(cat.id)}><MessageSquare size={13} /> View threads</button>

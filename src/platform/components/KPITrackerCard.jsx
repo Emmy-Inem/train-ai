@@ -151,7 +151,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
             <Activity size={20} />
           </div>
           <div>
-            <div style={{ fontSize: 16, fontWeight: 800, color: "var(--text)" }}>
+            <div style={{ fontSize: 16, fontWeight: 600, color: "var(--text)" }}>
               Monthly KPI &amp; Activity Tracker
             </div>
             <div style={{ fontSize: 12, color: "var(--text-2)" }}>
@@ -191,20 +191,20 @@ export function KPITrackerCard({ organizationId, showToast }) {
         }}
       >
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>Completion Rate</div>
-          <div style={{ fontSize: 18, fontWeight: 800, color: "#2563EB", marginTop: 2 }}>{overallCompletionRate}%</div>
+          <div style={{ fontSize: 11, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase" }}>Completion Rate</div>
+          <div style={{ fontSize: 18, fontWeight: 600, color: "#2563EB", marginTop: 2 }}>{overallCompletionRate}%</div>
         </div>
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>Completed</div>
-          <div style={{ fontSize: 18, fontWeight: 800, color: "#10B981", marginTop: 2 }}>{completedCount} <span style={{ fontSize: 12, color: "var(--text-3)" }}>tasks</span></div>
+          <div style={{ fontSize: 11, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase" }}>Completed</div>
+          <div style={{ fontSize: 18, fontWeight: 600, color: "#10B981", marginTop: 2 }}>{completedCount} <span style={{ fontSize: 12, color: "var(--text-3)" }}>tasks</span></div>
         </div>
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>In Progress</div>
-          <div style={{ fontSize: 18, fontWeight: 800, color: "#2563EB", marginTop: 2 }}>{inProgressCount} <span style={{ fontSize: 12, color: "var(--text-3)" }}>active</span></div>
+          <div style={{ fontSize: 11, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase" }}>In Progress</div>
+          <div style={{ fontSize: 18, fontWeight: 600, color: "#2563EB", marginTop: 2 }}>{inProgressCount} <span style={{ fontSize: 12, color: "var(--text-3)" }}>active</span></div>
         </div>
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>Total Tracked</div>
-          <div style={{ fontSize: 18, fontWeight: 800, color: "var(--text)", marginTop: 2 }}>{activities.length} <span style={{ fontSize: 12, color: "var(--text-3)" }}>total</span></div>
+          <div style={{ fontSize: 11, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase" }}>Total Tracked</div>
+          <div style={{ fontSize: 18, fontWeight: 600, color: "var(--text)", marginTop: 2 }}>{activities.length} <span style={{ fontSize: 12, color: "var(--text-3)" }}>total</span></div>
         </div>
       </div>
 
@@ -298,7 +298,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
                         padding: "3px 8px",
                         borderRadius: 6,
                         fontSize: 11.5,
-                        fontWeight: 700,
+                        fontWeight: 500,
                         color: cfg.color,
                         background: cfg.bg,
                         border: `1px solid ${cfg.border}`,
@@ -319,7 +319,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
                           }}
                         />
                       </div>
-                      <span style={{ fontSize: 11.5, fontWeight: 700, color: "var(--text)" }}>
+                      <span style={{ fontSize: 11.5, fontWeight: 500, color: "var(--text)" }}>
                         {kpi.progress_percent}%
                       </span>
                     </div>
@@ -375,7 +375,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
             }}
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-              <div style={{ fontWeight: 800, fontSize: 16, color: "#10142A" }}>Update Activity Status</div>
+              <div style={{ fontWeight: 600, fontSize: 16, color: "#10142A" }}>Update Activity Status</div>
               <button
                 style={{ border: "none", background: "none", cursor: "pointer" }}
                 onClick={() => setEditingKpi(null)}
@@ -389,7 +389,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
             </div>
 
             <form onSubmit={handleSaveStatus}>
-              <label style={{ fontSize: 11.5, fontWeight: 700, color: "#64748B", textTransform: "uppercase" }}>
+              <label style={{ fontSize: 11.5, fontWeight: 500, color: "#64748B", textTransform: "uppercase" }}>
                 Status
               </label>
               <select
@@ -404,7 +404,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
                 <option value={KPI_STATUSES.BLOCKED}>Blocked</option>
               </select>
 
-              <label style={{ fontSize: 11.5, fontWeight: 700, color: "#64748B", textTransform: "uppercase" }}>
+              <label style={{ fontSize: 11.5, fontWeight: 500, color: "#64748B", textTransform: "uppercase" }}>
                 Progress Percentage ({editProgress}%)
               </label>
               <input
@@ -416,7 +416,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
                 style={{ width: "100%", marginTop: 6, marginBottom: 14 }}
               />
 
-              <label style={{ fontSize: 11.5, fontWeight: 700, color: "#64748B", textTransform: "uppercase" }}>
+              <label style={{ fontSize: 11.5, fontWeight: 500, color: "#64748B", textTransform: "uppercase" }}>
                 Notes / Operational Remarks
               </label>
               <textarea
@@ -474,7 +474,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
             }}
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-              <div style={{ fontWeight: 800, fontSize: 16, color: "#10142A" }}>Add Monthly KPI Activity</div>
+              <div style={{ fontWeight: 600, fontSize: 16, color: "#10142A" }}>Add Monthly KPI Activity</div>
               <button
                 style={{ border: "none", background: "none", cursor: "pointer" }}
                 onClick={() => setCreateOpen(false)}
@@ -484,7 +484,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
             </div>
 
             <form onSubmit={handleCreateActivity}>
-              <label style={{ fontSize: 11.5, fontWeight: 700, color: "#64748B", textTransform: "uppercase" }}>
+              <label style={{ fontSize: 11.5, fontWeight: 500, color: "#64748B", textTransform: "uppercase" }}>
                 Activity Title
               </label>
               <input
@@ -498,7 +498,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
 
               <div className="ta-responsive-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 12 }}>
                 <div>
-                  <label style={{ fontSize: 11.5, fontWeight: 700, color: "#64748B", textTransform: "uppercase" }}>
+                  <label style={{ fontSize: 11.5, fontWeight: 500, color: "#64748B", textTransform: "uppercase" }}>
                     Category
                   </label>
                   <select
@@ -516,7 +516,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
                   </select>
                 </div>
                 <div>
-                  <label style={{ fontSize: 11.5, fontWeight: 700, color: "#64748B", textTransform: "uppercase" }}>
+                  <label style={{ fontSize: 11.5, fontWeight: 500, color: "#64748B", textTransform: "uppercase" }}>
                     Target Month
                   </label>
                   <select
@@ -535,7 +535,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
 
               <div className="ta-responsive-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 16 }}>
                 <div>
-                  <label style={{ fontSize: 11.5, fontWeight: 700, color: "#64748B", textTransform: "uppercase" }}>
+                  <label style={{ fontSize: 11.5, fontWeight: 500, color: "#64748B", textTransform: "uppercase" }}>
                     Owner / Team
                   </label>
                   <input
@@ -547,7 +547,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
                   />
                 </div>
                 <div>
-                  <label style={{ fontSize: 11.5, fontWeight: 700, color: "#64748B", textTransform: "uppercase" }}>
+                  <label style={{ fontSize: 11.5, fontWeight: 500, color: "#64748B", textTransform: "uppercase" }}>
                     Target Metric
                   </label>
                   <input

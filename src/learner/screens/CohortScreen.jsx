@@ -233,7 +233,7 @@ export function CohortScreen({
 
       <section className="tai-card tai-hero-card" style={{ padding: 18, borderRadius: 14, minWidth: 0 }} aria-label="Cohort overview">
         {cohortMembershipQuery?.data?.allCohorts?.length > 1 && (
-          <label style={{ display: "grid", gap: 6, fontSize: 12, fontWeight: 700 }}>
+          <label style={{ display: "grid", gap: 6, fontSize: 12, fontWeight: 500 }}>
             Your cohorts
             <select aria-label="Switch cohort" value={cohort.id} onChange={e => push?.("cohort", { cohortId: e.target.value, id: e.target.value })}
               style={{ width: "100%", minWidth: 0, height: 44, padding: "0 10px", borderRadius: 8, background: "var(--surface)", color: "var(--text)", border: "1px solid var(--border)", fontSize: 14 }}>
@@ -345,9 +345,9 @@ export function CohortScreen({
                   <Avatar initials={initialsOf(cp.user_profiles?.display_name)} size={38} src={cp.user_profiles?.avatar_url} />
                   <div style={{ minWidth: 0 }}>
                     <div className="tai-row tai-gap6" style={{ flexWrap: "wrap" }}>
-                      <span style={{ fontWeight: 800, fontSize: 14, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 180 }}>{cp.user_profiles?.display_name || "Cohort Member"}</span>
+                      <span style={{ fontWeight: 600, fontSize: 14, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 180 }}>{cp.user_profiles?.display_name || "Cohort Member"}</span>
                       {cp.user_profiles?.role === "admin" || cp.user_profiles?.role === "mentor" ? (
-                        <span style={{ background: "#2563EB", color: "#fff", fontSize: 9.5, fontWeight: 800, padding: "1px 6px", borderRadius: 4, flexShrink: 0 }}>
+                        <span style={{ background: "#2563EB", color: "#fff", fontSize: 9.5, fontWeight: 600, padding: "1px 6px", borderRadius: 4, flexShrink: 0 }}>
                           INSTRUCTOR
                         </span>
                       ) : null}
@@ -374,7 +374,7 @@ export function CohortScreen({
                     gap: 6,
                     fontSize: 12.5,
                     color: "var(--text-2)",
-                    fontWeight: 700,
+                    fontWeight: 500,
                     padding: "4px 8px",
                     borderRadius: 6
                   }}
@@ -403,7 +403,7 @@ export function CohortScreen({
                   {replies.map(rep => (
                     <div key={rep.id} style={{ background: "var(--surface-3)", padding: "10px 14px", borderRadius: 8 }}>
                       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 2 }}>
-                        <span style={{ fontWeight: 800, fontSize: 12.5, color: "var(--text)" }}>{rep.user_profiles?.display_name || "Peer"}:</span>
+                        <span style={{ fontWeight: 600, fontSize: 12.5, color: "var(--text)" }}>{rep.user_profiles?.display_name || "Peer"}:</span>
                         <span style={{ fontSize: 11, color: "var(--text-3)" }}>{timeAgo(rep.created_at)}</span>
                       </div>
                       <span style={{ fontSize: 12.5, color: "var(--text-2)", lineHeight: 1.45 }}>{rep.content}</span>
@@ -488,7 +488,7 @@ export function CohortScreen({
           {isAdminOrMentor && (
             <div className="tai-row tai-between" style={{ alignItems: "center", background: "var(--surface)", padding: "14px 18px", borderRadius: 10, border: "1px solid var(--border)", flexWrap: "wrap", gap: 12 }}>
               <div>
-                <div style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>Instructor Live Studio Controls</div>
+                <div style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>Instructor Live Studio Controls</div>
                 <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Schedule, announce, and broadcast live workshops or code reviews for this cohort</div>
               </div>
               <button
@@ -504,7 +504,7 @@ export function CohortScreen({
             {sessions.map(s => (
               <div key={s.id} className="tai-card" style={{ padding: 22, borderRadius: 10, background: "var(--surface)" }}>
                 <div className="tai-row tai-between" style={{ marginBottom: 10 }}>
-                  <span style={{ background: "rgba(239, 68, 68, 0.15)", color: "#EF4444", fontSize: 11, fontWeight: 800, padding: "3px 8px", borderRadius: 6, display: "inline-flex", alignItems: "center", gap: 4 }}>
+                  <span style={{ background: "rgba(239, 68, 68, 0.15)", color: "#EF4444", fontSize: 11, fontWeight: 600, padding: "3px 8px", borderRadius: 6, display: "inline-flex", alignItems: "center", gap: 4 }}>
                     <Video size={12} /> {s.status || "Live Studio"}
                   </span>
                   <span style={{ fontSize: 11.5, color: "var(--text-3)" }}>
@@ -512,7 +512,7 @@ export function CohortScreen({
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: 15.5, fontWeight: 800, color: "var(--text)", margin: "0 0 6px" }}>
+                <h3 style={{ fontSize: 15.5, fontWeight: 600, color: "var(--text)", margin: "0 0 6px" }}>
                   {s.title}
                 </h3>
                 <div className="tai-row tai-gap8" style={{ fontSize: 12, color: "var(--text-3)", marginBottom: 14, flexWrap: "wrap" }}>
@@ -552,7 +552,7 @@ export function CohortScreen({
           <div className="tai-card" style={{ padding: "14px 16px", borderRadius: 10, border: "1px solid var(--border)" }}>
             <div className="tai-row tai-between" style={{ fontSize: 12.5, fontWeight: 700, marginBottom: 6 }}>
               <span style={{ color: "var(--text-2)" }}>Cohort Assigned-Course Completion Rate</span>
-              <span style={{ color: "var(--primary)", fontWeight: 800 }}>{completedAssignedCount} of {assignedCourses.length} ({assignedCompletionRate}%)</span>
+              <span style={{ color: "var(--primary)", fontWeight: 600 }}>{completedAssignedCount} of {assignedCourses.length} ({assignedCompletionRate}%)</span>
             </div>
             <ProgressBar value={assignedCompletionRate} height={8} />
           </div>
@@ -560,7 +560,7 @@ export function CohortScreen({
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: 20 }}>
             {assignedCourses.map(cc => (
               <div key={cc.id} className="tai-card tai-card-hover" style={{ padding: 22, borderRadius: 10, cursor: "pointer" }} onClick={() => push?.("courseDetail", { id: cc.courses?.id || cc.course_id })}>
-                <h3 style={{ fontSize: 16, fontWeight: 800, color: "var(--text)", margin: "0 0 4px" }}>
+                <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--text)", margin: "0 0 4px" }}>
                   {cc.courses?.title || "Assigned Cohort Course"}
                 </h3>
                 <p style={{ fontSize: 12.5, color: "var(--text-3)", margin: "0 0 14px" }}>
@@ -570,7 +570,7 @@ export function CohortScreen({
                 <div style={{ marginBottom: 16, background: "var(--surface-3)", padding: "12px 14px", borderRadius: 8, border: "1px solid var(--border)" }}>
                   <div className="tai-row tai-between" style={{ fontSize: 12.5, fontWeight: 700, marginBottom: 8 }}>
                     <span style={{ color: "var(--text-2)" }}>Curriculum Pace</span>
-                    <span style={{ color: "var(--primary)", fontWeight: 800, background: "var(--primary-tint)", padding: "2px 8px", borderRadius: 6 }}>
+                    <span style={{ color: "var(--primary)", fontWeight: 600, background: "var(--primary-tint)", padding: "2px 8px", borderRadius: 6 }}>
                       {cc.courses?.progress || 0}% Completed
                     </span>
                   </div>
@@ -578,7 +578,7 @@ export function CohortScreen({
                 </div>
 
                 <div className="tai-row tai-between" style={{ paddingTop: 12, borderTop: "1px solid var(--border)", gap: 10, flexWrap: "wrap" }}>
-                  <span style={{ fontSize: 11.5, color: cc.due_at ? "var(--danger)" : "var(--text-3)", fontWeight: 700 }}>
+                  <span style={{ fontSize: 11.5, color: cc.due_at ? "var(--danger)" : "var(--text-3)", fontWeight: 500 }}>
                     {cc.due_at ? `Due: ${new Date(cc.due_at).toLocaleDateString()}` : "Active Track"}
                   </span>
                   <button
@@ -611,7 +611,7 @@ export function CohortScreen({
                     {r.resource_type === "link" ? <Link2 size={18} color="var(--primary)" /> : <FileText size={18} color="var(--primary)" />}
                   </div>
                   <div style={{ minWidth: 0 }}>
-                    <h4 style={{ fontSize: 14.5, fontWeight: 800, color: "var(--text)", margin: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{r.title}</h4>
+                    <h4 style={{ fontSize: 14.5, fontWeight: 600, color: "var(--text)", margin: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{r.title}</h4>
                     <p style={{ fontSize: 12, color: "var(--text-3)", margin: "2px 0 0", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{r.description}</p>
                   </div>
                 </div>
@@ -665,11 +665,11 @@ export function CohortScreen({
                     <div className="tai-row tai-gap10" style={{ minWidth: 0, flex: 1 }}>
                       <Avatar src={m.user_profiles?.avatar_url} initials={initialsOf(m.user_profiles?.display_name)} size={40} />
                       <div style={{ minWidth: 0 }}>
-                        <div style={{ fontWeight: 800, fontSize: 13.5, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                        <div style={{ fontWeight: 600, fontSize: 13.5, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                           {m.user_profiles?.display_name || "Cohort Member"}
                         </div>
                         {isInstructor && (
-                          <span style={{ background: "#2563EB", color: "#fff", fontSize: 9.5, fontWeight: 800, padding: "1px 6px", borderRadius: 4 }}>
+                          <span style={{ background: "#2563EB", color: "#fff", fontSize: 9.5, fontWeight: 600, padding: "1px 6px", borderRadius: 4 }}>
                             INSTRUCTOR
                           </span>
                         )}
@@ -730,7 +730,7 @@ export function CohortScreen({
                   <Clock size={20} />
                 </div>
                 <div>
-                  <h3 style={{ fontSize: 17, fontWeight: 900, margin: 0, color: "var(--text, #FFF)" }}>Extend Cohort Timeline</h3>
+                  <h3 style={{ fontSize: 17, fontWeight: 600, margin: 0, color: "var(--text, #FFF)" }}>Extend Cohort Timeline</h3>
                   <div style={{ fontSize: 12, color: "var(--text-3, #94A3B8)", marginTop: 2 }}>{cohort?.name}</div>
                 </div>
               </div>
@@ -754,7 +754,7 @@ export function CohortScreen({
               </div>
             </div>
 
-            <div style={{ fontSize: 12, fontWeight: 700, color: "var(--text-2, #CBD5E1)", marginBottom: 8 }}>
+            <div style={{ fontSize: 12, fontWeight: 500, color: "var(--text-2, #CBD5E1)", marginBottom: 8 }}>
               Quick Extension Presets:
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 8, marginBottom: 16 }}>
@@ -772,7 +772,7 @@ export function CohortScreen({
                     padding: "10px 12px",
                     borderRadius: 8,
                     fontSize: 12.5,
-                    fontWeight: 700,
+                    fontWeight: 500,
                     cursor: "pointer",
                     border: extendDays === opt.days && !customEndDate ? "2px solid #3B82F6" : "1px solid var(--border, rgba(255,255,255,0.12))",
                     background: extendDays === opt.days && !customEndDate ? "rgba(59, 130, 246, 0.2)" : "var(--surface-3, rgba(255,255,255,0.04))",
@@ -786,7 +786,7 @@ export function CohortScreen({
             </div>
 
             <div style={{ marginBottom: 18 }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: "var(--text-2, #CBD5E1)", marginBottom: 6 }}>
+              <div style={{ fontSize: 12, fontWeight: 500, color: "var(--text-2, #CBD5E1)", marginBottom: 6 }}>
                 Or Pick Custom Completion Date:
               </div>
               <input
@@ -822,7 +822,7 @@ export function CohortScreen({
                 className="tai-btn tai-btn-primary tai-btn-sm"
                 onClick={() => handleExtendTimeline(extendDays, customEndDate || null)}
                 disabled={extending}
-                style={{ padding: "8px 18px", fontWeight: 800 }}
+                style={{ padding: "8px 18px", fontWeight: 600 }}
               >
                 {extending ? "Updating Cohort..." : "Save & Extend Cohort"}
               </button>
@@ -859,7 +859,7 @@ export function CohortScreen({
             }}
           >
             <div className="tai-row tai-between" style={{ marginBottom: 14, alignItems: "center" }}>
-              <div style={{ fontWeight: 800, fontSize: 16 }}>Schedule Live Studio Session</div>
+              <div style={{ fontWeight: 600, fontSize: 16 }}>Schedule Live Studio Session</div>
               <button
                 type="button"
                 className="tai-iconbtn"
@@ -875,7 +875,7 @@ export function CohortScreen({
 
             <form onSubmit={handleCreateSession}>
               <div style={{ marginBottom: 12 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 5 }}>Session Title *</div>
+                <div style={{ fontSize: 12, fontWeight: 500, marginBottom: 5 }}>Session Title *</div>
                 <input
                   type="text"
                   className="tai-input"
@@ -888,7 +888,7 @@ export function CohortScreen({
               </div>
 
               <div style={{ marginBottom: 12 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 5 }}>Starts At (Date & Time) *</div>
+                <div style={{ fontSize: 12, fontWeight: 500, marginBottom: 5 }}>Starts At (Date & Time) *</div>
                 <input
                   type="datetime-local"
                   className="tai-input"
@@ -900,7 +900,7 @@ export function CohortScreen({
               </div>
 
               <div style={{ marginBottom: 12 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 5 }}>Virtual Studio Join URL (Google Meet / Zoom)</div>
+                <div style={{ fontSize: 12, fontWeight: 500, marginBottom: 5 }}>Virtual Studio Join URL (Google Meet / Zoom)</div>
                 <input
                   type="url"
                   className="tai-input"
@@ -912,7 +912,7 @@ export function CohortScreen({
               </div>
 
               <div style={{ marginBottom: 18 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 5 }}>Session Agenda & Notes</div>
+                <div style={{ fontSize: 12, fontWeight: 500, marginBottom: 5 }}>Session Agenda & Notes</div>
                 <textarea
                   className="tai-input"
                   rows={3}
@@ -935,7 +935,7 @@ export function CohortScreen({
                   type="submit"
                   className="tai-btn tai-btn-primary tai-btn-sm"
                   disabled={savingSession}
-                  style={{ padding: "8px 18px", fontWeight: 800 }}
+                  style={{ padding: "8px 18px", fontWeight: 600 }}
                 >
                   {savingSession ? "Scheduling..." : "Schedule Live Studio"}
                 </button>

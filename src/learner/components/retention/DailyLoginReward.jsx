@@ -95,7 +95,7 @@ export function DailyLoginReward({ session, onClaimed }) {
           <Gift size={18} />
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontWeight: 800, fontSize: 14.5 }}>
+          <div style={{ fontWeight: 600, fontSize: 14.5 }}>
             {justClaimed ? "Reward claimed!" : "Daily login reward"}
           </div>
           <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 2 }}>
@@ -118,7 +118,7 @@ export function DailyLoginReward({ session, onClaimed }) {
                   title={`Day ${rung.day}: +${rung.points} XP${rung.bonus ? ` (${rung.bonus})` : ""}`}
                   style={{
                     width: 30, height: 30, borderRadius: 9, display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: 9.5, fontWeight: 700, flexShrink: 0,
+                    fontSize: 9.5, fontWeight: 500, flexShrink: 0,
                     background: isToday ? "var(--warning)" : isPast ? "var(--surface-2)" : "var(--surface-3)",
                     color: isToday ? "#fff" : isPast ? "var(--primary)" : "var(--text-3)",
                     border: isToday ? "none" : "1px solid var(--border)",

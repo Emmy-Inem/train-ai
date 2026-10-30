@@ -251,7 +251,7 @@ export function SettingsHubScreen({ orgId, profileQuery, orgSelector, setScreen,
             <div className="ta-hero-actions">
               <button 
                 className="ta-btn ta-btn-primary" 
-                style={{ background: "#2563EB", color: "#FFFFFF", fontWeight: 700, height: 36, padding: "0 16px", borderRadius: 8, border: "none" }}
+                style={{ background: "#2563EB", color: "#FFFFFF", fontWeight: 500, height: 36, padding: "0 16px", borderRadius: 8, border: "none" }}
                 onClick={handleSave}
                 disabled={saving || !orgName.trim()}
               >
@@ -338,9 +338,9 @@ export function SettingsHubScreen({ orgId, profileQuery, orgSelector, setScreen,
                     : "Trial organizations aren't seat-limited yet • this applies once your plan is active."}
                 </div>
                 <div className="ta-row ta-gap16 ta-mt16" style={{ flexWrap: "wrap" }}>
-                  <div><div style={{ fontSize: 22, fontWeight: 800 }}>{seatsSummary.purchased}</div><div style={{ fontSize: 11, color: "var(--text-2)" }}>Purchased</div></div>
-                  <div><div style={{ fontSize: 22, fontWeight: 800 }}>{seatsSummary.used}</div><div style={{ fontSize: 11, color: "var(--text-2)" }}>Used</div></div>
-                  <div><div style={{ fontSize: 22, fontWeight: 800, color: seatsSummary.available > 0 ? "var(--success)" : "var(--danger)" }}>{seatsSummary.available}</div><div style={{ fontSize: 11, color: "var(--text-2)" }}>Available</div></div>
+                  <div><div style={{ fontSize: 22, fontWeight: 600 }}>{seatsSummary.purchased}</div><div style={{ fontSize: 11, color: "var(--text-2)" }}>Purchased</div></div>
+                  <div><div style={{ fontSize: 22, fontWeight: 600 }}>{seatsSummary.used}</div><div style={{ fontSize: 11, color: "var(--text-2)" }}>Used</div></div>
+                  <div><div style={{ fontSize: 22, fontWeight: 600, color: seatsSummary.available > 0 ? "var(--success)" : "var(--danger)" }}>{seatsSummary.available}</div><div style={{ fontSize: 11, color: "var(--text-2)" }}>Available</div></div>
                 </div>
                 <div className="ta-row ta-gap8 ta-mt16" style={{ flexWrap: "wrap" }}>
                   <input className="ta-input" style={{ width: 100 }} type="number" min="1" placeholder="Seats" value={seatsToBuy} onChange={(e) => setSeatsToBuy(e.target.value)} />
@@ -502,7 +502,7 @@ export function SettingsHubScreen({ orgId, profileQuery, orgSelector, setScreen,
                       <Database size={17} color="var(--primary)" />
                     </div>
                     <div>
-                      <div className="ta-title" style={{ fontSize: 15, fontWeight: 800 }}>Database &amp; Mock Data Mode</div>
+                      <div className="ta-title" style={{ fontSize: 15, fontWeight: 600 }}>Database &amp; Mock Data Mode</div>
                       <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2 }}>
                         Toggle demo prototype data vs live production database records
                       </div>
@@ -510,7 +510,7 @@ export function SettingsHubScreen({ orgId, profileQuery, orgSelector, setScreen,
                   </div>
 
                   <span style={{
-                    fontSize: 10.5, fontWeight: 800, padding: "2px 8px", borderRadius: 6,
+                    fontSize: 10.5, fontWeight: 600, padding: "2px 8px", borderRadius: 6,
                     background: isMockDataEnabled() ? "var(--warning-bg, #FEF3C7)" : "var(--success-bg, #DCFCE7)",
                     color: isMockDataEnabled() ? "var(--warning, #D97706)" : "var(--success, #16A34A)"
                   }}>

@@ -153,7 +153,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
       >
         <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14 }}>
           <div style={{ minWidth: 0, flex: 1 }}>
-            <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 900, letterSpacing: "-0.025em", margin: "0 0 4px", lineHeight: 1.2 }}>
+            <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 600, letterSpacing: "-0.025em", margin: "0 0 4px", lineHeight: 1.2 }}>
               Level {user.level || 1} • {user.role ? user.role.toUpperCase() : "Active Learner"}
             </h1>
             <p className="tai-hero-desc" style={{ fontSize: 13, margin: 0, maxWidth: 620, lineHeight: 1.45 }}>
@@ -162,7 +162,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
           </div>
 
           <div className="tai-hero-subcard" style={{ textAlign: "right", flexShrink: 0, padding: "10px 16px", borderRadius: 10 }}>
-            <div style={{ fontSize: 18, fontWeight: 900, color: "#F59E0B" }}>{(user.totalPoints || 0).toLocaleString()} XP</div>
+            <div style={{ fontSize: 18, fontWeight: 600, color: "#F59E0B" }}>{(user.totalPoints || 0).toLocaleString()} XP</div>
             <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>Total Earned XP</div>
           </div>
         </div>
@@ -175,7 +175,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
           padding: "12px 16px",
           borderRadius: 10
         }}>
-          <div className="tai-row tai-between" style={{ fontSize: 12, fontWeight: 700, marginBottom: 8, color: "var(--text)" }}>
+          <div className="tai-row tai-between" style={{ fontSize: 12, fontWeight: 500, marginBottom: 8, color: "var(--text)" }}>
             <span>Level {user.level || 1} Progress ({percent}%)</span>
             <span style={{ color: "#FBBF24", fontWeight: 700 }}>{Math.max(0, ceiling - (user.totalPoints || 0)).toLocaleString()} XP to Level {(user.level || 1) + 1}</span>
           </div>
@@ -206,7 +206,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
               <BookOpen size={18} color="var(--primary)" />
             </div>
             <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--text)" }}>{user.lessonsCompleted || 0}</div>
+              <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{user.lessonsCompleted || 0}</div>
               <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Lessons Finished</div>
             </div>
           </div>
@@ -218,7 +218,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
               <GraduationCap size={18} color="#10B981" />
             </div>
             <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--text)" }}>{dynamicCertificates.length}</div>
+              <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{dynamicCertificates.length}</div>
               <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Certificates Earned</div>
             </div>
           </div>
@@ -230,7 +230,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
               <Flame size={18} color="#F59E0B" />
             </div>
             <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--text)" }}>{user.streak || 0} Days</div>
+              <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{user.streak || 0} Days</div>
               <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Daily Streak</div>
             </div>
           </div>
@@ -242,7 +242,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
               <Clock size={18} color="#3B82F6" />
             </div>
             <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--text)" }}>{user.totalHours || 0} hrs</div>
+              <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{user.totalHours || 0} hrs</div>
               <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Total Study Time</div>
             </div>
           </div>
@@ -254,7 +254,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
               <Trophy size={18} color="var(--primary)" />
             </div>
             <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: "var(--text)" }}>
+              <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>
                 {(() => {
                   const rows = leaderboardQuery?.data || [];
                   const mine = rows.find(r => r.you || r.user_id === userId || r.id === userId);
@@ -288,7 +288,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
                 borderRadius: 8,
                 padding: "8px 16px",
                 fontSize: 12.5,
-                fontWeight: 700,
+                fontWeight: 500,
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 6,
@@ -315,7 +315,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
             <div className="tai-card" style={{ padding: "18px 14px", borderRadius: 10 }}>
               <div className="tai-row tai-between" style={{ marginBottom: 16 }}>
                 <div>
-                  <h3 style={{ fontSize: 16, fontWeight: 800, margin: "0 0 2px", color: "var(--text)" }}>
+                  <h3 style={{ fontSize: 16, fontWeight: 600, margin: "0 0 2px", color: "var(--text)" }}>
                     Study Time &amp; Velocity
                   </h3>
                   <div style={{ fontSize: 12.5, color: "var(--text-3)" }}>
@@ -328,15 +328,15 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
               <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--surface-3)", padding: "12px 14px", borderRadius: 8 }}>
                   <span style={{ fontSize: 12.5, color: "var(--text-2)", fontWeight: 600 }}>Lessons Finished</span>
-                  <span style={{ fontSize: 14, fontWeight: 800, color: "var(--text)" }}>{user.lessonsCompleted || 0}</span>
+                  <span style={{ fontSize: 14, fontWeight: 600, color: "var(--text)" }}>{user.lessonsCompleted || 0}</span>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--surface-3)", padding: "12px 14px", borderRadius: 8 }}>
                   <span style={{ fontSize: 12.5, color: "var(--text-2)", fontWeight: 600 }}>Continuous Streak</span>
-                  <span style={{ fontSize: 14, fontWeight: 800, color: "#F59E0B" }}>{user.streak || 0} Days</span>
+                  <span style={{ fontSize: 14, fontWeight: 600, color: "#F59E0B" }}>{user.streak || 0} Days</span>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--surface-3)", padding: "12px 14px", borderRadius: 8 }}>
                   <span style={{ fontSize: 12.5, color: "var(--text-2)", fontWeight: 600 }}>Curriculum Mastery</span>
-                  <span style={{ fontSize: 14, fontWeight: 800, color: "var(--primary)" }}>{user.mastery || 0}%</span>
+                  <span style={{ fontSize: 14, fontWeight: 600, color: "var(--primary)" }}>{user.mastery || 0}%</span>
                 </div>
               </div>
             </div>
@@ -345,7 +345,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
             <div className="tai-card" style={{ padding: 24, borderRadius: 10 }}>
               <div className="tai-row tai-between" style={{ marginBottom: 16 }}>
                 <div>
-                  <h3 style={{ fontSize: 16, fontWeight: 800, margin: "0 0 2px", color: "var(--text)" }}>
+                  <h3 style={{ fontSize: 16, fontWeight: 600, margin: "0 0 2px", color: "var(--text)" }}>
                     Skill Competency Matrix
                   </h3>
                   <div style={{ fontSize: 12.5, color: "var(--text-3)" }}>
@@ -360,7 +360,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
                   <div key={idx}>
                     <div className="tai-row tai-between" style={{ fontSize: 12.5, marginBottom: 4 }}>
                       <span style={{ fontWeight: 700, color: "var(--text)" }}>{item.skill}</span>
-                      <span style={{ fontWeight: 800, color: "var(--primary)" }}>{item.score}% ({item.level})</span>
+                      <span style={{ fontWeight: 600, color: "var(--primary)" }}>{item.score}% ({item.level})</span>
                     </div>
                     <ProgressBar value={item.score} height={6} />
                   </div>
@@ -379,7 +379,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
                     <Gift size={22} color="#F59E0B" />
                   </div>
                   <div>
-                    <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Milestone Reward Mystery Box Available!</div>
+                    <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>Milestone Reward Mystery Box Available!</div>
                     <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 2 }}>Unlocked by reaching your {user.streak || 8}-day continuous learning streak</div>
                   </div>
                 </div>
@@ -392,7 +392,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
 
           {revealedReward && (
             <div className="tai-card anim-pop" style={{ borderColor: "var(--success)", textAlign: "center", padding: 18, borderRadius: 10, background: "rgba(16, 185, 129, 0.06)" }}>
-              <div style={{ fontWeight: 800, fontSize: 17, color: "var(--success)" }}>+{revealedReward.points} Points Awarded!</div>
+              <div style={{ fontWeight: 600, fontSize: 17, color: "var(--success)" }}>+{revealedReward.points} Points Awarded!</div>
               {revealedReward.streak_freeze > 0 && (
                 <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 4 }}>+{revealedReward.streak_freeze} Streak Freeze added to inventory</div>
               )}
@@ -415,7 +415,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
             if (alerts.length === 0) return null;
             return (
               <div className="tai-card" style={{ padding: 16, borderRadius: 10, border: "1px solid var(--border)" }}>
-                <div style={{ fontWeight: 800, fontSize: 13.5, color: "var(--text)", marginBottom: 10 }}>Key Alerts</div>
+                <div style={{ fontWeight: 600, fontSize: 13.5, color: "var(--text)", marginBottom: 10 }}>Key Alerts</div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   {alerts.map((a, idx) => (
                     <div key={idx} className="tai-row tai-gap8" style={{ alignItems: "center", padding: "8px 10px", borderRadius: 8, background: a.tone === "danger" ? "rgba(239, 68, 68, 0.08)" : "rgba(245, 158, 11, 0.08)" }}>
@@ -429,7 +429,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
 
           {/* Completed Courses */}
           <div className="tai-card" style={{ padding: 16, borderRadius: 10, border: "1px solid var(--border)" }}>
-            <div style={{ fontWeight: 800, fontSize: 13.5, color: "var(--text)", marginBottom: 10 }}>Completed Courses</div>
+            <div style={{ fontWeight: 600, fontSize: 13.5, color: "var(--text)", marginBottom: 10 }}>Completed Courses</div>
             {(() => {
               const completed = (courses || []).filter(c => (c.progress || 0) >= 100);
               if (completed.length === 0) {
@@ -465,8 +465,8 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
 
           {dynamicCertificates.length === 0 ? (
             <div className="tai-card" style={{ textAlign: "center", padding: "40px 20px", borderRadius: 10 }}>
-              <GraduationCap size={40} color="var(--text-3)" style={{ margin: "0 auto 12px", opacity: 0.6 }} />
-              <div style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>No Certificates Earned Yet</div>
+              
+              <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>No Certificates Earned Yet</div>
               <div style={{ fontSize: 13, color: "var(--text-3)", marginTop: 4, maxWidth: 440, margin: "4px auto 16px" }}>
                 Complete all modules and assignments in an enrolled course to earn your verified credential.
               </div>
@@ -495,12 +495,12 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
                   <div style={{ position: "relative", height: 140 }}>
                     <img src={cert.bannerImage} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15,23,42,0.85) 0%, transparent 80%)" }} />
-                    <div style={{ position: "absolute", top: 12, left: 12, background: "rgba(16, 185, 129, 0.9)", color: "#fff", fontSize: 10.5, fontWeight: 800, padding: "3px 8px", borderRadius: 6, display: "flex", alignItems: "center", gap: 4 }}>
+                    <div style={{ position: "absolute", top: 12, left: 12, background: "rgba(16, 185, 129, 0.9)", color: "#fff", fontSize: 10.5, fontWeight: 600, padding: "3px 8px", borderRadius: 6, display: "flex", alignItems: "center", gap: 4 }}>
                       <ShieldCheck size={13} /> VERIFIED CREDENTIAL
                     </div>
                     <div style={{ position: "absolute", bottom: 12, left: 14, right: 14, color: "#fff" }}>
                       <span style={{ fontSize: 11, color: "rgba(255,255,255,0.8)", fontWeight: 600 }}>{cert.specialization}</span>
-                      <h3 style={{ fontSize: 16, fontWeight: 900, margin: "2px 0 0", color: "#fff", lineHeight: 1.3 }}>{cert.title}</h3>
+                      <h3 style={{ fontSize: 16, fontWeight: 600, margin: "2px 0 0", color: "#fff", lineHeight: 1.3 }}>{cert.title}</h3>
                     </div>
                   </div>
 
@@ -513,7 +513,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
 
                       <div style={{ display: "flex", flexWrap: "wrap", gap: 6, margin: "12px 0" }}>
                         {cert.skills.map((s, idx) => (
-                          <span key={idx} style={{ background: "var(--surface-3)", border: "1px solid var(--border)", fontSize: 11, fontWeight: 700, color: "var(--text-2)", padding: "3px 8px", borderRadius: 6 }}>
+                          <span key={idx} style={{ background: "var(--surface-3)", border: "1px solid var(--border)", fontSize: 11, fontWeight: 500, color: "var(--text-2)", padding: "3px 8px", borderRadius: 6 }}>
                             {s}
                           </span>
                         ))}
@@ -521,13 +521,13 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
                     </div>
 
                     <div className="tai-row tai-between" style={{ paddingTop: 12, borderTop: "1px solid var(--border)", flexWrap: "wrap", gap: 10 }}>
-                      <span style={{ fontSize: 12, fontWeight: 800, color: "var(--success)" }}>
+                      <span style={{ fontSize: 12, fontWeight: 600, color: "var(--success)" }}>
                         {cert.grade}
                       </span>
                       <button
                         className="tai-btn tai-btn-primary tai-btn-sm"
                         onClick={() => setSelectedCertificate(cert)}
-                        style={{ padding: "6px 14px", borderRadius: 8, fontWeight: 700 }}
+                        style={{ padding: "6px 14px", borderRadius: 8, fontWeight: 500 }}
                       >
                         View Certificate <ExternalLink size={13} />
                       </button>
@@ -549,7 +549,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
           {/* Earned Badges */}
           <div>
             <div className="tai-row tai-between" style={{ marginBottom: 12 }}>
-              <h3 style={{ fontSize: 16, fontWeight: 800, color: "var(--text)", margin: 0 }}>
+              <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--text)", margin: 0 }}>
                 Unlocked Badges ({effectiveAchievements.length})
               </h3>
             </div>
@@ -572,11 +572,11 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
                       </div>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div className="tai-row tai-between">
-                          <div style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>{a.achievement_title || "Achievement"}</div>
+                          <div style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>{a.achievement_title || "Achievement"}</div>
                           <CheckCircle2 size={15} color="var(--success)" />
                         </div>
                         <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>{a.achievement_description}</div>
-                        <div style={{ fontSize: 11.5, color: "var(--primary)", fontWeight: 800, marginTop: 4 }}>
+                        <div style={{ fontSize: 11.5, color: "var(--primary)", fontWeight: 600, marginTop: 4 }}>
                           +{a.points_awarded || 50} XP • Earned {formatDate(a.earned_at)}
                         </div>
                       </div>
@@ -590,7 +590,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
           {/* Locked Badges */}
           <div>
             <div className="tai-row tai-between" style={{ marginBottom: 12 }}>
-              <h3 style={{ fontSize: 16, fontWeight: 800, color: "var(--text)", margin: 0 }}>
+              <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--text)", margin: 0 }}>
                 Available to Unlock ({locked.length})
               </h3>
             </div>
@@ -627,7 +627,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
           ========================================================================= */}
       {activeProgressTab === "activity" && (
         <div className="tai-card" style={{ padding: 18, borderRadius: 10 }}>
-          <h3 style={{ fontSize: 16, fontWeight: 800, color: "var(--text)", margin: "0 0 12px" }}>
+          <h3 style={{ fontSize: 16, fontWeight: 600, color: "var(--text)", margin: "0 0 12px" }}>
             Daily Activity Stream
           </h3>
 
@@ -647,7 +647,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
                       {formatDate(row.activity_date) || "Recently"}
                     </div>
                   </div>
-                  <span style={{ fontSize: 12.5, fontWeight: 800, color: "var(--primary)" }}>
+                  <span style={{ fontSize: 12.5, fontWeight: 600, color: "var(--primary)" }}>
                     +{row.points_earned || 0} XP
                   </span>
                 </div>
@@ -671,7 +671,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
             <div className="tai-row tai-between" style={{ gap: 10, flexWrap: "wrap", alignItems: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                 <Award size={18} color="var(--primary)" />
-                <span style={{ fontSize: 13, fontWeight: 900, color: "var(--text)", textTransform: "uppercase", letterSpacing: ".04em" }}>
+                <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text)", textTransform: "uppercase", letterSpacing: ".04em" }}>
                   Verified Certificate of Achievement
                 </span>
               </div>
@@ -709,7 +709,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
                     navigator.clipboard?.writeText(selectedCertificate.verificationUrl);
                     showToast?.("Verification link copied to clipboard!");
                   }}
-                  style={{ borderRadius: 8, fontWeight: 700 }}
+                  style={{ borderRadius: 8, fontWeight: 500 }}
                 >
                   <Share2 size={14} /> Copy Verification Link
                 </button>
@@ -722,7 +722,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
                     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(selectedCertificate.verificationUrl)}`;
                     window.open(url, "_blank");
                   }}
-                  style={{ borderRadius: 8, fontWeight: 700 }}
+                  style={{ borderRadius: 8, fontWeight: 500 }}
                 >
                   Share to Socials
                 </button>
@@ -734,7 +734,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
                 onClick={() => {
                   window.print();
                 }}
-                style={{ borderRadius: 8, fontWeight: 800, display: "inline-flex", alignItems: "center", gap: 6 }}
+                style={{ borderRadius: 8, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 6 }}
               >
                 <Download size={14} /> Print / Download PDF
               </button>

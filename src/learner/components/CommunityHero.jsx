@@ -53,7 +53,7 @@ export default function CommunityHero({ user, onCreatePost }) {
               className="tai-community-hero-title"
               style={{
                 fontSize: 'clamp(20px, 2.4vw, 26px)',
-                fontWeight: 900,
+                fontWeight: 600,
                 letterSpacing: '-0.025em',
                 margin: '0 0 2px',
                 lineHeight: 1.25,
@@ -82,7 +82,7 @@ export default function CommunityHero({ user, onCreatePost }) {
             style={{
               padding: '8px 14px',
               fontSize: 12.5,
-              fontWeight: 700,
+              fontWeight: 500,
               borderRadius: 10,
               display: 'inline-flex',
               alignItems: 'center',

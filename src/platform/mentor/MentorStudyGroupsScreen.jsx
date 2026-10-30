@@ -107,7 +107,7 @@ export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
                 rel="noreferrer"
                 className="ta-btn ta-btn-primary"
                 style={{
-                  background: "#2563EB", color: "#fff", border: "none", fontWeight: 800,
+                  background: "#2563EB", color: "#fff", border: "none", fontWeight: 600,
                   boxShadow: "0 4px 16px rgba(37, 99, 235, 0.4)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6
                 }}
               >
@@ -124,7 +124,7 @@ export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
           <div className="ta-col ta-gap14">
             
             <div className="ta-card" style={{ padding: "18px 20px", background: "var(--surface)", border: "1px solid var(--border)" }}>
-              <div className="ta-title" style={{ fontSize: 16, fontWeight: 800 }}>Create New Study Circle</div>
+              <div className="ta-title" style={{ fontSize: 16, fontWeight: 600 }}>Create New Study Circle</div>
               <div className="ta-sub" style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Form a focused group for a specific course module or capstone</div>
               
               <div className="ta-row ta-gap8 ta-mt14">
@@ -191,7 +191,7 @@ export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
                         <Tag tone="primary" style={{ fontSize: 10, padding: "2px 8px" }}>
                           {g.courses?.title || "Multi-Track Guild"}
                         </Tag>
-                        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.9)", fontWeight: 700 }}>
+                        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.9)", fontWeight: 500 }}>
                           {g.membersCount} Members
                         </span>
                       </div>
@@ -199,13 +199,13 @@ export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
 
                     <div style={{ padding: "14px 16px" }}>
                       <div className="ta-row ta-between">
-                        <span style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>{g.name}</span>
+                        <span style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>{g.name}</span>
                         <ChevronRight size={16} color={isSelected ? "var(--primary)" : "var(--text-3)"} />
                       </div>
                       <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4, lineClamp: 2, display: "-webkit-box", WebkitBoxOrient: "vertical", overflow: "hidden" }}>
                         {g.description || "Weekly study group and project review workspace."}
                       </div>
-                      <div className="ta-row ta-gap6 ta-mt10" style={{ fontSize: 11.5, color: "var(--primary)", fontWeight: 700 }}>
+                      <div className="ta-row ta-gap6 ta-mt10" style={{ fontSize: 11.5, color: "var(--primary)", fontWeight: 500 }}>
                         <Calendar size={13} /> {g.nextMeetup}
                       </div>
                     </div>
@@ -221,7 +221,7 @@ export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
             <div className="ta-card" style={{ padding: "22px 24px", background: "var(--surface)", border: "1px solid var(--border)" }}>
               <div className="ta-row ta-between" style={{ flexWrap: "wrap", gap: 10, paddingBottom: 14, borderBottom: "1px solid var(--border)" }}>
                 <div>
-                  <div style={{ fontSize: 18, fontWeight: 900, color: "var(--text)" }}>{activeGroup.name}</div>
+                  <div style={{ fontSize: 18, fontWeight: 600, color: "var(--text)" }}>{activeGroup.name}</div>
                   <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Managed Study Circle Studio</div>
                 </div>
                 <a
@@ -264,8 +264,8 @@ export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
               <div style={{ marginTop: 22 }}>
                 <div className="ta-row ta-between" style={{ marginBottom: 10 }}>
                   <div className="ta-row ta-gap8">
-                    <Users size={15} color="var(--primary)" />
-                    <span style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>Circle Members ({members.length})</span>
+                    
+                    <span style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>Circle Members ({members.length})</span>
                   </div>
                   <button
                     className="ta-btn ta-btn-outline ta-btn-sm"
@@ -296,7 +296,7 @@ export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
                       style={{ padding: "10px 14px", background: "var(--surface-2)", borderRadius: 8, border: "1px solid var(--border)" }}
                     >
                       <div className="ta-row ta-gap10">
-                        <div style={{ width: 32, height: 32, borderRadius: 10, background: "var(--primary-tint)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, color: "var(--primary)", fontSize: 12 }}>
+                        <div style={{ width: 32, height: 32, borderRadius: 10, background: "var(--primary-tint)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 600, color: "var(--primary)", fontSize: 12 }}>
                           {m.display_name?.charAt(0) || "U"}
                         </div>
                         <div>
@@ -338,8 +338,8 @@ export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
                   to post one at all, so that panel was permanently empty. */}
               <div style={{ marginTop: 22, paddingTop: 18, borderTop: "1px solid var(--border)" }}>
                 <div className="ta-row ta-gap8" style={{ marginBottom: 10 }}>
-                  <MessageCircle size={15} color="var(--primary)" />
-                  <span style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>Announcements to This Group</span>
+                  
+                  <span style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>Announcements to This Group</span>
                 </div>
 
                 <div className="ta-col ta-gap8" style={{ marginBottom: 12 }}>

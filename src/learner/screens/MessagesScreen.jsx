@@ -73,7 +73,7 @@ export function MessagesScreen({
                   <ChevronLeft size={16} /> Back
                 </button>
               )}
-              <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 900, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.2 }}>
+              <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 600, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.2 }}>
                 Direct Messages
               </h1>
             </div>
@@ -84,12 +84,12 @@ export function MessagesScreen({
 
           <div className="tai-row tai-gap10" style={{ flexWrap: "wrap", alignItems: "center" }}>
             <div className="tai-hero-subcard" style={{ padding: "8px 14px", borderRadius: 10, textAlign: "center" }}>
-              <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 700 }}>Active Chats</div>
-              <div style={{ fontSize: 16, fontWeight: 900, color: "#FFFFFF" }}>{messageThreads.length} Mentors</div>
+              <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 500 }}>Active Chats</div>
+              <div style={{ fontSize: 16, fontWeight: 600, color: "#FFFFFF" }}>{messageThreads.length} Mentors</div>
             </div>
             <div className="tai-hero-subcard" style={{ padding: "8px 14px", borderRadius: 10, textAlign: "center" }}>
-              <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 700 }}>Unread</div>
-              <div style={{ fontSize: 16, fontWeight: 900, color: messageThreads.reduce((s, t) => s + (t.unread || 0), 0) > 0 ? "#FBBF24" : "#34D399" }}>
+              <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 500 }}>Unread</div>
+              <div style={{ fontSize: 16, fontWeight: 600, color: messageThreads.reduce((s, t) => s + (t.unread || 0), 0) > 0 ? "#FBBF24" : "#34D399" }}>
                 {messageThreads.reduce((s, t) => s + (t.unread || 0), 0)} New
               </div>
             </div>
@@ -170,7 +170,7 @@ export function MessagesScreen({
                       <div className="tai-row tai-between">
                         <span style={{ fontWeight: 700, fontSize: 13.5, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", color: "var(--text)" }}>{t.name}</span>
                         {t.unread > 0 && (
-                          <span style={{ fontSize: 10, fontWeight: 800, background: "#2563EB", color: "#fff", borderRadius: 99, padding: "2px 7px" }}>{t.unread}</span>
+                          <span style={{ fontSize: 10, fontWeight: 600, background: "#2563EB", color: "#fff", borderRadius: 99, padding: "2px 7px" }}>{t.unread}</span>
                         )}
                       </div>
                       <div style={{ fontSize: 11.5, color: "var(--text-3)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 2 }}>{t.last || "No messages yet"}</div>
@@ -206,8 +206,8 @@ export function MessagesScreen({
                   )}
                   <Avatar initials={initialsOf(currentThread.name)} size={34} src={currentThread.avatar} />
                   <div>
-                    <div style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>{currentThread.name}</div>
-                    <div style={{ fontSize: 11, color: "var(--success)", fontWeight: 700, display: "flex", alignItems: "center", gap: 4 }}>
+                    <div style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>{currentThread.name}</div>
+                    <div style={{ fontSize: 11, color: "var(--success)", fontWeight: 500, display: "flex", alignItems: "center", gap: 4 }}>
                       <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--success)" }} /> Verified Instructor
                     </div>
                   </div>
@@ -253,7 +253,7 @@ export function MessagesScreen({
                 />
                 <button
                   className="tai-btn tai-btn-primary"
-                  style={{ height: 38, padding: "0 16px", borderRadius: 8, background: "#2563EB", color: "#FFFFFF", fontWeight: 700 }}
+                  style={{ height: 38, padding: "0 16px", borderRadius: 8, background: "#2563EB", color: "#FFFFFF", fontWeight: 500 }}
                   onClick={handleSendLocal}
                 >
                   <Send size={15} />

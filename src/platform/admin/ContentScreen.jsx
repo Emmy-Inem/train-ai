@@ -320,7 +320,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                         {editIsPublished ? "Published (Live for Learners)" : "Draft (Hidden from Learners)"}
                       </Tag>
                     </div>
-                    <div style={{ fontWeight: 800, fontSize: 20, color: "var(--text)" }}>{editTitle || activeCourse.title}</div>
+                    <div style={{ fontWeight: 600, fontSize: 20, color: "var(--text)" }}>{editTitle || activeCourse.title}</div>
                     <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
                       {activeCourse.enrollment_count > 0 ? `${activeCourse.enrollment_count} learners enrolled · ` : ""}{editLessons.length} lessons{editHours > 0 ? ` · ${editHours} hours` : ""}
                     </div>
@@ -404,7 +404,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                   <div style={{ fontWeight: 700, fontSize: 16 }}>Basic Information</div>
 
                   <div className="ta-col" style={{ gap: 4 }}>
-                    <label style={{ fontSize: 12, fontWeight: 700, color: "var(--text-2)" }}>Course Title</label>
+                    <label style={{ fontSize: 12, fontWeight: 500, color: "var(--text-2)" }}>Course Title</label>
                     <input
                       className="ta-input"
                       value={editTitle}
@@ -416,7 +416,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
 
                   <div className="ta-grid ta-grid-2 ta-gap12">
                     <div className="ta-col" style={{ gap: 4 }}>
-                      <label style={{ fontSize: 12, fontWeight: 700, color: "var(--text-2)" }}>Category</label>
+                      <label style={{ fontSize: 12, fontWeight: 500, color: "var(--text-2)" }}>Category</label>
                       <input
                         className="ta-input"
                         value={editCategory}
@@ -426,7 +426,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                       />
                     </div>
                     <div className="ta-col" style={{ gap: 4 }}>
-                      <label style={{ fontSize: 12, fontWeight: 700, color: "var(--text-2)" }}>Difficulty Level</label>
+                      <label style={{ fontSize: 12, fontWeight: 500, color: "var(--text-2)" }}>Difficulty Level</label>
                       <select
                         className="ta-input"
                         value={editLevel}
@@ -442,7 +442,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
 
                   <div className="ta-grid ta-grid-2 ta-gap12">
                     <div className="ta-col" style={{ gap: 4 }}>
-                      <label style={{ fontSize: 12, fontWeight: 700, color: "var(--text-2)" }}>Duration (Hours)</label>
+                      <label style={{ fontSize: 12, fontWeight: 500, color: "var(--text-2)" }}>Duration (Hours)</label>
                       <input
                         type="number"
                         className="ta-input"
@@ -452,7 +452,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                       />
                     </div>
                     <div className="ta-col" style={{ gap: 4 }}>
-                      <label style={{ fontSize: 12, fontWeight: 700, color: "var(--text-2)" }}>Price ($)</label>
+                      <label style={{ fontSize: 12, fontWeight: 500, color: "var(--text-2)" }}>Price ($)</label>
                       <input
                         type="number"
                         className="ta-input"
@@ -464,7 +464,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                   </div>
 
                   <div className="ta-col" style={{ gap: 4 }}>
-                    <label style={{ fontSize: 12, fontWeight: 700, color: "var(--text-2)" }}>Course Description</label>
+                    <label style={{ fontSize: 12, fontWeight: 500, color: "var(--text-2)" }}>Course Description</label>
                     <textarea
                       rows={5}
                       className="ta-input"
@@ -485,7 +485,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                   )}
 
                   <div>
-                    <label style={{ fontSize: 12, fontWeight: 700, color: "var(--text-2)", marginBottom: 6, display: "block" }}>Upload Cover Image</label>
+                    <label style={{ fontSize: 12, fontWeight: 500, color: "var(--text-2)", marginBottom: 6, display: "block" }}>Upload Cover Image</label>
                     <FileUploadZone
                       bucket="uploads"
                       pathPrefix="courses/covers"
@@ -584,13 +584,13 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                         className="ta-card ta-row ta-between ta-gap12"
                         style={{ background: "var(--surface-3)", padding: 14, borderRadius: 10, border: "1px solid var(--border)", flexWrap: "wrap" }}
                       >
-                        <div style={{ width: 28, height: 28, borderRadius: "50%", background: "var(--primary)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 12, flexShrink: 0 }}>
+                        <div style={{ width: 28, height: 28, borderRadius: "50%", background: "var(--primary)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 600, fontSize: 12, flexShrink: 0 }}>
                           {idx + 1}
                         </div>
 
                         <div className="ta-grid ta-grid-3 ta-gap12" style={{ flex: "1 1 200px", minWidth: 0 }}>
                           <div className="ta-col" style={{ gap: 4 }}>
-                            <label style={{ fontSize: 10, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>Lesson Title</label>
+                            <label style={{ fontSize: 10, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase" }}>Lesson Title</label>
                             <input
                               className="ta-input"
                               value={l.title || ""}
@@ -601,7 +601,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                           </div>
 
                           <div className="ta-col" style={{ gap: 4 }}>
-                            <label style={{ fontSize: 10, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>Duration (Mins)</label>
+                            <label style={{ fontSize: 10, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase" }}>Duration (Mins)</label>
                             <input
                               type="number"
                               className="ta-input"
@@ -612,7 +612,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                           </div>
 
                           <div className="ta-col" style={{ gap: 4 }}>
-                            <label style={{ fontSize: 10, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>Video / Resource URL</label>
+                            <label style={{ fontSize: 10, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase" }}>Video / Resource URL</label>
                             <input
                               className="ta-input"
                               value={l.video_url || l.videoUrl || ""}
@@ -940,7 +940,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                 />}
 
                 <div className="ta-card" style={{ marginTop: 8 }}>
-                  <div style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>Give Certificate Directly</div>
+                  <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Give Certificate Directly</div>
                   <div style={{ fontSize: 12.5, color: "var(--text-3)", marginTop: 2 }}>
                     Upload and assign a certificate to a specific learner enrolled in this course - independent of the assessment flow. Customize their printed name and theme.
                   </div>
@@ -1003,7 +1003,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                                 background: assignThemeId === th.id ? "var(--surface-3)" : "var(--surface)",
                                 cursor: "pointer",
                                 fontSize: 11.5,
-                                fontWeight: 700,
+                                fontWeight: 500,
                                 color: "var(--text)",
                                 textAlign: "left"
                               }}
@@ -1052,7 +1052,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
 
                     {/* Live Certificate Preview for Admin */}
                     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                      <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>
+                      <div style={{ fontSize: 11, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase" }}>
                         Live Document Preview
                       </div>
                       <div style={{ background: "var(--surface-2)", padding: 12, borderRadius: 10, border: "1px solid var(--border)" }}>
@@ -1076,7 +1076,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                 </div>
 
                 <div className="ta-card">
-                  <div style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>Certificate Requests &amp; Review Queue</div>
+                  <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Certificate Requests &amp; Review Queue</div>
                   <div className="ta-table-wrap ta-mt12">
                     <table className="ta-table">
                       <thead><tr><th>Learner</th><th>Score</th><th>Status</th><th>Requested</th><th>Action</th></tr></thead>
@@ -1144,7 +1144,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                       borderRadius: 8,
                       background: "#2563EB",
                       color: "#FFFFFF",
-                      fontWeight: 700,
+                      fontWeight: 500,
                       fontSize: 12.5,
                       border: "none",
                       display: "inline-flex",
@@ -1213,12 +1213,12 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                     <div style={{ padding: "16px 18px", display: "flex", flexDirection: "column", flex: 1, justifyContent: "space-between" }}>
                       <div>
                         <div className="ta-row ta-between" style={{ marginBottom: 8 }}>
-                          <span style={{ fontSize: 11.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--primary)" }}>
+                          <span style={{ fontSize: 11.5, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.04em", color: "var(--primary)" }}>
                             {c.category || "General"}
                           </span>
                         </div>
 
-                        <div style={{ fontWeight: 800, fontSize: 16, color: "var(--text)", lineHeight: 1.35 }}>{c.title}</div>
+                        <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)", lineHeight: 1.35 }}>{c.title}</div>
                         <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 6, lineHeight: 1.45, minHeight: 36 }}>
                           {c.description ? (c.description.length > 80 ? c.description.slice(0, 80) + "..." : c.description) : "Comprehensive syllabus with hands-on exercises and quizzes."}
                         </div>

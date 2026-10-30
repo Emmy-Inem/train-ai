@@ -292,7 +292,7 @@ export default function AcceptInvitationScreen({ token, session, onAccepted, onN
 
             {invitation && (
               <div style={{ ...styles.infoBox, marginBottom: 16 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#656C86", textTransform: "uppercase", letterSpacing: ".06em" }}>
+                <div style={{ fontSize: 11, fontWeight: 500, color: "#656C86", textTransform: "uppercase", letterSpacing: ".06em" }}>
                   Permanent Workspace Access
                 </div>
                 <div style={{ fontSize: 12.5, color: "#10142A", wordBreak: "break-all", background: "#FFFFFF", padding: "8px 10px", borderRadius: 6, border: "1px solid #E2E8F0" }}>
@@ -334,8 +334,8 @@ const styles = {
     width: 34, height: 34, borderRadius: 6, display: "flex", alignItems: "center", justifyContent: "center",
     background: "#2563EB",
   },
-  brandName: { fontWeight: 800, fontSize: 15.5, letterSpacing: "-0.01em", color: "#10142A" },
-  h1: { fontSize: 20, fontWeight: 800, margin: "0 0 4px", color: "#10142A", letterSpacing: "-0.01em" },
+  brandName: { fontWeight: 600, fontSize: 15.5, letterSpacing: "-0.01em", color: "#10142A" },
+  h1: { fontSize: 20, fontWeight: 600, margin: "0 0 4px", color: "#10142A", letterSpacing: "-0.01em" },
   sub: { fontSize: 12.5, color: "#656C86", margin: "0 0 20px", lineHeight: 1.45 },
   loadingRow: { display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "#656C86", padding: "12px 0" },
   infoBox: { background: "#F8F9FC", borderRadius: 8, padding: 16, display: "flex", flexDirection: "column", gap: 12, marginBottom: 20 },

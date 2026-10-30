@@ -150,14 +150,14 @@ export default class ErrorBoundary extends React.Component {
                     alignItems: "center",
                     justifyContent: "center",
                     color: "#FFFFFF",
-                    fontWeight: 900,
+                    fontWeight: 600,
                     fontSize: 15
                   }}
                 >
                   T
                 </div>
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 800, color: "#FFFFFF", letterSpacing: "-0.01em" }}>Train AI</div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: "#FFFFFF", letterSpacing: "-0.01em" }}>Train AI</div>
                   <div style={{ fontSize: 11, color: "#94A3B8" }}>System Recovery</div>
                 </div>
               </div>
@@ -173,7 +173,7 @@ export default class ErrorBoundary extends React.Component {
                   border: "1px solid rgba(239, 68, 68, 0.35)",
                   color: "#FCA5A5",
                   fontSize: 11.5,
-                  fontWeight: 700
+                  fontWeight: 500
                 }}
               >
                 <AlertTriangle size={13} color="#EF4444" />
@@ -185,7 +185,7 @@ export default class ErrorBoundary extends React.Component {
             <h1
               style={{
                 fontSize: "clamp(20px, 2.5vw, 24px)",
-                fontWeight: 800,
+                fontWeight: 600,
                 color: "#FFFFFF",
                 letterSpacing: "-0.02em",
                 margin: "0 0 8px"
@@ -215,7 +215,7 @@ export default class ErrorBoundary extends React.Component {
                   justifyContent: "space-between",
                   cursor: "pointer",
                   fontSize: 12,
-                  fontWeight: 700,
+                  fontWeight: 500,
                   color: "#93C5FD"
                 }}
               >
@@ -257,7 +257,7 @@ export default class ErrorBoundary extends React.Component {
                   style={{
                     padding: "11px 16px",
                     borderRadius: 8,
-                    fontWeight: 700,
+                    fontWeight: 500,
                     fontSize: 13.5,
                     display: "flex",
                     alignItems: "center",
@@ -276,7 +276,7 @@ export default class ErrorBoundary extends React.Component {
                   style={{
                     padding: "11px 16px",
                     borderRadius: 8,
-                    fontWeight: 700,
+                    fontWeight: 500,
                     fontSize: 13.5,
                     display: "flex",
                     alignItems: "center",
@@ -302,7 +302,7 @@ export default class ErrorBoundary extends React.Component {
                     border: "none",
                     color: "#60A5FA",
                     fontSize: 12.5,
-                    fontWeight: 700,
+                    fontWeight: 500,
                     cursor: "pointer",
                     display: "inline-flex",
                     alignItems: "center",

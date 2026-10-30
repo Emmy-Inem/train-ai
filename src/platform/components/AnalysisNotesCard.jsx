@@ -30,7 +30,7 @@ export function AnalysisNotesCard({ authorId, organizationId }) {
 
   return (
     <div className="ta-card ta-mt20">
-      <div className="ta-row ta-gap8"><StickyNote size={16} color="var(--primary)" /><div className="ta-title">My Notes</div></div>
+      <div className="ta-row ta-gap8"><div className="ta-title">My Notes</div></div>
       <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
         Your own running notes for analysis - visible to you and your org admin, not posted anywhere public.
       </div>

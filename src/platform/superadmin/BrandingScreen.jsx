@@ -268,7 +268,7 @@ export function BrandingScreen({ orgSelector } = {}) {
         <div className="ta-card" style={{ padding: 24, borderRadius: 10, background: themeMode === "dark" ? "#0F172A" : "var(--surface)", color: themeMode === "dark" ? "#F8FAFC" : "var(--text)" }}>
           <div className="ta-row ta-between" style={{ paddingBottom: 12, borderBottom: "1px solid var(--border)" }}>
             <div className="ta-row ta-gap8">
-              <Eye size={16} color={primaryColor} />
+              
               <span style={{ fontWeight: 700, fontSize: 14 }}>Live Learner Portal Preview</span>
             </div>
             <Tag tone="primary">Live Preview</Tag>
@@ -277,7 +277,7 @@ export function BrandingScreen({ orgSelector } = {}) {
           <div style={{ marginTop: 20, padding: 18, borderRadius: borderRadius, background: themeMode === "dark" ? "#1E293B" : "var(--surface-2)", border: "1px solid var(--border)" }}>
             <div className="ta-row ta-between" style={{ gap: 10, flexWrap: "wrap" }}>
               <div className="ta-row ta-gap10" style={{ minWidth: 0, flex: "1 1 auto" }}>
-                <div style={{ width: 40, height: 40, flexShrink: 0, borderRadius: 8, background: primaryColor, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, overflow: "hidden" }}>
+                <div style={{ width: 40, height: 40, flexShrink: 0, borderRadius: 8, background: primaryColor, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 600, overflow: "hidden" }}>
                   {logoUrl ? (
                     <img src={logoUrl} alt="Logo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
                   ) : (

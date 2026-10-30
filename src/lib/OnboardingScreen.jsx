@@ -136,10 +136,10 @@ const styles = {
     width: 30, height: 30, borderRadius: 9, display: "flex", alignItems: "center", justifyContent: "center",
     background: "linear-gradient(135deg, #1D4ED8 0%, #2563EB 55%, #60A5FA 100%)",
   },
-  brandName: { fontWeight: 800, fontSize: 15, color: "#10142A" },
+  brandName: { fontWeight: 600, fontSize: 15, color: "#10142A" },
   progressRow: { display: "flex", gap: 6, marginBottom: 24 },
   progressBar: { flex: 1, height: 4, borderRadius: 2, transition: "background .2s ease" },
-  h1: { fontSize: 20, fontWeight: 800, margin: "0 0 5px", color: "#10142A", letterSpacing: "-0.01em" },
+  h1: { fontSize: 20, fontWeight: 600, margin: "0 0 5px", color: "#10142A", letterSpacing: "-0.01em" },
   sub: { fontSize: 13, color: "#656C86", margin: "0 0 20px", lineHeight: 1.45 },
   optionList: { display: "flex", flexDirection: "column", gap: 10, marginBottom: 24 },
   option: {

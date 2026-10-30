@@ -99,9 +99,9 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 12, cursor: "pointer" }} onClick={onGoHome}>
           <img src="/brand/train-ai-logo.png" alt="Train AI" style={{ width: 32, height: 32, objectFit: "contain" }} />
-          <span style={{ fontWeight: 900, fontSize: 18, letterSpacing: "-0.02em" }}>
+          <span style={{ fontWeight: 600, fontSize: 18, letterSpacing: "-0.02em" }}>
             TRAIN<span style={{ color: "#3B82F6" }}>AI</span>
-            <span style={{ fontSize: 12, fontWeight: 700, color: "#60A5FA", marginLeft: 8, background: "rgba(59,130,246,0.15)", padding: "2px 8px", borderRadius: 6, textTransform: "uppercase" }}>
+            <span style={{ fontSize: 12, fontWeight: 500, color: "#60A5FA", marginLeft: 8, background: "rgba(59,130,246,0.15)", padding: "2px 8px", borderRadius: 6, textTransform: "uppercase" }}>
               Academy Marketplace
             </span>
           </span>
@@ -146,7 +146,7 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
             padding: "4px 14px",
             borderRadius: 20,
             fontSize: 12,
-            fontWeight: 700,
+            fontWeight: 500,
             marginBottom: 16,
             textTransform: "uppercase",
             letterSpacing: ".04em",
@@ -155,7 +155,7 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
           <Sparkles size={13} /> Independent Academies &amp; Certified Instructors
         </div>
 
-        <h1 style={{ fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 900, letterSpacing: "-0.025em", margin: "0 auto 16px", maxWidth: 780, lineHeight: 1.2 }}>
+        <h1 style={{ fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 600, letterSpacing: "-0.025em", margin: "0 auto 16px", maxWidth: 780, lineHeight: 1.2 }}>
           Learn Industry-Grade AI, Engineering &amp; Product from Top Tech Academies
         </h1>
         <p style={{ fontSize: 15, color: "#94A3B8", maxWidth: 640, margin: "0 auto 32px", lineHeight: 1.6 }}>
@@ -172,7 +172,7 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
               border: "none",
               background: tab === "courses" ? "#2563EB" : "transparent",
               color: tab === "courses" ? "#FFFFFF" : "#94A3B8",
-              fontWeight: 700,
+              fontWeight: 500,
               fontSize: 13,
               cursor: "pointer",
             }}
@@ -187,7 +187,7 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
               border: "none",
               background: tab === "plans" ? "#2563EB" : "transparent",
               color: tab === "plans" ? "#FFFFFF" : "#94A3B8",
-              fontWeight: 700,
+              fontWeight: 500,
               fontSize: 13,
               cursor: "pointer",
             }}
@@ -307,7 +307,7 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
                             padding: "4px 8px",
                             borderRadius: 6,
                             fontSize: 11,
-                            fontWeight: 700,
+                            fontWeight: 500,
                             color: "#60A5FA",
                             border: "1px solid rgba(255,255,255,0.1)",
                           }}
@@ -317,10 +317,10 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
                       </div>
 
                       <div style={{ padding: 20, flex: 1, display: "flex", flexDirection: "column" }}>
-                        <div style={{ fontSize: 11.5, color: "#94A3B8", fontWeight: 700, textTransform: "uppercase", marginBottom: 6 }}>
+                        <div style={{ fontSize: 11.5, color: "#94A3B8", fontWeight: 500, textTransform: "uppercase", marginBottom: 6 }}>
                           {course.academy_name}
                         </div>
-                        <h3 style={{ fontSize: 16, fontWeight: 800, margin: "0 0 8px", color: "#FFFFFF", lineHeight: 1.35 }}>
+                        <h3 style={{ fontSize: 16, fontWeight: 600, margin: "0 0 8px", color: "#FFFFFF", lineHeight: 1.35 }}>
                           {course.title}
                         </h3>
                         <p style={{ fontSize: 12.5, color: "#94A3B8", lineHeight: 1.5, margin: "0 0 16px", flex: 1 }}>
@@ -341,7 +341,7 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
 
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                           <div>
-                            <span style={{ fontSize: 20, fontWeight: 900, color: "#FFFFFF" }}>
+                            <span style={{ fontSize: 20, fontWeight: 600, color: "#FFFFFF" }}>
                               ${(course.price_amount / 100).toFixed(2)}
                             </span>
                             <span style={{ fontSize: 11, color: "#64748B", display: "block" }}>
@@ -369,7 +369,7 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
         {tab === "plans" && (
           <div>
             <div style={{ textAlign: "center", marginBottom: 36 }}>
-              <h2 style={{ fontSize: 24, fontWeight: 800 }}>Instructor Seat Plans for Training Academies</h2>
+              <h2 style={{ fontSize: 24, fontWeight: 600 }}>Instructor Seat Plans for Training Academies</h2>
               <p style={{ color: "#94A3B8", fontSize: 14 }}>
                 Deliver courses to your learners without enterprise license minimums. Scale instructors as your academy grows.
               </p>
@@ -401,7 +401,7 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
                         padding: "2px 10px",
                         borderRadius: 10,
                         fontSize: 11,
-                        fontWeight: 800,
+                        fontWeight: 600,
                         textTransform: "uppercase",
                       }}
                     >
@@ -409,13 +409,13 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
                     </div>
                   )}
 
-                  <div style={{ fontSize: 18, fontWeight: 800, color: "#FFFFFF" }}>{p.name}</div>
+                  <div style={{ fontSize: 18, fontWeight: 600, color: "#FFFFFF" }}>{p.name}</div>
                   <div style={{ fontSize: 13, color: "#94A3B8", marginTop: 4 }}>
                     Up to {p.instructorLimit} instructor seat{p.instructorLimit > 1 ? "s" : ""}
                   </div>
 
                   <div style={{ margin: "20px 0 24px" }}>
-                    <span style={{ fontSize: 32, fontWeight: 900, color: "#FFFFFF" }}>
+                    <span style={{ fontSize: 32, fontWeight: 600, color: "#FFFFFF" }}>
                       {p.monthlyPriceCents > 0 ? `$${p.monthlyPriceCents / 100}` : "Custom"}
                     </span>
                     {p.monthlyPriceCents > 0 && <span style={{ color: "#64748B", fontSize: 13 }}> / month</span>}
@@ -482,10 +482,10 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
               <div>
-                <span style={{ fontSize: 11, fontWeight: 700, color: "#60A5FA", textTransform: "uppercase" }}>
+                <span style={{ fontSize: 11, fontWeight: 500, color: "#60A5FA", textTransform: "uppercase" }}>
                   {selectedCourse.academy_name}
                 </span>
-                <h2 id="marketplace-course-title" style={{ fontSize: 19, fontWeight: 800, margin: "4px 0 0", color: "#FFF" }}>
+                <h2 id="marketplace-course-title" style={{ fontSize: 19, fontWeight: 600, margin: "4px 0 0", color: "#FFF" }}>
                   {selectedCourse.title}
                 </h2>
               </div>

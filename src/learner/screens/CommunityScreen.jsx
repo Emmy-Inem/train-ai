@@ -121,7 +121,7 @@ function StatusCard({ stats }) {
       }}
     >
       <div className="tai-row tai-gap8" style={{ alignItems: "center", marginBottom: 14 }}>
-        <span style={{ fontWeight: 800, fontSize: 13.5, color: "var(--text)" }}>Your Community Status</span>
+        <span style={{ fontWeight: 600, fontSize: 13.5, color: "var(--text)" }}>Your Community Status</span>
       </div>
 
       <div style={{ textAlign: "center", padding: "6px 0 16px" }}>
@@ -144,7 +144,7 @@ function StatusCard({ stats }) {
           className="tai-row tai-gap4"
           style={{
             fontSize: 11.5,
-            fontWeight: 800,
+            fontWeight: 600,
             padding: "3px 12px",
             borderRadius: 999,
             background: tier.bg,
@@ -178,8 +178,8 @@ function StatusCard({ stats }) {
               }}
             >
               <SIcon size={13} color="var(--primary)" style={{ margin: "0 auto 4px" }} />
-              <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>{s.value}</div>
-              <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 700, marginTop: 1 }}>{s.label}</div>
+              <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>{s.value}</div>
+              <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 500, marginTop: 1 }}>{s.label}</div>
             </div>
           );
         })}
@@ -256,7 +256,7 @@ function DailyMotivationWidget() {
           >
             "{item.quote}"
           </p>
-          <div style={{ fontSize: 12, fontWeight: 700, color: "var(--text-3)", marginTop: 6 }}>
+          <div style={{ fontSize: 12, fontWeight: 500, color: "var(--text-3)", marginTop: 6 }}>
             - {item.author}
           </div>
         </div>
@@ -266,7 +266,7 @@ function DailyMotivationWidget() {
         <span
           style={{
             fontSize: 10.5,
-            fontWeight: 800,
+            fontWeight: 600,
             padding: "2px 8px",
             borderRadius: 999,
             background: "var(--primary-tint)",
@@ -399,7 +399,7 @@ function PostCard({
         <span>Post hidden from your feed.</span>
         <button
           className="tai-btn tai-btn-ghost tai-btn-sm"
-          style={{ color: "var(--primary)", fontSize: 12.5, fontWeight: 700 }}
+          style={{ color: "var(--primary)", fontSize: 12.5, fontWeight: 500 }}
           onClick={() => setIsHidden(false)}
         >
           Undo
@@ -449,7 +449,7 @@ function PostCard({
           <Avatar size={42} src={post.authorAvatar} initials={initialsOf(post.authorName)} />
           <div style={{ minWidth: 0 }}>
             <div className="tai-row tai-gap6" style={{ alignItems: "baseline", flexWrap: "wrap" }}>
-              <span style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>{post.authorName}</span>
+              <span style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>{post.authorName}</span>
               <span style={{ fontSize: 12.5, color: "var(--text-3)" }}>·</span>
               <span style={{ fontSize: 12.5, fontWeight: 700, color: tier.color }}>{tier.label}</span>
             </div>
@@ -466,7 +466,7 @@ function PostCard({
             <span
               style={{
                 fontSize: 10.5,
-                fontWeight: 700,
+                fontWeight: 500,
                 padding: "2px 8px",
                 borderRadius: 6,
                 background: "var(--surface-2)",
@@ -647,7 +647,7 @@ function PostCard({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="tai-row tai-between" style={{ marginBottom: 14 }}>
-              <div className="tai-row tai-gap8" style={{ fontWeight: 800, fontSize: 16, color: "var(--primary)" }}>
+              <div className="tai-row tai-gap8" style={{ fontWeight: 600, fontSize: 16, color: "var(--primary)" }}>
                 <Bot size={18} /> AI Content Summary
               </div>
               <button className="tai-iconbtn" onClick={() => setAiSummaryModalOpen(false)}>
@@ -703,7 +703,7 @@ function PostCard({
             onClick={(e) => e.stopPropagation()}
           >
             <div className="tai-row tai-between" style={{ marginBottom: 14 }}>
-              <div className="tai-row tai-gap8" style={{ fontWeight: 800, fontSize: 16, color: "#D97706" }}>
+              <div className="tai-row tai-gap8" style={{ fontWeight: 600, fontSize: 16, color: "#D97706" }}>
                 <Flag size={18} /> Report Post
               </div>
               <button className="tai-iconbtn" onClick={() => { setReportModalOpen(false); setReportSubmitted(false); }}>
@@ -713,8 +713,8 @@ function PostCard({
 
             {reportSubmitted ? (
               <div style={{ textAlign: "center", padding: "16px 0" }}>
-                <CheckCircle2 size={36} color="var(--success)" style={{ margin: "0 auto 10px" }} />
-                <div style={{ fontWeight: 800, fontSize: 15, marginBottom: 4 }}>Thank you for keeping our community safe</div>
+                
+                <div style={{ fontWeight: 600, fontSize: 15, marginBottom: 4 }}>Thank you for keeping our community safe</div>
                 <div style={{ fontSize: 12.5, color: "var(--text-3)", marginBottom: 16 }}>
                   Our moderators have received your report and will review this content.
                 </div>
@@ -789,7 +789,7 @@ function PostCard({
 
       {/* Post Title (If present) */}
       {title && (
-        <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)", marginTop: 12 }}>
+        <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)", marginTop: 12 }}>
           {title}
         </div>
       )}
@@ -828,7 +828,7 @@ function PostCard({
               onClick={() => onTagClick?.(t.replace(/^#+/, ""))}
               style={{
                 fontSize: 11.5,
-                fontWeight: 700,
+                fontWeight: 500,
                 padding: "2px 8px",
                 borderRadius: 6,
                 background: "var(--surface-2)",
@@ -855,7 +855,7 @@ function PostCard({
             border: "none",
             color: post.liked ? "#EF4444" : "var(--text-2)",
             fontSize: 13,
-            fontWeight: 700,
+            fontWeight: 500,
             cursor: "pointer",
             padding: "4px 6px",
           }}
@@ -874,7 +874,7 @@ function PostCard({
             border: "none",
             color: expanded ? "var(--primary)" : "var(--text-2)",
             fontSize: 13,
-            fontWeight: 700,
+            fontWeight: 500,
             cursor: "pointer",
             padding: "4px 6px",
           }}
@@ -892,7 +892,7 @@ function PostCard({
               <Avatar size={28} src={c.authorAvatar || c.user_profiles?.avatar_url} initials={initialsOf(c.authorName || c.user_profiles?.display_name)} />
               <div style={{ minWidth: 0, background: "var(--surface-2)", borderRadius: 10, padding: "8px 12px", flex: 1, border: "1px solid var(--border)" }}>
                 <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 2 }}>
-                  <span style={{ fontSize: 12, fontWeight: 800, color: "var(--text)" }}>
+                  <span style={{ fontSize: 12, fontWeight: 600, color: "var(--text)" }}>
                     {c.authorName || c.user_profiles?.display_name || "Learner"}
                   </span>
                   <span style={{ fontSize: 10.5, color: "var(--text-3)" }}>{timeAgo(c.createdAt || c.created_at)}</span>
@@ -1308,19 +1308,12 @@ export function CommunityScreen({
       <CommunityHero user={user} onCreatePost={() => setComposerOpen(true)} />
 
       {/* Unified Dashboard Grid Layout */}
-      <div className="tai-community-columns" style={{ display: "flex", gap: 20, flexWrap: "wrap", alignItems: "flex-start" }}>
-        
-        {/* =================================================================== */}
-        {/* MAIN COLUMN (2/3 Width): Feed, Study Lounges, Cohort Channels, Instructors */}
-        {/* =================================================================== */}
-        <div style={{ flex: "2 1 540px", minWidth: 0, display: "flex", flexDirection: "column", gap: 20 }}>
-          
-          {/* CARD 1: COMMUNITY FEED & RECENT DISCUSSIONS */}
-          <div className="tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
+      <div className="tai-community-columns">
+<div className="tai-community-feed-card tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
             <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
                 <MessageSquare size={18} color="var(--primary)" />
-                <span style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>
+                <span style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>
                   {viewAllPosts ? "All Community Discussions" : "Recent Discussions"}
                 </span>
                 <span className="tai-tag" style={{ background: "var(--primary-tint)", color: "var(--primary)", fontSize: 11 }}>
@@ -1367,7 +1360,7 @@ export function CommunityScreen({
                     <span>Filtered by tag: <strong>#{activeTagFilter}</strong></span>
                     <button
                       onClick={() => setActiveTagFilter(null)}
-                      style={{ border: "none", background: "none", color: "var(--primary)", fontWeight: 700, cursor: "pointer", fontSize: 11 }}
+                      style={{ border: "none", background: "none", color: "var(--primary)", fontWeight: 500, cursor: "pointer", fontSize: 11 }}
                     >
                       Clear tag filter
                     </button>
@@ -1391,7 +1384,7 @@ export function CommunityScreen({
                 <div className="tai-row tai-between" style={{ marginBottom: 10, alignItems: "center" }}>
                   <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
                     <Avatar size={32} src={user.avatarUrl} initials={initialsOf(user.name || "You")} />
-                    <span style={{ fontWeight: 800, fontSize: 13 }}>Create a Post</span>
+                    <span style={{ fontWeight: 600, fontSize: 13 }}>Create a Post</span>
                   </div>
                   <div className="tai-row tai-gap6">
                     {["general", "question", "tip", "showcase"].map((type) => (
@@ -1401,7 +1394,7 @@ export function CommunityScreen({
                         onClick={() => setPostType(type)}
                         style={{
                           fontSize: 11,
-                          fontWeight: 700,
+                          fontWeight: 500,
                           padding: "2px 8px",
                           borderRadius: 6,
                           border: `1px solid ${postType === type ? "var(--primary)" : "var(--border)"}`,
@@ -1459,7 +1452,7 @@ export function CommunityScreen({
             {!postsQuery.loading && !postsQuery.error && filteredPosts.length === 0 && (
               <div style={{ padding: 28, textAlign: "center" }}>
                 <MessageSquare size={22} color="var(--text-3)" style={{ margin: "0 auto 8px" }} />
-                <div style={{ fontWeight: 800, fontSize: 13.5 }}>{feedSearch || activeTagFilter ? "No matching discussions" : "No discussions yet"}</div>
+                <div style={{ fontWeight: 600, fontSize: 13.5 }}>{feedSearch || activeTagFilter ? "No matching discussions" : "No discussions yet"}</div>
                 <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 4 }}>Click "New Post" above to start a conversation!</div>
               </div>
             )}
@@ -1525,13 +1518,13 @@ export function CommunityScreen({
                       <Avatar size={34} src={post.authorAvatar} initials={initialsOf(post.authorName)} />
                       <div style={{ minWidth: 0, flex: 1 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap", marginBottom: 2 }}>
-                          <span style={{ fontWeight: 800, fontSize: 13, color: "var(--text)" }}>{post.authorName}</span>
+                          <span style={{ fontWeight: 600, fontSize: 13, color: "var(--text)" }}>{post.authorName}</span>
                           <span style={{ fontSize: 11, color: "var(--text-3)" }}>· {timeAgo(post.createdAt)}</span>
                           {post.postType && (
                             <span
                               style={{
                                 fontSize: 10,
-                                fontWeight: 800,
+                                fontWeight: 600,
                                 padding: "1px 7px",
                                 borderRadius: 5,
                                 background: typeStyle.bg,
@@ -1567,7 +1560,7 @@ export function CommunityScreen({
                     </div>
 
                     <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
-                      <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 11.5, color: "var(--text-3)", fontWeight: 700 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 11.5, color: "var(--text-3)", fontWeight: 500 }}>
                         <span style={{ display: "inline-flex", alignItems: "center", gap: 4, color: (post.likes > 0) ? "#EF4444" : "var(--text-3)" }}>
                           <Heart size={12} fill={(post.likes > 0) ? "#EF4444" : "none"} /> {post.likes}
                         </span>
@@ -1587,7 +1580,7 @@ export function CommunityScreen({
               <div style={{ textAlign: "center", marginTop: 14, paddingTop: 10, borderTop: "1px solid var(--border)" }}>
                 <button
                   className="tai-btn tai-btn-outline tai-btn-sm"
-                  style={{ borderRadius: 999, padding: "6px 20px", fontSize: 12.5, fontWeight: 700 }}
+                  style={{ borderRadius: 999, padding: "6px 20px", fontSize: 12.5, fontWeight: 500 }}
                   onClick={() => {
                     if (push) push("communityFeed");
                     else setViewAllPosts(true);
@@ -1598,19 +1591,18 @@ export function CommunityScreen({
               </div>
             )}
           </div>
-
-          {/* CARD 2: ACTIVE STUDY GROUPS */}
-          <div className="tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
+<StatusCard stats={myCommunityStatsQuery.data} />
+<div className="tai-community-groups-card tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
             <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                <Users size={18} color="var(--primary)" />
-                <span style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>Study Groups</span>
+                
+                <span style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Study Groups</span>
               </div>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
                 {push && (
                   <button
                     onClick={() => push("studyGroup")}
-                    style={{ background: "none", border: "none", color: "var(--primary)", fontWeight: 700, fontSize: 12, cursor: "pointer", display: "flex", alignItems: "center", gap: 3 }}
+                    style={{ background: "none", border: "none", color: "var(--primary)", fontWeight: 500, fontSize: 12, cursor: "pointer", display: "flex", alignItems: "center", gap: 3 }}
                   >
                     View All <ChevronRight size={14} />
                   </button>
@@ -1628,7 +1620,7 @@ export function CommunityScreen({
             {/* Create Group Form Modal */}
             {createGroupModalOpen && (
               <div className="anim-slide-down" style={{ padding: 14, background: "var(--surface-2)", borderRadius: 12, marginBottom: 14, border: "1px solid var(--border)" }}>
-                <div style={{ fontWeight: 800, fontSize: 13.5, marginBottom: 8 }}>Create a New Study Group</div>
+                <div style={{ fontWeight: 600, fontSize: 13.5, marginBottom: 8 }}>Create a New Study Group</div>
                 <input
                   className="tai-input"
                   placeholder="Group Name (e.g. AI Prompt Engineering Guild)"
@@ -1681,7 +1673,7 @@ export function CommunityScreen({
                     onClick={() => push?.("studyGroup", { groupId: g.id })}
                   >
                     <div>
-                      <div style={{ fontWeight: 800, fontSize: 14, color: "var(--text)", marginBottom: 4 }}>{g.name}</div>
+                      <div style={{ fontWeight: 600, fontSize: 14, color: "var(--text)", marginBottom: 4 }}>{g.name}</div>
                       <div style={{ fontSize: 12, color: "var(--text-3)", overflow: "hidden", textOverflow: "ellipsis", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>
                         {g.description || "Peer study group for collaboration."}
                       </div>
@@ -1717,7 +1709,7 @@ export function CommunityScreen({
                     padding: "9px 16px",
                     borderRadius: 10,
                     fontSize: 12.5,
-                    fontWeight: 700,
+                    fontWeight: 500,
                     color: "var(--primary)",
                     borderColor: "rgba(37, 99, 235, 0.25)",
                     display: "flex",
@@ -1732,13 +1724,11 @@ export function CommunityScreen({
               </div>
             )}
           </div>
-
-          {/* CARD 3: COHORT LEARNING SPACE */}
-          <div className="tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
+<div className="tai-community-cohort-card tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
             <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                <BookOpen size={18} color="var(--primary)" />
-                <span style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>Cohort Learning Space</span>
+                
+                <span style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Cohort Learning Space</span>
                 {cohort && (
                   <span className="tai-tag" style={{ background: "rgba(16, 185, 129, 0.12)", color: "#10B981", border: "1px solid rgba(16, 185, 129, 0.25)" }}>
                     Active Member
@@ -1748,7 +1738,7 @@ export function CommunityScreen({
               {push && (
                 <button
                   onClick={() => push("cohort", cohort ? { cohortId: cohort.id, id: cohort.id } : undefined)}
-                  style={{ background: "none", border: "none", color: "var(--primary)", fontWeight: 700, fontSize: 12, cursor: "pointer", display: "flex", alignItems: "center", gap: 3 }}
+                  style={{ background: "none", border: "none", color: "var(--primary)", fontWeight: 500, fontSize: 12, cursor: "pointer", display: "flex", alignItems: "center", gap: 3 }}
                 >
                   {cohort ? "Enter Space" : "View Cohorts"} <ChevronRight size={14} />
                 </button>
@@ -1770,7 +1760,7 @@ export function CommunityScreen({
               >
                 <div className="tai-row tai-between" style={{ alignItems: "flex-start", flexWrap: "wrap", gap: 10 }}>
                   <div>
-                    <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)", display: "flex", alignItems: "center", gap: 8 }}>
+                    <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)", display: "flex", alignItems: "center", gap: 8 }}>
                       <span>{cohort.name || "Active Cohort"}</span>
                       {cohort.code && (
                         <span className="tai-tag" style={{ background: "var(--primary-tint)", color: "var(--primary)", fontSize: 11 }}>
@@ -1789,16 +1779,16 @@ export function CommunityScreen({
                 {/* Cohort Stats Ribbon */}
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 130px), 1fr))", gap: 8, marginTop: 4 }}>
                   <div style={{ padding: "8px 12px", borderRadius: 10, background: "var(--surface-3)", border: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: 2 }}>
-                    <span style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase" }}>Live Sessions</span>
-                    <span style={{ fontSize: 14, fontWeight: 800, color: "var(--text)" }}>{cohortSessions.length} Scheduled</span>
+                    <span style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase" }}>Live Sessions</span>
+                    <span style={{ fontSize: 14, fontWeight: 600, color: "var(--text)" }}>{cohortSessions.length} Scheduled</span>
                   </div>
                   <div style={{ padding: "8px 12px", borderRadius: 10, background: "var(--surface-3)", border: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: 2 }}>
-                    <span style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase" }}>Status</span>
-                    <span style={{ fontSize: 14, fontWeight: 800, color: "#10B981" }}>Active Sprint</span>
+                    <span style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase" }}>Status</span>
+                    <span style={{ fontSize: 14, fontWeight: 600, color: "#10B981" }}>Active Sprint</span>
                   </div>
                   {cohort.starts_at && (
                     <div style={{ padding: "8px 12px", borderRadius: 10, background: "var(--surface-3)", border: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: 2 }}>
-                      <span style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase" }}>Start Date</span>
+                      <span style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase" }}>Start Date</span>
                       <span style={{ fontSize: 13, fontWeight: 700, color: "var(--text)" }}>
                         {new Date(cohort.starts_at).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}
                       </span>
@@ -1814,7 +1804,7 @@ export function CommunityScreen({
                       padding: "9px 16px",
                       borderRadius: 10,
                       fontSize: 12.5,
-                      fontWeight: 700,
+                      fontWeight: 500,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -1844,7 +1834,7 @@ export function CommunityScreen({
                   <BookOpen size={22} color="var(--primary)" />
                 </div>
                 <div>
-                  <div style={{ fontWeight: 800, fontSize: 14.5, color: "var(--text)" }}>Cohort-Based Learning</div>
+                  <div style={{ fontWeight: 600, fontSize: 14.5, color: "var(--text)" }}>Cohort-Based Learning</div>
                   <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 4, maxWidth: 440, lineHeight: 1.4 }}>
                     Join intensive instructor-led sprint cohorts, collaborate on team deliverables, and attend live sprint sessions.
                   </div>
@@ -1856,7 +1846,7 @@ export function CommunityScreen({
                     padding: "8px 18px",
                     borderRadius: 10,
                     fontSize: 12.5,
-                    fontWeight: 700,
+                    fontWeight: 500,
                     color: "var(--primary)",
                     borderColor: "rgba(37, 99, 235, 0.25)",
                   }}
@@ -1867,13 +1857,65 @@ export function CommunityScreen({
               </div>
             )}
           </div>
-
-          {/* CARD 4: FEATURED INSTRUCTORS & MENTORS */}
-          <div className="tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
+<div className="tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
             <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 14 }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                <GraduationCap size={18} color="var(--primary)" />
-                <span style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>Instructors & Mentors</span>
+                
+                <span style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>Top Contributors</span>
+              </div>
+              <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
+                <span style={{ fontSize: 11.5, fontWeight: 500, color: "var(--primary)" }}>Rank #{myRankNumber}</span>
+                {push && (
+                  <button
+                    onClick={() => push("leaderboard")}
+                    style={{ background: "none", border: "none", color: "var(--primary)", fontWeight: 500, fontSize: 12, cursor: "pointer", display: "flex", alignItems: "center", gap: 3 }}
+                  >
+                    Full <ChevronRight size={14} />
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {leaderboardRows.slice(0, 3).map((row, idx) => {
+                const isYou = row.user_id === myId;
+                return (
+                  <div
+                    key={row.user_id || idx}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      padding: "8px 10px",
+                      borderRadius: 10,
+                      background: isYou ? "var(--primary-tint)" : "var(--surface-2)",
+                      border: isYou ? "1px solid var(--primary)" : "1px solid var(--border)",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0 }}>
+                      <span style={{ fontWeight: 600, fontSize: 12, color: idx === 0 ? "#F59E0B" : idx === 1 ? "#94A3B8" : idx === 2 ? "#D97706" : "var(--text-3)", width: 16 }}>
+                        #{idx + 1}
+                      </span>
+                      <Avatar size={28} src={row.avatar_url} initials={row.initials || "L"} />
+                      <div style={{ minWidth: 0 }}>
+                        <div style={{ fontWeight: 700, fontSize: 12.5, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          {row.name || row.display_name || "Learner"} {isYou ? "(You)" : ""}
+                        </div>
+                      </div>
+                    </div>
+                    <span style={{ fontWeight: 600, fontSize: 12, color: "var(--primary)", flexShrink: 0 }}>
+                      {row.points ?? row.total_points ?? 0} pts
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+<div className="tai-community-mentors-card tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
+            <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 14 }}>
+              <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
+                
+                <span style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Instructors & Mentors</span>
               </div>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
                 <span className="tai-tag" style={{ background: "var(--primary-tint)", color: "var(--primary)" }}>
@@ -1882,7 +1924,7 @@ export function CommunityScreen({
                 {push && (
                   <button
                     onClick={() => push("mentors")}
-                    style={{ background: "none", border: "none", color: "var(--primary)", fontWeight: 700, fontSize: 12, cursor: "pointer", display: "flex", alignItems: "center", gap: 3 }}
+                    style={{ background: "none", border: "none", color: "var(--primary)", fontWeight: 500, fontSize: 12, cursor: "pointer", display: "flex", alignItems: "center", gap: 3 }}
                   >
                     View All <ChevronRight size={14} />
                   </button>
@@ -1915,8 +1957,8 @@ export function CommunityScreen({
                     <Avatar placeholder="person" size={48} src={m.avatar || m.avatarUrl} initials={initialsOf(m.name)} />
                   </div>
                   <div>
-                    <div style={{ fontWeight: 800, fontSize: 13.5, color: "var(--text)" }}>{m.name}</div>
-                    <div style={{ fontSize: 11.5, color: "var(--primary)", fontWeight: 700 }}>{m.title || "Senior AI Instructor"}</div>
+                    <div style={{ fontWeight: 600, fontSize: 13.5, color: "var(--text)" }}>{m.name}</div>
+                    <div style={{ fontSize: 11.5, color: "var(--primary)", fontWeight: 500 }}>{m.title || "Senior AI Instructor"}</div>
                   </div>
                   <button
                     className="tai-btn tai-btn-primary tai-btn-sm"
@@ -1932,75 +1974,35 @@ export function CommunityScreen({
               ))}
             </div>
           </div>
-
-        </div>
-
-        {/* =================================================================== */}
-        {/* SIDEBAR COLUMN (1/3 Width): Status, Leaderboard, Direct Messages */}
-        {/* =================================================================== */}
-        <div style={{ flex: "1 1 300px", minWidth: 0, display: "flex", flexDirection: "column", gap: 20 }}>
-          
-          {/* 1. YOUR COMMUNITY STATUS */}
-          <StatusCard stats={myCommunityStatsQuery.data} />
-
-          {/* 2. TOP CONTRIBUTORS LEADERBOARD */}
-          <div className="tai-card" style={{ padding: 20, background: "var(--glass-surface)", border: "1px solid var(--glass-border)", borderRadius: 16, boxShadow: "var(--glass-shadow)" }}>
-            <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 14 }}>
+<div
+            className="tai-card tai-card-hover"
+            style={{
+              padding: 18,
+              background: "var(--glass-surface)",
+              border: "1px solid var(--glass-border)",
+              borderRadius: 16,
+              boxShadow: "var(--glass-shadow)",
+              cursor: "pointer",
+              transition: "all 0.15s ease",
+            }}
+            onClick={() => push?.("messages")}
+          >
+            <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 10 }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                <Trophy size={18} color="#F59E0B" />
-                <span style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Top Contributors</span>
+                
+                <span style={{ fontWeight: 600, fontSize: 14.5 }}>Direct Messages</span>
               </div>
-              <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                <span style={{ fontSize: 11.5, fontWeight: 700, color: "var(--primary)" }}>Rank #{myRankNumber}</span>
-                {push && (
-                  <button
-                    onClick={() => push("leaderboard")}
-                    style={{ background: "none", border: "none", color: "var(--primary)", fontWeight: 700, fontSize: 12, cursor: "pointer", display: "flex", alignItems: "center", gap: 3 }}
-                  >
-                    Full <ChevronRight size={14} />
-                  </button>
-                )}
-              </div>
+              <span style={{ fontSize: 11.5, fontWeight: 500, color: "var(--primary)", display: "flex", alignItems: "center", gap: 2 }}>
+                Open <ChevronRight size={13} />
+              </span>
             </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {leaderboardRows.slice(0, 3).map((row, idx) => {
-                const isYou = row.user_id === myId;
-                return (
-                  <div
-                    key={row.user_id || idx}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      padding: "8px 10px",
-                      borderRadius: 10,
-                      background: isYou ? "var(--primary-tint)" : "var(--surface-2)",
-                      border: isYou ? "1px solid var(--primary)" : "1px solid var(--border)",
-                    }}
-                  >
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0 }}>
-                      <span style={{ fontWeight: 900, fontSize: 12, color: idx === 0 ? "#F59E0B" : idx === 1 ? "#94A3B8" : idx === 2 ? "#D97706" : "var(--text-3)", width: 16 }}>
-                        #{idx + 1}
-                      </span>
-                      <Avatar size={28} src={row.avatar_url} initials={row.initials || "L"} />
-                      <div style={{ minWidth: 0 }}>
-                        <div style={{ fontWeight: 700, fontSize: 12.5, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                          {row.name || row.display_name || "Learner"} {isYou ? "(You)" : ""}
-                        </div>
-                      </div>
-                    </div>
-                    <span style={{ fontWeight: 800, fontSize: 12, color: "var(--primary)", flexShrink: 0 }}>
-                      {row.points ?? row.total_points ?? 0} pts
-                    </span>
-                  </div>
-                );
-              })}
+            <div style={{ fontSize: 12.5, color: "var(--text-2)" }}>
+              {messageThreads.length === 0 ? "No active chat threads yet. Click to view messages." : (
+                <><strong style={{ color: "var(--text)" }}>{messageThreads.length}</strong> active conversation{messageThreads.length === 1 ? "" : "s"} with instructors</>
+              )}
             </div>
           </div>
-
-          {/* 3. TRENDING TAGS */}
-          {trendingTags.length > 0 && (
+{trendingTags.length > 0 && (
             <div
               className="tai-card"
               style={{
@@ -2014,12 +2016,12 @@ export function CommunityScreen({
               <div className="tai-row tai-between" style={{ marginBottom: 12, alignItems: "center" }}>
                 <div className="tai-row tai-gap6" style={{ alignItems: "center" }}>
                   <TrendingUp size={15} color="var(--primary)" />
-                  <span style={{ fontWeight: 800, fontSize: 13.5 }}>Trending Tags</span>
+                  <span style={{ fontWeight: 600, fontSize: 13.5 }}>Trending Tags</span>
                 </div>
                 {activeTagFilter && (
                   <button
                     onClick={() => setActiveTagFilter(null)}
-                    style={{ fontSize: 11, color: "var(--primary)", border: "none", background: "none", cursor: "pointer", fontWeight: 700 }}
+                    style={{ fontSize: 11, color: "var(--primary)", border: "none", background: "none", cursor: "pointer", fontWeight: 500 }}
                   >
                     Clear
                   </button>
@@ -2035,7 +2037,7 @@ export function CommunityScreen({
                       onClick={() => setActiveTagFilter(isSelected ? null : t.tag)}
                       style={{
                         fontSize: 11.5,
-                        fontWeight: 700,
+                        fontWeight: 500,
                         padding: "3px 10px",
                         borderRadius: 999,
                         border: `1px solid ${isSelected ? "var(--primary)" : "var(--border)"}`,
@@ -2051,40 +2053,7 @@ export function CommunityScreen({
               </div>
             </div>
           )}
-
-          {/* 4. DIRECT MESSAGES / CONVERSATIONS */}
-          <div
-            className="tai-card tai-card-hover"
-            style={{
-              padding: 18,
-              background: "var(--glass-surface)",
-              border: "1px solid var(--glass-border)",
-              borderRadius: 16,
-              boxShadow: "var(--glass-shadow)",
-              cursor: "pointer",
-              transition: "all 0.15s ease",
-            }}
-            onClick={() => push?.("messages")}
-          >
-            <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 10 }}>
-              <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                <Mail size={16} color="var(--primary)" />
-                <span style={{ fontWeight: 800, fontSize: 14.5 }}>Direct Messages</span>
-              </div>
-              <span style={{ fontSize: 11.5, fontWeight: 700, color: "var(--primary)", display: "flex", alignItems: "center", gap: 2 }}>
-                Open <ChevronRight size={13} />
-              </span>
-            </div>
-            <div style={{ fontSize: 12.5, color: "var(--text-2)" }}>
-              {messageThreads.length === 0 ? "No active chat threads yet. Click to view messages." : (
-                <><strong style={{ color: "var(--text)" }}>{messageThreads.length}</strong> active conversation{messageThreads.length === 1 ? "" : "s"} with instructors</>
-              )}
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+</div>
     </div>
   );
 }

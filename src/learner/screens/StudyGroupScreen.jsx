@@ -297,7 +297,7 @@ export function StudyGroupScreen({
               </button>
 
               <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginBottom: 6 }}>
-                <h1 style={{ fontSize: 20, fontWeight: 900, color: "var(--text)", margin: 0, display: "inline-flex", alignItems: "center", gap: 8 }}>
+                <h1 style={{ fontSize: 20, fontWeight: 600, color: "var(--text)", margin: 0, display: "inline-flex", alignItems: "center", gap: 8 }}>
                   {selectedGroup.name}
                   {selectedGroup.is_private && (
                     <span title="Private Study Group" style={{ display: "inline-flex", alignItems: "center" }}>
@@ -310,7 +310,7 @@ export function StudyGroupScreen({
                   <span
                     style={{
                       fontSize: 11,
-                      fontWeight: 700,
+                      fontWeight: 500,
                       padding: "3px 10px",
                       borderRadius: 999,
                       background: "rgba(37, 99, 235, 0.12)",
@@ -329,7 +329,7 @@ export function StudyGroupScreen({
                   <span
                     style={{
                       fontSize: 11,
-                      fontWeight: 800,
+                      fontWeight: 600,
                       padding: "3px 10px",
                       borderRadius: 999,
                       background: "rgba(16, 185, 129, 0.12)",
@@ -399,7 +399,7 @@ export function StudyGroupScreen({
                 padding: "7px 16px",
                 borderRadius: 8,
                 fontSize: 13,
-                fontWeight: 700,
+                fontWeight: 500,
                 cursor: "pointer",
                 border: "none",
                 background: activeTab === "posts" ? "var(--primary)" : "transparent",
@@ -416,7 +416,7 @@ export function StudyGroupScreen({
                 padding: "7px 16px",
                 borderRadius: 8,
                 fontSize: 13,
-                fontWeight: 700,
+                fontWeight: 500,
                 cursor: "pointer",
                 border: "none",
                 background: activeTab === "overview" ? "var(--primary)" : "transparent",
@@ -433,7 +433,7 @@ export function StudyGroupScreen({
                 padding: "7px 16px",
                 borderRadius: 8,
                 fontSize: 13,
-                fontWeight: 700,
+                fontWeight: 500,
                 cursor: "pointer",
                 border: "none",
                 background: activeTab === "members" ? "var(--primary)" : "transparent",
@@ -542,8 +542,8 @@ export function StudyGroupScreen({
 
             ) : posts.length === 0 ? (
               <div className="tai-card tai-empty" style={{ padding: 36, textAlign: "center", borderRadius: 14 }}>
-                <MessageSquare size={28} color="var(--text-3)" style={{ margin: "0 auto 10px" }} />
-                <div style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>No posts in this group yet</div>
+                
+                <div style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>No posts in this group yet</div>
                 <div style={{ fontSize: 12.5, color: "var(--text-3)", marginTop: 4 }}>
                   {isMember ? "Be the first to share an update, question, or study notes!" : "Join this group to get the discussion started!"}
                 </div>
@@ -578,7 +578,7 @@ export function StudyGroupScreen({
                           src={post.user_profiles?.avatar_url}
                         />
                         <div>
-                          <div style={{ fontWeight: 800, fontSize: 13.5, color: "var(--text)" }}>{authorName}</div>
+                          <div style={{ fontWeight: 600, fontSize: 13.5, color: "var(--text)" }}>{authorName}</div>
                           <div style={{ fontSize: 11, color: "var(--text-3)" }}>{timeAgo(post.created_at)}</div>
                         </div>
                       </div>
@@ -620,7 +620,7 @@ export function StudyGroupScreen({
                           border: "none",
                           cursor: "pointer",
                           fontSize: 12.5,
-                          fontWeight: 700,
+                          fontWeight: 500,
                           padding: "5px 10px",
                           borderRadius: 8,
                           transition: "all .15s ease",
@@ -641,7 +641,7 @@ export function StudyGroupScreen({
                           border: "none",
                           cursor: "pointer",
                           fontSize: 12.5,
-                          fontWeight: 700,
+                          fontWeight: 500,
                           padding: "5px 10px",
                           borderRadius: 8,
                           transition: "all .15s ease",
@@ -685,7 +685,7 @@ export function StudyGroupScreen({
                                 <Avatar size={24} initials={initialsOf(cAuthor)} src={c.user_profiles?.avatar_url} />
                                 <div style={{ flex: 1 }}>
                                   <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 2 }}>
-                                    <span style={{ fontSize: 12, fontWeight: 700, color: "var(--text)" }}>{cAuthor}</span>
+                                    <span style={{ fontSize: 12, fontWeight: 500, color: "var(--text)" }}>{cAuthor}</span>
                                     <span style={{ fontSize: 10.5, color: "var(--text-3)" }}>{timeAgo(c.created_at)}</span>
                                   </div>
                                   <div style={{ fontSize: 12.5, color: "var(--text-2)", lineHeight: 1.45 }}>{c.content}</div>
@@ -746,8 +746,8 @@ export function StudyGroupScreen({
               }}
             >
               <div className="tai-row tai-gap8" style={{ alignItems: "center", marginBottom: 12 }}>
-                <MessageSquare size={16} color="var(--primary)" />
-                <span style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>Updates from your instructor</span>
+                
+                <span style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>Updates from your instructor</span>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                 {messages.map((msg) => {
@@ -795,8 +795,8 @@ export function StudyGroupScreen({
               }}
             >
               <div className="tai-row tai-gap8" style={{ alignItems: "center", marginBottom: 12 }}>
-                <ShieldCheck size={16} color="var(--primary)" />
-                <span style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>Study Group Guidelines</span>
+                
+                <span style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>Study Group Guidelines</span>
               </div>
               <ul style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.6, paddingLeft: 18, margin: 0 }}>
                 <li>Collaborate respectfully and share helpful learning resources.</li>
@@ -822,8 +822,8 @@ export function StudyGroupScreen({
           >
             <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 14 }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                <Users size={16} color="var(--primary)" />
-                <span style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>Group Roster ({members.length}/{maxMembers})</span>
+                
+                <span style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>Group Roster ({members.length}/{maxMembers})</span>
               </div>
             </div>
 
@@ -888,7 +888,7 @@ export function StudyGroupScreen({
       >
         <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14 }}>
           <div style={{ minWidth: 0, flex: 1 }}>
-            <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 24px)", fontWeight: 900, letterSpacing: "-0.025em", margin: "0 0 4px", lineHeight: 1.2 }}>
+            <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 24px)", fontWeight: 600, letterSpacing: "-0.025em", margin: "0 0 4px", lineHeight: 1.2 }}>
               Collaborative Study Groups
             </h1>
             <p className="tai-hero-desc" style={{ fontSize: 13, margin: 0, maxWidth: 620, lineHeight: 1.45 }}>
@@ -897,7 +897,7 @@ export function StudyGroupScreen({
           </div>
 
           <div className="tai-hero-subcard" style={{ textAlign: "right", flexShrink: 0, padding: "10px 16px", borderRadius: 10 }}>
-            <div style={{ fontSize: 18, fontWeight: 900, color: "var(--text)" }}>{groups.length} Active Groups</div>
+            <div style={{ fontSize: 18, fontWeight: 600, color: "var(--text)" }}>{groups.length} Active Groups</div>
             <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>{myGroups.length} Joined</div>
           </div>
         </div>
@@ -937,7 +937,7 @@ export function StudyGroupScreen({
             boxShadow: "var(--glass-shadow)",
           }}
         >
-          <div style={{ fontWeight: 800, fontSize: 14.5, marginBottom: 12, color: "var(--text)" }}>Create a New Study Group</div>
+          <div style={{ fontWeight: 600, fontSize: 14.5, marginBottom: 12, color: "var(--text)" }}>Create a New Study Group</div>
           <input
             className="tai-input"
             style={{ width: "100%", boxSizing: "border-box", marginBottom: 10, background: "var(--surface-2)" }}
@@ -966,9 +966,9 @@ export function StudyGroupScreen({
 
       {/* SECTION 1: Your Groups */}
       <div>
-        <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)", marginBottom: 10, display: "flex", alignItems: "center", gap: 6 }}>
+        <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)", marginBottom: 10, display: "flex", alignItems: "center", gap: 6 }}>
           <span>Your Groups</span>
-          <span style={{ fontSize: 12, fontWeight: 700, color: "var(--text-3)", background: "var(--surface-2)", padding: "1px 7px", borderRadius: 999 }}>
+          <span style={{ fontSize: 12, fontWeight: 500, color: "var(--text-3)", background: "var(--surface-2)", padding: "1px 7px", borderRadius: 999 }}>
             {myGroups.length}
           </span>
         </div>
@@ -1000,7 +1000,7 @@ export function StudyGroupScreen({
                       <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 6 }}>
                         <div
                           style={{
-                            fontWeight: 800,
+                            fontWeight: 600,
                             fontSize: 15.5,
                             color: "var(--text)",
                             cursor: "pointer",
@@ -1022,7 +1022,7 @@ export function StudyGroupScreen({
                           <span
                             style={{
                               fontSize: 11,
-                              fontWeight: 700,
+                              fontWeight: 500,
                               padding: "2px 8px",
                               borderRadius: 999,
                               background: "rgba(37, 99, 235, 0.1)",
@@ -1040,7 +1040,7 @@ export function StudyGroupScreen({
                         <span
                           style={{
                             fontSize: 10.5,
-                            fontWeight: 800,
+                            fontWeight: 600,
                             padding: "2px 8px",
                             borderRadius: 999,
                             background: "rgba(16, 185, 129, 0.12)",
@@ -1089,9 +1089,9 @@ export function StudyGroupScreen({
 
       {/* SECTION 2: Discover Groups */}
       <div style={{ marginTop: 8 }}>
-        <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)", marginBottom: 10, display: "flex", alignItems: "center", gap: 6 }}>
+        <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)", marginBottom: 10, display: "flex", alignItems: "center", gap: 6 }}>
           <span>Discover Groups</span>
-          <span style={{ fontSize: 12, fontWeight: 700, color: "var(--text-3)", background: "var(--surface-2)", padding: "1px 7px", borderRadius: 999 }}>
+          <span style={{ fontSize: 12, fontWeight: 500, color: "var(--text-3)", background: "var(--surface-2)", padding: "1px 7px", borderRadius: 999 }}>
             {otherGroups.length}
           </span>
         </div>
@@ -1119,7 +1119,7 @@ export function StudyGroupScreen({
                     <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 6 }}>
                       <div
                         style={{
-                          fontWeight: 800,
+                          fontWeight: 600,
                           fontSize: 15.5,
                           color: "var(--text)",
                           cursor: "pointer",
@@ -1141,7 +1141,7 @@ export function StudyGroupScreen({
                         <span
                           style={{
                             fontSize: 11,
-                            fontWeight: 700,
+                            fontWeight: 500,
                             padding: "2px 8px",
                             borderRadius: 999,
                             background: "rgba(37, 99, 235, 0.1)",

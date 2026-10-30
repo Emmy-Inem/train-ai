@@ -123,12 +123,12 @@ export function MenteesScreen({ mentorId, orgSelector, setScreen, setSelectedLea
 
             <div className="ta-hero-actions" style={{ flexWrap: "wrap", gap: 8 }}>
               <div className="tai-hero-subcard" style={{ padding: "8px 14px", borderRadius: 8, textAlign: "center" }}>
-                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 700 }}>Total Mentees</div>
-                <div style={{ fontSize: 16, fontWeight: 900, color: "#FFFFFF" }}>{allMentees.length} Learners</div>
+                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 500 }}>Total Mentees</div>
+                <div style={{ fontSize: 16, fontWeight: 600, color: "#FFFFFF" }}>{allMentees.length} Learners</div>
               </div>
               <div className="tai-hero-subcard" style={{ padding: "8px 14px", borderRadius: 8, textAlign: "center" }}>
-                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 700 }}>At Risk</div>
-                <div style={{ fontSize: 16, fontWeight: 900, color: allMentees.filter(m => m.risk === "high").length > 0 ? "#EF4444" : "#34D399" }}>
+                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 500 }}>At Risk</div>
+                <div style={{ fontSize: 16, fontWeight: 600, color: allMentees.filter(m => m.risk === "high").length > 0 ? "#EF4444" : "#34D399" }}>
                   {allMentees.filter(m => m.risk === "high").length} High Risk
                 </div>
               </div>
@@ -298,7 +298,7 @@ export function MenteesScreen({ mentorId, orgSelector, setScreen, setSelectedLea
                 <div className="ta-grid ta-grid-3 anim-stagger" style={{ marginTop: 16 }}>
                   <div className="ta-card" style={{ background: "var(--surface-3)" }}>
                     <div className="ta-row ta-gap8"><BookOpen size={16} color="var(--primary)" /><span style={{ fontWeight: 700, fontSize: 13 }}>Course Progress</span></div>
-                    <div style={{ fontWeight: 800, fontSize: 24, marginTop: 8, color: selectedMentee.progress == null ? "var(--text-3)" : undefined }}>
+                    <div style={{ fontWeight: 600, fontSize: 24, marginTop: 8, color: selectedMentee.progress == null ? "var(--text-3)" : undefined }}>
                       {selectedMentee.progress == null ? "Not visible" : `${selectedMentee.progress}%`}
                     </div>
                     <div style={{ marginTop: 10 }}><ProgressBar value={selectedMentee.progress ?? 0} /></div>
@@ -309,7 +309,7 @@ export function MenteesScreen({ mentorId, orgSelector, setScreen, setSelectedLea
 
                   <div className="ta-card" style={{ background: "var(--surface-3)" }}>
                     <div className="ta-row ta-gap8"><CheckCircle2 size={16} color="var(--success)" /><span style={{ fontWeight: 700, fontSize: 13 }}>Quiz & Assessment Score</span></div>
-                    <div style={{ fontWeight: 800, fontSize: 24, marginTop: 8, color: selectedMentee.quizAvg == null ? "var(--text-3)" : "var(--success)" }}>
+                    <div style={{ fontWeight: 600, fontSize: 24, marginTop: 8, color: selectedMentee.quizAvg == null ? "var(--text-3)" : "var(--success)" }}>
                       {selectedMentee.quizAvg == null ? "N/A" : `${selectedMentee.quizAvg}%`}
                     </div>
                     <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
@@ -319,7 +319,7 @@ export function MenteesScreen({ mentorId, orgSelector, setScreen, setSelectedLea
 
                   <div className="ta-card" style={{ background: "var(--surface-3)" }}>
                     <div className="ta-row ta-gap8"><Calendar size={16} color="var(--primary)" /><span style={{ fontWeight: 700, fontSize: 13 }}>Instructor Sessions</span></div>
-                    <div style={{ fontWeight: 800, fontSize: 24, marginTop: 8 }}>{selectedMentee.sessionsCompleted}</div>
+                    <div style={{ fontWeight: 600, fontSize: 24, marginTop: 8 }}>{selectedMentee.sessionsCompleted}</div>
                     <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>Completed sessions with you</div>
                   </div>
                 </div>
@@ -354,7 +354,7 @@ export function MenteesScreen({ mentorId, orgSelector, setScreen, setSelectedLea
             <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               <div className="ta-row ta-between" style={{ alignItems: "center" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <Award size={20} color="var(--primary)" />
+                  
                   <div className="ta-title" style={{ fontSize: 18 }}>Give Certificate to {certModalUser.name || "Learner"}</div>
                 </div>
                 <button className="ta-btn ta-btn-ghost ta-btn-sm" onClick={() => setCertModalUser(null)}><X size={16} /></button>
@@ -471,7 +471,7 @@ export function MenteesScreen({ mentorId, orgSelector, setScreen, setSelectedLea
 
                 {/* Right Column: Live Mini Preview */}
                 <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>Live Preview</div>
+                  <div style={{ fontSize: 11, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase" }}>Live Preview</div>
                   <div style={{ border: "1px solid var(--border)", borderRadius: 10, overflow: "hidden", background: "var(--surface-2)" }}>
                     <CertificateDocument
                       template={{

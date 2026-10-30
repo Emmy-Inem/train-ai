@@ -64,7 +64,7 @@ export function ComebackBanner({ userId, daysAway, course, onContinue, onBrowse 
           <Clock size={18} color="var(--primary)" />
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Welcome back!</div>
+          <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>Welcome back!</div>
           <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 2, lineHeight: 1.4 }}>
             {course
               ? <>It's been {daysAway} days. You're {Math.round(course.progress || 0)}% through "{course.title}". Pick up right where you left off.</>

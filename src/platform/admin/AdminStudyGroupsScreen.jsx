@@ -58,7 +58,7 @@ export function AdminStudyGroupsScreen({ orgId, orgSelector }) {
         <div className="ta-grid ta-grid-4 anim-stagger">
           <div className="ta-card">
             <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Active Study Groups</div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: "var(--text)", marginTop: 4 }}>
+            <div style={{ fontSize: 24, fontWeight: 600, color: "var(--text)", marginTop: 4 }}>
               {groups.length}
             </div>
             <div style={{ fontSize: 11.5, color: "var(--text-2)", marginTop: 4, fontWeight: 600 }}>In your organization</div>
@@ -66,7 +66,7 @@ export function AdminStudyGroupsScreen({ orgId, orgSelector }) {
 
           <div className="ta-card">
             <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Total Peer Learners</div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: "var(--text)", marginTop: 4 }}>
+            <div style={{ fontSize: 24, fontWeight: 600, color: "var(--text)", marginTop: 4 }}>
               {groups.reduce((sum, g) => sum + (g.study_group_members?.[0]?.count ?? 0), 0)}
             </div>
             <div style={{ fontSize: 11.5, color: "var(--primary)", marginTop: 4, fontWeight: 600 }}>Collaborative pods</div>
@@ -74,7 +74,7 @@ export function AdminStudyGroupsScreen({ orgId, orgSelector }) {
 
           <div className="ta-card">
             <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Courses Supported</div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: "var(--text)", marginTop: 4 }}>
+            <div style={{ fontSize: 24, fontWeight: 600, color: "var(--text)", marginTop: 4 }}>
               {new Set(groups.map(g => g.course_id).filter(Boolean)).size}
             </div>
             <div style={{ fontSize: 11.5, color: "var(--success)", marginTop: 4, fontWeight: 600 }}>Active syllabi linked</div>
@@ -82,7 +82,7 @@ export function AdminStudyGroupsScreen({ orgId, orgSelector }) {
 
           <div className="ta-card">
             <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>Avg Pod Size</div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: "var(--text)", marginTop: 4 }}>
+            <div style={{ fontSize: 24, fontWeight: 600, color: "var(--text)", marginTop: 4 }}>
               {groups.length ? Math.round(groups.reduce((sum, g) => sum + (g.study_group_members?.[0]?.count ?? 0), 0) / groups.length) : 0} members
             </div>
             <div style={{ fontSize: 11.5, color: "var(--text-2)", marginTop: 4, fontWeight: 600 }}>Optimal peer capacity</div>
@@ -128,7 +128,7 @@ export function AdminStudyGroupsScreen({ orgId, orgSelector }) {
                       {isOpen && (
                         <tr>
                           <td colSpan={4} style={{ background: "var(--surface-3)", padding: 14 }}>
-                            <div style={{ fontSize: 11.5, fontWeight: 700, color: "var(--text-2)", marginBottom: 8 }}>MEMBERS</div>
+                            <div style={{ fontSize: 11.5, fontWeight: 500, color: "var(--text-2)", marginBottom: 8 }}>MEMBERS</div>
                             {membersQuery.loading && (
                               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                                 <Skeleton height="24px" borderRadius="4px" />

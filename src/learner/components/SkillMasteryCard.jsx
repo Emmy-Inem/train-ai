@@ -33,7 +33,7 @@ export function SkillMasteryCard({ courses = [] }) {
   return (
     <div className="tai-card tai-mt12" style={{ borderRadius: 10 }}>
       <div className="tai-row tai-gap8">
-        <Target size={16} color="var(--primary)" />
+        
         <div className="tai-title-sm">Skill mastery</div>
       </div>
       <div className="tai-col tai-gap10 tai-mt10">

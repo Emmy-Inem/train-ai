@@ -98,7 +98,7 @@ function OrgManagePanel({ org, onClose, showToast, refetchOrgs, currentUserId, o
       <div className="ta-mt16" style={{ padding: "12px 14px", borderRadius: 10, background: "var(--surface-2)", border: "1px solid var(--border)" }}>
         <div className="ta-row ta-between" style={{ gap: 10, flexWrap: "wrap" }}>
           <div style={{ minWidth: 0, flex: 1 }}>
-            <div className="ta-row ta-gap6" style={{ fontSize: 11.5, fontWeight: 700, color: "var(--primary)", marginBottom: 4 }}>
+            <div className="ta-row ta-gap6" style={{ fontSize: 11.5, fontWeight: 500, color: "var(--primary)", marginBottom: 4 }}>
               <Link2 size={13} /> Organization Shareable Invite &amp; Referral Link
             </div>
             <div style={{ fontSize: 12, fontFamily: "monospace", color: "var(--text)", wordBreak: "break-all" }}>
@@ -126,9 +126,9 @@ function OrgManagePanel({ org, onClose, showToast, refetchOrgs, currentUserId, o
           </button>
         </div>
         <div className="ta-row ta-gap16">
-          <div><div style={{ fontSize: 16, fontWeight: 800 }}>{seats.purchased}</div><div style={{ fontSize: 10.5, color: "var(--text-2)" }}>Purchased / Granted</div></div>
-          <div><div style={{ fontSize: 16, fontWeight: 800 }}>{seats.used}</div><div style={{ fontSize: 10.5, color: "var(--text-2)" }}>Used</div></div>
-          <div><div style={{ fontSize: 16, fontWeight: 800, color: seats.available > 0 ? "var(--success)" : "var(--danger)" }}>{seats.available}</div><div style={{ fontSize: 10.5, color: "var(--text-2)" }}>Available</div></div>
+          <div><div style={{ fontSize: 16, fontWeight: 600 }}>{seats.purchased}</div><div style={{ fontSize: 10.5, color: "var(--text-2)" }}>Purchased / Granted</div></div>
+          <div><div style={{ fontSize: 16, fontWeight: 600 }}>{seats.used}</div><div style={{ fontSize: 10.5, color: "var(--text-2)" }}>Used</div></div>
+          <div><div style={{ fontSize: 16, fontWeight: 600, color: seats.available > 0 ? "var(--success)" : "var(--danger)" }}>{seats.available}</div><div style={{ fontSize: 10.5, color: "var(--text-2)" }}>Available</div></div>
         </div>
         {org.status === "active" && seats.available <= 0 && (
           <div style={{ fontSize: 11, color: "var(--danger)", marginTop: 4 }}>This organization cannot add new users until they purchase or are granted more seats.</div>
@@ -136,7 +136,7 @@ function OrgManagePanel({ org, onClose, showToast, refetchOrgs, currentUserId, o
 
         {showGrantModal && (
           <div className="ta-mt12" style={{ padding: 12, borderRadius: 8, background: "var(--surface)", border: "1px solid var(--primary-tint)" }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: "var(--primary)", marginBottom: 8 }}>
+            <div style={{ fontSize: 12, fontWeight: 500, color: "var(--primary)", marginBottom: 8 }}>
               Grant Free Seats to {org.name}
             </div>
             <div className="ta-row ta-gap6" style={{ marginBottom: 10, flexWrap: "wrap" }}>
@@ -243,7 +243,7 @@ function PlatformBillingPanel() {
   return (
     <div className="ta-card ta-mt16 ta-fade">
       <div className="ta-row ta-gap8">
-        <CreditCard size={16} color="var(--primary)" />
+        
         <div className="ta-title" style={{ fontSize: 15 }}>Organization payments</div>
       </div>
       <div style={{ fontSize: 11.5, color: "var(--text-2)", marginTop: 6, marginBottom: 10 }}>
@@ -394,7 +394,7 @@ export function PlatformUserReferralTracker({
       <div className="ta-row ta-between" style={{ gap: 12, flexWrap: "wrap", paddingBottom: 16, borderBottom: "1px solid var(--border)" }}>
         <div>
           <div className="ta-row ta-gap8">
-            <Link2 size={18} color="var(--primary)" />
+            
             <div className="ta-title" style={{ fontSize: 16 }}>
               Platform-Wide User Tracking by Date &amp; Organization Shareable Invite Link
             </div>
@@ -433,23 +433,23 @@ export function PlatformUserReferralTracker({
       {/* KPI Summary Strip */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 180px), 1fr))", gap: 12, marginTop: 16 }}>
         <div style={{ padding: "12px 14px", borderRadius: 10, background: "var(--surface-2)", border: "1px solid var(--border)" }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>Matched Users</div>
-          <div style={{ fontSize: 22, fontWeight: 900, color: "var(--text)", marginTop: 4 }}>{filteredUsers.length}</div>
+          <div style={{ fontSize: 11, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase" }}>Matched Users</div>
+          <div style={{ fontSize: 22, fontWeight: 600, color: "var(--text)", marginTop: 4 }}>{filteredUsers.length}</div>
           <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>of {allUsers.length} total platform users</div>
         </div>
         <div style={{ padding: "12px 14px", borderRadius: 10, background: "var(--surface-2)", border: "1px solid var(--border)" }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "var(--primary)", textTransform: "uppercase" }}>Via Shareable Invite Link</div>
-          <div style={{ fontSize: 22, fontWeight: 900, color: "var(--primary)", marginTop: 4 }}>{shareableLinkCount}</div>
+          <div style={{ fontSize: 11, fontWeight: 500, color: "var(--primary)", textTransform: "uppercase" }}>Via Shareable Invite Link</div>
+          <div style={{ fontSize: 22, fontWeight: 600, color: "var(--primary)", marginTop: 4 }}>{shareableLinkCount}</div>
           <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>Joined via /?join=&lt;org-slug&gt;</div>
         </div>
         <div style={{ padding: "12px 14px", borderRadius: 10, background: "var(--surface-2)", border: "1px solid var(--border)" }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>Via Direct Email Invite</div>
-          <div style={{ fontSize: 22, fontWeight: 900, color: "var(--text)", marginTop: 4 }}>{emailInviteCount}</div>
+          <div style={{ fontSize: 11, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase" }}>Via Direct Email Invite</div>
+          <div style={{ fontSize: 22, fontWeight: 600, color: "var(--text)", marginTop: 4 }}>{emailInviteCount}</div>
           <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>Accepted organization email invite</div>
         </div>
         <div style={{ padding: "12px 14px", borderRadius: 10, background: "var(--surface-2)", border: "1px solid var(--border)" }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: "var(--success)", textTransform: "uppercase" }}>Joined Last 30 Days</div>
-          <div style={{ fontSize: 22, fontWeight: 900, color: "var(--success)", marginTop: 4 }}>{joinedLast30dCount}</div>
+          <div style={{ fontSize: 11, fontWeight: 500, color: "var(--success)", textTransform: "uppercase" }}>Joined Last 30 Days</div>
+          <div style={{ fontSize: 22, fontWeight: 600, color: "var(--success)", marginTop: 4 }}>{joinedLast30dCount}</div>
           <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>Within current filter selection</div>
         </div>
       </div>
@@ -754,7 +754,7 @@ export function OrganizationsScreen({ orgSelector, onSwitchToOrgWorkspace, onLau
 
           <div className="ta-hero-inner" style={{ position: "relative", zIndex: 1 }}>
             <div className="ta-hero-text">
-              <h1 className="ta-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 900, letterSpacing: "-0.025em", margin: "0 0 4px", lineHeight: 1.2 }}>
+              <h1 className="ta-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 600, letterSpacing: "-0.025em", margin: "0 0 4px", lineHeight: 1.2 }}>
                 Multi-Tenant Organizations &amp; Invite Link Directory
               </h1>
               <p className="ta-hero-desc" style={{ fontSize: 13, margin: 0, maxWidth: 680, lineHeight: 1.5 }}>
@@ -962,7 +962,7 @@ export function OrganizationsScreen({ orgSelector, onSwitchToOrgWorkspace, onLau
                             <Building2 size={22} />
                           </div>
                           <div style={{ minWidth: 0, flex: 1 }}>
-                            <div style={{ fontWeight: 800, fontSize: 15.5, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.25 }}>{o.name}</div>
+                            <div style={{ fontWeight: 600, fontSize: 15.5, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.25 }}>{o.name}</div>
                             <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2 }}>ID: {o.id.slice(0, 12)}...</div>
                           </div>
                         </div>
@@ -977,14 +977,14 @@ export function OrganizationsScreen({ orgSelector, onSwitchToOrgWorkspace, onLau
                         background: "var(--surface-2)", padding: "10px 14px", borderRadius: 8, marginBottom: 12
                       }}>
                         <div>
-                          <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 700 }}>MEMBERS</div>
-                          <div style={{ fontSize: 14, fontWeight: 800, color: "var(--text)", marginTop: 2 }}>
+                          <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 500 }}>MEMBERS</div>
+                          <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text)", marginTop: 2 }}>
                             {o.user_count || 0} users
                           </div>
                         </div>
                         <div>
-                          <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 700 }}>TIER</div>
-                          <div style={{ fontSize: 14, fontWeight: 800, color: "var(--primary)", marginTop: 2, textTransform: "capitalize" }}>
+                          <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 500 }}>TIER</div>
+                          <div style={{ fontSize: 14, fontWeight: 600, color: "var(--primary)", marginTop: 2, textTransform: "capitalize" }}>
                             {o.subscription_tier || "Enterprise"}
                           </div>
                         </div>
@@ -1000,7 +1000,7 @@ export function OrganizationsScreen({ orgSelector, onSwitchToOrgWorkspace, onLau
                       }}>
                         <div className="ta-row ta-between" style={{ gap: 6 }}>
                           <div style={{ minWidth: 0, flex: 1 }}>
-                            <div className="ta-row ta-gap4" style={{ fontSize: 10.5, fontWeight: 700, color: "var(--primary)" }}>
+                            <div className="ta-row ta-gap4" style={{ fontSize: 10.5, fontWeight: 500, color: "var(--primary)" }}>
                               <Link2 size={11} /> Shareable Invite Link
                             </div>
                             <div style={{ fontSize: 11, fontFamily: "monospace", color: "var(--text-2)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>

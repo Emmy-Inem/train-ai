@@ -136,8 +136,8 @@ export function PlatformOwnerLoginScreen({ onAuthenticated }) {
         .owner-preview-btn:active { transform: scale(.98); }
       `}</style>
       <form onSubmit={handleSignIn} className="owner-card" style={{ maxWidth: 360, width: "100%", padding: 32, background: "#fff", color: "#0F172A", borderRadius: 10, margin: 16 }}>
-        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", color: "#EF4444", textTransform: "uppercase" }}>Train AI Internal</div>
-        <div style={{ fontSize: 20, fontWeight: 800, marginTop: 4, color: "#0F172A" }}>Platform Owner Access</div>
+        <div style={{ fontSize: 12, fontWeight: 500, letterSpacing: "0.08em", color: "#EF4444", textTransform: "uppercase" }}>Train AI Internal</div>
+        <div style={{ fontSize: 20, fontWeight: 600, marginTop: 4, color: "#0F172A" }}>Platform Owner Access</div>
         <div style={{ fontSize: 12.5, color: "#656C86", marginTop: 6, marginBottom: 20 }}>
           Train AI staff only. This is not the organization or learner sign-in.
         </div>
@@ -231,7 +231,7 @@ export function PlatformOwnerLoginScreen({ onAuthenticated }) {
           style={{
             width: "100%", padding: "10px 12px", borderRadius: 8,
             background: rateLimit.isLocked ? "#64748B" : "#0F172A", color: "#fff",
-            fontWeight: 700, border: "none",
+            fontWeight: 500, border: "none",
             cursor: (loading || rateLimit.isLocked) ? "not-allowed" : "pointer"
           }}
         >
@@ -248,7 +248,7 @@ export function PlatformOwnerLoginScreen({ onAuthenticated }) {
               type="button"
               onClick={() => onAuthenticated(null)}
               className="owner-preview-btn"
-              style={{ width: "100%", padding: "10px 12px", borderRadius: 8, background: "#fff", color: "#0F172A", fontWeight: 700, border: "1px solid #0F172A", cursor: "pointer" }}
+              style={{ width: "100%", padding: "10px 12px", borderRadius: 8, background: "#fff", color: "#0F172A", fontWeight: 500, border: "1px solid #0F172A", cursor: "pointer" }}
             >
               Preview Owner Dashboard (no database yet)
             </button>

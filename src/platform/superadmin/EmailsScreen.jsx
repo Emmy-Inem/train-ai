@@ -217,7 +217,7 @@ export function EmailsScreen() {
         <div className="ta-card ta-mt16 anim-stagger" style={{ borderRadius: 10 }}>
           <div className="ta-row ta-between">
             <div className="ta-row ta-gap8">
-              <Mail size={16} color="var(--primary)" />
+              
               <div className="ta-title">Campaign History</div>
             </div>
             <button
@@ -251,7 +251,7 @@ export function EmailsScreen() {
                     {c.sent_at ? ` · ${new Date(c.sent_at).toLocaleString()}` : ""}
                   </div>
                 </div>
-                <span style={{ fontSize: 11, fontWeight: 700, padding: "3px 9px", borderRadius: 999, background: colors.bg, color: colors.fg, flexShrink: 0 }}>
+                <span style={{ fontSize: 11, fontWeight: 500, padding: "3px 9px", borderRadius: 999, background: colors.bg, color: colors.fg, flexShrink: 0 }}>
                   {c.status}
                 </span>
               </div>

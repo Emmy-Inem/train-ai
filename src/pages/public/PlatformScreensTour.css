@@ -166,7 +166,7 @@
 
 .pst-counter-current {
   color: #0F172A;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .pst-counter-sep {
@@ -317,7 +317,7 @@
   border-radius: 7px;
   background: #2459D3;
   color: #FFFFFF;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 15px;
   display: flex;
   align-items: center;
@@ -515,7 +515,7 @@
 
 .pst-tag {
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: 0.08em;
   padding: 3px 8px;
   border-radius: 4px;
@@ -657,7 +657,7 @@
 
 .pst-big-num {
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 600;
   color: #0F172A;
 }
 
@@ -980,7 +980,7 @@
 .pst-sub-heading-xs {
   display: block;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 600;
   color: #94A3B8;
   letter-spacing: 0.08em;
   margin-bottom: 8px;
@@ -1200,7 +1200,7 @@
 .pst-kpi-label {
   display: block;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 600;
   letter-spacing: 0.06em;
   color: #64748B;
   margin-bottom: 6px;
@@ -1216,7 +1216,7 @@
 
 .pst-kpi-val {
   font-size: 24px;
-  font-weight: 800;
+  font-weight: 600;
   color: #0F172A;
 }
 
@@ -1286,7 +1286,7 @@
 
 .pst-table th {
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 600;
   color: #64748B;
   letter-spacing: 0.06em;
   padding: 8px 12px;

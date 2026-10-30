@@ -181,7 +181,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
               <button
                 className="ta-btn ta-btn-primary"
                 style={{
-                  background: "#2563EB", color: "#fff", border: "none", fontWeight: 800,
+                  background: "#2563EB", color: "#fff", border: "none", fontWeight: 600,
                   boxShadow: "0 4px 16px rgba(37, 99, 235, 0.4)", display: "inline-flex", alignItems: "center", gap: 6
                 }}
                 onClick={() => setCreateOpen(true)}
@@ -201,7 +201,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
                 <Calendar size={18} />
               </div>
             </div>
-            <div style={{ fontSize: 32, fontWeight: 900, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: 32, fontWeight: 600, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
               {sessions.length}
             </div>
             <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 8 }}>
@@ -216,7 +216,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
                 <Clock size={18} />
               </div>
             </div>
-            <div style={{ fontSize: 32, fontWeight: 900, color: "#10B981", marginTop: 10, letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: 32, fontWeight: 600, color: "#10B981", marginTop: 10, letterSpacing: "-0.02em" }}>
               {Math.round(sessions.reduce((sum, s) => sum + (s.duration_minutes || 30), 0) / 60)} hrs
             </div>
             <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 8 }}>
@@ -231,7 +231,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
                 <Clock size={18} />
               </div>
             </div>
-            <div style={{ fontSize: 32, fontWeight: 900, color: "#F59E0B", marginTop: 10, letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: 32, fontWeight: 600, color: "#F59E0B", marginTop: 10, letterSpacing: "-0.02em" }}>
               {availability.length} active
             </div>
             <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 8 }}>
@@ -254,7 +254,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
                 style={{
                   padding: "7px 16px",
                   fontSize: 12.5,
-                  fontWeight: 700,
+                  fontWeight: 500,
                   cursor: "pointer",
                   border: "none"
                 }}
@@ -279,7 +279,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
                       style={{
                         padding: "5px 12px",
                         fontSize: 11.5,
-                        fontWeight: 700,
+                        fontWeight: 500,
                         cursor: "pointer",
                         border: "none"
                       }}
@@ -299,7 +299,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
               {sessionsQuery.loading && <div className="ta-empty"><LoadingSkeleton label="Loading sessions..." rows={3} /></div>}
               {!sessionsQuery.loading && filteredSessions.length === 0 && (
                 <div className="ta-card" style={{ textAlign: "center", padding: 36 }}>
-                  <Calendar size={32} color="var(--primary)" style={{ opacity: 0.5, marginBottom: 8 }} />
+                  
                   <div style={{ fontWeight: 700, fontSize: 15, color: "var(--text)" }}>No sessions matching filter</div>
                   <div style={{ fontSize: 12.5, color: "var(--text-3)", marginTop: 4 }}>Booked and requested 1:1 sessions will appear here.</div>
                 </div>
@@ -312,7 +312,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
                       <Calendar size={20} color="var(--primary)" />
                     </div>
                     <div style={{ minWidth: 0 }}>
-                      <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>{s.title || "1:1 Instructor Clarification Session"}</div>
+                      <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>{s.title || "1:1 Instructor Clarification Session"}</div>
                       <div className="ta-row ta-gap8 ta-mt4" style={{ fontSize: 12.5, color: "var(--text-2)", flexWrap: "wrap" }}>
                         <span>Learner: <strong style={{ color: "var(--text)" }}>{s.learner_name || "Enrolled Learner"}</strong></span>
                         <span>•</span>
@@ -379,7 +379,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
             {/* Create Session Modal - real instructor-initiated session creation */}
             {createOpen && (
               <div className="ta-card ta-mt16 anim-slide-down" style={{ border: "1.5px solid var(--primary)", background: "var(--surface)" }}>
-                <div className="ta-title" style={{ fontSize: 15, fontWeight: 800 }}>Schedule 1-on-1 Session</div>
+                <div className="ta-title" style={{ fontSize: 15, fontWeight: 600 }}>Schedule 1-on-1 Session</div>
                 <div className="ta-sub" style={{ fontSize: 12, marginTop: 2 }}>
                   Creates a real session that appears on this learner's Sessions list right away.
                 </div>
@@ -455,7 +455,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
             {/* Modals for Complete and Reschedule */}
             {completingSessionId && (
               <div className="ta-card ta-mt16 anim-slide-down" style={{ border: "1.5px solid var(--primary)", background: "var(--surface)" }}>
-                <div className="ta-title" style={{ fontSize: 15, fontWeight: 800 }}>Complete Session &amp; Add Student Feedback</div>
+                <div className="ta-title" style={{ fontSize: 15, fontWeight: 600 }}>Complete Session &amp; Add Student Feedback</div>
                 <div className="ta-sub" style={{ fontSize: 12, marginTop: 2 }}>Write key takeaways or assignment unblockers for the student</div>
                 <textarea
                   className="ta-input ta-mt10"
@@ -478,7 +478,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
 
             {reschedulingSessionId && (
               <div className="ta-card ta-mt16 anim-slide-down" style={{ border: "1.5px solid var(--primary)", background: "var(--surface)" }}>
-                <div className="ta-title" style={{ fontSize: 15, fontWeight: 800 }}>Reschedule Session</div>
+                <div className="ta-title" style={{ fontSize: 15, fontWeight: 600 }}>Reschedule Session</div>
                 <div className="ta-sub" style={{ fontSize: 12, marginTop: 2 }}>Select a new date and time for this session</div>
                 <input
                   type="datetime-local"
@@ -505,7 +505,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
             
             {/* Add Availability Slot Card */}
             <div className="ta-card" style={{ padding: "22px 24px", background: "var(--surface)", border: "1px solid var(--border)" }}>
-              <div className="ta-title" style={{ fontSize: 16, fontWeight: 800 }}>Add Availability Slot</div>
+              <div className="ta-title" style={{ fontSize: 16, fontWeight: 600 }}>Add Availability Slot</div>
               <div className="ta-sub" style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Set recurring weekly office hours when students can book 1:1 sessions</div>
 
               <div style={{ marginTop: 16 }}>
@@ -530,7 +530,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
 
               <button
                 className="ta-btn ta-btn-primary ta-mt20"
-                style={{ width: "100%", padding: "11px 16px", fontWeight: 800 }}
+                style={{ width: "100%", padding: "11px 16px", fontWeight: 600 }}
                 disabled={saving}
                 onClick={handleAddSlot}
               >
@@ -540,7 +540,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
 
             {/* Configured Weekly Timetable */}
             <div className="ta-card" style={{ padding: "22px 24px", background: "var(--surface)", border: "1px solid var(--border)" }}>
-              <div className="ta-title" style={{ fontSize: 16, fontWeight: 800 }}>Configured Weekly Timetable</div>
+              <div className="ta-title" style={{ fontSize: 16, fontWeight: 600 }}>Configured Weekly Timetable</div>
               <div className="ta-sub" style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Recurring time windows active on your public booking calendar</div>
 
               <div className="ta-col ta-gap8 ta-mt16 anim-stagger">
@@ -555,7 +555,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
                     style={{ padding: "12px 14px", background: "var(--surface-2)", borderRadius: 8, border: "1px solid var(--border)" }}
                   >
                     <div>
-                      <div style={{ fontWeight: 800, fontSize: 13.5, color: "var(--text)" }}>{DAY_NAMES[slot.day_of_week]}</div>
+                      <div style={{ fontWeight: 600, fontSize: 13.5, color: "var(--text)" }}>{DAY_NAMES[slot.day_of_week]}</div>
                       <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 2 }}>
                         {slot.start_time.slice(0, 5)} - {slot.end_time.slice(0, 5)}
                       </div>

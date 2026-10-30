@@ -307,8 +307,8 @@ export function MentorSettingsScreen({ mentorId, mentorProfileQuery, currentUser
 
             <div className="ta-hero-actions">
               <div className="tai-hero-subcard" style={{ padding: "10px 16px", borderRadius: 8, backdropFilter: "blur(8px)", textAlign: "center" }}>
-                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 700 }}>Active Platform</div>
-                <div style={{ fontSize: 15, fontWeight: 900, textTransform: "capitalize" }}>{videoPlatform.replace(/_/g, " ")}</div>
+                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 500 }}>Active Platform</div>
+                <div style={{ fontSize: 15, fontWeight: 600, textTransform: "capitalize" }}>{videoPlatform.replace(/_/g, " ")}</div>
               </div>
             </div>
           </div>
@@ -322,7 +322,7 @@ export function MentorSettingsScreen({ mentorId, mentorProfileQuery, currentUser
             <div className="ta-card" style={{ padding: 20 }}>
               <div className="ta-row ta-between">
                 <div className="ta-title" style={{ fontSize: 15 }}>Profile Readiness</div>
-                <div style={{ fontWeight: 800, color: "var(--primary)", fontSize: 14 }}>{completionPct}%</div>
+                <div style={{ fontWeight: 600, color: "var(--primary)", fontSize: 14 }}>{completionPct}%</div>
               </div>
               <div style={{ height: 6, background: "var(--surface-3)", borderRadius: 4, marginTop: 10, overflow: "hidden" }}>
                 <div style={{ height: "100%", width: `${completionPct}%`, background: "var(--primary)", borderRadius: 4 }} />
@@ -383,7 +383,7 @@ export function MentorSettingsScreen({ mentorId, mentorProfileQuery, currentUser
                   <div className="ta-sub" style={{ fontSize: 12, marginTop: 2 }}>This information is visible to enrolled learners and co-instructors.</div>
                   
                   <div className="ta-row ta-gap16 ta-mt16" style={{ alignItems: "center" }}>
-                    <div style={{ width: 68, height: 68, borderRadius: "50%", background: "var(--surface-2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, fontWeight: 800, overflow: "hidden", border: "2px solid var(--border)" }}>
+                    <div style={{ width: 68, height: 68, borderRadius: "50%", background: "var(--surface-2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, fontWeight: 600, overflow: "hidden", border: "2px solid var(--border)" }}>
                       {userProfile?.avatar_url ? <img src={userProfile.avatar_url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : (displayName || "I").slice(0, 2).toUpperCase()}
                     </div>
                     <FileUploadZone

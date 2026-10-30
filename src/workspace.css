@@ -105,6 +105,19 @@
 }
 /* Full-page loading preserves the sidebar and the mounted page's form state. */
 /* Dashboard panels share rows rather than leaving a short, independent sidebar. */
+.tai .tai-community-columns.tai-community-columns { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--workspace-card-gap,16px); align-items:start; }
+.tai .tai-community-columns > * { min-width:0; margin:0; }
+.tai .tai-community-columns > .tai-card { padding:20px !important; }
+.tai .tai-community-feed-card { grid-column:1 / -1; }
+.tai .tai-community-columns > :last-child:nth-child(even) { grid-column:1 / -1; }
+.tai .tai-community-columns > .tai-card > .tai-card { padding:0 !important; border:0; box-shadow:none !important; background:transparent; }
+.tai .tai-community-cohort-card > .tai-card { margin-top:0 !important; }
+/* Hierarchy comes from size and spacing; routine labels do not need heavy bold. */
+.tai :is(.tai-btn,.tai-link,.tai-category-header,.tai-sub-item),
+.ta :is(.ta-btn,.ta-nav-item,.ta-ws-item) { font-weight:500; }
+.tai :is(.tai-h1,.tai-title-sm), .ta :is(.ta-title,.ta-hero-title) { font-weight:600; }
+.tai :is(.tai-label,.tai-tag), .ta :is(.ta-label,.ta-tag) { font-weight:500; }
+:is(.tai,.ta) :is(strong,b) { font-weight:600; }
 .tai .tai-dashboard-grid > * { min-width:0; margin-block:0; }
 .tai .tai-home-cohort { display:flex; }
 .tai .tai-home-cohort > * { width:100%; margin:0; }
@@ -134,6 +147,8 @@
 .ta .ta-content > .ta-grid,
 .tai .tai-grid2,.tai .tai-grid3,.tai .tai-grid4 { gap:var(--workspace-card-gap,16px); align-content:start; }
 @media (max-width:899px) {
+  .tai .tai-community-columns.tai-community-columns { grid-template-columns:minmax(0,1fr); }
+  .tai .tai-community-columns > .tai-card { padding:16px !important; }
   .ta .ta-admin-panels { grid-template-columns:minmax(0,1fr); }
   .tai .tai-dashboard-grid > .tai-card,
   .tai .tai-home-cohort > .tai-card { padding:16px !important; }

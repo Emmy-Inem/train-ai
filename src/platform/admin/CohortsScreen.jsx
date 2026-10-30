@@ -145,7 +145,7 @@ export function CohortsScreen({ orgId, onOpenCohort, orgSelector, setScreen, cur
                           {c.is_archived ? "Archived" : progressInfo.isCompleted ? "Completed" : progressInfo.isUpcoming ? "Upcoming" : "Active"}
                         </Tag>
                       </div>
-                      <div style={{ position: "absolute", bottom: 8, left: 12, right: 12, color: "#FFFFFF", fontWeight: 800, fontSize: 14.5, textShadow: "0 2px 4px rgba(0,0,0,0.6)", lineHeight: 1.25, wordBreak: "break-word" }}>
+                      <div style={{ position: "absolute", bottom: 8, left: 12, right: 12, color: "#FFFFFF", fontWeight: 600, fontSize: 14.5, textShadow: "0 2px 4px rgba(0,0,0,0.6)", lineHeight: 1.25, wordBreak: "break-word" }}>
                         {c.name}
                       </div>
                     </div>
@@ -156,7 +156,7 @@ export function CohortsScreen({ orgId, onOpenCohort, orgSelector, setScreen, cur
                           <span className="ta-row ta-gap6">
                             <Users size={13} color="var(--primary)" /> {c.members ?? c.learner_count ?? 0} members
                           </span>
-                          <span style={{ fontWeight: 800, color: "var(--primary)" }}>{progressInfo.percent}% elapsed</span>
+                          <span style={{ fontWeight: 600, color: "var(--primary)" }}>{progressInfo.percent}% elapsed</span>
                         </div>
                         <ProgressBar value={progressInfo.percent} />
 

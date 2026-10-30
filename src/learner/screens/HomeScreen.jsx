@@ -60,11 +60,11 @@ export function HomeScreen({
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
-                <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 900, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.2, color: "#FFFFFF" }}>
+                <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 600, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.2, color: "#FFFFFF" }}>
                   Welcome back, {userFirstName || "Learner"}
                 </h1>
                 <span
-                  style={{ background: "#2563EB", color: "#FFFFFF", padding: "3px 10px", borderRadius: 6, fontWeight: 800, fontSize: 11.5, letterSpacing: "0.02em", border: "1px solid rgba(255, 255, 255, 0.25)", display: "inline-flex", alignItems: "center" }}
+                  style={{ background: "#2563EB", color: "#FFFFFF", padding: "3px 10px", borderRadius: 6, fontWeight: 600, fontSize: 11.5, letterSpacing: "0.02em", border: "1px solid rgba(255, 255, 255, 0.25)", display: "inline-flex", alignItems: "center" }}
                 >
                   {activePathway?.title ? `Pathway: ${activePathway.title}` : (continueCourse?.category ? `${continueCourse.category} Track` : "No active pathway yet")}
                 </span>
@@ -100,10 +100,10 @@ export function HomeScreen({
                     style={{ width: 48, height: 48, borderRadius: 8, objectFit: "cover", flexShrink: 0, border: "1px solid rgba(255,255,255,0.2)" }}
                   />
                   <div style={{ minWidth: 0, flex: 1 }}>
-                    <div style={{ fontSize: 10.5, fontWeight: 800, color: "#93C5FD", textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                    <div style={{ fontSize: 10.5, fontWeight: 600, color: "#93C5FD", textTransform: "uppercase", letterSpacing: "0.04em" }}>
                       Continue Active Course
                     </div>
-                    <div style={{ fontSize: 13, fontWeight: 800, color: "#FFFFFF", wordBreak: "break-word", lineHeight: 1.35, marginBottom: 4 }}>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: "#FFFFFF", wordBreak: "break-word", lineHeight: 1.35, marginBottom: 4 }}>
                       {continueCourse.title}
                     </div>
                     <div style={{ fontSize: 11, color: "rgba(255,255,255,0.7)", marginTop: 2 }}>
@@ -120,7 +120,7 @@ export function HomeScreen({
                       padding: "8px 14px",
                       borderRadius: 8,
                       fontSize: 12.5,
-                      fontWeight: 800,
+                      fontWeight: 600,
                       cursor: "pointer",
                       display: "flex",
                       alignItems: "center",
@@ -138,7 +138,7 @@ export function HomeScreen({
                       padding: "8px 12px",
                       borderRadius: 8,
                       fontSize: 12,
-                      fontWeight: 700,
+                      fontWeight: 500,
                       background: "rgba(255, 255, 255, 0.1)",
                       border: "1px solid rgba(255, 255, 255, 0.18)",
                       color: "#FFFFFF",
@@ -168,7 +168,7 @@ export function HomeScreen({
                 }}
               >
                 <div style={{ minWidth: 0, flex: 1 }}>
-                  <div style={{ fontSize: 13.5, fontWeight: 800, color: "#FFFFFF" }}>Explore Curated Courses</div>
+                  <div style={{ fontSize: 13.5, fontWeight: 600, color: "#FFFFFF" }}>Explore Curated Courses</div>
                   <div style={{ fontSize: 11.5, color: "rgba(255,255,255,0.75)", marginTop: 2 }}>Browse available courses and learning paths.</div>
                 </div>
                 <button
@@ -213,10 +213,10 @@ export function HomeScreen({
             </div>
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                <span style={{ fontSize: 10.5, fontWeight: 900, background: "#DC2626", color: "#FFFFFF", padding: "2px 8px", borderRadius: 4, letterSpacing: "0.03em" }}>
+                <span style={{ fontSize: 10.5, fontWeight: 600, background: "#DC2626", color: "#FFFFFF", padding: "2px 8px", borderRadius: 4, letterSpacing: "0.03em" }}>
                   MANDATORY COMPLIANCE
                 </span>
-                <span style={{ fontSize: 14, fontWeight: 800, color: "var(--text)" }}>
+                <span style={{ fontSize: 14, fontWeight: 600, color: "var(--text)" }}>
                   {pendingComplianceAssignments[0].courses?.title || "Workplace Compliance Module"}
                 </span>
               </div>
@@ -229,7 +229,7 @@ export function HomeScreen({
 
           <button
             className="tai-btn tai-btn-primary tai-btn-sm"
-            style={{ padding: "8px 16px", fontWeight: 800, background: "#DC2626", borderColor: "#DC2626" }}
+            style={{ padding: "8px 16px", fontWeight: 600, background: "#DC2626", borderColor: "#DC2626" }}
             onClick={() => push("courseDetail", { id: pendingComplianceAssignments[0].course_id || pendingComplianceAssignments[0].courses?.id })}
           >
             Start Compliance Module →
@@ -299,7 +299,7 @@ export function HomeScreen({
                           <Users size={17} color="var(--primary)" />
                         </div>
                         <div style={{ minWidth: 0, flex: 1 }}>
-                          <div style={{ fontWeight: 800, fontSize: 14, color: "var(--text)", lineHeight: 1.35, wordBreak: "break-word" }}>
+                          <div style={{ fontWeight: 600, fontSize: 14, color: "var(--text)", lineHeight: 1.35, wordBreak: "break-word" }}>
                             {cohort?.name || "Active Batch"}
                           </div>
                           <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 1 }}>
@@ -311,9 +311,9 @@ export function HomeScreen({
                     </div>
 
                     <div style={{ background: "var(--surface)", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border)", marginBottom: 12 }}>
-                      <div className="tai-row tai-between" style={{ fontSize: 11, fontWeight: 700, marginBottom: 5 }}>
+                      <div className="tai-row tai-between" style={{ fontSize: 11, fontWeight: 500, marginBottom: 5 }}>
                         <span style={{ color: "var(--text)" }}>Cohort timeline: Week {progressInfo.currentWeek} of {progressInfo.totalWeeks}</span>
-                        <span style={{ color: "#10B981", fontWeight: 800 }}>{progressInfo.daysRemaining} Days Left ({progressInfo.percent}% Elapsed)</span>
+                        <span style={{ color: "#10B981", fontWeight: 600 }}>{progressInfo.daysRemaining} Days Left ({progressInfo.percent}% Elapsed)</span>
                       </div>
                       <div style={{ height: 6, background: "var(--surface-3)", borderRadius: 3, overflow: "hidden" }}>
                         <div style={{ width: `${progressInfo.percent}%`, height: "100%", background: "linear-gradient(90deg, #10B981 0%, #34D399 100%)", borderRadius: 3, transition: "width 0.4s ease" }} />
@@ -330,7 +330,7 @@ export function HomeScreen({
                       </div>
                       <button
                         className="tai-btn tai-btn-primary tai-btn-sm"
-                        style={{ padding: "6px 14px", fontSize: 12, fontWeight: 700, flexShrink: 0, borderRadius: 6 }}
+                        style={{ padding: "6px 14px", fontSize: 12, fontWeight: 500, flexShrink: 0, borderRadius: 6 }}
                         onClick={() => push("cohort")}
                       >
                         Enter Cohort Space →
@@ -345,25 +345,25 @@ export function HomeScreen({
           {/* 1. Quick Hub Links: Learning Paths, Leaderboard, Instructors, AI Quiz */}
           <div className="tai-card tai-home-shortcuts" style={{ padding: 16, borderRadius: 12, background: "var(--surface)", border: "1px solid var(--border)", width: "100%", boxSizing: "border-box" }}>
             <div className="tai-row tai-between" style={{ marginBottom: 10, alignItems: "center" }}>
-              <div style={{ fontWeight: 800, fontSize: 13, color: "var(--text)" }}>Quick Access</div>
+              <div style={{ fontWeight: 600, fontSize: 13, color: "var(--text)" }}>Quick Access</div>
               <span style={{ fontSize: 11, color: "var(--text-3)" }}>Learner shortcuts</span>
             </div>
             <div className="tai-home-shortcut-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 6, width: "100%", boxSizing: "border-box" }}>
               <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => goTab("courses")}>
                 <BookOpen size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
-                <div style={{ fontWeight: 800, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Assigned Courses</div>
+                <div style={{ fontWeight: 600, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Assigned Courses</div>
               </div>
               <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => push("aiQuiz")}>
                 <HelpCircle size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
-                <div style={{ fontWeight: 800, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>AI Quiz Generator</div>
+                <div style={{ fontWeight: 600, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>AI Quiz Generator</div>
               </div>
               <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => push("studyGroup")}>
                 <Users size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
-                <div style={{ fontWeight: 800, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Study Group</div>
+                <div style={{ fontWeight: 600, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Study Group</div>
               </div>
               <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => push("mentors")}>
                 <GraduationCap size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
-                <div style={{ fontWeight: 800, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Instructors</div>
+                <div style={{ fontWeight: 600, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Instructors</div>
               </div>
             </div>
           </div>
@@ -378,32 +378,32 @@ export function HomeScreen({
                   <BarChart3 size={17} color="var(--primary)" />
                 </div>
                 <div>
-                  <div style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>Progress &amp; Milestones</div>
+                  <div style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>Progress &amp; Milestones</div>
                   <div style={{ fontSize: 11.5, color: "var(--text-3)" }}>
                     {completedCourses.length} of {enrolledCourses.length} Courses Completed
                   </div>
                 </div>
               </div>
-              <span className="tai-link" style={{ fontSize: 12, fontWeight: 800 }} onClick={() => push("myProgress")}>Details →</span>
+              <span className="tai-link" style={{ fontSize: 12, fontWeight: 600 }} onClick={() => push("myProgress")}>Details →</span>
             </div>
 
             {/* 4-Metric Grid Snapshot */}
             <div className="tai-home-metrics" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 14 }}>
               <div style={{ background: "var(--surface-3)", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border)" }}>
-                <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase" }}>Courses Completed</div>
-                <div style={{ fontSize: 17, fontWeight: 900, color: "var(--text)", marginTop: 2 }}>{completedCourses.length}</div>
+                <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase" }}>Courses Completed</div>
+                <div style={{ fontSize: 17, fontWeight: 600, color: "var(--text)", marginTop: 2 }}>{completedCourses.length}</div>
               </div>
               <div style={{ background: "var(--surface-3)", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border)" }}>
-                <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase" }}>Certificates Earned</div>
-                <div style={{ fontSize: 17, fontWeight: 900, color: "#059669", marginTop: 2 }}>{certificatesCount}</div>
+                <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase" }}>Certificates Earned</div>
+                <div style={{ fontSize: 17, fontWeight: 600, color: "#059669", marginTop: 2 }}>{certificatesCount}</div>
               </div>
               <div style={{ background: "var(--surface-3)", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border)" }}>
-                <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase" }}>Lessons Done</div>
-                <div style={{ fontSize: 17, fontWeight: 900, color: "#059669", marginTop: 2 }}>{lessonsDoneCount} Lessons</div>
+                <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase" }}>Lessons Done</div>
+                <div style={{ fontSize: 17, fontWeight: 600, color: "#059669", marginTop: 2 }}>{lessonsDoneCount} Lessons</div>
               </div>
               <div style={{ background: "var(--surface-3)", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border)" }}>
-                <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase" }}>Total Hours</div>
-                <div style={{ fontSize: 17, fontWeight: 900, color: "var(--primary)", marginTop: 2 }}>{totalHoursCount} Hrs</div>
+                <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase" }}>Total Hours</div>
+                <div style={{ fontSize: 17, fontWeight: 600, color: "var(--primary)", marginTop: 2 }}>{totalHoursCount} Hrs</div>
               </div>
             </div>
 
@@ -411,7 +411,7 @@ export function HomeScreen({
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
               <button
                 className="tai-btn tai-btn-outline"
-                style={{ width: "100%", padding: "7px 10px", fontSize: 11.5, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}
+                style={{ width: "100%", padding: "7px 10px", fontSize: 11.5, fontWeight: 500, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}
                 onClick={() => push("myProgress")}
               >
                 <BarChart3 size={13} color="var(--primary)" />
@@ -419,7 +419,7 @@ export function HomeScreen({
               </button>
               <button
                 className="tai-btn tai-btn-outline"
-                style={{ width: "100%", padding: "7px 10px", fontSize: 11.5, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}
+                style={{ width: "100%", padding: "7px 10px", fontSize: 11.5, fontWeight: 500, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}
                 onClick={() => push("achievements")}
               >
                 <GraduationCap size={13} color="#059669" />
@@ -440,11 +440,11 @@ export function HomeScreen({
                   <Bookmark size={17} color="var(--primary)" />
                 </div>
                 <div>
-                  <div style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>Saved Bookmarks</div>
+                  <div style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>Saved Bookmarks</div>
                   <div style={{ fontSize: 11.5, color: "var(--text-3)" }}>Quick access to your saved resources</div>
                 </div>
               </div>
-              <span className="tai-link" style={{ fontSize: 12, fontWeight: 800 }} onClick={() => goTab("courses")}>View All →</span>
+              <span className="tai-link" style={{ fontSize: 12, fontWeight: 600 }} onClick={() => goTab("courses")}>View All →</span>
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 10 }}>
@@ -480,7 +480,7 @@ export function HomeScreen({
                     <div className="tai-row tai-gap8" style={{ minWidth: 0, flex: 1, alignItems: "center" }}>
                       <BookOpen size={14} color="var(--primary)" style={{ flexShrink: 0 }} />
                       <div style={{ minWidth: 0, flex: 1 }}>
-                        <div style={{ fontSize: 12, fontWeight: 700, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.3, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
+                        <div style={{ fontSize: 12, fontWeight: 500, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.3, display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
                           {item.title}
                         </div>
                         <div style={{ fontSize: 10.5, color: "var(--text-3)", marginTop: 2 }}>Course{item.lessons ? ` • ${item.lessons} Lessons` : ""}</div>
@@ -494,7 +494,7 @@ export function HomeScreen({
 
             <button
               className="tai-btn tai-btn-outline"
-              style={{ width: "100%", padding: "7px 12px", fontSize: 12, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}
+              style={{ width: "100%", padding: "7px 12px", fontSize: 12, fontWeight: 500, display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}
               onClick={() => goTab("courses")}
             >
               <span>Explore Bookmarked Library</span>

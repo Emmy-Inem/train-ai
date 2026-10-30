@@ -180,17 +180,17 @@ export const TOKENS = `
     display:flex; align-items:center; justify-content:center; flex-shrink:0;
     box-shadow: 0 4px 12px rgba(37, 99, 235,0.3);
   }
-  .ta-brand-name { font-weight: 800; font-size: 17px; letter-spacing: -0.02em; color: var(--text); }
-  .ta-brand-tag { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; background: var(--primary-tint); color: var(--primary); padding: 3px 8px; border-radius: 6px; }
+  .ta-brand-name { font-weight: 600; font-size: 17px; letter-spacing: -0.02em; color: var(--text); }
+  .ta-brand-tag { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; background: var(--primary-tint); color: var(--primary); padding: 3px 8px; border-radius: 6px; }
   .ta-nav-section-title {
-    font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--text-3);
+    font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-3);
     padding: 10px 8px 4px; margin-top: 4px;
   }
   .ta-nav-group { display: flex; flex-direction: column; }
   .ta-group-header {
     display: flex; align-items: center; justify-content: space-between;
     padding: 8px 10px; border-radius: 8px; cursor: pointer;
-    font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em;
+    font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em;
     color: var(--text-3); user-select: none; transition: all .15s ease; margin-top: 6px;
   }
   .ta-group-header:hover { color: var(--text); background: var(--surface-2); }
@@ -251,7 +251,7 @@ export const TOKENS = `
   .ta-search { display:flex; align-items:center; gap:8px; background: var(--surface-3); border: 1px solid var(--border); border-radius: 10px; padding: 6px 12px; width: clamp(140px, 15vw, 210px); color: var(--text-3); font-size: 12.5px; transition: all .15s ease; flex-shrink: 0; }
   .ta-search:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12); background: #fff; }
   .ta-content { padding: 18px clamp(14px, 2vw, 28px) calc(76px + env(safe-area-inset-bottom)); max-width: 1560px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-  .ta-h1 { font-size: 17px; font-weight: 800; letter-spacing: -0.02em; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); line-height: 1.2; }
+  .ta-h1 { font-size: 17px; font-weight: 600; letter-spacing: -0.02em; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); line-height: 1.2; }
   .ta-sub { font-size: 11.5px; color: var(--text-2); margin: 2px 0 0; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.2; }
   @media (min-width: 900px) {
     .ta-menu-btn, .ta-sidebar-close { display: none !important; }
@@ -287,7 +287,7 @@ export const TOKENS = `
   }
   .ta-hero-title {
     font-size: clamp(22px, 2vw, 28px);
-    font-weight: 900;
+    font-weight: 600;
     letter-spacing: -0.025em;
     margin: 0 0 6px;
     color: #FFFFFF;
@@ -417,7 +417,7 @@ export const TOKENS = `
     .ta-scrim { position: fixed; inset: 0; background: rgba(15,23,42,.5); z-index: 990; animation: fadeInScale .15s ease; backdrop-filter: blur(2px); }
     .ta-profile-pill-name { max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .ta-org-selector { display: none !important; }
-    .ta-h1 { font-size: 15px !important; font-weight: 800 !important; line-height: 1.25 !important; white-space: normal !important; word-break: normal !important; overflow-wrap: anywhere !important; }
+    .ta-h1 { font-size: 15px !important; font-weight: 600 !important; line-height: 1.25 !important; white-space: normal !important; word-break: normal !important; overflow-wrap: anywhere !important; }
     .ta-sub { display: block !important; font-size: 11.5px !important; color: var(--text-3) !important; margin-top: 2px !important; line-height: 1.3 !important; white-space: normal !important; word-break: normal !important; overflow-wrap: anywhere !important; }
     .ta-table-wrap .ta-table { min-width: 680px; }
     .ta-grid-5, .ta-grid-4, .ta-grid-3 { grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -647,7 +647,7 @@ export const TOKENS = `
   .ta-gap4 { gap: 4px; } .ta-gap6 { gap: 6px; } .ta-gap8 { gap: 8px; } .ta-gap10 { gap: 10px; } .ta-gap12 { gap: 12px; } .ta-gap14 { gap: 14px; } .ta-gap16 { gap: 16px; } .ta-gap20 { gap: 20px; } .ta-gap24 { gap: 24px; }
   .ta-mt4 { margin-top: 4px; } .ta-mt6 { margin-top: 6px; } .ta-mt8 { margin-top: 8px; } .ta-mt10 { margin-top: 10px; } .ta-mt12 { margin-top: 12px; } .ta-mt14 { margin-top: 14px; } .ta-mt16 { margin-top: 16px; } .ta-mt18 { margin-top: 18px; } .ta-mt20 { margin-top: 20px; } .ta-mt24 { margin-top: 24px; } .ta-mt28 { margin-top: 28px; }
   .ta-label { font-size: 11px; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: .06em; }
-  .ta-title { font-size: 16px; font-weight: 800; letter-spacing: -0.01em; color: var(--text); }
+  .ta-title { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; color: var(--text); }
   .ta-body { font-size: 13.5px; color: var(--text-2); line-height: 1.5; }
   .ta-avatar { border-radius: 50%; background: var(--grad); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; box-shadow: 0 2px 6px rgba(37, 99, 235,0.25); }
   .ta-tag { padding: 4px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 700; background: var(--surface-2); color: var(--primary); display:inline-flex; align-items:center; gap:4px; }
@@ -792,7 +792,7 @@ export function StatCard({ stat }) {
     <div className="ta-card ta-card-hover" style={{ width: "100%", boxSizing: "border-box", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
       <div>
         <div className="ta-row ta-between" style={{ gap: 8, alignItems: "center" }}>
-          <span className="ta-label" style={{ minWidth: 0, fontSize: 12, fontWeight: 700, letterSpacing: "0.04em", lineHeight: 1.3, wordBreak: "break-word" }}>{stat.label}</span>
+          <span className="ta-label" style={{ minWidth: 0, fontSize: 12, fontWeight: 500, letterSpacing: "0.04em", lineHeight: 1.3, wordBreak: "break-word" }}>{stat.label}</span>
           {Icon && (
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", color: "var(--primary)", flexShrink: 0 }}>
               <Icon size={18} />
@@ -800,9 +800,9 @@ export function StatCard({ stat }) {
           )}
         </div>
         <div className="ta-row ta-between ta-mt12" style={{ alignItems: "baseline", flexWrap: "wrap", gap: 8 }}>
-          <div style={{ fontSize: "clamp(22px, 3.5vw, 26px)", fontWeight: 800, letterSpacing: "-0.02em", color: "var(--text)", lineHeight: 1 }}>{stat.value}</div>
+          <div style={{ fontSize: "clamp(22px, 3.5vw, 26px)", fontWeight: 600, letterSpacing: "-0.02em", color: "var(--text)", lineHeight: 1 }}>{stat.value}</div>
           {stat.delta && (
-            <div className="ta-row ta-gap4" style={{ fontSize: 11.5, fontWeight: 700, color: stat.up ? "var(--success)" : "var(--danger)", background: stat.up ? "var(--success-bg)" : "var(--danger-bg)", border: `1px solid ${stat.up ? "var(--success-border)" : "var(--danger-border)"}`, padding: "2px 8px", borderRadius: 6, flexShrink: 0 }}>
+            <div className="ta-row ta-gap4" style={{ fontSize: 11.5, fontWeight: 500, color: stat.up ? "var(--success)" : "var(--danger)", background: stat.up ? "var(--success-bg)" : "var(--danger-bg)", border: `1px solid ${stat.up ? "var(--success-border)" : "var(--danger-border)"}`, padding: "2px 8px", borderRadius: 6, flexShrink: 0 }}>
               {stat.up ? <ArrowUpRight size={13} /> : <ArrowDownRight size={13} />}
               {stat.delta}
             </div>
@@ -1011,7 +1011,7 @@ export function OwnerSidebar({ screen, setScreen, mobileOpen, onClose, onOpenDas
           >
             <Search size={14} color="var(--text-3)" />
             <span style={{ flex: 1, fontSize: 12, color: "var(--text-3)" }}>Search platform...</span>
-            <span style={{ fontSize: 9.5, fontWeight: 700, background: "var(--surface)", color: "var(--text-2)", padding: "1px 5px", borderRadius: 4, border: "1px solid var(--border)" }}>⌘K</span>
+            <span style={{ fontSize: 9.5, fontWeight: 500, background: "var(--surface)", color: "var(--text-2)", padding: "1px 5px", borderRadius: 4, border: "1px solid var(--border)" }}>⌘K</span>
           </div>
         ) : (
           <div
@@ -1148,7 +1148,7 @@ export function Sidebar({ workspace, setWorkspace, screen, setScreen, mobileOpen
           >
             <Search size={14} color="var(--text-3)" />
             <span style={{ flex: 1, fontSize: 12, color: "var(--text-3)" }}>Search platform...</span>
-            <span style={{ fontSize: 9.5, fontWeight: 700, background: "var(--surface)", color: "var(--text-2)", padding: "1px 5px", borderRadius: 4, border: "1px solid var(--border)" }}>⌘K</span>
+            <span style={{ fontSize: 9.5, fontWeight: 500, background: "var(--surface)", color: "var(--text-2)", padding: "1px 5px", borderRadius: 4, border: "1px solid var(--border)" }}>⌘K</span>
           </div>
         ) : (
           <div
@@ -1273,7 +1273,7 @@ export function DashboardSwitcher({ currentDashboard, availableDashboards, roleL
     >
       <div className="ta-row ta-between">
         <div className="ta-row ta-gap8">
-          <Repeat size={18} color="var(--primary)" />
+          
           <div className="ta-title" style={{ fontSize: 18 }}>Dashboard Switcher</div>
         </div>
         <div className="ta-row ta-gap8">
@@ -1352,7 +1352,7 @@ function SearchResultRow({ icon: Icon, name, detail, type, onClick }) {
           {detail}
         </div>
       </div>
-      <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 7px", borderRadius: 6, background: "var(--surface-3)", color: "var(--text-2)", border: "1px solid var(--border)", flexShrink: 0 }}>
+      <span style={{ fontSize: 10, fontWeight: 500, padding: "2px 7px", borderRadius: 6, background: "var(--surface-3)", color: "var(--text-2)", border: "1px solid var(--border)", flexShrink: 0 }}>
         {type}
       </span>
     </div>
@@ -1523,14 +1523,14 @@ export function TopBar({ title, sub, right, orgSelector, profileQuery: providedP
             }}>
               <Building2 size={15} color="var(--primary)" />
               <div className="ta-col" style={{ lineHeight: 1 }}>
-                <span style={{ fontSize: 9.5, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: ".05em" }}>Tenant</span>
+                <span style={{ fontSize: 9.5, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: ".05em" }}>Tenant</span>
                 <select
                   value={orgSelector.selectedOrgId || ""}
                   onChange={(e) => orgSelector.onSelectOrg(e.target.value)}
                   style={{
                     padding: "1px 0 0",
                     fontSize: 11.5,
-                    fontWeight: 700,
+                    fontWeight: 500,
                     border: "none",
                     background: "transparent",
                     color: "var(--text)",
@@ -1594,7 +1594,7 @@ export function TopBar({ title, sub, right, orgSelector, profileQuery: providedP
           >
             <Avatar initials={userInitials} size={32} />
             <div className="ta-col ta-profile-pill-text" style={{ lineHeight: 1.2, paddingRight: 4 }}>
-              <span className="ta-profile-pill-name" style={{ fontSize: 12, fontWeight: 700 }}>{userDisplayName.split(" ")[0]}</span>
+              <span className="ta-profile-pill-name" style={{ fontSize: 12, fontWeight: 500 }}>{userDisplayName.split(" ")[0]}</span>
               <span className="ta-profile-pill-name" style={{ fontSize: 10, color: "var(--text-3)", textTransform: "capitalize" }}>{profileQuery?.data?.role || "Member"}</span>
             </div>
           </div>

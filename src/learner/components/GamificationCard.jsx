@@ -41,7 +41,7 @@ export function GamificationCard({ level = 1, totalPoints = 0, streak = 0, strea
             <Trophy size={18} />
           </div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: 15 }}>Level {level}</div>
+            <div style={{ fontWeight: 600, fontSize: 15 }}>Level {level}</div>
             <div style={{ fontSize: 11.5, color: "var(--text-2)" }}>{totalPoints.toLocaleString()} / {ceiling.toLocaleString()} XP</div>
           </div>
         </div>
@@ -97,7 +97,7 @@ export function GamificationCard({ level = 1, totalPoints = 0, streak = 0, strea
           {earnedCount > preview.length && (
             <div className="tai-row" style={{
               width: 38, height: 38, borderRadius: 8, background: "var(--surface-3)",
-              alignItems: "center", justifyContent: "center", fontSize: 11.5, fontWeight: 700, color: "var(--text-2)", flexShrink: 0,
+              alignItems: "center", justifyContent: "center", fontSize: 11.5, fontWeight: 500, color: "var(--text-2)", flexShrink: 0,
             }}>
               +{earnedCount - preview.length}
             </div>

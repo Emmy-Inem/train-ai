@@ -454,12 +454,12 @@ export function CoursesScreen({
             {/* Left Column: Spotlight details */}
             <div style={{ minWidth: 0, boxSizing: "border-box" }}>
               <div style={{ marginBottom: 12 }}>
-                <span style={{ fontSize: 12, fontWeight: 700, color: "#94A3B8", letterSpacing: "0.02em" }}>
+                <span style={{ fontSize: 12, fontWeight: 500, color: "#94A3B8", letterSpacing: "0.02em" }}>
                   {trackDisplayName} • Continue Learning
                 </span>
               </div>
 
-              <h1 key={currentSpotlight.id + "-title"} className="tai-fade-in tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 900, letterSpacing: "-0.025em", margin: "0 0 6px", lineHeight: 1.25 }}>
+              <h1 key={currentSpotlight.id + "-title"} className="tai-fade-in tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 600, letterSpacing: "-0.025em", margin: "0 0 6px", lineHeight: 1.25 }}>
                 {currentSpotlight.title}
               </h1>
 
@@ -470,7 +470,7 @@ export function CoursesScreen({
               {/* In-Progress Sprint Pace Meter */}
               {currentSpotlight.progress > 0 && !currentSpotlight.isTrackCompleted && (
                 <div className="tai-hero-subcard" style={{ padding: "10px 14px", borderRadius: 8, marginBottom: 12 }}>
-                  <div className="tai-row tai-between" style={{ fontSize: 11.5, fontWeight: 700, marginBottom: 6, color: "#DBEAFE" }}>
+                  <div className="tai-row tai-between" style={{ fontSize: 11.5, fontWeight: 500, marginBottom: 6, color: "#DBEAFE" }}>
                     <span>Active Sprint Pace</span>
                     <span style={{ color: "#34D399", fontWeight: 700 }}>{currentSpotlight.progress}% ({currentSpotlight.lessonsRemaining})</span>
                   </div>
@@ -482,7 +482,7 @@ export function CoursesScreen({
 
               <div className="tai-row tai-gap12" style={{ flexWrap: "wrap", marginBottom: 14, fontSize: 12, color: "#94A3B8" }}>
                 {currentSpotlight.reviewsCount > 0 && <div className="tai-row tai-gap4">
-                  <span style={{ fontWeight: 800, color: "#fff" }}>{currentSpotlight.rating}</span>
+                  <span style={{ fontWeight: 600, color: "#fff" }}>{currentSpotlight.rating}</span>
                   <span style={{ opacity: 0.75 }}>({currentSpotlight.reviews})</span>
                 </div>}
                 {currentSpotlight.studentsCount > 0 && <div className="tai-row tai-gap4">
@@ -495,7 +495,7 @@ export function CoursesScreen({
                 <button
                   className="tai-btn tai-btn-primary"
                   style={{
-                    padding: "8px 18px", borderRadius: 8, fontSize: 13, fontWeight: 700,
+                    padding: "8px 18px", borderRadius: 8, fontSize: 13, fontWeight: 500,
                     display: "inline-flex", alignItems: "center", gap: 6, cursor: "pointer"
                   }}
                   onClick={() => {
@@ -533,12 +533,12 @@ export function CoursesScreen({
                       style={{ width: 34, height: 34, borderRadius: "50%", border: "2px solid #fff", objectFit: "cover" }}
                     />
                     <div>
-                      <div style={{ fontSize: 12.5, fontWeight: 800, color: "#fff" }}>{currentSpotlight.instructor}</div>
+                      <div style={{ fontSize: 12.5, fontWeight: 600, color: "#fff" }}>{currentSpotlight.instructor}</div>
                       <div style={{ fontSize: 10.5, color: "rgba(255,255,255,0.75)" }}>{currentSpotlight.instructorRole}</div>
                     </div>
                   </div>
 
-                  <span style={{ background: "rgba(0,0,0,0.6)", padding: "3px 8px", borderRadius: 6, fontSize: 10.5, fontWeight: 700, border: "1px solid rgba(255,255,255,0.2)" }}>
+                  <span style={{ background: "rgba(0,0,0,0.6)", padding: "3px 8px", borderRadius: 6, fontSize: 10.5, fontWeight: 500, border: "1px solid rgba(255,255,255,0.2)" }}>
                     {currentSpotlight.lessonsText}
                   </span>
                 </div>
@@ -592,7 +592,7 @@ export function CoursesScreen({
                   >
                     <span>{tab.label}</span>
                     <span style={{
-                      fontSize: 11, fontWeight: 800, padding: "2px 7px", borderRadius: 99,
+                      fontSize: 11, fontWeight: 600, padding: "2px 7px", borderRadius: 99,
                       background: isActive ? "rgba(255,255,255,0.25)" : "var(--surface)",
                       color: isActive ? "#FFFFFF" : "var(--text-3)"
                     }}>
@@ -626,7 +626,7 @@ export function CoursesScreen({
                 className="tai-btn tai-btn-outline tai-btn-sm"
                 onClick={() => setShowMyCoursesOnly(!showMyCoursesOnly)}
                 style={{
-                  height: 42, padding: "0 16px", borderRadius: 8, fontWeight: 700, whiteSpace: "nowrap",
+                  height: 42, padding: "0 16px", borderRadius: 8, fontWeight: 500, whiteSpace: "nowrap",
                   background: showMyCoursesOnly ? "var(--primary-tint)" : "transparent",
                   borderColor: showMyCoursesOnly ? "var(--primary)" : "var(--border)",
                   color: showMyCoursesOnly ? "var(--primary)" : "var(--text)"
@@ -707,7 +707,7 @@ export function CoursesScreen({
             <div className="tai-decoration-icon" style={{ width: 60, height: 60, borderRadius: 10, background: "var(--primary-tint)", display: "inline-flex", alignItems: "center", justifyContent: "center", marginBottom: 14 }}>
               <BookOpen size={26} color="var(--primary)" />
             </div>
-            <h3 style={{ fontSize: 18, fontWeight: 800, color: "var(--text)", margin: "0 0 6px" }}>
+            <h3 style={{ fontSize: 18, fontWeight: 600, color: "var(--text)", margin: "0 0 6px" }}>
               {courseSourceTab === "bookmarks" ? "No Started or Saved Courses Yet" : "No Courses Found Matching Criteria"}
             </h3>
             <p style={{ fontSize: 13, color: "var(--text-3)", maxWidth: 400, margin: "0 auto 16px" }}>
@@ -762,36 +762,36 @@ export function CoursesScreen({
                   {/* Badges */}
                   <div style={{ position: "absolute", top: 12, left: 12, display: "flex", gap: 6, flexWrap: "wrap", zIndex: 1 }}>
                     {course.isCompliance && (
-                      <span style={{ background: "#DC2626", color: "#FFFFFF", fontSize: 10, fontWeight: 900, padding: "3px 8px", borderRadius: 6, letterSpacing: "0.03em", boxShadow: "0 2px 8px rgba(220,38,38,0.4)" }}>
+                      <span style={{ background: "#DC2626", color: "#FFFFFF", fontSize: 10, fontWeight: 600, padding: "3px 8px", borderRadius: 6, letterSpacing: "0.03em", boxShadow: "0 2px 8px rgba(220,38,38,0.4)" }}>
                         MANDATORY COMPLIANCE
                       </span>
                     )}
                     {course.isCohortAssigned && !course.isCompliance && (
-                      <span style={{ background: "#2563EB", color: "#FFFFFF", fontSize: 10, fontWeight: 900, padding: "3px 8px", borderRadius: 6, letterSpacing: "0.03em", boxShadow: "0 2px 8px rgba(37,99,235,0.4)" }}>
+                      <span style={{ background: "#2563EB", color: "#FFFFFF", fontSize: 10, fontWeight: 600, padding: "3px 8px", borderRadius: 6, letterSpacing: "0.03em", boxShadow: "0 2px 8px rgba(37,99,235,0.4)" }}>
                         COHORT CURRICULUM
                       </span>
                     )}
                     {course.assigned && !course.isCohortAssigned && !course.isCompliance && (
-                      <span style={{ background: "#059669", color: "#FFFFFF", fontSize: 10, fontWeight: 900, padding: "3px 8px", borderRadius: 6, letterSpacing: "0.03em", boxShadow: "0 2px 8px rgba(5,150,105,0.4)" }}>
+                      <span style={{ background: "#059669", color: "#FFFFFF", fontSize: 10, fontWeight: 600, padding: "3px 8px", borderRadius: 6, letterSpacing: "0.03em", boxShadow: "0 2px 8px rgba(5,150,105,0.4)" }}>
                         ASSIGNED TO YOU
                       </span>
                     )}
                     {course.applicationStatus === "pending" && (
-                      <span style={{ background: "#D97706", color: "#FFFFFF", fontSize: 10, fontWeight: 800, padding: "3px 8px", borderRadius: 6 }}>
+                      <span style={{ background: "#D97706", color: "#FFFFFF", fontSize: 10, fontWeight: 600, padding: "3px 8px", borderRadius: 6 }}>
                         APPLICATION PENDING
                       </span>
                     )}
                     {course.isBestseller && !course.isCompliance && (
-                      <span style={{ background: "#F59E0B", color: "#FFFFFF", fontSize: 10, fontWeight: 800, padding: "3px 8px", borderRadius: 6 }}>
+                      <span style={{ background: "#F59E0B", color: "#FFFFFF", fontSize: 10, fontWeight: 600, padding: "3px 8px", borderRadius: 6 }}>
                         BESTSELLER
                       </span>
                     )}
                     {course.isTrending && !course.isCompliance && (
-                      <span style={{ background: "#10B981", color: "#FFFFFF", fontSize: 10, fontWeight: 800, padding: "3px 8px", borderRadius: 6 }}>
+                      <span style={{ background: "#10B981", color: "#FFFFFF", fontSize: 10, fontWeight: 600, padding: "3px 8px", borderRadius: 6 }}>
                         TRENDING
                       </span>
                     )}
-                    <span style={{ background: "rgba(15,23,42,0.75)", backdropFilter: "blur(4px)", color: "#FFFFFF", fontSize: 10, fontWeight: 700, padding: "3px 8px", borderRadius: 6 }}>
+                    <span style={{ background: "rgba(15,23,42,0.75)", backdropFilter: "blur(4px)", color: "#FFFFFF", fontSize: 10, fontWeight: 500, padding: "3px 8px", borderRadius: 6 }}>
                       {course.level || "Intermediate"}
                     </span>
                   </div>
@@ -822,11 +822,11 @@ export function CoursesScreen({
                 {/* Content */}
                 <div style={{ padding: "18px 20px", flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                   <div>
-                    <div style={{ fontSize: 11, fontWeight: 800, color: "var(--primary)", textTransform: "uppercase", letterSpacing: ".04em", marginBottom: 6 }}>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: "var(--primary)", textTransform: "uppercase", letterSpacing: ".04em", marginBottom: 6 }}>
                       {course.category || "TECH-PRENEUR"}
                     </div>
 
-                    <h3 style={{ fontSize: 16, fontWeight: 800, margin: "0 0 8px", color: "var(--text)", lineHeight: 1.35 }}>
+                    <h3 style={{ fontSize: 16, fontWeight: 600, margin: "0 0 8px", color: "var(--text)", lineHeight: 1.35 }}>
                       {course.title}
                     </h3>
 
@@ -860,7 +860,7 @@ export function CoursesScreen({
 
                     {isEnrolled ? (
                       <div className="tai-row tai-between tai-mt8" style={{ alignItems: "center" }}>
-                        <div style={{ fontSize: 12, fontWeight: 700, color: isCompleted ? "var(--success)" : "var(--primary)" }}>
+                        <div style={{ fontSize: 12, fontWeight: 500, color: isCompleted ? "var(--success)" : "var(--primary)" }}>
                           {isCompleted ? "Completed ✓" : `${course.progress}% Completed`}
                         </div>
                         <button
@@ -874,7 +874,7 @@ export function CoursesScreen({
                     ) : (
                       <button
                         className="tai-btn tai-btn-primary tai-btn-sm tai-mt8"
-                        style={{ width: "100%", padding: "9px 0", borderRadius: 10, fontWeight: 700 }}
+                        style={{ width: "100%", padding: "9px 0", borderRadius: 10, fontWeight: 500 }}
                         onClick={(e) => { e.stopPropagation(); push("courseDetail", { id: course.id }); }}
                       >
                         Explore Syllabus &amp; Enroll →
@@ -892,8 +892,8 @@ export function CoursesScreen({
         <div className="tai-row tai-between" style={{ marginBottom: 16 }}>
           <div>
             <div className="tai-row tai-gap8">
-              <Video size={20} color="var(--primary)" />
-              <h2 style={{ fontSize: 19, fontWeight: 900, letterSpacing: "-0.02em", margin: 0, color: "var(--text)" }}>
+              
+              <h2 style={{ fontSize: 19, fontWeight: 600, letterSpacing: "-0.02em", margin: 0, color: "var(--text)" }}>
                 Live Workshop &amp; Studio Replays
               </h2>
             </div>
@@ -926,14 +926,14 @@ export function CoursesScreen({
                     <Play size={15} color="var(--primary)" fill="var(--primary)" style={{ marginLeft: 2 }} />
                   </div>
                 </div>
-                <span style={{ position: "absolute", bottom: 8, right: 8, background: "rgba(0,0,0,0.8)", color: "#fff", fontSize: 10.5, fontWeight: 700, padding: "2px 6px", borderRadius: 4 }}>
+                <span style={{ position: "absolute", bottom: 8, right: 8, background: "rgba(0,0,0,0.8)", color: "#fff", fontSize: 10.5, fontWeight: 500, padding: "2px 6px", borderRadius: 4 }}>
                   {rec.duration}
                 </span>
               </div>
 
               <div style={{ padding: 14, flex: 1, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <div>
-                  <h4 style={{ fontSize: 13.5, fontWeight: 800, margin: "0 0 4px", color: "var(--text)", lineHeight: 1.35 }}>
+                  <h4 style={{ fontSize: 13.5, fontWeight: 600, margin: "0 0 4px", color: "var(--text)", lineHeight: 1.35 }}>
                     {rec.title}
                   </h4>
                   <div style={{ fontSize: 11.5, color: "var(--text-3)" }}>

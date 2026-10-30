@@ -264,7 +264,7 @@ export function MemberDetailModal({ member, orgId, cohorts, initialTab = "track"
                   <div className="ta-row ta-gap6" style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>
                     <Icon size={12} /> {k.label}
                   </div>
-                  <div style={{ fontSize: 20, fontWeight: 800, marginTop: 4 }}>{k.value}</div>
+                  <div style={{ fontSize: 20, fontWeight: 600, marginTop: 4 }}>{k.value}</div>
                 </div>
               );
             })}
@@ -272,7 +272,7 @@ export function MemberDetailModal({ member, orgId, cohorts, initialTab = "track"
 
           <div className="ta-card ta-mt12" style={{ padding: 16 }}>
             <div className="ta-row ta-between" style={{ gap: 10 }}>
-              <div style={{ fontWeight: 800, fontSize: 14 }}>Profile</div>
+              <div style={{ fontWeight: 600, fontSize: 14 }}>Profile</div>
               {!editing ? (
                 <button className="ta-btn ta-btn-outline ta-btn-sm" onClick={() => setEditing(true)}><Pencil size={13} /> Edit</button>
               ) : (
@@ -330,7 +330,7 @@ export function MemberDetailModal({ member, orgId, cohorts, initialTab = "track"
 
           {(detail?.compliance || []).length > 0 && (
             <div className="ta-card ta-mt12" style={{ padding: 16 }}>
-              <div className="ta-row ta-gap8"><AlertTriangle size={15} color="var(--warning)" /><div style={{ fontWeight: 800, fontSize: 14 }}>Assigned & compliance</div></div>
+              <div className="ta-row ta-gap8"><div style={{ fontWeight: 600, fontSize: 14 }}>Assigned & compliance</div></div>
               <div className="ta-col ta-gap6 ta-mt10">
                 {detail.compliance.map((c) => (
                   <div key={c.id} className="ta-row ta-between" style={{ gap: 10, fontSize: 12.5, padding: "7px 10px", background: "var(--surface-2)", borderRadius: 8 }}>
@@ -350,7 +350,7 @@ export function MemberDetailModal({ member, orgId, cohorts, initialTab = "track"
       {!detailQuery.loading && !detailQuery.error && tab === "learning" && (
         <div className="ta-mt16">
           <div className="ta-card" style={{ padding: 16 }}>
-            <div style={{ fontWeight: 800, fontSize: 14 }}>Course enrollments</div>
+            <div style={{ fontWeight: 600, fontSize: 14 }}>Course enrollments</div>
             {(detail?.enrollments || []).length === 0 && (
               <div className="ta-empty ta-mt10">This member isn't enrolled in any course yet.</div>
             )}
@@ -366,7 +366,7 @@ export function MemberDetailModal({ member, orgId, cohorts, initialTab = "track"
                       </div>
                     </div>
                     <div className="ta-row ta-gap8" style={{ flexShrink: 0 }}>
-                      <span style={{ fontSize: 12, fontWeight: 700 }}>{e.progress}%</span>
+                      <span style={{ fontSize: 12, fontWeight: 500 }}>{e.progress}%</span>
                       {e.completedAt ? <Tag tone="success">Completed</Tag> : <Tag tone={e.progress >= 40 ? "default" : "warning"}>In progress</Tag>}
                     </div>
                   </div>
@@ -380,7 +380,7 @@ export function MemberDetailModal({ member, orgId, cohorts, initialTab = "track"
 
           <div className="ta-card ta-mt12" style={{ padding: 16 }}>
             <div className="ta-row ta-between" style={{ alignItems: "center" }}>
-              <div style={{ fontWeight: 800, fontSize: 14 }}>Certificates</div>
+              <div style={{ fontWeight: 600, fontSize: 14 }}>Certificates</div>
               <button
                 className="ta-btn ta-btn-outline"
                 style={{ fontSize: 12, padding: "4px 10px", display: "inline-flex", alignItems: "center", gap: 5 }}
@@ -412,7 +412,7 @@ export function MemberDetailModal({ member, orgId, cohorts, initialTab = "track"
       {!detailQuery.loading && !detailQuery.error && tab === "access" && (
         <div className="ta-mt16">
           <div className="ta-card" style={{ padding: 16 }}>
-            <div className="ta-row ta-gap8"><ShieldCheck size={15} color="var(--primary)" /><div style={{ fontWeight: 800, fontSize: 14 }}>Platform role</div></div>
+            <div className="ta-row ta-gap8"><div style={{ fontWeight: 600, fontSize: 14 }}>Platform role</div></div>
             <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
               Controls which dashboard this member lands on and what they can reach. Written to both
               user_profiles and user_roles so routing and permissions stay in step.
@@ -434,11 +434,11 @@ export function MemberDetailModal({ member, orgId, cohorts, initialTab = "track"
           </div>
 
           <div className="ta-card ta-mt12" style={{ padding: 16 }}>
-            <div className="ta-row ta-gap8"><Layers size={15} color="var(--primary)" /><div style={{ fontWeight: 800, fontSize: 14 }}>Cohort</div></div>
+            <div className="ta-row ta-gap8"><div style={{ fontWeight: 600, fontSize: 14 }}>Cohort</div></div>
             {(detail?.cohorts || []).length > 0 ? (
               <div className="ta-row ta-gap6 ta-mt10" style={{ flexWrap: "wrap" }}>
                 {detail.cohorts.map((c) => (
-                  <span key={c.id} className="ta-row ta-gap6" style={{ background: "var(--primary-tint)", color: "var(--primary)", borderRadius: 999, padding: "5px 8px 5px 12px", fontSize: 12, fontWeight: 700 }}>
+                  <span key={c.id} className="ta-row ta-gap6" style={{ background: "var(--primary-tint)", color: "var(--primary)", borderRadius: 999, padding: "5px 8px 5px 12px", fontSize: 12, fontWeight: 500 }}>
                     {c.name}
                     <button className="ta-iconbtn" disabled={busy} onClick={() => handleRemoveCohort(c)} aria-label={`Remove from ${c.name}`} style={{ width: 18, height: 18, background: "transparent", border: "none", color: "inherit", cursor: "pointer" }}>
                       <X size={12} />
@@ -464,7 +464,7 @@ export function MemberDetailModal({ member, orgId, cohorts, initialTab = "track"
           </div>
 
           <div className="ta-card ta-mt12" style={{ padding: 16, borderColor: "var(--danger)" }}>
-            <div style={{ fontWeight: 800, fontSize: 14 }}>Organization membership</div>
+            <div style={{ fontWeight: 600, fontSize: 14 }}>Organization membership</div>
             <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
               Suspending keeps the record and blocks access. Removing takes them out of this workspace
               entirely while keeping their account and learning history intact.
@@ -747,7 +747,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
                   borderRadius: 8,
                   background: "#2563EB",
                   color: "#FFFFFF",
-                  fontWeight: 700,
+                  fontWeight: 500,
                   fontSize: 12.5,
                   border: "none",
                   display: "inline-flex",
@@ -817,7 +817,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
                   type="button"
                   className="ta-btn ta-btn-primary ta-btn-sm"
                   onClick={() => setTab("approvals")}
-                  style={{ fontWeight: 700 }}
+                  style={{ fontWeight: 500 }}
                 >
                   Review Approvals ({joinRequests.length})
                 </button>
@@ -827,27 +827,27 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
             {/* KPI row */}
             <div className="ta-grid ta-grid-4 anim-stagger">
               <div className="ta-card" style={{ padding: "14px 18px", borderRadius: 10 }}>
-                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em" }}>Total Members</div>
-                <div style={{ fontSize: 24, fontWeight: 800, color: "var(--text)", marginTop: 4 }}>{kpis?.totalMembers ?? members.length}</div>
+                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase", letterSpacing: ".05em" }}>Total Members</div>
+                <div style={{ fontSize: 24, fontWeight: 600, color: "var(--text)", marginTop: 4 }}>{kpis?.totalMembers ?? members.length}</div>
                 <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>
                   {kpis ? `${kpis.activeMembers} active • ${kpis.suspendedMembers} suspended` : `${invitations.length} invite${invitations.length === 1 ? "" : "s"} pending`}
                 </div>
               </div>
               <div className="ta-card" style={{ padding: "14px 18px", borderRadius: 10 }}>
-                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em" }}>At Risk Learners</div>
-                <div style={{ fontSize: 24, fontWeight: 800, color: behindCount > 0 ? "#EF4444" : "var(--text)", marginTop: 4 }}>{behindCount}</div>
+                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase", letterSpacing: ".05em" }}>At Risk Learners</div>
+                <div style={{ fontSize: 24, fontWeight: 600, color: behindCount > 0 ? "#EF4444" : "var(--text)", marginTop: 4 }}>{behindCount}</div>
                 <div style={{ fontSize: 11, color: behindCount > 0 ? "#EF4444" : "var(--text-3)", marginTop: 2 }}>{behindCount > 0 ? "Needs intervention" : "All learners on pace"}</div>
               </div>
               <div className="ta-card" style={{ padding: "14px 18px", borderRadius: 10 }}>
-                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em" }}>Avg. Course Progress</div>
-                <div style={{ fontSize: 24, fontWeight: 800, color: "#10B981", marginTop: 4 }}>
+                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase", letterSpacing: ".05em" }}>Avg. Course Progress</div>
+                <div style={{ fontSize: 24, fontWeight: 600, color: "#10B981", marginTop: 4 }}>
                   {kpisQuery.loading ? "..." : `${kpis?.avgCompletion ?? 0}%`}
                 </div>
                 <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>Across every enrollment</div>
               </div>
               <div className="ta-card" style={{ padding: "14px 18px", borderRadius: 10 }}>
-                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em" }}>Point Earners</div>
-                <div style={{ fontSize: 24, fontWeight: 800, color: "#2563EB", marginTop: 4 }}>
+                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase", letterSpacing: ".05em" }}>Point Earners</div>
+                <div style={{ fontSize: 24, fontWeight: 600, color: "#2563EB", marginTop: 4 }}>
                   {kpisQuery.loading ? "..." : (kpis?.topAchievers ?? 0)}
                 </div>
                 <div style={{ fontSize: 11, color: "var(--primary)", marginTop: 2 }}>Members with points on the board</div>
@@ -869,7 +869,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
                   <button
                     type="button"
                     className={`ta-btn ta-btn-sm ${referralFilter === "shareable_link" ? "ta-btn-primary" : "ta-btn-outline"}`}
-                    style={{ display: "inline-flex", alignItems: "center", gap: 5, fontWeight: 700, flexShrink: 0 }}
+                    style={{ display: "inline-flex", alignItems: "center", gap: 5, fontWeight: 500, flexShrink: 0 }}
                     onClick={() => setReferralFilter(referralFilter === "shareable_link" ? "all" : "shareable_link")}
                     title="Filter directory to users who joined via the organization link"
                   >
@@ -973,7 +973,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
                         setDateFrom("");
                         setDateTo("");
                       }}
-                      style={{ fontSize: 11.5, color: "#2563EB", fontWeight: 700 }}
+                      style={{ fontSize: 11.5, color: "#2563EB", fontWeight: 500 }}
                     >
                       Reset Filters ({filteredMembers.length}/{members.length})
                     </button>
@@ -995,7 +995,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
               {/* Bulk bar - suspend was the only bulk action that existed. */}
               {selectedMemberIds.size > 0 && (
                 <div className="ta-row ta-gap8" style={{ flexWrap: "wrap", padding: "10px 12px", background: "var(--primary-tint)", borderRadius: 8, marginBottom: 14 }}>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: "var(--primary)" }}>{selectedMemberIds.size} selected</span>
+                  <span style={{ fontSize: 12, fontWeight: 500, color: "var(--primary)" }}>{selectedMemberIds.size} selected</span>
                   <button className="ta-btn ta-btn-outline ta-btn-sm" disabled={bulkBusy}
                     onClick={() => runBulk("Reactivated", (m) => updateOrgMemberStatus(m.id, orgId, "active"))}>
                     Activate
@@ -1103,7 +1103,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
                               {(m.join_source || "shareable_link") === "shareable_link" ? (
                                 <span style={{
                                   display: "inline-flex", alignItems: "center", gap: 4,
-                                  fontSize: 11, fontWeight: 700, color: "#2563EB",
+                                  fontSize: 11, fontWeight: 500, color: "#2563EB",
                                   background: "#EFF6FF", padding: "2px 7px", borderRadius: 5,
                                   width: "fit-content"
                                 }}>
@@ -1112,7 +1112,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
                               ) : m.join_source === "email_invite" ? (
                                 <span style={{
                                   display: "inline-flex", alignItems: "center", gap: 4,
-                                  fontSize: 11, fontWeight: 700, color: "#059669",
+                                  fontSize: 11, fontWeight: 500, color: "#059669",
                                   background: "#ECFDF5", padding: "2px 7px", borderRadius: 5,
                                   width: "fit-content"
                                 }}>
@@ -1204,7 +1204,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
           <div className="ta-card">
             <div className="ta-row ta-between" style={{ marginBottom: 14, gap: 10, flexWrap: "wrap" }}>
               <div>
-                <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Data Subject Access & Privacy Requests (GDPR)</div>
+                <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>Data Subject Access & Privacy Requests (GDPR)</div>
                 <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 2 }}>
                   Official user requests to export or erase personal account data.
                 </div>
@@ -1297,33 +1297,33 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
             {/* Link Traffic & Registration Stats Banner */}
             <div className="ta-grid ta-grid-4 anim-stagger">
               <div className="ta-card" style={{ padding: "14px 18px", borderRadius: 10 }}>
-                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em" }}>Total Link Traffic</div>
-                <div style={{ fontSize: 24, fontWeight: 800, color: "#2563EB", marginTop: 4 }}>{linkMembers.length}</div>
+                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase", letterSpacing: ".05em" }}>Total Link Traffic</div>
+                <div style={{ fontSize: 24, fontWeight: 600, color: "#2563EB", marginTop: 4 }}>{linkMembers.length}</div>
                 <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>Learners &amp; prospective visitors</div>
               </div>
               <div className="ta-card" style={{ padding: "14px 18px", borderRadius: 10 }}>
-                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em" }}>Active Members</div>
-                <div style={{ fontSize: 24, fontWeight: 800, color: "#10B981", marginTop: 4 }}>
+                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase", letterSpacing: ".05em" }}>Active Members</div>
+                <div style={{ fontSize: 24, fontWeight: 600, color: "#10B981", marginTop: 4 }}>
                   {linkMembers.filter(m => (m.status || "active") === "active" || (m.email && m.email.includes("@"))).length}
                 </div>
                 <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>Enrolled with workspace access</div>
               </div>
               <div className="ta-card" style={{ padding: "14px 18px", borderRadius: 10 }}>
-                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em" }}>Pending Approval</div>
-                <div style={{ fontSize: 24, fontWeight: 800, color: joinRequests.length > 0 ? "#F59E0B" : "var(--text)", marginTop: 4 }}>
+                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase", letterSpacing: ".05em" }}>Pending Approval</div>
+                <div style={{ fontSize: 24, fontWeight: 600, color: joinRequests.length > 0 ? "#F59E0B" : "var(--text)", marginTop: 4 }}>
                   {joinRequests.length}
                 </div>
                 <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>
                   {joinRequests.length > 0 ? (
-                    <button type="button" onClick={() => setTab("approvals")} style={{ background: "none", border: "none", color: "#D97706", fontWeight: 700, padding: 0, cursor: "pointer", textDecoration: "underline" }}>
+                    <button type="button" onClick={() => setTab("approvals")} style={{ background: "none", border: "none", color: "#D97706", fontWeight: 500, padding: 0, cursor: "pointer", textDecoration: "underline" }}>
                       Review approvals &rarr;
                     </button>
                   ) : "All requests processed"}
                 </div>
               </div>
               <div className="ta-card" style={{ padding: "14px 18px", borderRadius: 10 }}>
-                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em" }}>Prospective Visitors</div>
-                <div style={{ fontSize: 24, fontWeight: 800, color: "#6366F1", marginTop: 4 }}>
+                <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase", letterSpacing: ".05em" }}>Prospective Visitors</div>
+                <div style={{ fontSize: 24, fontWeight: 600, color: "#6366F1", marginTop: 4 }}>
                   {linkMembers.filter(m => m.status === "link_clicked" && (!m.email || !m.email.includes("@"))).length}
                 </div>
                 <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>Clicked link • awaiting signup</div>
@@ -1334,7 +1334,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
             <div className="ta-card" style={{ padding: 20 }}>
               <div className="ta-row ta-between" style={{ flexWrap: "wrap", gap: 12, marginBottom: 16 }}>
                 <div>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "var(--text)", display: "flex", alignItems: "center", gap: 8 }}>
+                  <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text)", display: "flex", alignItems: "center", gap: 8 }}>
                     <Link2 size={16} color="#2563EB" /> Users Joined via Organization Link
                   </div>
                   <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 2 }}>
@@ -1388,7 +1388,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
                     {!membersQuery.loading && linkFilteredMembers.length === 0 && (
                       <tr>
                         <td colSpan={8} className="ta-empty" style={{ padding: "32px 16px", textAlign: "center" }}>
-                          <Link2 size={24} style={{ opacity: 0.35, marginBottom: 8 }} />
+                          
                           <div style={{ fontWeight: 700, fontSize: 14 }}>No link users found matching criteria</div>
                           <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 4 }}>
                             Share your link above to invite learners and watch them appear here automatically in real time.
@@ -1425,7 +1425,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
                           <td>
                             <span style={{
                               display: "inline-flex", alignItems: "center", gap: 4,
-                              fontSize: 11, fontWeight: 700, color: "#2563EB",
+                              fontSize: 11, fontWeight: 500, color: "#2563EB",
                               background: "#EFF6FF", padding: "2px 7px", borderRadius: 5,
                             }}>
                               <Link2 size={11} /> Shareable Invite Link
@@ -1458,7 +1458,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
                               <div style={{ flex: 1, height: 6, background: "var(--surface-3)", borderRadius: 3, overflow: "hidden" }}>
                                 <div style={{ height: "100%", width: `${Math.min(100, Math.max(0, progress))}%`, background: progress >= 70 ? "#10B981" : progress >= 40 ? "#F59E0B" : "#EF4444" }} />
                               </div>
-                              <span style={{ fontSize: 11, fontWeight: 700, minWidth: 32 }}>{progress}%</span>
+                              <span style={{ fontSize: 11, fontWeight: 500, minWidth: 32 }}>{progress}%</span>
                             </div>
                           </td>
                           <td style={{ textAlign: "right" }}>
@@ -1487,15 +1487,15 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
             {/* Seat capacity & protection banner */}
             <div className="ta-card" style={{ padding: "16px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14 }}>
               <div>
-                <div style={{ fontSize: 14, fontWeight: 800, color: "var(--text)" }}>Seat Allocation &amp; Member Protection Queue</div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text)" }}>Seat Allocation &amp; Member Protection Queue</div>
                 <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 3 }}>
                   Learners below applied or joined via your organization invite link. Reviewing and accepting them will allocate an active seat. Rejecting them denies access without consuming any seats.
                 </div>
               </div>
               <div style={{ display: "flex", gap: 14, alignItems: "center" }}>
                 <div style={{ textAlign: "right" }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>Available Seats</div>
-                  <div style={{ fontSize: 18, fontWeight: 900, color: seats.available > 0 ? "#10B981" : "#EF4444" }}>
+                  <div style={{ fontSize: 11, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase" }}>Available Seats</div>
+                  <div style={{ fontSize: 18, fontWeight: 600, color: seats.available > 0 ? "#10B981" : "#EF4444" }}>
                     {seats.available} / {seats.purchased || (seats.used + seats.available)}
                   </div>
                 </div>
@@ -1555,7 +1555,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
                           {(req.join_source || "shareable_link") === "shareable_link" ? (
                             <span style={{
                               display: "inline-flex", alignItems: "center", gap: 4,
-                              fontSize: 11, fontWeight: 700, color: "#2563EB",
+                              fontSize: 11, fontWeight: 500, color: "#2563EB",
                               background: "#EFF6FF", padding: "2px 7px", borderRadius: 5,
                             }}>
                               <Link2 size={11} /> Org Link
@@ -1576,7 +1576,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
                               type="button"
                               className="ta-btn ta-btn-primary ta-btn-sm"
                               disabled={approvalBusyId === req.user_id}
-                              style={{ fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 5 }}
+                              style={{ fontWeight: 500, display: "inline-flex", alignItems: "center", gap: 5 }}
                               onClick={async () => {
                                 setApprovalBusyId(req.user_id);
                                 try {
@@ -1752,8 +1752,8 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
         {tab === "privileges" && (
           <div className="ta-card">
             <div className="ta-row ta-gap8">
-              <ShieldCheck size={17} color="var(--primary)" />
-              <div style={{ fontWeight: 800, fontSize: 15 }}>Privileges &amp; roles</div>
+              
+              <div style={{ fontWeight: 600, fontSize: 15 }}>Privileges &amp; roles</div>
             </div>
             <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 4 }}>
               What each role in this organization is allowed to do. Toggles write straight to
@@ -2120,7 +2120,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
                   src={actionsMember.avatar_url || undefined}
                 />
                 <div style={{ minWidth: 0 }}>
-                  <div style={{ fontWeight: 800, fontSize: 15, overflowWrap: "anywhere" }}>{actionsMember.display_name || "Member"}</div>
+                  <div style={{ fontWeight: 600, fontSize: 15, overflowWrap: "anywhere" }}>{actionsMember.display_name || "Member"}</div>
                   <div style={{ fontSize: 11.5, color: "var(--text-3)", overflowWrap: "anywhere" }}>
                     {actionsMember.email && actionsMember.email.includes("@")
                       ? actionsMember.email
@@ -2223,7 +2223,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <div className="ta-row ta-between" style={{ alignItems: "center" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <Award size={20} color="var(--primary)" />
+                
                 <div className="ta-title" style={{ fontSize: 18 }}>Issue Certificate to {certModalUser.display_name || "Member"}</div>
               </div>
               <button className="ta-btn ta-btn-ghost ta-btn-sm" onClick={() => setCertModalUser(null)}><X size={16} /></button>
@@ -2340,7 +2340,7 @@ export function PeopleScreen({ orgId, orgSelector, setScreen, currentUserId }) {
 
               {/* Right Column: Live Mini Preview */}
               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>Live Preview</div>
+                <div style={{ fontSize: 11, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase" }}>Live Preview</div>
                 <div style={{ border: "1px solid var(--border)", borderRadius: 10, overflow: "hidden", background: "var(--surface-2)" }}>
                   <CertificateDocument
                     template={{

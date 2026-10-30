@@ -134,7 +134,7 @@ export function PayoutsScreen({ orgId, orgSelector, setScreen, currentUserId }) 
           ].map((k) => (
             <div key={k.label} className="ta-card" style={{ padding: "14px 18px", borderRadius: 10 }}>
               <div style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>{k.label}</div>
-              <div style={{ fontSize: 22, fontWeight: 800, marginTop: 4 }}>{k.value}</div>
+              <div style={{ fontSize: 22, fontWeight: 600, marginTop: 4 }}>{k.value}</div>
               <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>{k.hint}</div>
             </div>
           ))}
@@ -219,8 +219,8 @@ export function PayoutsScreen({ orgId, orgSelector, setScreen, currentUserId }) 
         {tab === "access" && (
           <div className="ta-card" style={{ borderRadius: 10 }}>
             <div className="ta-row ta-gap8">
-              <ShieldCheck size={17} color="var(--primary)" />
-              <div style={{ fontWeight: 800, fontSize: 15 }}>Who is allowed to withdraw</div>
+              
+              <div style={{ fontWeight: 600, fontSize: 15 }}>Who is allowed to withdraw</div>
             </div>
             <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
               Earnings are always tracked regardless of this switch - being owed money and being allowed

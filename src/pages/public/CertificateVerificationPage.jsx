@@ -76,7 +76,7 @@ export default function CertificateVerificationPage({ certCode, onGoHome }) {
 
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <img src="/brand/train-ai-logo.png" alt="Train AI" style={{ width: 28, height: 28, objectFit: "contain" }} />
-            <span style={{ fontWeight: 800, fontSize: 16, letterSpacing: "-0.02em" }}>
+            <span style={{ fontWeight: 600, fontSize: 16, letterSpacing: "-0.02em" }}>
               TRAIN<span style={{ color: "#3B82F6" }}>AI</span>
             </span>
           </div>
@@ -93,7 +93,7 @@ export default function CertificateVerificationPage({ certCode, onGoHome }) {
             boxShadow: "0 10px 25px -5px rgba(0,0,0,0.5)",
           }}
         >
-          <div style={{ fontSize: 18, fontWeight: 800, marginBottom: 6 }}>
+          <div style={{ fontSize: 18, fontWeight: 600, marginBottom: 6 }}>
             Credential &amp; Certificate Verification Portal
           </div>
           <div style={{ fontSize: 13, color: "#94A3B8", marginBottom: 16, lineHeight: 1.5 }}>
@@ -168,10 +168,10 @@ export default function CertificateVerificationPage({ certCode, onGoHome }) {
                 <ShieldCheck size={26} />
               </div>
               <div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#10B981", textTransform: "uppercase", letterSpacing: ".06em" }}>
+                <div style={{ fontSize: 11, fontWeight: 500, color: "#10B981", textTransform: "uppercase", letterSpacing: ".06em" }}>
                   Verified Authentic Certificate
                 </div>
-                <div style={{ fontSize: 17, fontWeight: 800, color: "#FFFFFF" }}>
+                <div style={{ fontSize: 17, fontWeight: 600, color: "#FFFFFF" }}>
                   Official Credential Verified
                 </div>
               </div>
@@ -191,22 +191,22 @@ export default function CertificateVerificationPage({ certCode, onGoHome }) {
               }}
             >
               <div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#94A3B8", textTransform: "uppercase" }}>Recipient Name</div>
-                <div style={{ fontSize: 16, fontWeight: 800, color: "#FFFFFF", marginTop: 2 }}>{certData.recipient_name}</div>
+                <div style={{ fontSize: 11, fontWeight: 500, color: "#94A3B8", textTransform: "uppercase" }}>Recipient Name</div>
+                <div style={{ fontSize: 16, fontWeight: 600, color: "#FFFFFF", marginTop: 2 }}>{certData.recipient_name}</div>
               </div>
 
               <div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#94A3B8", textTransform: "uppercase" }}>Programme / Course</div>
+                <div style={{ fontSize: 11, fontWeight: 500, color: "#94A3B8", textTransform: "uppercase" }}>Programme / Course</div>
                 <div style={{ fontSize: 14, fontWeight: 700, color: "#60A5FA", marginTop: 2 }}>{certData.course_name}</div>
               </div>
 
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#94A3B8", textTransform: "uppercase" }}>Issuing Authority</div>
+                  <div style={{ fontSize: 11, fontWeight: 500, color: "#94A3B8", textTransform: "uppercase" }}>Issuing Authority</div>
                   <div style={{ fontSize: 13, fontWeight: 600, color: "#CBD5E1", marginTop: 2 }}>{certData.organization_name}</div>
                 </div>
                 <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: "#94A3B8", textTransform: "uppercase" }}>Issue Date</div>
+                  <div style={{ fontSize: 11, fontWeight: 500, color: "#94A3B8", textTransform: "uppercase" }}>Issue Date</div>
                   <div style={{ fontSize: 13, fontWeight: 600, color: "#CBD5E1", marginTop: 2 }}>
                     {new Date(certData.issued_at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
                   </div>
@@ -214,7 +214,7 @@ export default function CertificateVerificationPage({ certCode, onGoHome }) {
               </div>
 
               <div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#94A3B8", textTransform: "uppercase" }}>Certificate Identifier</div>
+                <div style={{ fontSize: 11, fontWeight: 500, color: "#94A3B8", textTransform: "uppercase" }}>Certificate Identifier</div>
                 <div style={{ fontSize: 12.5, fontFamily: "monospace", color: "#38BDF8", marginTop: 2, wordBreak: "break-all" }}>
                   {certData.certificate_code}
                 </div>
@@ -269,10 +269,10 @@ export default function CertificateVerificationPage({ certCode, onGoHome }) {
                 <XCircle size={26} />
               </div>
               <div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: "#EF4444", textTransform: "uppercase", letterSpacing: ".06em" }}>
+                <div style={{ fontSize: 11, fontWeight: 500, color: "#EF4444", textTransform: "uppercase", letterSpacing: ".06em" }}>
                   {certData.is_revoked ? "Certificate Revoked" : "Verification Failed"}
                 </div>
-                <div style={{ fontSize: 17, fontWeight: 800, color: "#FFFFFF" }}>
+                <div style={{ fontSize: 17, fontWeight: 600, color: "#FFFFFF" }}>
                   {certData.is_revoked ? "This credential is no longer valid" : "Invalid Certificate ID"}
                 </div>
               </div>

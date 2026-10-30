@@ -209,7 +209,7 @@ export function ManagerDashboardScreen({ userId, profileQuery, orgId, orgSelecto
           {/* Right Column: Skills & Department Notes */}
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             <div className="ta-card" style={{ borderRadius: 10 }}>
-              <div className="ta-row ta-gap8"><PieChart size={16} color="var(--primary)" /><div className="ta-title">Team Skill Snapshot</div></div>
+              <div className="ta-row ta-gap8"><div className="ta-title">Team Skill Snapshot</div></div>
               <div style={{ fontSize: 11.5, color: "var(--text-2)", marginTop: 4 }}>
                 Completion by course category across your direct reports.
               </div>
@@ -245,12 +245,12 @@ export function ManagerDashboardScreen({ userId, profileQuery, orgId, orgSelecto
                     {expandedReportId === l.learnerId && (
                       <div className="ta-row ta-gap16 ta-mt10" style={{ flexWrap: "wrap" }}>
                         <div style={{ flex: 1, minWidth: 140 }}>
-                          <div style={{ fontSize: 11, fontWeight: 700, color: "var(--success)" }}>COMPLETED</div>
+                          <div style={{ fontSize: 11, fontWeight: 500, color: "var(--success)" }}>COMPLETED</div>
                           {l.completedSkills.length === 0 && <div style={{ fontSize: 11.5, color: "var(--text-3)" }}>None yet</div>}
                           {l.completedSkills.map((s) => <div key={s.category} style={{ fontSize: 12 }}>{s.category} • {s.avgProgress}%</div>)}
                         </div>
                         <div style={{ flex: 1, minWidth: 140 }}>
-                          <div style={{ fontSize: 11, fontWeight: 700, color: "var(--danger)" }}>GAPS</div>
+                          <div style={{ fontSize: 11, fontWeight: 500, color: "var(--danger)" }}>GAPS</div>
                           {l.gapSkills.length === 0 && <div style={{ fontSize: 11.5, color: "var(--text-3)" }}>None</div>}
                           {l.gapSkills.map((s) => <div key={s.category} style={{ fontSize: 12 }}>{s.category} • {s.avgProgress}%</div>)}
                         </div>
@@ -263,7 +263,7 @@ export function ManagerDashboardScreen({ userId, profileQuery, orgId, orgSelecto
 
             {department && (
               <div className="ta-card" style={{ borderRadius: 10 }}>
-                <div className="ta-row ta-gap8"><StickyNote size={16} color="var(--primary)" /><div className="ta-title">Feedback for {department}</div></div>
+                <div className="ta-row ta-gap8"><div className="ta-title">Feedback for {department}</div></div>
                 <div className="ta-row ta-gap8 ta-mt12">
                   <input className="ta-input" style={{ flex: 1 }} placeholder="Add a note about this department..." value={noteText} onChange={(e) => setNoteText(e.target.value)} onKeyDown={(e) => e.key === "Enter" && handleAddDeptNote()} />
                   <button className="ta-btn ta-btn-primary ta-btn-sm" disabled={savingNote || !noteText.trim()} onClick={handleAddDeptNote}>Add</button>

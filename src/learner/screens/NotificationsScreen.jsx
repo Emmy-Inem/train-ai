@@ -118,7 +118,7 @@ export function NotificationsScreen({
                   <ChevronLeft size={16} /> Back
                 </button>
               )}
-              <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 900, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.2 }}>
+              <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 600, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.2 }}>
                 Notifications &amp; Activity Center
               </h1>
             </div>
@@ -129,8 +129,8 @@ export function NotificationsScreen({
 
           <div className="tai-row tai-gap8" style={{ flexWrap: "wrap", flexShrink: 0, alignItems: "center" }}>
             <div className="tai-hero-subcard" style={{ padding: "8px 14px", borderRadius: 10, textAlign: "center" }}>
-              <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 700 }}>Unread</div>
-              <div style={{ fontSize: 16, fontWeight: 900, color: unreadCount > 0 ? "#FBBF24" : "#34D399" }}>{unreadCount} Alerts</div>
+              <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 500 }}>Unread</div>
+              <div style={{ fontSize: 16, fontWeight: 600, color: unreadCount > 0 ? "#FBBF24" : "#34D399" }}>{unreadCount} Alerts</div>
             </div>
             {unreadCount > 0 && (
               <button
@@ -138,7 +138,7 @@ export function NotificationsScreen({
                 className="tai-btn tai-btn-primary tai-btn-sm"
                 onClick={handleMarkAll}
                 style={{
-                  fontWeight: 700,
+                  fontWeight: 500,
                   display: "inline-flex", alignItems: "center", gap: 6,
                   borderRadius: 8, height: 34, padding: "0 14px"
                 }}
@@ -227,7 +227,7 @@ export function NotificationsScreen({
             <div className="tai-decoration-icon" style={{ width: 52, height: 52, borderRadius: "50%", background: "var(--surface-2)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 14px" }}>
               <Bell size={22} color="var(--text-3)" />
             </div>
-            <div style={{ fontWeight: 800, fontSize: 15.5, color: "var(--text)" }}>No Notifications Found</div>
+            <div style={{ fontWeight: 600, fontSize: 15.5, color: "var(--text)" }}>No Notifications Found</div>
             <div style={{ fontSize: 12.5, color: "var(--text-3)", marginTop: 4, maxWidth: 360, margin: "4px auto 0" }}>
               {searchQuery ? "No notifications matched your search keywords." : "You're all caught up! There are no new notifications in this category."}
             </div>
@@ -265,7 +265,7 @@ export function NotificationsScreen({
                         <span className="tai-tag" style={{ fontSize: 10.5, padding: "2px 7px", background: "var(--surface-3)", color: "var(--text-2)", borderRadius: 4 }}>
                           {typeLabel(n.type)}
                         </span>
-                        <div style={{ fontWeight: 800, fontSize: 14.5, color: "var(--text)", letterSpacing: "-0.01em" }}>
+                        <div style={{ fontWeight: 600, fontSize: 14.5, color: "var(--text)", letterSpacing: "-0.01em" }}>
                           {n.title}
                         </div>
                       </div>
@@ -293,7 +293,7 @@ export function NotificationsScreen({
                           <button
                             type="button"
                             className="tai-btn tai-btn-primary tai-btn-sm"
-                            style={{ borderRadius: 6, height: 28, padding: "0 10px", fontSize: 11.5, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 5, background: "#2563EB" }}
+                            style={{ borderRadius: 6, height: 28, padding: "0 10px", fontSize: 11.5, fontWeight: 500, display: "inline-flex", alignItems: "center", gap: 5, background: "#2563EB" }}
                             onClick={() => {
                               if (push && n.actionUrl) push(n.actionUrl);
                             }}

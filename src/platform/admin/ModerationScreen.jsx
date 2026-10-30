@@ -99,7 +99,7 @@ export function ModerationScreen({ orgSelector, setScreen, orgId, currentUserId 
                   background: queue.length ? "rgba(245, 158, 11, 0.3)" : "rgba(16, 185, 129, 0.3)",
                   color: queue.length ? "#FBBF24" : "#34D399",
                   border: queue.length ? "1px solid rgba(245, 158, 11, 0.6)" : "1px solid rgba(16, 185, 129, 0.6)",
-                  fontWeight: 800,
+                  fontWeight: 600,
                   fontSize: 13,
                   padding: "8px 16px",
                   borderRadius: 10,
@@ -118,7 +118,7 @@ export function ModerationScreen({ orgSelector, setScreen, orgId, currentUserId 
         </div>
 
         <div className="ta-card" style={{ maxWidth: "100%" }}>
-          <div className="ta-row ta-gap8"><Bot size={16} color="var(--primary)" /><div className="ta-title">AI Manual Mode</div></div>
+          <div className="ta-row ta-gap8"><div className="ta-title">AI Manual Mode</div></div>
           <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
             Turn off AI so it doesn't reply automatically - your own message goes out through the chat bot/assistant instead. Community content itself lives inside a study group, a cohort, or a direct instructor conversation - there isn't much for AI to flag there beyond what's already covered below.
           </div>

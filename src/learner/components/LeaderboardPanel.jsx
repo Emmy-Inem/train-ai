@@ -133,7 +133,7 @@ export function LeaderboardPanel({
               >
                 <Trophy size={18} color="var(--primary)" />
               </div>
-              <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 24px)", fontWeight: 900, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.2 }}>
+              <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 24px)", fontWeight: 600, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.2 }}>
                 Leaderboard &amp; Top Achievers
               </h1>
             </div>
@@ -168,7 +168,7 @@ export function LeaderboardPanel({
                       border: "none",
                       background: period === opt.key ? "var(--primary)" : "transparent",
                       color: period === opt.key ? "#FFFFFF" : "var(--text-2)",
-                      fontWeight: 700,
+                      fontWeight: 500,
                       fontSize: 11.5,
                       cursor: "pointer",
                       whiteSpace: "nowrap",
@@ -191,7 +191,7 @@ export function LeaderboardPanel({
                 padding: "6px 12px",
                 borderRadius: 8,
                 fontSize: 12,
-                fontWeight: 700,
+                fontWeight: 500,
               }}
             >
               <RefreshCw size={13} className={loading ? "anim-spin" : ""} />
@@ -249,7 +249,7 @@ export function LeaderboardPanel({
                     justifyContent: "center",
                     color: "#FFFFFF",
                     fontSize: 11,
-                    fontWeight: 900,
+                    fontWeight: 600,
                     boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
                   }}
                 >
@@ -257,12 +257,12 @@ export function LeaderboardPanel({
                 </div>
               </div>
               <div>
-                <div style={{ fontWeight: 800, fontSize: 13, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 160 }}>
+                <div style={{ fontWeight: 600, fontSize: 13, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 160 }}>
                   {second?.name || "-"}
                 </div>
                 <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>2nd Place Contender</div>
               </div>
-              <div style={{ fontWeight: 900, fontSize: 14, color: "var(--primary)", background: "var(--primary-tint)", padding: "3px 10px", borderRadius: 999 }}>
+              <div style={{ fontWeight: 600, fontSize: 14, color: "var(--primary)", background: "var(--primary-tint)", padding: "3px 10px", borderRadius: 999 }}>
                 {second?.points?.toLocaleString() || 0} pts
               </div>
             </div>
@@ -306,7 +306,7 @@ export function LeaderboardPanel({
                     justifyContent: "center",
                     color: "#FFFFFF",
                     fontSize: 11.5,
-                    fontWeight: 900,
+                    fontWeight: 600,
                     boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
                   }}
                 >
@@ -314,14 +314,14 @@ export function LeaderboardPanel({
                 </div>
               </div>
               <div>
-                <div style={{ fontWeight: 900, fontSize: 14, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 170 }}>
+                <div style={{ fontWeight: 600, fontSize: 14, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 170 }}>
                   {first?.name || "-"}
                 </div>
-                <div style={{ fontSize: 11, color: "#D97706", fontWeight: 800, display: "flex", alignItems: "center", gap: 4 }}>
+                <div style={{ fontSize: 11, color: "#D97706", fontWeight: 600, display: "flex", alignItems: "center", gap: 4 }}>
                   <Trophy size={12} color="#D97706" /> Champion
                 </div>
               </div>
-              <div style={{ fontWeight: 900, fontSize: 15, color: "#D97706", background: "rgba(245, 158, 11, 0.16)", border: "1px solid rgba(245, 158, 11, 0.3)", padding: "4px 12px", borderRadius: 999 }}>
+              <div style={{ fontWeight: 600, fontSize: 15, color: "#D97706", background: "rgba(245, 158, 11, 0.16)", border: "1px solid rgba(245, 158, 11, 0.3)", padding: "4px 12px", borderRadius: 999 }}>
                 {first?.points?.toLocaleString() || 0} pts
               </div>
             </div>
@@ -362,7 +362,7 @@ export function LeaderboardPanel({
                     justifyContent: "center",
                     color: "#FFFFFF",
                     fontSize: 11,
-                    fontWeight: 900,
+                    fontWeight: 600,
                     boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
                   }}
                 >
@@ -370,12 +370,12 @@ export function LeaderboardPanel({
                 </div>
               </div>
               <div>
-                <div style={{ fontWeight: 800, fontSize: 13, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 160 }}>
+                <div style={{ fontWeight: 600, fontSize: 13, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: 160 }}>
                   {third?.name || "-"}
                 </div>
                 <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>3rd Place Achiever</div>
               </div>
-              <div style={{ fontWeight: 900, fontSize: 14, color: "var(--primary)", background: "var(--primary-tint)", padding: "3px 10px", borderRadius: 999 }}>
+              <div style={{ fontWeight: 600, fontSize: 14, color: "var(--primary)", background: "var(--primary-tint)", padding: "3px 10px", borderRadius: 999 }}>
                 {third?.points?.toLocaleString() || 0} pts
               </div>
             </div>
@@ -408,7 +408,7 @@ export function LeaderboardPanel({
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontWeight: 900,
+                fontWeight: 600,
                 fontSize: 13,
                 flexShrink: 0,
               }}
@@ -416,7 +416,7 @@ export function LeaderboardPanel({
               #{myRank}
             </span>
             <div>
-              <div style={{ fontWeight: 800, fontSize: 13, color: "var(--text)" }}>Your Standing</div>
+              <div style={{ fontWeight: 600, fontSize: 13, color: "var(--text)" }}>Your Standing</div>
               <div style={{ fontSize: 11.5, color: "var(--text-2)" }}>
                 {myPoints.toLocaleString()} pts • Level {myLevel}
               </div>
@@ -426,13 +426,13 @@ export function LeaderboardPanel({
           {pointsToNext > 0 ? (
             <div
               className="tai-row tai-gap6"
-              style={{ color: "var(--primary)", fontSize: 12, fontWeight: 800, alignItems: "center" }}
+              style={{ color: "var(--primary)", fontSize: 12, fontWeight: 600, alignItems: "center" }}
             >
               <Zap size={13} fill="var(--primary)" />
               <span>{pointsToNext.toLocaleString()} pts to reach rank #{myRank - 1}</span>
             </div>
           ) : (
-            <div style={{ fontSize: 11.5, fontWeight: 800, color: "#059669" }}>
+            <div style={{ fontSize: 11.5, fontWeight: 600, color: "#059669" }}>
               Leading the board!
             </div>
           )}
@@ -458,7 +458,7 @@ export function LeaderboardPanel({
           <div style={{ fontStyle: "italic", fontSize: 13, color: "var(--text)", fontWeight: 600, lineHeight: 1.5 }}>
             "{dailyQuote.quote}"
           </div>
-          <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 700, marginTop: 3 }}>
+          <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 500, marginTop: 3 }}>
             - {dailyQuote.author}
           </div>
         </div>
@@ -493,14 +493,14 @@ export function LeaderboardPanel({
           >
             {/* Left: Rank, Avatar & Info */}
             <div className="tai-row tai-gap14" style={{ alignItems: "center", minWidth: 0, flex: "1 1 240px" }}>
-              <span style={{ fontSize: 14.5, fontWeight: 900, color: "var(--text-3)", minWidth: 30 }}>
+              <span style={{ fontSize: 14.5, fontWeight: 600, color: "var(--text-3)", minWidth: 30 }}>
                 #{r.rank}
               </span>
 
               <Avatar size={42} src={r.avatar} initials={r.initials} />
 
               <div style={{ minWidth: 0 }}>
-                <div style={{ fontWeight: 800, fontSize: 14, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                <div style={{ fontWeight: 600, fontSize: 14, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                   {r.name} {r.isCurrentUser && <span style={{ color: "var(--primary)", fontSize: 11.5 }}>(You)</span>}
                 </div>
 
@@ -520,10 +520,10 @@ export function LeaderboardPanel({
 
             {/* Right: Points & Level */}
             <div style={{ textAlign: "right", flexShrink: 0 }}>
-              <div style={{ fontSize: 17, fontWeight: 900, color: "var(--text)" }}>
+              <div style={{ fontSize: 17, fontWeight: 600, color: "var(--text)" }}>
                 {r.points?.toLocaleString()}
               </div>
-              <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 700, marginTop: 1 }}>
+              <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 500, marginTop: 1 }}>
                 Lvl {r.level}
               </div>
             </div>

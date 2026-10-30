@@ -180,10 +180,10 @@ export function LessonScreen({
             <ChevronLeft size={15} /> <span className="tai-header-full-text">Overview</span>
           </button>
           <div style={{ minWidth: 0, flex: 1 }}>
-            <div style={{ fontSize: 10, fontWeight: 700, color: "var(--primary)", textTransform: "uppercase", letterSpacing: ".04em" }}>
+            <div style={{ fontSize: 10, fontWeight: 500, color: "var(--primary)", textTransform: "uppercase", letterSpacing: ".04em" }}>
               {course?.category || "Course Track"} • Lesson {currentLessonIndex + 1} of {rawLessons.length}
             </div>
-            <div style={{ fontWeight: 800, fontSize: "clamp(12.5px, 2.5vw, 15px)", color: "var(--text)", lineHeight: 1.3, wordBreak: "break-word" }}>
+            <div style={{ fontWeight: 600, fontSize: "clamp(12.5px, 2.5vw, 15px)", color: "var(--text)", lineHeight: 1.3, wordBreak: "break-word" }}>
               {course?.title || "AI Product Architecture Course"}
             </div>
           </div>
@@ -193,8 +193,8 @@ export function LessonScreen({
         <div className="tai-row tai-gap6" style={{ alignItems: "center", flexShrink: 0 }}>
           <div className="tai-row tai-gap6" style={{ alignItems: "center" }}>
             <div style={{ textAlign: "right" }}>
-              <div style={{ fontSize: 8.5, color: "var(--text-3)", fontWeight: 700 }}>PROGRESS</div>
-              <div style={{ fontSize: 11, fontWeight: 800, color: "var(--primary)" }}>{courseProgressPercent}%</div>
+              <div style={{ fontSize: 8.5, color: "var(--text-3)", fontWeight: 500 }}>PROGRESS</div>
+              <div style={{ fontSize: 11, fontWeight: 600, color: "var(--primary)" }}>{courseProgressPercent}%</div>
             </div>
             <div style={{ width: 32, height: 5, background: "var(--surface-3)", borderRadius: 99, overflow: "hidden" }}>
               <div style={{ width: `${courseProgressPercent}%`, height: "100%", background: "var(--primary, #2563EB)", borderRadius: 99 }} />
@@ -250,7 +250,7 @@ export function LessonScreen({
                   style={{
                     padding: "5px 12px",
                     fontSize: 11.5,
-                    fontWeight: 700,
+                    fontWeight: 500,
                     borderRadius: 8,
                     gap: 5
                   }}
@@ -282,7 +282,7 @@ export function LessonScreen({
                   <div className="tai-row tai-gap6" style={{ alignItems: "center" }}>
                     <span style={{
                       fontSize: 11,
-                      fontWeight: 800,
+                      fontWeight: 600,
                       color: "#93C5FD",
                       textTransform: "uppercase",
                       letterSpacing: ".04em",
@@ -295,7 +295,7 @@ export function LessonScreen({
                   </div>
                   <button
                     className="tai-video-control-pill"
-                    style={{ padding: "3px 8px", fontSize: 11, fontWeight: 700, gap: 4 }}
+                    style={{ padding: "3px 8px", fontSize: 11, fontWeight: 500, gap: 4 }}
                     onClick={() => setShowControlSuite(false)}
                     title="Hide Video Controls"
                   >
@@ -308,12 +308,12 @@ export function LessonScreen({
                   
                   {/* Row 1: Playback Speed Controls */}
                   <div className="tai-row tai-gap6" style={{ alignItems: "center", flexWrap: "wrap" }}>
-                    <span style={{ fontSize: 11, fontWeight: 800, color: "#94A3B8", minWidth: 54 }}>Speed:</span>
+                    <span style={{ fontSize: 11, fontWeight: 600, color: "#94A3B8", minWidth: 54 }}>Speed:</span>
                     {[0.75, 1.0, 1.25, 1.5, 2.0].map((spd) => (
                       <button
                         key={spd}
                         className={`tai-video-control-pill ${playbackSpeed === spd ? "active" : ""}`}
-                        style={{ padding: "3px 8px", fontSize: 11, fontWeight: 700 }}
+                        style={{ padding: "3px 8px", fontSize: 11, fontWeight: 500 }}
                         onClick={() => {
                           setPlaybackSpeed(spd);
                           videoPlayerRef.current?.setSpeed(spd);
@@ -327,14 +327,14 @@ export function LessonScreen({
 
                   {/* Row 2: Resolution / Quality Controls */}
                   <div className="tai-row tai-gap6" style={{ alignItems: "center", flexWrap: "wrap" }}>
-                    <span style={{ fontSize: 11, fontWeight: 800, color: "#94A3B8", minWidth: 54 }}>Quality:</span>
+                    <span style={{ fontSize: 11, fontWeight: 600, color: "#94A3B8", minWidth: 54 }}>Quality:</span>
                     {["Auto", "1080p HD", "720p", "480p"].map((qual) => {
                       const isQualActive = qual === "Auto" ? videoQuality.includes("Auto") : videoQuality.includes(qual);
                       return (
                         <button
                           key={qual}
                           className={`tai-video-control-pill ${isQualActive ? "active" : ""}`}
-                          style={{ padding: "3px 8px", fontSize: 11, fontWeight: 700 }}
+                          style={{ padding: "3px 8px", fontSize: 11, fontWeight: 500 }}
                           onClick={() => {
                             const newQual = qual === "Auto" ? "Auto (1080p)" : qual;
                             setVideoQuality(newQual);
@@ -350,10 +350,10 @@ export function LessonScreen({
 
                   {/* Row 3: Options (Captions CC, Cinema View, Restart) */}
                   <div className="tai-row tai-gap6" style={{ alignItems: "center", flexWrap: "wrap" }}>
-                    <span style={{ fontSize: 11, fontWeight: 800, color: "#94A3B8", minWidth: 54 }}>Options:</span>
+                    <span style={{ fontSize: 11, fontWeight: 600, color: "#94A3B8", minWidth: 54 }}>Options:</span>
                     <button
                       className={`tai-video-control-pill ${captionsEnabled ? "active" : ""}`}
-                      style={{ padding: "3px 8px", fontSize: 11, fontWeight: 700 }}
+                      style={{ padding: "3px 8px", fontSize: 11, fontWeight: 500 }}
                       onClick={() => {
                         setCaptionsEnabled(v => !v);
                         showToast?.(!captionsEnabled ? "Subtitles CC enabled" : "Subtitles disabled", "info");
@@ -364,7 +364,7 @@ export function LessonScreen({
                     
                     <button
                       className={`tai-video-control-pill ${isTheatreMode ? "active" : ""}`}
-                      style={{ padding: "3px 8px", fontSize: 11, fontWeight: 700 }}
+                      style={{ padding: "3px 8px", fontSize: 11, fontWeight: 500 }}
                       onClick={() => setIsTheatreMode(v => !v)}
                       title="Toggle Cinema Theatre mode"
                     >
@@ -373,7 +373,7 @@ export function LessonScreen({
 
                     <button
                       className="tai-video-control-pill"
-                      style={{ padding: "3px 8px", fontSize: 11, fontWeight: 700 }}
+                      style={{ padding: "3px 8px", fontSize: 11, fontWeight: 500 }}
                       onClick={() => {
                         videoPlayerRef.current?.seekTo(0);
                         showToast?.("Restarted video from 00:00", "info");
@@ -386,7 +386,7 @@ export function LessonScreen({
 
                   {/* Row 4: Key Moments & Chapters */}
                   <div className="tai-row tai-gap6" style={{ alignItems: "center", flexWrap: "wrap", paddingTop: 4, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-                    <span style={{ fontSize: 11, fontWeight: 800, color: "#94A3B8", minWidth: 54 }}>Moments:</span>
+                    <span style={{ fontSize: 11, fontWeight: 600, color: "#94A3B8", minWidth: 54 }}>Moments:</span>
                     <div className="tai-scrollx tai-gap6" style={{ flex: 1, alignItems: "center", paddingBottom: 2, scrollbarWidth: "none" }}>
                       {lessonChapters.slice(0, 4).map((ch, idx) => (
                         <button
@@ -399,7 +399,7 @@ export function LessonScreen({
                           }}
                           title={`Jump to ${ch.title}`}
                         >
-                          <span style={{ color: "#93C5FD", fontWeight: 800, marginRight: 3 }}>{ch.time}</span> {ch.title.split(" ")[0]}
+                          <span style={{ color: "#93C5FD", fontWeight: 600, marginRight: 3 }}>{ch.time}</span> {ch.title.split(" ")[0]}
                         </button>
                       ))}
                     </div>
@@ -415,7 +415,7 @@ export function LessonScreen({
             <button
               className={`tai-btn ${isCompleted ? "tai-btn-outline" : "tai-btn-primary"} tai-lesson-nav-complete`}
               style={{
-                padding: "11px 18px", borderRadius: 8, fontSize: 13.5, fontWeight: 800,
+                padding: "11px 18px", borderRadius: 8, fontSize: 13.5, fontWeight: 600,
                 boxShadow: isCompleted ? "none" : "0 4px 16px rgba(37, 99, 235, 0.3)"
               }}
               onClick={handleMarkDone}
@@ -493,7 +493,7 @@ export function LessonScreen({
                   <span>{tabItem.label}</span>
                   {tabItem.badge && (
                     <span style={{
-                      fontSize: 9.5, fontWeight: 800, padding: "1px 5px", borderRadius: 4,
+                      fontSize: 9.5, fontWeight: 600, padding: "1px 5px", borderRadius: 4,
                       background: isActive ? "rgba(255,255,255,0.25)" : "var(--primary-tint)",
                       color: isActive ? "#FFFFFF" : "var(--primary)"
                     }}>
@@ -513,7 +513,7 @@ export function LessonScreen({
           {activeTab === "overview" && (
             <div className="tai-card anim-slide-down" style={{ padding: "18px 16px", display: "flex", flexDirection: "column", gap: 16 }}>
               <div>
-                <h2 style={{ fontSize: "clamp(16px, 2.5vw, 19px)", fontWeight: 900, color: "var(--text)", margin: "0 0 8px" }}>
+                <h2 style={{ fontSize: "clamp(16px, 2.5vw, 19px)", fontWeight: 600, color: "var(--text)", margin: "0 0 8px" }}>
                   {lesson?.title}
                 </h2>
                 <p style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.55, margin: 0 }}>
@@ -527,7 +527,7 @@ export function LessonScreen({
                 <div className="tai-row tai-gap10" style={{ minWidth: 0, flex: "1 1 200px" }}>
                   <Avatar size={40} initials={initialsOf(course?.instructor || "Course Instructor")} />
                   <div style={{ minWidth: 0 }}>
-                    <div style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>{course?.instructor || "Course Instructor"}</div>
+                    <div style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>{course?.instructor || "Course Instructor"}</div>
                     <div style={{ fontSize: 11.5, color: "var(--text-3)" }}>{course?.category || "Course"} Instructor</div>
                   </div>
                 </div>
@@ -552,7 +552,7 @@ export function LessonScreen({
                     <Bot size={16} color="var(--primary)" />
                   </div>
                   <div>
-                    <div style={{ fontWeight: 800, fontSize: 14, color: "var(--text)" }}>AI Learning Coach</div>
+                    <div style={{ fontWeight: 600, fontSize: 14, color: "var(--text)" }}>AI Learning Coach</div>
                     <div style={{ fontSize: 11, color: "var(--text-3)" }}>Grounded in timestamp ({formatTime(currentTimeSec)}) & syllabus</div>
                   </div>
                 </div>
@@ -641,11 +641,11 @@ export function LessonScreen({
             <div className="tai-card anim-slide-down" style={{ padding: "18px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
               <div className="tai-row tai-between" style={{ paddingBottom: 10, borderBottom: "1px solid var(--border)" }}>
                 <div>
-                  <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Personal Study Notes</div>
+                  <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>Personal Study Notes</div>
                   <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 1 }}>Notes are anchored to video timestamps</div>
                 </div>
 
-                <span style={{ fontSize: 11.5, fontWeight: 700, color: "var(--primary)", background: "var(--primary-tint)", padding: "3px 8px", borderRadius: 6 }}>
+                <span style={{ fontSize: 11.5, fontWeight: 500, color: "var(--primary)", background: "var(--primary-tint)", padding: "3px 8px", borderRadius: 6 }}>
                   {lessonNotesQuery?.data?.length || 0} Saved
                 </span>
               </div>
@@ -654,7 +654,7 @@ export function LessonScreen({
               <div className="tai-row tai-gap8" style={{ flexWrap: "wrap" }}>
                 <div style={{
                   padding: "0 10px", height: 38, borderRadius: 10, background: "var(--surface-3)",
-                  display: "flex", alignItems: "center", fontSize: 12, fontWeight: 800, color: "var(--primary)", flexShrink: 0
+                  display: "flex", alignItems: "center", fontSize: 12, fontWeight: 600, color: "var(--primary)", flexShrink: 0
                 }}>
                   {formatTime(currentTimeSec)}
                 </div>
@@ -686,7 +686,7 @@ export function LessonScreen({
               {(!lessonNotesQuery?.data || lessonNotesQuery.data.length === 0) && !lessonNotesQuery?.loading && (
                 <div className="tai-card" style={{ background: "var(--surface-2)", padding: "24px 16px", textAlign: "center" }}>
                   <FileText size={24} color="var(--text-3)" style={{ margin: "0 auto 8px" }} />
-                  <div style={{ fontWeight: 800, fontSize: 13.5, color: "var(--text)" }}>No notes for this lesson yet</div>
+                  <div style={{ fontWeight: 600, fontSize: 13.5, color: "var(--text)" }}>No notes for this lesson yet</div>
                   <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Type a note above to bookmark important moments.</div>
                 </div>
               )}
@@ -699,7 +699,7 @@ export function LessonScreen({
                         setCurrentTimeSec(n.timestamp_seconds);
                         videoPlayerRef.current?.seekTo(n.timestamp_seconds);
                       }}
-                      style={{ fontSize: 11.5, fontWeight: 800, color: "var(--primary)", cursor: "pointer", background: "var(--primary-tint)", padding: "2px 6px", borderRadius: 6 }}
+                      style={{ fontSize: 11.5, fontWeight: 600, color: "var(--primary)", cursor: "pointer", background: "var(--primary-tint)", padding: "2px 6px", borderRadius: 6 }}
                       title="Jump video to this timestamp"
                     >
                       ▶ {Math.floor(n.timestamp_seconds / 60)}:{(n.timestamp_seconds % 60).toString().padStart(2, "0")}
@@ -719,7 +719,7 @@ export function LessonScreen({
             <div className="tai-card anim-slide-down" style={{ padding: "18px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
               <div className="tai-row tai-between" style={{ flexWrap: "wrap", gap: 10 }}>
                 <div>
-                  <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Lesson Q&A Discussion</div>
+                  <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>Lesson Q&A Discussion</div>
                   <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 1 }}>Ask questions - visible to everyone taking this lesson</div>
                 </div>
 
@@ -735,7 +735,7 @@ export function LessonScreen({
               {/* Question Composer */}
               {showQuestionComposer && (
                 <div className="tai-card" style={{ background: "var(--surface-3)", padding: 14, borderRadius: 8 }}>
-                  <div style={{ fontWeight: 800, fontSize: 13.5, color: "var(--text)", marginBottom: 8 }}>Ask a Question about this lesson</div>
+                  <div style={{ fontWeight: 600, fontSize: 13.5, color: "var(--text)", marginBottom: 8 }}>Ask a Question about this lesson</div>
                   <textarea
                     className="tai-input"
                     placeholder="What are you stuck on? Paste code or describe the issue..."
@@ -772,7 +772,7 @@ export function LessonScreen({
                         <div style={{ fontWeight: 700, fontSize: 12.5, color: "var(--text)" }}>
                           {msg.user_profiles?.display_name || "Learner"}
                           {msg.sender_type === "instructor" && (
-                            <span style={{ fontSize: 9.5, fontWeight: 800, background: "var(--primary-tint)", color: "var(--primary)", padding: "1px 5px", borderRadius: 4, marginLeft: 6 }}>
+                            <span style={{ fontSize: 9.5, fontWeight: 600, background: "var(--primary-tint)", color: "var(--primary)", padding: "1px 5px", borderRadius: 4, marginLeft: 6 }}>
                               INSTRUCTOR
                             </span>
                           )}
@@ -794,7 +794,7 @@ export function LessonScreen({
             <div className="tai-card anim-slide-down" style={{ padding: "18px 16px", display: "flex", flexDirection: "column", gap: 12 }}>
               <div className="tai-row tai-between" style={{ flexWrap: "wrap", gap: 8 }}>
                 <div>
-                  <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Interactive Transcript</div>
+                  <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>Interactive Transcript</div>
                   <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 1 }}>Tap any line to jump video directly to that timestamp</div>
                 </div>
 
@@ -834,7 +834,7 @@ export function LessonScreen({
                           transition: "all 0.15s ease"
                         }}
                       >
-                        <span style={{ fontSize: 11.5, fontWeight: 800, color: isCurrent ? "var(--primary)" : "var(--text-3)", fontVariantNumeric: "tabular-nums", flexShrink: 0, marginTop: 1 }}>
+                        <span style={{ fontSize: 11.5, fontWeight: 600, color: isCurrent ? "var(--primary)" : "var(--text-3)", fontVariantNumeric: "tabular-nums", flexShrink: 0, marginTop: 1 }}>
                           {line.time}
                         </span>
                         <div style={{ fontSize: 12.5, color: isCurrent ? "var(--text)" : "var(--text-2)", lineHeight: 1.45, fontWeight: isCurrent ? 700 : 400 }}>
@@ -851,7 +851,7 @@ export function LessonScreen({
           {activeTab === "resources" && (
             <div className="tai-card anim-slide-down" style={{ padding: "18px 16px", display: "flex", flexDirection: "column", gap: 12 }}>
               <div>
-                <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Lesson Resources &amp; Starter Kits</div>
+                <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>Lesson Resources &amp; Starter Kits</div>
                 <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 1 }}>Download files, template repos, and cheatsheets</div>
               </div>
 
@@ -867,7 +867,7 @@ export function LessonScreen({
                             <Icon size={16} color="var(--primary)" />
                           </div>
                           <div>
-                            <span style={{ fontSize: 9.5, fontWeight: 800, color: "var(--primary)", textTransform: "uppercase" }}>{res.type}</span>
+                            <span style={{ fontSize: 9.5, fontWeight: 600, color: "var(--primary)", textTransform: "uppercase" }}>{res.type}</span>
                             <div style={{ fontSize: 10.5, color: "var(--text-3)" }}>{res.size}</div>
                           </div>
                         </div>
@@ -896,12 +896,12 @@ export function LessonScreen({
           {activeTab === "reviews" && (
             <div className="tai-card anim-slide-down" style={{ padding: "18px 16px", display: "flex", flexDirection: "column", gap: 14 }}>
               <div>
-                <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>Lesson Feedback &amp; Rating</div>
+                <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>Lesson Feedback &amp; Rating</div>
                 <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 1 }}>Help instructors improve learning outcomes and clarity</div>
               </div>
 
               <div className="tai-card" style={{ background: "var(--surface-3)", padding: 16, borderRadius: 8 }}>
-                <div style={{ fontWeight: 800, fontSize: 13, color: "var(--text)", marginBottom: 6 }}>Rate this lesson</div>
+                <div style={{ fontWeight: 600, fontSize: 13, color: "var(--text)", marginBottom: 6 }}>Rate this lesson</div>
                 <div className="tai-row tai-gap6" style={{ marginBottom: 12 }}>
                   {[1, 2, 3, 4, 5].map((star) => (
                     <button
@@ -914,7 +914,7 @@ export function LessonScreen({
                   ))}
                 </div>
 
-                <div style={{ fontWeight: 800, fontSize: 13, color: "var(--text)", marginBottom: 6 }}>How confident are you with this lesson's concepts?</div>
+                <div style={{ fontWeight: 600, fontSize: 13, color: "var(--text)", marginBottom: 6 }}>How confident are you with this lesson's concepts?</div>
                 <div className="tai-row tai-gap6" style={{ flexWrap: "wrap", marginBottom: 14 }}>
                   {[
                     { val: 1, label: "1 (Struggling)" },
@@ -973,7 +973,7 @@ export function LessonScreen({
           }}>
             <div className="tai-row tai-between" style={{ paddingBottom: 8, borderBottom: "1px solid var(--border)" }}>
               <div>
-                <div style={{ fontWeight: 800, fontSize: 14.5, color: "var(--text)" }}>Course Content</div>
+                <div style={{ fontWeight: 600, fontSize: 14.5, color: "var(--text)" }}>Course Content</div>
                 <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 1 }}>{completedCount} of {rawLessons.length} completed</div>
               </div>
 
@@ -1010,7 +1010,7 @@ export function LessonScreen({
                 <div key={moduleName} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                   {/* Module Section Header */}
                   <div style={{
-                    fontSize: 11.5, fontWeight: 800, color: "var(--primary)",
+                    fontSize: 11.5, fontWeight: 600, color: "var(--primary)",
                     textTransform: "uppercase", letterSpacing: ".04em", padding: "4px 2px"
                   }}>
                     {moduleName}
@@ -1087,7 +1087,7 @@ export function LessonScreen({
             }}>
               <div className="tai-row tai-gap8" style={{ marginBottom: 4 }}>
                 <Award size={15} color="var(--primary)" />
-                <span style={{ fontSize: 12, fontWeight: 800, color: "var(--text)" }}>Official Credential</span>
+                <span style={{ fontSize: 12, fontWeight: 600, color: "var(--text)" }}>Official Credential</span>
               </div>
               <div style={{ fontSize: 11.5, color: "var(--text-2)", lineHeight: 1.4 }}>
                 Complete all lessons and the capstone assessment to become eligible for an organisation-issued course certificate.

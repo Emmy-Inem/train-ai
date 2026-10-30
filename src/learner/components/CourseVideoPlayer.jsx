@@ -500,7 +500,7 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
               padding: "6px 12px",
               borderRadius: 8,
               fontSize: 12,
-              fontWeight: 800,
+              fontWeight: 600,
               display: "flex",
               alignItems: "center",
               gap: 6,
@@ -611,7 +611,7 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
             <div className="tai-decoration-icon" style={{ width: 52, height: 52, borderRadius: "50%", background: "rgba(59, 130, 246, 0.25)", border: "1px solid rgba(165, 180, 252, 0.3)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 12 }}>
               <Video size={24} color="#93C5FD" />
             </div>
-            <div style={{ fontWeight: 800, fontSize: 16, marginBottom: 4 }}>{lessonTitle}</div>
+            <div style={{ fontWeight: 600, fontSize: 16, marginBottom: 4 }}>{lessonTitle}</div>
             <div style={{ fontSize: 13, color: "#94A3B8", maxWidth: 440, lineHeight: 1.45 }}>
               {source.type === "external"
                 ? "This lesson contains videos in a shared MEGA folder. Open the folder, choose a video, and press play. Return here to continue the lesson and mark it complete."
@@ -645,10 +645,10 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
           boxSizing: "border-box"
         }}>
           <span style={{ width: 7, height: 7, borderRadius: "50%", background: isPlaying ? "#10B981" : "#F59E0B", boxShadow: isPlaying ? "0 0 8px #10B981" : "0 0 8px #F59E0B", flexShrink: 0 }} />
-          <span style={{ fontSize: 11.5, fontWeight: 800, color: "#FFFFFF", wordBreak: "break-word", lineHeight: 1.25 }}>
+          <span style={{ fontSize: 11.5, fontWeight: 600, color: "#FFFFFF", wordBreak: "break-word", lineHeight: 1.25 }}>
             {lessonTitle}
           </span>
-          {["youtube", "html5"].includes(source.type) && <span style={{ fontSize: 10.5, color: "#93C5FD", fontWeight: 700, flexShrink: 0, background: "rgba(59, 130, 246, 0.25)", padding: "1px 6px", borderRadius: 4, border: "1px solid rgba(165, 180, 252, 0.3)" }}>
+          {["youtube", "html5"].includes(source.type) && <span style={{ fontSize: 10.5, color: "#93C5FD", fontWeight: 500, flexShrink: 0, background: "rgba(59, 130, 246, 0.25)", padding: "1px 6px", borderRadius: 4, border: "1px solid rgba(165, 180, 252, 0.3)" }}>
             {videoQuality}
           </span>}
         </div>
@@ -686,7 +686,7 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
               background: "rgba(15, 23, 42, 0.95)",
               color: "#FFFFFF",
               fontSize: 10.5,
-              fontWeight: 800,
+              fontWeight: 600,
               padding: "3px 8px",
               borderRadius: 6,
               border: "1px solid rgba(255, 255, 255, 0.2)",
@@ -807,7 +807,7 @@ export const CourseVideoPlayer = forwardRef(function CourseVideoPlayer({
 
             {/* Time Stamp Badge */}
             <div className="tai-video-timestamp" style={{
-              fontSize: 12, fontWeight: 800, color: "#FFFFFF",
+              fontSize: 12, fontWeight: 600, color: "#FFFFFF",
               fontVariantNumeric: "tabular-nums", marginLeft: 4,
               background: "rgba(255,255,255,0.06)", padding: "4px 8px", borderRadius: 6,
               border: "1px solid rgba(255,255,255,0.1)", whiteSpace: "nowrap"

@@ -238,7 +238,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
                   background: "var(--warning, #B45309)",
                   color: "#FFFFFF",
                   fontSize: 11,
-                  fontWeight: 800,
+                  fontWeight: 600,
                   padding: "1px 6px",
                   borderRadius: 10,
                   marginLeft: 4,
@@ -272,7 +272,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
                     <div className="ta-row ta-gap6" style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>
                       <Icon size={13} /> {k.label}
                     </div>
-                    <div style={{ fontSize: 24, fontWeight: 800, marginTop: 4, color: k.tone || "var(--text)" }}>
+                    <div style={{ fontSize: 24, fontWeight: 600, marginTop: 4, color: k.tone || "var(--text)" }}>
                       {seatsQuery.loading ? "..." : k.value}
                     </div>
                     <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>{k.hint}</div>
@@ -294,7 +294,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
                   ? <AlertTriangle size={18} color="var(--danger)" style={{ flexShrink: 0, marginTop: 1 }} />
                   : <ShieldCheck size={18} color="var(--success)" style={{ flexShrink: 0, marginTop: 1 }} />}
                 <div style={{ minWidth: 0 }}>
-                  <div style={{ fontWeight: 800, fontSize: 14 }}>
+                  <div style={{ fontWeight: 600, fontSize: 14 }}>
                     {orgQuery.loading
                       ? "Checking your plan..."
                       : enforced
@@ -332,8 +332,8 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
             {/* ---- Buy seats ---- */}
             <div className="ta-card">
               <div className="ta-row ta-gap8">
-                <CreditCard size={17} color="var(--primary)" />
-                <div style={{ fontWeight: 800, fontSize: 15 }}>Buy seats</div>
+                
+                <div style={{ fontWeight: 600, fontSize: 15 }}>Buy seats</div>
               </div>
               <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
                 Seats are added to your organization once the payment provider confirms the charge. Nothing is
@@ -384,7 +384,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
                     >
                       <div className="ta-row ta-between" style={{ gap: 8 }}>
                         <span style={{ fontSize: 13, fontWeight: 700, color: active ? "var(--primary)" : "var(--text)" }}>{p.label}</span>
-                        <span style={{ fontSize: 12, fontWeight: 700, color: "var(--text-2)" }}>{money(p.symbol, p.unit)}/seat</span>
+                        <span style={{ fontSize: 12, fontWeight: 500, color: "var(--text-2)" }}>{money(p.symbol, p.unit)}/seat</span>
                       </div>
                       <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 3 }}>{p.hint}</div>
                     </div>
@@ -395,7 +395,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
               <div className="ta-row ta-between ta-mt16" style={{ gap: 12, flexWrap: "wrap", padding: "12px 14px", background: "var(--surface-2)", borderRadius: 12 }}>
                 <div style={{ minWidth: 0 }}>
                   <div style={{ fontSize: 11.5, color: "var(--text-3)", fontWeight: 600 }}>Total due now</div>
-                  <div style={{ fontSize: 22, fontWeight: 800 }}>{money(chosen.symbol, total)}</div>
+                  <div style={{ fontSize: 22, fontWeight: 600 }}>{money(chosen.symbol, total)}</div>
                   <div style={{ fontSize: 11, color: "var(--text-3)" }}>
                     {Number(quantity) || 0} × {money(chosen.symbol, chosen.unit)} · charged in {chosen.currency}
                   </div>
@@ -429,8 +429,8 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
             <div className="ta-card">
               <div className="ta-row ta-between" style={{ gap: 10, flexWrap: "wrap" }}>
                 <div className="ta-row ta-gap8">
-                  <Users size={17} color="var(--primary)" />
-                  <div style={{ fontWeight: 800, fontSize: 15 }}>Seat allocation</div>
+                  
+                  <div style={{ fontWeight: 600, fontSize: 15 }}>Seat allocation</div>
                 </div>
                 <span style={{ fontSize: 11.5, color: "var(--text-3)" }}>
                   Every active member occupies one seat
@@ -485,8 +485,8 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
             {/* ---- Purchase history ---- */}
             <div className="ta-card">
               <div className="ta-row ta-gap8">
-                <Receipt size={17} color="var(--primary)" />
-                <div style={{ fontWeight: 800, fontSize: 15 }}>Purchase history</div>
+                
+                <div style={{ fontWeight: 600, fontSize: 15 }}>Purchase history</div>
               </div>
               <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
                 Every row is a confirmed charge recorded against a real payment reference.
@@ -522,7 +522,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
                 <div className="ta-row ta-gap6" style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>
                   <Clock size={13} color="var(--warning, #B45309)" /> Pending Review
                 </div>
-                <div style={{ fontSize: 24, fontWeight: 800, marginTop: 4, color: pendingRequests.length > 0 ? "var(--warning, #B45309)" : "var(--text)" }}>
+                <div style={{ fontSize: 24, fontWeight: 600, marginTop: 4, color: pendingRequests.length > 0 ? "var(--warning, #B45309)" : "var(--text)" }}>
                   {creditRequestsQuery.loading ? "..." : pendingRequests.length}
                 </div>
                 <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>Awaiting admin approval</div>
@@ -532,7 +532,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
                 <div className="ta-row ta-gap6" style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>
                   <Check size={13} color="var(--success, #059669)" /> Approved Requests
                 </div>
-                <div style={{ fontSize: 24, fontWeight: 800, marginTop: 4, color: "var(--success, #059669)" }}>
+                <div style={{ fontSize: 24, fontWeight: 600, marginTop: 4, color: "var(--success, #059669)" }}>
                   {creditRequestsQuery.loading ? "..." : approvedRequests.length}
                 </div>
                 <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>Granted to learners</div>
@@ -542,7 +542,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
                 <div className="ta-row ta-gap6" style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>
                   <Zap size={13} color="var(--primary)" /> Total Credits Granted
                 </div>
-                <div style={{ fontSize: 24, fontWeight: 800, marginTop: 4, color: "var(--primary)" }}>
+                <div style={{ fontSize: 24, fontWeight: 600, marginTop: 4, color: "var(--primary)" }}>
                   {creditRequestsQuery.loading ? "..." : totalCreditsApproved}
                 </div>
                 <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>Allocated AI credits</div>
@@ -552,7 +552,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
                 <div className="ta-row ta-gap6" style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>
                   <Layers size={13} color="var(--text-3)" /> Total Requests
                 </div>
-                <div style={{ fontSize: 24, fontWeight: 800, marginTop: 4 }}>
+                <div style={{ fontSize: 24, fontWeight: 600, marginTop: 4 }}>
                   {creditRequestsQuery.loading ? "..." : creditRequests.length}
                 </div>
                 <div style={{ fontSize: 11, color: "var(--text-3)", marginTop: 2 }}>All-time submissions</div>
@@ -564,8 +564,8 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
               <div className="ta-row ta-between" style={{ gap: 12, flexWrap: "wrap" }}>
                 <div>
                   <div className="ta-row ta-gap8" style={{ alignItems: "center" }}>
-                    <Zap size={18} color="var(--primary)" />
-                    <div style={{ fontWeight: 800, fontSize: 15 }}>Learner AI Credit Requests</div>
+                    
+                    <div style={{ fontWeight: 600, fontSize: 15 }}>Learner AI Credit Requests</div>
                   </div>
                   <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
                     Learners submit requests from their AI Coach &amp; Checkout screens when they need organizational AI credits.
@@ -664,7 +664,7 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
                                 borderRadius: 8,
                                 background: "rgba(59, 130, 246, 0.12)",
                                 color: "var(--primary)",
-                                fontWeight: 800,
+                                fontWeight: 600,
                                 fontSize: 13,
                               }}
                             >
@@ -729,8 +729,8 @@ export function SeatsScreen({ orgId, orgSelector, setScreen, userEmail, defaultT
           <div style={{ padding: 24 }}>
             <div className="ta-row ta-between" style={{ marginBottom: 16 }}>
               <div className="ta-row ta-gap8" style={{ alignItems: "center" }}>
-                <Zap size={18} color="var(--primary)" />
-                <div style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>Grant AI Credits Directly</div>
+                
+                <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Grant AI Credits Directly</div>
               </div>
               <button className="ta-iconbtn" onClick={() => setGrantModalOpen(false)}>
                 <X size={16} />

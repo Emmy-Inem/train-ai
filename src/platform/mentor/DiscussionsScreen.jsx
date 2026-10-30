@@ -158,12 +158,12 @@ export function DiscussionsScreen({ mentorId, orgSelector }) {
 
             <div className="ta-hero-actions" style={{ flexWrap: "wrap", gap: 8 }}>
               <div className="tai-hero-subcard" style={{ padding: "8px 14px", borderRadius: 8, backdropFilter: "blur(8px)", textAlign: "center" }}>
-                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 700 }}>Unresolved</div>
-                <div style={{ fontSize: 15, fontWeight: 900, color: openCount > 0 ? "#FBBF24" : "#34D399" }}>{openCount} Open</div>
+                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 500 }}>Unresolved</div>
+                <div style={{ fontSize: 15, fontWeight: 600, color: openCount > 0 ? "#FBBF24" : "#34D399" }}>{openCount} Open</div>
               </div>
               <div className="tai-hero-subcard" style={{ padding: "8px 14px", borderRadius: 8, backdropFilter: "blur(8px)", textAlign: "center" }}>
-                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 700 }}>Avg Response Time</div>
-                <div style={{ fontSize: 15, fontWeight: 900, color: "#34D399" }}>1.4 Hours</div>
+                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 500 }}>Avg Response Time</div>
+                <div style={{ fontSize: 15, fontWeight: 600, color: "#34D399" }}>1.4 Hours</div>
               </div>
               <button
                 className="ta-btn ta-btn-outline"
@@ -194,7 +194,7 @@ export function DiscussionsScreen({ mentorId, orgSelector }) {
                   style={{
                     padding: "6px 14px",
                     fontSize: 12,
-                    fontWeight: 700,
+                    fontWeight: 500,
                     cursor: "pointer",
                     border: "none"
                   }}
@@ -225,7 +225,7 @@ export function DiscussionsScreen({ mentorId, orgSelector }) {
           {discussionsQuery.loading && <div className="ta-empty"><LoadingSkeleton label="Loading Q&amp;A discussions..." rows={3} /></div>}
           {!discussionsQuery.loading && filteredDiscussions.length === 0 && (
             <div className="ta-card" style={{ textAlign: "center", padding: 36 }}>
-              <HelpCircle size={32} color="var(--primary)" style={{ opacity: 0.5, marginBottom: 8 }} />
+              
               <div style={{ fontWeight: 700, fontSize: 15, color: "var(--text)" }}>No questions match your current filter</div>
               <div style={{ fontSize: 12.5, color: "var(--text-3)", marginTop: 4 }}>All student questions in this category have been addressed.</div>
             </div>
@@ -251,7 +251,7 @@ export function DiscussionsScreen({ mentorId, orgSelector }) {
                     />
                     <div style={{ minWidth: 0, flex: 1 }}>
                       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 6 }}>
-                        <span style={{ fontWeight: 800, fontSize: 14.5, color: "var(--text)", whiteSpace: "nowrap" }}>{d.mentee}</span>
+                        <span style={{ fontWeight: 600, fontSize: 14.5, color: "var(--text)", whiteSpace: "nowrap" }}>{d.mentee}</span>
                         <Tag tone="primary">{d.course}</Tag>
                         <span style={{ fontSize: 11.5, color: "var(--text-3)", whiteSpace: "nowrap" }}>• {d.module}</span>
                       </div>
@@ -286,7 +286,7 @@ export function DiscussionsScreen({ mentorId, orgSelector }) {
 
                 {/* Question Body */}
                 <div style={{ marginTop: 14 }}>
-                  <div style={{ fontWeight: 800, fontSize: 15.5, color: "var(--text)", lineHeight: 1.35 }}>
+                  <div style={{ fontWeight: 600, fontSize: 15.5, color: "var(--text)", lineHeight: 1.35 }}>
                     {d.title}
                   </div>
                   <div style={{ fontSize: 13, color: "var(--text-2)", marginTop: 6, lineHeight: 1.5 }}>
@@ -301,7 +301,7 @@ export function DiscussionsScreen({ mentorId, orgSelector }) {
                     {/* Existing Thread Replies */}
                     {d.replies && d.replies.length > 0 && (
                       <div className="ta-col ta-gap10" style={{ marginBottom: 16 }}>
-                        <div style={{ fontSize: 12, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.04em" }}>
+                        <div style={{ fontSize: 12, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.04em" }}>
                           Discussion Thread ({d.replies.length})
                         </div>
                         {d.replies.map((rep, idx) => (

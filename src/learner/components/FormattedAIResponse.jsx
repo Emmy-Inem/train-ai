@@ -155,7 +155,7 @@ export function FormattedAIResponse({ content, isUser = false }) {
           key={`h1-${elements.length}`}
           style={{
             fontSize: 16,
-            fontWeight: 800,
+            fontWeight: 600,
             color: isUser ? "#FFFFFF" : "var(--text)",
             margin: "14px 0 6px",
             lineHeight: 1.3,
@@ -175,7 +175,7 @@ export function FormattedAIResponse({ content, isUser = false }) {
           key={`h2-${elements.length}`}
           style={{
             fontSize: 15,
-            fontWeight: 800,
+            fontWeight: 600,
             color: isUser ? "#FFFFFF" : "var(--text)",
             margin: "12px 0 6px",
             lineHeight: 1.35,
@@ -273,7 +273,7 @@ export function FormattedAIResponse({ content, isUser = false }) {
         >
           <span
             style={{
-              fontWeight: 800,
+              fontWeight: 600,
               color: isUser ? "#BAE6FD" : "var(--primary, #2563EB)",
               minWidth: 18,
               textAlign: "right",
@@ -309,7 +309,7 @@ export function FormattedAIResponse({ content, isUser = false }) {
           <span
             style={{
               color: isUser ? "#BAE6FD" : "var(--primary, #2563EB)",
-              fontWeight: 800,
+              fontWeight: 600,
               flexShrink: 0,
               fontSize: 14,
               lineHeight: 1.2,

@@ -93,14 +93,14 @@ export function PaymentCallbackScreen({ addCredits, enrollmentsQuery, goTab, sho
         {state === "verifying" && (
           <>
             <Loader2 size={48} color="var(--primary)" className="tai-spin" />
-            <div style={{ fontWeight: 800, fontSize: 18, marginTop: 14 }}>Verifying payment…</div>
+            <div style={{ fontWeight: 600, fontSize: 18, marginTop: 14 }}>Verifying payment…</div>
             <div className="tai-body-text tai-mt8">{message}</div>
           </>
         )}
         {state === "success" && (
           <>
             <CheckCircle2 size={48} color="var(--success)" className="anim-pop" />
-            <div style={{ fontWeight: 800, fontSize: 18, marginTop: 14 }}>Payment successful</div>
+            <div style={{ fontWeight: 600, fontSize: 18, marginTop: 14 }}>Payment successful</div>
             <div className="tai-body-text tai-mt8">{message}</div>
             <button className="tai-btn tai-btn-primary tai-mt16" style={{ width: "100%" }} onClick={() => goTab("home")}>
               Continue <ArrowRight size={16} />
@@ -110,7 +110,7 @@ export function PaymentCallbackScreen({ addCredits, enrollmentsQuery, goTab, sho
         {state === "failed" && (
           <>
             <XCircle size={48} color="var(--danger)" className="anim-pop" />
-            <div style={{ fontWeight: 800, fontSize: 18, marginTop: 14 }}>Payment failed</div>
+            <div style={{ fontWeight: 600, fontSize: 18, marginTop: 14 }}>Payment failed</div>
             <div className="tai-body-text tai-mt8">{message}</div>
             <button className="tai-btn tai-btn-primary tai-mt16" style={{ width: "100%" }} onClick={() => goTab("home")}>
               Go home

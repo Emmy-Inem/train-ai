@@ -136,7 +136,7 @@ function CohortCourseAssignmentSection({
       <div className="ta-row ta-between" style={{ alignItems: "center", marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
         <div className="ta-row ta-gap8" style={{ alignItems: "center" }}>
           <BookOpen size={18} color="var(--primary)" />
-          <span style={{ fontWeight: 800, fontSize: 14.5, color: "var(--text)" }}>{title}</span>
+          <span style={{ fontWeight: 600, fontSize: 14.5, color: "var(--text)" }}>{title}</span>
         </div>
         <span style={{ fontSize: 12, color: "var(--text-3)" }}>
           Directly enroll all cohort members or choose specific learners
@@ -197,7 +197,7 @@ function CohortCourseAssignmentSection({
 
       {scope === "cohort" ? (
         <div style={{ padding: "10px 14px", borderRadius: 8, background: "rgba(16, 185, 129, 0.1)", border: "1px solid rgba(16, 185, 129, 0.25)", marginBottom: 14, fontSize: 12.5, color: "var(--text)" }}>
-          👥 <strong>Cohort-Wide Enrollment:</strong> Assigning to the entire cohort will automatically enroll all <strong>{members.length} members</strong> and list it on their cohort curriculum.
+          <strong>Cohort-Wide Enrollment:</strong> Assigning to the entire cohort will automatically enroll all <strong>{members.length} members</strong> and list it on their cohort curriculum.
         </div>
       ) : (
         <div style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 8, padding: 12, marginBottom: 14 }}>
@@ -550,10 +550,10 @@ export function CohortDetailScreen({ orgId, cohortId, currentUserId, session, on
               <div className="ta-row ta-gap12" style={{ alignItems: "center", minWidth: 260 }}>
                 <Avatar initials={(leadInstructor?.name || leadInstructor?.user_profiles?.display_name || "IN").slice(0, 2).toUpperCase()} size={42} />
                 <div>
-                  <div style={{ fontSize: 11, color: "var(--primary)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", display: "flex", alignItems: "center", gap: 5 }}>
+                  <div style={{ fontSize: 11, color: "var(--primary)", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.05em", display: "flex", alignItems: "center", gap: 5 }}>
                     <GraduationCap size={13} /> Cohort Lead Instructor
                   </div>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "var(--text)", marginTop: 2 }}>
+                  <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text)", marginTop: 2 }}>
                     {leadInstructor?.name || leadInstructor?.user_profiles?.display_name || "No Instructor Assigned"}
                   </div>
                   <div style={{ fontSize: 12, color: "var(--text-3)" }}>
@@ -564,19 +564,19 @@ export function CohortDetailScreen({ orgId, cohortId, currentUserId, session, on
 
               <div className="ta-row ta-gap8" style={{ flexWrap: "wrap", alignItems: "center" }}>
                 <div style={{ padding: "6px 12px", background: "var(--surface-2)", borderRadius: 8, textAlign: "center" }}>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "var(--text)" }}>{learners.length}</div>
+                  <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text)" }}>{learners.length}</div>
                   <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 600 }}>Learners</div>
                 </div>
                 <div style={{ padding: "6px 12px", background: "var(--surface-2)", borderRadius: 8, textAlign: "center" }}>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "var(--primary)" }}>{instructors.length}</div>
+                  <div style={{ fontSize: 15, fontWeight: 600, color: "var(--primary)" }}>{instructors.length}</div>
                   <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 600 }}>Instructors</div>
                 </div>
                 <div style={{ padding: "6px 12px", background: "var(--surface-2)", borderRadius: 8, textAlign: "center" }}>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "#10B981" }}>{cohortCourses.length + learnerCourses.length}</div>
+                  <div style={{ fontSize: 15, fontWeight: 600, color: "#10B981" }}>{cohortCourses.length + learnerCourses.length}</div>
                   <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 600 }}>Assignments</div>
                 </div>
                 <div style={{ padding: "6px 12px", background: "var(--surface-2)", borderRadius: 8, textAlign: "center" }}>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "var(--text)" }}>{progressInfo.percent}%</div>
+                  <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text)" }}>{progressInfo.percent}%</div>
                   <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 600 }}>Elapsed</div>
                 </div>
               </div>
@@ -586,11 +586,11 @@ export function CohortDetailScreen({ orgId, cohortId, currentUserId, session, on
               <div className="ta-row ta-gap8" style={{ alignItems: "center" }}>
                 <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#10B981" }} />
                 <span style={{ fontSize: 13, fontWeight: 700, color: "var(--text)" }}>
-                  ⏱️ 6-Week Accelerator Timeline: Week {progressInfo.currentWeek} of {progressInfo.totalWeeks} &bull; <strong style={{ color: "#10B981" }}>{progressInfo.daysRemaining} Days Left</strong> before cohort ends
+                  6-Week Accelerator Timeline: Week {progressInfo.currentWeek} of {progressInfo.totalWeeks} &bull; <strong style={{ color: "#10B981" }}>{progressInfo.daysRemaining} Days Left</strong> before cohort ends
                 </span>
               </div>
               <div className="ta-row ta-gap8" style={{ alignItems: "center" }}>
-                <span style={{ fontSize: 12, fontWeight: 800, color: "var(--primary)", background: "rgba(37,99,235,0.1)", padding: "2px 8px", borderRadius: 6 }}>
+                <span style={{ fontSize: 12, fontWeight: 600, color: "var(--primary)", background: "rgba(37,99,235,0.1)", padding: "2px 8px", borderRadius: 6 }}>
                   {progressInfo.daysRemaining} Days Left ({progressInfo.percent}% Elapsed)
                 </span>
                 <button className="ta-btn ta-btn-outline ta-btn-sm" onClick={openSettings}><SettingsIcon size={14} /> Cohort Settings / Extend</button>
@@ -685,8 +685,8 @@ export function CohortDetailScreen({ orgId, cohortId, currentUserId, session, on
                 <div className="ta-card" style={{ borderRadius: 10, border: "1px solid var(--border)", background: "var(--surface)" }}>
                   <div className="ta-row ta-between" style={{ alignItems: "center", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
                     <div className="ta-row ta-gap8" style={{ alignItems: "center" }}>
-                      <GraduationCap size={18} color="var(--primary)" />
-                      <span style={{ fontWeight: 800, fontSize: 15, color: "var(--text)" }}>
+                      
+                      <span style={{ fontWeight: 600, fontSize: 15, color: "var(--text)" }}>
                         Cohort Instructors &amp; Mentors ({instructors.length})
                       </span>
                     </div>
@@ -941,7 +941,7 @@ export function CohortDetailScreen({ orgId, cohortId, currentUserId, session, on
                                 <td>
                                   <div className="ta-row ta-gap8" style={{ width: 140 }}>
                                     <ProgressBar value={m.progress || 0} />
-                                    <span style={{ fontSize: 12, fontWeight: 700 }}>{m.progress || 0}%</span>
+                                    <span style={{ fontSize: 12, fontWeight: 500 }}>{m.progress || 0}%</span>
                                   </div>
                                 </td>
                                 <td>{m.added_at ? new Date(m.added_at).toLocaleDateString() : "N/A"}</td>

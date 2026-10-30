@@ -103,8 +103,8 @@ export default function AccessibilityPanel({ onClose }) {
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <Accessibility size={18} color="#2563EB" />
-            <div style={{ fontWeight: 800, fontSize: 15.5, color: "#10142A" }}>Accessibility options</div>
+            
+            <div style={{ fontWeight: 600, fontSize: 15.5, color: "#10142A" }}>Accessibility options</div>
           </div>
           <button
             type="button"
@@ -135,7 +135,7 @@ export default function AccessibilityPanel({ onClose }) {
                   type="button"
                   onClick={() => update({ fontSize: key })}
                   style={{
-                    flex: 1, padding: "9px 10px", borderRadius: 8, fontSize: 12.5, fontWeight: 700,
+                    flex: 1, padding: "9px 10px", borderRadius: 8, fontSize: 12.5, fontWeight: 500,
                     cursor: "pointer", border: active ? "1.5px solid #2563EB" : "1.5px solid #E6E9F5",
                     background: active ? "#EFF6FF" : "#FFFFFF", color: active ? "#2563EB" : "#10142A"
                   }}
@@ -171,7 +171,7 @@ export default function AccessibilityPanel({ onClose }) {
           type="button"
           onClick={onClose}
           style={{
-            marginTop: 22, width: "100%", border: "none", cursor: "pointer", borderRadius: 8, fontWeight: 700,
+            marginTop: 22, width: "100%", border: "none", cursor: "pointer", borderRadius: 8, fontWeight: 500,
             fontSize: 14, padding: "11px 18px", color: "#fff",
             background: "#2563EB"
           }}

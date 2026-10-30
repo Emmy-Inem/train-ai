@@ -481,7 +481,7 @@ export default function AppointmentBookingPage({ onBack, onNavigate, initialSect
               <Clock size={15} />
               <span>30-Minute Institutional Walkthrough</span>
             </div>
-            <h1 style={{ fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 900, color: "#0F172A", letterSpacing: "-0.03em", margin: "0 0 6px" }}>
+            <h1 style={{ fontSize: "clamp(22px, 3vw, 32px)", fontWeight: 600, color: "#0F172A", letterSpacing: "-0.03em", margin: "0 0 6px" }}>
               Set an Appointment with Train AI
             </h1>
             <p style={{ fontSize: 14, color: "#64748B", margin: 0, maxWidth: 680, lineHeight: 1.55 }}>
@@ -495,7 +495,7 @@ export default function AppointmentBookingPage({ onBack, onNavigate, initialSect
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 52, height: 52, borderRadius: "50%", background: "#DCFCE7", color: "#16A34A", margin: "0 auto 16px" }}>
                 <CheckCircle2 size={30} />
               </div>
-              <h2 style={{ fontSize: 24, fontWeight: 900, color: "#0F172A", margin: "0 0 8px", textAlign: "center" }}>
+              <h2 style={{ fontSize: 24, fontWeight: 600, color: "#0F172A", margin: "0 0 8px", textAlign: "center" }}>
                 Your Appointment is Confirmed
               </h2>
               <p style={{ fontSize: 14, color: "#64748B", margin: "0 auto 24px", textAlign: "center", maxWidth: 520, lineHeight: 1.5 }}>
@@ -531,7 +531,7 @@ export default function AppointmentBookingPage({ onBack, onNavigate, initialSect
                   <Calendar size={15} /> Open Calendar Event <ExternalLink size={13} />
                 </a>
                 <button onClick={handleDownloadIcs} className="action-btn-outline"
-                  style={{ padding: "11px 20px", borderRadius: 8, fontSize: 13, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 7 }}>
+                  style={{ padding: "11px 20px", borderRadius: 8, fontSize: 13, fontWeight: 500, display: "inline-flex", alignItems: "center", gap: 7 }}>
                   <Download size={15} /> Download .ics (Outlook / Apple)
                 </button>
               </div>
@@ -577,7 +577,7 @@ export default function AppointmentBookingPage({ onBack, onNavigate, initialSect
                 {/* Step 1: Select Day */}
                 <div style={{ marginBottom: 22 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13.5, fontWeight: 800, color: "#0F172A" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13.5, fontWeight: 600, color: "#0F172A" }}>
                       <Calendar size={15} color="#2563EB" />
                       <span>1. Select Day</span>
                     </div>
@@ -599,22 +599,22 @@ export default function AppointmentBookingPage({ onBack, onNavigate, initialSect
                           disabled={fullyBooked}
                           title={fullyBooked ? "All slots booked for this day" : undefined}
                         >
-                          <span style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", color: isSelected ? "#2563EB" : "#64748B" }}>
+                          <span style={{ fontSize: 11, fontWeight: 500, textTransform: "uppercase", color: isSelected ? "#2563EB" : "#64748B" }}>
                             {item.dayName}
                           </span>
-                          <span style={{ fontSize: 17, fontWeight: 800, margin: "2px 0", color: isSelected ? "#1D4ED8" : "#0F172A" }}>
+                          <span style={{ fontSize: 17, fontWeight: 600, margin: "2px 0", color: isSelected ? "#1D4ED8" : "#0F172A" }}>
                             {item.dayNum}
                           </span>
                           <span style={{ fontSize: 11, fontWeight: 500, color: isSelected ? "#2563EB" : "#64748B" }}>
                             {item.monthName}
                           </span>
                           {item.badge && (
-                            <span style={{ marginTop: 3, fontSize: 9.5, fontWeight: 700, padding: "1px 5px", background: isSelected ? "#2563EB" : "#F1F5F9", color: isSelected ? "#FFF" : "#475569", borderRadius: 4 }}>
+                            <span style={{ marginTop: 3, fontSize: 9.5, fontWeight: 500, padding: "1px 5px", background: isSelected ? "#2563EB" : "#F1F5F9", color: isSelected ? "#FFF" : "#475569", borderRadius: 4 }}>
                               {item.badge}
                             </span>
                           )}
                           {fullyBooked && (
-                            <span style={{ marginTop: 3, fontSize: 9, fontWeight: 700, padding: "1px 5px", background: "#FEE2E2", color: "#DC2626", borderRadius: 4 }}>
+                            <span style={{ marginTop: 3, fontSize: 9, fontWeight: 500, padding: "1px 5px", background: "#FEE2E2", color: "#DC2626", borderRadius: 4 }}>
                               Full
                             </span>
                           )}
@@ -632,7 +632,7 @@ export default function AppointmentBookingPage({ onBack, onNavigate, initialSect
                 {/* Step 2: Select Time */}
                 <div style={{ marginBottom: 22 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13.5, fontWeight: 800, color: "#0F172A" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13.5, fontWeight: 600, color: "#0F172A" }}>
                       <Clock size={15} color="#2563EB" />
                       <span>2. Select Time</span>
                     </div>
@@ -716,14 +716,14 @@ export default function AppointmentBookingPage({ onBack, onNavigate, initialSect
               <div className="form-panel" style={S.formPanel}>
 
                 <div style={{ borderBottom: "1px solid #E2E8F0", paddingBottom: 14, marginBottom: 16 }}>
-                  <div style={{ fontSize: 14.5, fontWeight: 800, color: "#0F172A", marginBottom: 4 }}>3. Your Organization Details</div>
+                  <div style={{ fontSize: 14.5, fontWeight: 600, color: "#0F172A", marginBottom: 4 }}>3. Your Organization Details</div>
                   <div style={{ fontSize: 12, color: "#64748B" }}>We will send the Google Meet invitation and agenda directly to your work email.</div>
                 </div>
 
                 {/* Current selection badge */}
                 <div style={S.slotRecap}>
-                  <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: "#2563EB", marginBottom: 3 }}>Selected Slot</div>
-                  <div style={{ fontSize: 14, fontWeight: 800, color: "#0F172A" }}>
+                  <div style={{ fontSize: 11, fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.05em", color: "#2563EB", marginBottom: 3 }}>Selected Slot</div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: "#0F172A" }}>
                     {selectedDate ? selectedDate.formattedLong : "Select a day"}
                   </div>
                   <div style={{ fontSize: 12.5, color: "#475569", fontWeight: 600, display: "flex", alignItems: "center", gap: 6, marginTop: 3 }}>

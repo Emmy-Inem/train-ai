@@ -87,7 +87,7 @@ export function OrgRoleAccessScreen({ orgId, orgSelector, currentUserId }) {
             <div className="ta-hero-actions">
               <button
                 className="ta-btn"
-                style={{ background: "rgba(255, 255, 255, 0.12)", color: "#FFFFFF", border: "1px solid rgba(255, 255, 255, 0.25)", fontWeight: 700, height: 36, padding: "0 16px", borderRadius: 8, cursor: "pointer" }}
+                style={{ background: "rgba(255, 255, 255, 0.12)", color: "#FFFFFF", border: "1px solid rgba(255, 255, 255, 0.25)", fontWeight: 500, height: 36, padding: "0 16px", borderRadius: 8, cursor: "pointer" }}
                 onClick={() => showToast("Permissions automatically saved on toggle change.")}
               >
                 <Lock size={14} style={{ marginRight: 6 }} /> Audit Access Logs
@@ -99,7 +99,7 @@ export function OrgRoleAccessScreen({ orgId, orgSelector, currentUserId }) {
         <div className="ta-card">
           <div className="ta-row ta-between">
             <div>
-              <div className="ta-row ta-gap8"><Trophy size={16} color="var(--primary)" /><div className="ta-title">Show Rank / Leaderboard</div></div>
+              <div className="ta-row ta-gap8"><div className="ta-title">Show Rank / Leaderboard</div></div>
               <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
                 Turn off to hide points-based rankings from every learner in your organization's Community view.
               </div>
@@ -109,7 +109,7 @@ export function OrgRoleAccessScreen({ orgId, orgSelector, currentUserId }) {
         </div>
 
         <div className="ta-card">
-          <div className="ta-row ta-gap8"><ShieldCheck size={16} color="var(--primary)" /><div className="ta-title">Permissions by role</div></div>
+          <div className="ta-row ta-gap8"><div className="ta-title">Permissions by role</div></div>
           <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
             Separate from the platform owner's global controls - these settings only affect your organization. Not yet toggled here means the platform default applies.
           </div>

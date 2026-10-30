@@ -42,7 +42,7 @@ export function AdminDashboardScreen({ orgId, profileQuery, setScreen, orgSelect
         <TopBar title="Dashboard" sub="Your organization dashboard" orgSelector={orgSelector} />
         <div className="ta-content">
           <div className="ta-card" style={{ textAlign: "center", padding: 48, maxWidth: 480, margin: "40px auto" }}>
-            <Lock size={32} style={{ opacity: 0.4, marginBottom: 12 }} />
+            
             <div style={{ fontWeight: 700, fontSize: 16 }}>Activate your organization to unlock the dashboard</div>
             <div style={{ fontSize: 13, color: "var(--text-2)", marginTop: 8, lineHeight: 1.5 }}>
               {orgQuery.data.name || "Your organization"} is on a trial with no active plan yet. Choose Starter or Growth to unlock the full admin dashboard, or talk to us about Enterprise.
@@ -215,7 +215,7 @@ export function AdminDashboardScreen({ orgId, profileQuery, setScreen, orgSelect
                   <div className="ta-title">Cohort progress</div>
                   <div className="ta-sub" style={{ marginTop: 2, fontSize: 12 }}>Schedule elapsed from each cohort's start and end dates</div>
                 </div>
-                <span className="ta-body" style={{ fontSize: 12, cursor: "pointer", color: "var(--primary)", fontWeight: 700 }} onClick={() => setScreen("cohorts")}>All cohorts</span>
+                <span className="ta-body" style={{ fontSize: 12, cursor: "pointer", color: "var(--primary)", fontWeight: 500 }} onClick={() => setScreen("cohorts")}>All cohorts</span>
               </div>
               <div className="ta-col ta-gap16 ta-mt16 anim-stagger">
                 {cohortProgressQuery.loading && (
@@ -266,7 +266,7 @@ export function AdminDashboardScreen({ orgId, profileQuery, setScreen, orgSelect
                   return (
                     <div key={idx} className="ta-row ta-between" style={{ padding: "8px 10px", background: "var(--surface-3)", borderRadius: 10, border: "1px solid var(--border)" }}>
                       <div className="ta-row ta-gap10" style={{ minWidth: 0, flex: 1, marginRight: 10 }}>
-                        <div style={{ width: 30, height: 30, borderRadius: 8, background: "var(--primary-tint)", color: "var(--primary)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 12, flexShrink: 0 }}>
+                        <div style={{ width: 30, height: 30, borderRadius: 8, background: "var(--primary-tint)", color: "var(--primary)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 500, fontSize: 12, flexShrink: 0 }}>
                           {(user || "U").charAt(0).toUpperCase()}
                         </div>
                         <div style={{ minWidth: 0 }}>

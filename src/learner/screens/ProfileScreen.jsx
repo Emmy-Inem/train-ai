@@ -290,7 +290,7 @@ export function ProfileScreen({
             {/* Name, Verified Badge & Metadata */}
             <div style={{ minWidth: 0, flex: "1 1 200px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                <h1 style={{ fontWeight: 900, fontSize: "clamp(19px, 3.5vw, 25px)", color: "var(--text)", letterSpacing: "-0.025em", margin: 0, lineHeight: 1.2, wordBreak: "break-word" }}>
+                <h1 style={{ fontWeight: 600, fontSize: "clamp(19px, 3.5vw, 25px)", color: "var(--text)", letterSpacing: "-0.025em", margin: 0, lineHeight: 1.2, wordBreak: "break-word" }}>
                   {user.name || session?.user?.user_metadata?.full_name || user.email?.split("@")[0] || "Learner"}
                 </h1>
                 <span
@@ -304,7 +304,7 @@ export function ProfileScreen({
                     border: "1px solid rgba(16, 185, 129, 0.3)",
                     color: "#10B981",
                     fontSize: 11,
-                    fontWeight: 700
+                    fontWeight: 500
                   }}
                 >
                   <CheckCircle2 size={11} /> Verified Learner
@@ -327,7 +327,7 @@ export function ProfileScreen({
               </div>
 
               <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 8, flexWrap: "wrap" }}>
-                <span className="tai-tag" style={{ fontWeight: 700, padding: "3px 8px", fontSize: 11 }}>
+                <span className="tai-tag" style={{ fontWeight: 500, padding: "3px 8px", fontSize: 11 }}>
                   <Target size={11} style={{ marginRight: 4 }} />
                   {user.track || "Professional Track"}
                 </span>
@@ -349,7 +349,7 @@ export function ProfileScreen({
               <button
                 className="tai-btn tai-btn-outline tai-btn-sm"
                 onClick={onBuyCredits}
-                style={{ padding: "7px 12px", fontWeight: 700, fontSize: 12 }}
+                style={{ padding: "7px 12px", fontWeight: 500, fontSize: 12 }}
               >
                 <CreditCard size={13} color="var(--primary)" />
                 <span>{typeof credits === "number" ? credits : 10} Credits</span>
@@ -359,7 +359,7 @@ export function ProfileScreen({
               <button
                 className="tai-btn tai-btn-outline tai-btn-sm"
                 onClick={() => setShowAvatarUpload(v => !v)}
-                style={{ padding: "7px 12px", fontWeight: 700, fontSize: 12 }}
+                style={{ padding: "7px 12px", fontWeight: 500, fontSize: 12 }}
               >
                 <Camera size={13} />
                 <span>Change Photo</span>
@@ -388,21 +388,21 @@ export function ProfileScreen({
         {/* 4 Stat Cards with Responsive Grid & Liquid Glass Styling */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 120px), 1fr))", gap: 8, marginTop: 18, paddingTop: 16, borderTop: "1px solid var(--border-subtle)" }}>
           <div className="tai-card" style={{ textAlign: "center", padding: "12px 8px", borderRadius: 10, background: "var(--surface-2)" }}>
-            <div style={{ fontWeight: 900, fontSize: "clamp(17px, 2.2vw, 21px)", color: "var(--primary)", letterSpacing: "-0.02em" }}>{user.mastery ?? 0}%</div>
+            <div style={{ fontWeight: 600, fontSize: "clamp(17px, 2.2vw, 21px)", color: "var(--primary)", letterSpacing: "-0.02em" }}>{user.mastery ?? 0}%</div>
             <div style={{ fontSize: 11, color: "var(--text-2)", marginTop: 2, fontWeight: 600 }}>Curriculum Mastery</div>
           </div>
           <div className="tai-card" style={{ textAlign: "center", padding: "12px 8px", borderRadius: 10, background: "var(--surface-2)" }}>
-            <div className="tai-row tai-gap4" style={{ justifyContent: "center", fontWeight: 900, fontSize: "clamp(17px, 2.2vw, 21px)", color: "#F59E0B" }}>
+            <div className="tai-row tai-gap4" style={{ justifyContent: "center", fontWeight: 600, fontSize: "clamp(17px, 2.2vw, 21px)", color: "#F59E0B" }}>
               <span>{user.streak ?? 0}</span> <Flame size={16} color="#F59E0B" fill="#F59E0B" />
             </div>
             <div style={{ fontSize: 11, color: "var(--text-2)", marginTop: 2, fontWeight: 600 }}>Active Day Streak</div>
           </div>
           <div className="tai-card" style={{ textAlign: "center", padding: "12px 8px", borderRadius: 10, background: "var(--surface-2)" }}>
-            <div style={{ fontWeight: 900, fontSize: "clamp(17px, 2.2vw, 21px)", color: "var(--text)", letterSpacing: "-0.02em" }}>{(user.totalPoints || 0).toLocaleString()}</div>
+            <div style={{ fontWeight: 600, fontSize: "clamp(17px, 2.2vw, 21px)", color: "var(--text)", letterSpacing: "-0.02em" }}>{(user.totalPoints || 0).toLocaleString()}</div>
             <div style={{ fontSize: 11, color: "var(--text-2)", marginTop: 2, fontWeight: 600 }}>Credential XP</div>
           </div>
           <div className="tai-card" style={{ textAlign: "center", padding: "12px 8px", borderRadius: 10, background: "var(--surface-2)" }}>
-            <div style={{ fontWeight: 900, fontSize: "clamp(17px, 2.2vw, 21px)", color: "var(--success)", letterSpacing: "-0.02em" }}>
+            <div style={{ fontWeight: 600, fontSize: "clamp(17px, 2.2vw, 21px)", color: "var(--success)", letterSpacing: "-0.02em" }}>
               {myCertificates?.length ?? (user.certificates || 0)} Issued
             </div>
             <div style={{ fontSize: 11, color: "var(--text-2)", marginTop: 2, fontWeight: 600 }}>Certificates</div>
@@ -423,7 +423,7 @@ export function ProfileScreen({
               type="button"
               className={`tai-btn tai-btn-sm ${isActive ? "tai-btn-primary" : "tai-btn-outline"}`}
               style={{
-                borderRadius: 8, padding: "8px 14px", fontSize: 12.5, fontWeight: 700,
+                borderRadius: 8, padding: "8px 14px", fontSize: 12.5, fontWeight: 500,
                 display: "inline-flex", alignItems: "center", gap: 7, whiteSpace: "nowrap", flexShrink: 0
               }}
               onClick={() => setActiveTab(t.key)}
@@ -466,10 +466,10 @@ export function ProfileScreen({
           <div className="tai-card" style={{ borderRadius: 12, padding: "clamp(16px, 3vw, 24px)" }}>
             <div className="tai-row tai-between" style={{ marginBottom: 14, alignItems: "center", flexWrap: "wrap", gap: 8 }}>
               <div className="tai-row tai-gap10" style={{ alignItems: "center" }}>
-                <Award size={20} color="var(--primary)" />
+                
                 <h2 className="tai-title-sm" style={{ margin: 0 }}>Earned Certificates & Credentials</h2>
               </div>
-              <span style={{ fontSize: 12, fontWeight: 800, color: "var(--text-3)" }}>
+              <span style={{ fontSize: 12, fontWeight: 600, color: "var(--text-3)" }}>
                 {myCertificates.length} {myCertificates.length === 1 ? "Certificate" : "Certificates"} Earned
               </span>
             </div>
@@ -503,7 +503,7 @@ export function ProfileScreen({
                         <Award size={18} color="#10B981" />
                       </div>
                       <div>
-                        <div style={{ fontWeight: 800, fontSize: 13.5, color: "var(--text)" }}>
+                        <div style={{ fontWeight: 600, fontSize: 13.5, color: "var(--text)" }}>
                           {cert.courses?.title || cert.title || "Course Completion Certificate"}
                         </div>
                         <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2 }}>
@@ -513,7 +513,7 @@ export function ProfileScreen({
                     </div>
 
                     <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
-                      <span style={{ background: "#2563EB", color: "#FFFFFF", fontSize: 10.5, fontWeight: 800, padding: "3px 8px", borderRadius: 4 }}>
+                      <span style={{ background: "#2563EB", color: "#FFFFFF", fontSize: 10.5, fontWeight: 600, padding: "3px 8px", borderRadius: 4 }}>
                         VERIFIED CREDENTIAL
                       </span>
                     </div>
@@ -527,14 +527,14 @@ export function ProfileScreen({
           {feedbackNotes && feedbackNotes.length > 0 && (
             <div className="tai-card" style={{ borderRadius: 12, padding: "clamp(16px, 3vw, 24px)" }}>
               <div className="tai-row tai-gap10" style={{ marginBottom: 14, alignItems: "center" }}>
-                <MessageSquare size={20} color="var(--primary)" />
+                
                 <h2 className="tai-title-sm" style={{ margin: 0 }}>Instructor & Mentor Feedback</h2>
               </div>
               <div className="tai-col tai-gap10">
                 {feedbackNotes.map((note, idx) => (
                   <div key={note.id || idx} style={{ padding: "12px 14px", background: "var(--surface-2)", borderRadius: 8, border: "1px solid var(--border)" }}>
                     <div className="tai-row tai-between" style={{ marginBottom: 4 }}>
-                      <span style={{ fontWeight: 800, fontSize: 13, color: "var(--text)" }}>
+                      <span style={{ fontWeight: 600, fontSize: 13, color: "var(--text)" }}>
                         {note.courses?.title ? `Course: ${note.courses.title}` : "Mentorship Assessment"}
                       </span>
                       <span style={{ fontSize: 11, color: "var(--text-3)" }}>
@@ -562,7 +562,7 @@ export function ProfileScreen({
                     <Trophy size={20} color="var(--primary)" />
                   </div>
                   <div>
-                    <div style={{ fontSize: 15, fontWeight: 800, color: "var(--text)" }}>View Achievements, XP &amp; Rank</div>
+                    <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text)" }}>View Achievements, XP &amp; Rank</div>
                     <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 2 }}>Level {user.level || 1} • {(user.totalPoints || 0).toLocaleString()} XP earned</div>
                   </div>
                 </div>
@@ -583,7 +583,7 @@ export function ProfileScreen({
                     <ShieldCheck size={20} color="#10B981" />
                   </div>
                   <div>
-                    <div style={{ fontSize: 15, fontWeight: 800, color: "var(--text)" }}>Switch Workspace Dashboard</div>
+                    <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text)" }}>Switch Workspace Dashboard</div>
                     <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 2 }}>Switch to Admin, Instructor, or Manager workspaces</div>
                   </div>
                 </div>
@@ -626,7 +626,7 @@ export function ProfileScreen({
                   key={v}
                   type="button"
                   className={`tai-btn tai-btn-sm ${weeklyGoal === v ? "tai-btn-primary" : "tai-btn-outline"}`}
-                  style={{ minWidth: 70, fontWeight: 800 }}
+                  style={{ minWidth: 70, fontWeight: 600 }}
                   disabled={savingGoal}
                   onClick={() => handleSetWeeklyGoal(v)}
                 >
@@ -766,7 +766,7 @@ export function ProfileScreen({
                   <Accessibility size={20} color="var(--primary)" />
                 </div>
                 <div>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "var(--text)" }}>Accessibility &amp; Motion Controls</div>
+                  <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text)" }}>Accessibility &amp; Motion Controls</div>
                   <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 2 }}>High-contrast mode, dyslexia font, font scaling, and reduced motion</div>
                 </div>
               </div>
@@ -786,7 +786,7 @@ export function ProfileScreen({
                     <Smartphone size={20} color="#10B981" />
                   </div>
                   <div>
-                    <div style={{ fontSize: 15, fontWeight: 800, color: "var(--text)" }}>Two-Factor Authentication (MFA)</div>
+                    <div style={{ fontSize: 15, fontWeight: 600, color: "var(--text)" }}>Two-Factor Authentication (MFA)</div>
                     <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 2 }}>Protect your account with Google Authenticator or 1Password TOTP</div>
                   </div>
                 </div>
@@ -811,7 +811,7 @@ export function ProfileScreen({
 
             <form onSubmit={handleUpdatePassword} style={{ display: "flex", flexDirection: "column", gap: 14 }}>
               <div>
-                <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "var(--text)", marginBottom: 6 }}>New Password</label>
+                <label style={{ display: "block", fontSize: 12, fontWeight: 500, color: "var(--text)", marginBottom: 6 }}>New Password</label>
                 <div style={{ position: "relative" }}>
                   <input
                     type={profileShowPassword ? "text" : "password"}
@@ -833,7 +833,7 @@ export function ProfileScreen({
               </div>
 
               <div>
-                <label style={{ display: "block", fontSize: 12, fontWeight: 700, color: "var(--text)", marginBottom: 6 }}>Confirm New Password</label>
+                <label style={{ display: "block", fontSize: 12, fontWeight: 500, color: "var(--text)", marginBottom: 6 }}>Confirm New Password</label>
                 <input
                   type={profileShowPassword ? "text" : "password"}
                   value={profileConfirmPassword}
@@ -852,7 +852,7 @@ export function ProfileScreen({
               )}
 
               {profilePasswordSuccess && (
-                <div style={{ padding: "10px 12px", background: "rgba(22, 163, 74, 0.1)", border: "1px solid rgba(22, 163, 74, 0.25)", borderRadius: 8, color: "#16A34A", fontSize: 12, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
+                <div style={{ padding: "10px 12px", background: "rgba(22, 163, 74, 0.1)", border: "1px solid rgba(22, 163, 74, 0.25)", borderRadius: 8, color: "#16A34A", fontSize: 12, fontWeight: 500, display: "flex", alignItems: "center", gap: 8 }}>
                   <CheckCircle2 size={16} style={{ flexShrink: 0 }} />
                   <span>Your password has been updated successfully!</span>
                 </div>
@@ -862,7 +862,7 @@ export function ProfileScreen({
                 type="submit"
                 disabled={updatingProfilePassword || !profileNewPassword}
                 className="tai-btn tai-btn-primary"
-                style={{ width: "100%", justifyContent: "center", fontWeight: 700, padding: "10px 16px" }}
+                style={{ width: "100%", justifyContent: "center", fontWeight: 500, padding: "10px 16px" }}
               >
                 {updatingProfilePassword ? "Updating Password..." : "Update Password"}
               </button>
@@ -892,7 +892,7 @@ export function ProfileScreen({
             <button
               type="button"
               className="tai-btn tai-btn-outline"
-              style={{ width: "100%", justifyContent: "center", padding: "12px 18px", fontWeight: 700 }}
+              style={{ width: "100%", justifyContent: "center", padding: "12px 18px", fontWeight: 500 }}
               disabled={exporting}
               onClick={handleDownloadData}
             >
@@ -917,7 +917,7 @@ export function ProfileScreen({
               <button
                 type="button"
                 className="tai-btn"
-                style={{ background: "rgba(239, 68, 68, 0.12)", color: "var(--danger)", border: "1px solid rgba(239, 68, 68, 0.3)", width: "100%", fontWeight: 700 }}
+                style={{ background: "rgba(239, 68, 68, 0.12)", color: "var(--danger)", border: "1px solid rgba(239, 68, 68, 0.3)", width: "100%", fontWeight: 500 }}
                 onClick={() => setShowDeleteConfirm(true)}
               >
                 <Trash2 size={16} /> Request Permanent Account Deletion
@@ -971,12 +971,12 @@ export function ProfileScreen({
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 140px), 1fr))", gap: 12, marginTop: 18 }}>
                   <div className="tai-card" style={{ textAlign: "center", padding: "14px 10px", background: "var(--surface-2)", borderRadius: 8 }}>
                     <Users size={18} color="var(--primary)" style={{ marginBottom: 6 }} />
-                    <div style={{ fontSize: 20, fontWeight: 800, color: "var(--text)" }}>{referralStats?.signups ?? 0}</div>
+                    <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{referralStats?.signups ?? 0}</div>
                     <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2, fontWeight: 600 }}>Friends Joined</div>
                   </div>
                   <div className="tai-card" style={{ textAlign: "center", padding: "14px 10px", background: "var(--surface-2)", borderRadius: 8 }}>
                     <Gift size={18} color="var(--primary)" style={{ marginBottom: 6 }} />
-                    <div style={{ fontSize: 20, fontWeight: 800, color: "var(--text)" }}>{referralStats?.clicks ?? 0}</div>
+                    <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{referralStats?.clicks ?? 0}</div>
                     <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2, fontWeight: 600 }}>Link Clicks</div>
                   </div>
                 </div>
@@ -1078,7 +1078,7 @@ export function ProfileScreen({
             className="tai-btn"
             style={{
               width: "100%", background: "var(--surface)", border: "1px solid var(--border)",
-              color: "var(--danger)", fontWeight: 700, padding: "12px 20px", borderRadius: 10
+              color: "var(--danger)", fontWeight: 500, padding: "12px 20px", borderRadius: 10
             }}
             onClick={signOut}
           >
@@ -1109,8 +1109,8 @@ export function ProfileScreen({
             style={{ width: "100%", maxWidth: 440, background: "var(--surface)", borderRadius: 12 }}
           >
             <div className="tai-row tai-gap10">
-              <AlertTriangle size={22} color="var(--danger)" />
-              <div style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>Request Account Deletion?</div>
+              
+              <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Request Account Deletion?</div>
             </div>
             <p style={{ fontSize: 13, color: "var(--text-2)", lineHeight: 1.55, marginTop: 12 }}>
               This submits a formal GDPR erasure request to permanently delete your student records, course progress,
@@ -1129,7 +1129,7 @@ export function ProfileScreen({
               <button
                 type="button"
                 className="tai-btn"
-                style={{ flex: 1, background: "var(--danger)", color: "#fff", opacity: submittingDeletion ? 0.7 : 1, fontWeight: 800 }}
+                style={{ flex: 1, background: "var(--danger)", color: "#fff", opacity: submittingDeletion ? 0.7 : 1, fontWeight: 600 }}
                 disabled={submittingDeletion}
                 onClick={handleConfirmDeletionRequest}
               >

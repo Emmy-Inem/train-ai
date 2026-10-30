@@ -60,23 +60,23 @@ export function WeeklyLeagueCard({ rows = [], loading }) {
             className="tai-row tai-gap10"
             style={{ padding: "6px 8px", borderRadius: 10, background: r.you ? "var(--surface-2)" : "transparent" }}
           >
-            <span style={{ width: 22, textAlign: "center", fontSize: 12, fontWeight: 700, color: idx === 0 ? "#D97706" : "var(--text-2)" }}>
+            <span style={{ width: 22, textAlign: "center", fontSize: 12, fontWeight: 500, color: idx === 0 ? "#D97706" : "var(--text-2)" }}>
               #{r.rank}
             </span>
             <Avatar initials={r.initials} size={26} />
             <span style={{ flex: 1, minWidth: 0, fontSize: 12.5, fontWeight: r.you ? 700 : 500, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
               {r.you ? "You" : r.name}
             </span>
-            <span style={{ fontSize: 12, fontWeight: 700, color: "var(--primary)" }}>{(r.points || 0).toLocaleString()}</span>
+            <span style={{ fontSize: 12, fontWeight: 500, color: "var(--primary)" }}>{(r.points || 0).toLocaleString()}</span>
           </div>
         ))}
 
         {you && !youInTop && (
           <div className="tai-row tai-gap10" style={{ padding: "6px 8px", borderRadius: 10, background: "var(--surface-2)", borderTop: "1px dashed var(--border)", marginTop: 4 }}>
-            <span style={{ width: 22, textAlign: "center", fontSize: 12, fontWeight: 700, color: "var(--text-2)" }}>#{you.rank}</span>
+            <span style={{ width: 22, textAlign: "center", fontSize: 12, fontWeight: 500, color: "var(--text-2)" }}>#{you.rank}</span>
             <Avatar initials={you.initials} size={26} />
             <span style={{ flex: 1, minWidth: 0, fontSize: 12.5, fontWeight: 700 }}>You</span>
-            <span style={{ fontSize: 12, fontWeight: 700, color: "var(--primary)" }}>{(you.points || 0).toLocaleString()}</span>
+            <span style={{ fontSize: 12, fontWeight: 500, color: "var(--primary)" }}>{(you.points || 0).toLocaleString()}</span>
           </div>
         )}
       </div>

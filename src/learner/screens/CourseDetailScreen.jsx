@@ -124,13 +124,13 @@ export function CourseDetailScreen({
           <div className="tai-row tai-between" style={{ flexWrap: "wrap", gap: 6 }}>
             <Tag>{course.category || "Course"}</Tag>
             {course.isCompliance && (
-              <span style={{ background: "#DC2626", color: "#FFFFFF", fontSize: 11, fontWeight: 900, padding: "3px 10px", borderRadius: 4, letterSpacing: "0.03em", boxShadow: "0 2px 8px rgba(220,38,38,0.4)" }}>
+              <span style={{ background: "#DC2626", color: "#FFFFFF", fontSize: 11, fontWeight: 600, padding: "3px 10px", borderRadius: 4, letterSpacing: "0.03em", boxShadow: "0 2px 8px rgba(220,38,38,0.4)" }}>
                 MANDATORY COMPLIANCE
               </span>
             )}
             {course.mandatory && !course.isCompliance && <Tag tone="warning">Mandatory</Tag>}
           </div>
-          <div style={{ fontWeight: 800, fontSize: 18, marginTop: 12, letterSpacing: "-0.01em", textShadow: "0 1px 2px rgba(0,0,0,0.15)" }}>
+          <div style={{ fontWeight: 600, fontSize: 18, marginTop: 12, letterSpacing: "-0.01em", textShadow: "0 1px 2px rgba(0,0,0,0.15)" }}>
             {course.tagline || course.title}
           </div>
           <div className="tai-row tai-gap16 tai-mt14" style={{ fontSize: 13, opacity: 0.95, fontWeight: 600 }}>
@@ -159,7 +159,7 @@ export function CourseDetailScreen({
           <div style={{ fontSize: 12.5, color: "var(--text)", fontWeight: 700 }}>
             Mandatory Compliance Requirement {course.complianceDueAt ? `• Complete before ${new Date(course.complianceDueAt).toLocaleDateString()}` : "• Required by your Organization"}
           </div>
-          <span style={{ fontSize: 11, fontWeight: 800, color: "#DC2626" }}>REQUIRED SPRINT</span>
+          <span style={{ fontSize: 11, fontWeight: 600, color: "#DC2626" }}>REQUIRED SPRINT</span>
         </div>
       )}
 
@@ -168,7 +168,7 @@ export function CourseDetailScreen({
         <div className="tai-card" style={{ padding: 18 }}>
           <div className="tai-row tai-between" style={{ fontSize: 13, color: "var(--text-2)", fontWeight: 600 }}>
             <span>Your Learning Progress</span>
-            <span style={{ color: "var(--primary)", fontWeight: 800 }}>{course.progress}%</span>
+            <span style={{ color: "var(--primary)", fontWeight: 600 }}>{course.progress}%</span>
           </div>
           <div className="tai-mt10"><ProgressBar value={course.progress} height={8} /></div>
         </div>
@@ -241,7 +241,7 @@ export function CourseDetailScreen({
               <div className="tai-card" style={{ padding: "18px 20px", borderRadius: 10, background: "var(--surface)" }}>
                 <div style={{ fontSize: 13, color: "var(--text-3)", fontWeight: 600 }}>Module Progress</div>
                 <div className="tai-row tai-between" style={{ alignItems: "baseline", marginTop: 8, marginBottom: 12 }}>
-                  <span style={{ fontSize: 28, fontWeight: 900, color: "var(--text)", letterSpacing: "-0.02em" }}>
+                  <span style={{ fontSize: 28, fontWeight: 600, color: "var(--text)", letterSpacing: "-0.02em" }}>
                     {String(lessons.filter(l => l.completed || completedLessonIds.has(`${course.id}-${l.id}`)).length).padStart(2, "0")}
                   </span>
                   <span style={{ fontSize: 14, fontWeight: 700, color: "var(--text-3)" }}>
@@ -267,7 +267,7 @@ export function CourseDetailScreen({
               </div>
               
               <div className="tai-col tai-gap10 tai-mt6">
-                <div style={{ fontSize: 14, fontWeight: 800, color: "var(--text)", marginBottom: 4 }}>Lessons</div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>Lessons</div>
                 {lessons.map((l, i) => {
                   const isDone = l.completed || completedLessonIds.has(`${course.id}-${l.id}`);
                   const prevDone = i === 0 || lessons[i - 1].completed || completedLessonIds.has(`${course.id}-${lessons[i - 1].id}`);
@@ -293,7 +293,7 @@ export function CourseDetailScreen({
                             background: isDone ? "var(--success-bg)" : "var(--surface-3)",
                             color: isDone ? "var(--success)" : "var(--primary)",
                             display: "flex", alignItems: "center", justifyContent: "center",
-                            fontWeight: 800, fontSize: 13, flexShrink: 0
+                            fontWeight: 600, fontSize: 13, flexShrink: 0
                           }}>
                             {String(i + 1).padStart(2, "0")}
                           </div>
@@ -597,11 +597,11 @@ function AssessmentTab({ assessment, questionsQuery, myAttemptQuery, onSubmit })
         <div className="tai-row tai-gap10">
           <CheckCircle2 size={22} color="var(--success)" />
           <div>
-            <div style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>Final Assessment Completed</div>
+            <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>Final Assessment Completed</div>
             <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Auto-graded & verified</div>
           </div>
         </div>
-        <div className="tai-mt14" style={{ fontSize: 28, fontWeight: 800, color: "var(--primary)" }}>{score}%</div>
+        <div className="tai-mt14" style={{ fontSize: 28, fontWeight: 600, color: "var(--primary)" }}>{score}%</div>
         <div style={{ fontSize: 12.5, color: "var(--text-2)", marginTop: 6 }}>
           Congratulations! You have successfully passed this course assessment. You are now eligible to request your course certificate.
         </div>

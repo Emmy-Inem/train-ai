@@ -94,7 +94,7 @@ export function MentorDashboardScreen({ mentorId, currentUserId, profileQuery, o
                 onClick={handleRunAiSession}
                 disabled={aiActionRunning}
                 style={{
-                  background: "#2563EB", color: "#FFFFFF", fontWeight: 800,
+                  background: "#2563EB", color: "#FFFFFF", fontWeight: 600,
                   boxShadow: "0 4px 16px rgba(37, 99, 235, 0.4)", display: "flex", alignItems: "center", gap: 8
                 }}
               >
@@ -111,7 +111,7 @@ export function MentorDashboardScreen({ mentorId, currentUserId, profileQuery, o
               <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text-2)" }}>Active Learners</span>
               <Users size={18} color="#2563EB" />
             </div>
-            <div style={{ fontSize: 26, fontWeight: 800, color: "var(--text)" }}>{sessionsQuery.loading ? "…" : activeLearnerCount}</div>
+            <div style={{ fontSize: 26, fontWeight: 600, color: "var(--text)" }}>{sessionsQuery.loading ? "…" : activeLearnerCount}</div>
             <div className="ta-row ta-gap6 ta-mt8" style={{ fontSize: 12, color: "var(--text-2)" }}>
               <span>Across all your sessions</span>
             </div>
@@ -122,7 +122,7 @@ export function MentorDashboardScreen({ mentorId, currentUserId, profileQuery, o
               <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text-2)" }}>Active Cohorts</span>
               <Layers size={18} color="#10B981" />
             </div>
-            <div style={{ fontSize: 26, fontWeight: 800, color: "var(--text)" }}>{activeCohortsQuery.loading ? "…" : String(activeCohorts.length).padStart(2, "0")}</div>
+            <div style={{ fontSize: 26, fontWeight: 600, color: "var(--text)" }}>{activeCohortsQuery.loading ? "…" : String(activeCohorts.length).padStart(2, "0")}</div>
             <div className="ta-row ta-gap6 ta-mt8" style={{ fontSize: 12, color: "var(--text-2)" }}>
               <span>{cohortsEndingSoonCount} finishing soon</span>
             </div>
@@ -133,7 +133,7 @@ export function MentorDashboardScreen({ mentorId, currentUserId, profileQuery, o
               <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text-2)" }}>Pending Sessions</span>
               <CheckCircle2 size={18} color="#F59E0B" />
             </div>
-            <div style={{ fontSize: 26, fontWeight: 800, color: "var(--text)" }}>
+            <div style={{ fontSize: 26, fontWeight: 600, color: "var(--text)" }}>
               {sessionsQuery.loading ? "…" : String(pendingSessionCount).padStart(2, "0")}
             </div>
             <div className="ta-row ta-gap6 ta-mt8" style={{ fontSize: 12, color: "#F59E0B" }}>
@@ -146,7 +146,7 @@ export function MentorDashboardScreen({ mentorId, currentUserId, profileQuery, o
               <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text-2)" }}>Session Completion</span>
               <TrendingUp size={18} color="#2563EB" />
             </div>
-            <div style={{ fontSize: 26, fontWeight: 800, color: "var(--text)" }}>
+            <div style={{ fontSize: 26, fontWeight: 600, color: "var(--text)" }}>
               {sessionsQuery.loading ? "…" : mentorSessions.length ? `${Math.round((mentorSessions.filter(s => s.status === "completed").length / mentorSessions.length) * 100)}%` : "0%"}
             </div>
             <div className="ta-row ta-gap6 ta-mt8" style={{ fontSize: 12, color: "var(--success)" }}>
@@ -159,7 +159,7 @@ export function MentorDashboardScreen({ mentorId, currentUserId, profileQuery, o
               <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text-2)" }}>Instructor Rating</span>
               <Star size={18} color="#F59E0B" />
             </div>
-            <div style={{ fontSize: 26, fontWeight: 800, color: "var(--text)" }}>{sessionsQuery.loading ? "…" : (avgRating ?? "N/A")}</div>
+            <div style={{ fontSize: 26, fontWeight: 600, color: "var(--text)" }}>{sessionsQuery.loading ? "…" : (avgRating ?? "N/A")}</div>
             <div className="ta-row ta-gap6 ta-mt8" style={{ fontSize: 12, color: "var(--text-2)" }}>
               <span>Across rated sessions</span>
             </div>
@@ -170,7 +170,7 @@ export function MentorDashboardScreen({ mentorId, currentUserId, profileQuery, o
               <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text-2)" }}>Total Earnings</span>
               <DollarSign size={18} color="#10B981" />
             </div>
-            <div style={{ fontSize: 26, fontWeight: 800, color: "var(--text)" }}>{earningsQuery.loading ? "…" : `$${totalEarnings.toFixed(2)}`}</div>
+            <div style={{ fontSize: 26, fontWeight: 600, color: "var(--text)" }}>{earningsQuery.loading ? "…" : `$${totalEarnings.toFixed(2)}`}</div>
             <div className="ta-row ta-gap6 ta-mt8" style={{ fontSize: 12, color: "var(--text-2)" }}>
               <span>Lifetime instructor earnings</span>
             </div>
@@ -384,13 +384,13 @@ export function MentorDashboardScreen({ mentorId, currentUserId, profileQuery, o
                   boxShadow: "inset 0 1px 0 var(--glass-specular), 0 8px 24px -6px rgba(0,0,0,0.12)"
                 }}>
                   <div className="ta-row ta-between">
-                    <div className="ta-row ta-gap6" style={{ background: "rgba(239, 68, 68, 0.12)", padding: "3px 8px", borderRadius: 4, color: "#EF4444", fontSize: 10.5, fontWeight: 700, border: "1px solid rgba(239, 68, 68, 0.3)" }}>
+                    <div className="ta-row ta-gap6" style={{ background: "rgba(239, 68, 68, 0.12)", padding: "3px 8px", borderRadius: 4, color: "#EF4444", fontSize: 10.5, fontWeight: 500, border: "1px solid rgba(239, 68, 68, 0.3)" }}>
                       <Radio size={11} className="anim-pulse" /> LIVE NOW
                     </div>
                     <span style={{ fontSize: 11, color: "var(--text-3)" }}>Studio Session</span>
                   </div>
 
-                  <div style={{ fontSize: 14.5, fontWeight: 800, marginTop: 10, lineHeight: 1.35, color: "var(--text)" }}>
+                  <div style={{ fontSize: 14.5, fontWeight: 600, marginTop: 10, lineHeight: 1.35, color: "var(--text)" }}>
                     {activeLiveSession.title || "Live Mentorship Studio"}
                   </div>
                   <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 3 }}>
@@ -401,7 +401,7 @@ export function MentorDashboardScreen({ mentorId, currentUserId, profileQuery, o
                     {activeLiveSession.meeting_url ? (
                       <button
                         className="ta-btn ta-btn-primary ta-btn-sm"
-                        style={{ background: "#2563EB", border: "none", color: "#FFFFFF", fontWeight: 700, borderRadius: 6 }}
+                        style={{ background: "#2563EB", border: "none", color: "#FFFFFF", fontWeight: 500, borderRadius: 6 }}
                         onClick={() => window.open(activeLiveSession.meeting_url, "_blank")}
                       >
                         <Video size={13} /> Join Session

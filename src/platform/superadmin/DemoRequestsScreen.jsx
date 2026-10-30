@@ -170,7 +170,7 @@ export function DemoRequestsScreen({ orgSelector }) {
                 style={{
                   background: "#2563EB",
                   color: "#FFFFFF",
-                  fontWeight: 700,
+                  fontWeight: 500,
                   height: 36,
                   padding: "0 16px",
                   borderRadius: 8,
@@ -216,7 +216,7 @@ export function DemoRequestsScreen({ orgSelector }) {
               <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text-2)" }}>Total Inbound</span>
               <Calendar size={18} color="#2563EB" />
             </div>
-            <div style={{ fontSize: 26, fontWeight: 800, marginTop: 8 }}>
+            <div style={{ fontSize: 26, fontWeight: 600, marginTop: 8 }}>
               {loading ? "..." : stats.total}
             </div>
             <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 4 }}>All logged demo requests</div>
@@ -227,7 +227,7 @@ export function DemoRequestsScreen({ orgSelector }) {
               <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text-2)" }}>Scheduled Sessions</span>
               <Clock size={18} color="#10B981" />
             </div>
-            <div style={{ fontSize: 26, fontWeight: 800, marginTop: 8, color: "#10B981" }}>
+            <div style={{ fontSize: 26, fontWeight: 600, marginTop: 8, color: "#10B981" }}>
               {loading ? "..." : stats.scheduled}
             </div>
             <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 4 }}>Date &amp; time confirmed</div>
@@ -238,7 +238,7 @@ export function DemoRequestsScreen({ orgSelector }) {
               <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text-2)" }}>New Inquiries</span>
               <AlertCircle size={18} color="#F59E0B" />
             </div>
-            <div style={{ fontSize: 26, fontWeight: 800, marginTop: 8, color: "#F59E0B" }}>
+            <div style={{ fontSize: 26, fontWeight: 600, marginTop: 8, color: "#F59E0B" }}>
               {loading ? "..." : stats.newInquiries}
             </div>
             <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 4 }}>Awaiting first outreach</div>
@@ -249,7 +249,7 @@ export function DemoRequestsScreen({ orgSelector }) {
               <span style={{ fontSize: 13, fontWeight: 600, color: "var(--text-2)" }}>Closed / Completed</span>
               <CheckCircle2 size={18} color="#64748B" />
             </div>
-            <div style={{ fontSize: 26, fontWeight: 800, marginTop: 8, color: "#64748B" }}>
+            <div style={{ fontSize: 26, fontWeight: 600, marginTop: 8, color: "#64748B" }}>
               {loading ? "..." : stats.closed}
             </div>
             <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 4 }}>Onboarded or finished</div>
@@ -304,7 +304,7 @@ export function DemoRequestsScreen({ orgSelector }) {
                       padding: "1px 6px",
                       borderRadius: 4,
                       fontSize: 11,
-                      fontWeight: 700,
+                      fontWeight: 500,
                     }}
                   >
                     {count}
@@ -385,7 +385,7 @@ export function DemoRequestsScreen({ orgSelector }) {
               gap: 12,
             }}
           >
-            <Calendar size={36} color="var(--text-3)" />
+            
             <div style={{ fontSize: 16, fontWeight: 700, color: "var(--text)" }}>No demo requests found</div>
             <p style={{ fontSize: 13, color: "var(--text-2)", margin: 0, maxWidth: 440 }}>
               {searchQuery
@@ -442,7 +442,7 @@ export function DemoRequestsScreen({ orgSelector }) {
                           alignItems: "center",
                           justifyContent: "center",
                           fontSize: 16,
-                          fontWeight: 800,
+                          fontWeight: 600,
                           flexShrink: 0,
                           border: "1px solid #DBEAFE",
                         }}
@@ -451,14 +451,14 @@ export function DemoRequestsScreen({ orgSelector }) {
                       </div>
                       <div style={{ minWidth: 0 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                          <span style={{ fontSize: 15, fontWeight: 800, color: "var(--text)" }}>
+                          <span style={{ fontSize: 15, fontWeight: 600, color: "var(--text)" }}>
                             {req.full_name || "Anonymous Contact"}
                           </span>
                           {req.org_type && (
                             <span
                               style={{
                                 fontSize: 11,
-                                fontWeight: 700,
+                                fontWeight: 500,
                                 background: "var(--surface-3)",
                                 color: "var(--text-2)",
                                 padding: "2px 8px",
@@ -525,7 +525,7 @@ export function DemoRequestsScreen({ orgSelector }) {
                           padding: "6px 10px",
                           borderRadius: 6,
                           fontSize: 12,
-                          fontWeight: 700,
+                          fontWeight: 500,
                           border: "1px solid var(--border)",
                           background: "var(--surface)",
                           color:
@@ -585,7 +585,7 @@ export function DemoRequestsScreen({ orgSelector }) {
                         rel={req.meeting_url || req.calendar_event_url ? "noopener noreferrer" : undefined}
                         style={{
                           fontSize: 12,
-                          fontWeight: 700,
+                          fontWeight: 500,
                           color: "#2563EB",
                           textDecoration: "none",
                           display: "inline-flex",
@@ -601,7 +601,7 @@ export function DemoRequestsScreen({ orgSelector }) {
                   {/* Notes / Agenda */}
                   {req.message && (
                     <div style={{ background: "var(--surface-2)", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border)" }}>
-                      <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", marginBottom: 4 }}>
+                      <div style={{ fontSize: 11, fontWeight: 500, color: "var(--text-3)", textTransform: "uppercase", marginBottom: 4 }}>
                         Applicant Agenda &amp; Questions:
                       </div>
                       <div style={{ fontSize: 12.5, color: "var(--text)", lineHeight: 1.5, whiteSpace: "pre-wrap" }}>

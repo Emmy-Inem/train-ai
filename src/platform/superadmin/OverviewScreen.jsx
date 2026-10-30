@@ -127,7 +127,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
 
           <div className="ta-hero-inner" style={{ position: "relative", zIndex: 1 }}>
             <div className="ta-hero-text">
-              <h1 className="ta-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 900, letterSpacing: "-0.025em", margin: "0 0 4px", lineHeight: 1.2 }}>
+              <h1 className="ta-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 25px)", fontWeight: 600, letterSpacing: "-0.025em", margin: "0 0 4px", lineHeight: 1.2 }}>
                 Train AI Platform Overview
               </h1>
               <p className="ta-hero-desc" style={{ fontSize: 13, margin: 0, maxWidth: 680, lineHeight: 1.5 }}>
@@ -142,7 +142,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
                 style={{
                   background: "#2563EB",
                   color: "#FFFFFF",
-                  fontWeight: 700,
+                  fontWeight: 500,
                   height: 38,
                   padding: "0 16px",
                   borderRadius: 8,
@@ -157,14 +157,14 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
                 <CalendarCheck size={15} /> Demo Requests
               </button>
               <div className="tai-hero-subcard" style={{ padding: "8px 14px", borderRadius: 10, textAlign: "center" }}>
-                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 700 }}>Database Health</div>
-                <div style={{ fontSize: 15, fontWeight: 900, color: healthQuery.data?.ok ? "#10B981" : "#EF4444" }}>
+                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 500 }}>Database Health</div>
+                <div style={{ fontSize: 15, fontWeight: 600, color: healthQuery.data?.ok ? "#10B981" : "#EF4444" }}>
                   {healthQuery.loading ? "Checking..." : healthQuery.data?.ok ? (healthQuery.data.latencyMs != null ? `${healthQuery.data.latencyMs}ms` : "Connected") : "Degraded"}
                 </div>
               </div>
               <div className="tai-hero-subcard" style={{ padding: "8px 14px", borderRadius: 10, textAlign: "center" }}>
-                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 700 }}>Active Tenants</div>
-                <div style={{ fontSize: 15, fontWeight: 900, color: "#3B82F6" }}>{statsQuery.loading ? "..." : effectiveTotalOrgs}</div>
+                <div style={{ fontSize: 10.5, opacity: 0.8, fontWeight: 500 }}>Active Tenants</div>
+                <div style={{ fontSize: 15, fontWeight: 600, color: "#3B82F6" }}>{statsQuery.loading ? "..." : effectiveTotalOrgs}</div>
               </div>
             </div>
           </div>
@@ -181,7 +181,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
               <span style={{ fontSize: 12.5, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.04em" }}>Total Organizations</span>
               <Building2 size={20} color="#2563EB" />
             </div>
-            <div style={{ fontSize: 28, fontWeight: 900, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: 28, fontWeight: 600, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
               {statsQuery.loading ? "..." : effectiveTotalOrgs}
             </div>
             <div className="ta-row ta-between" style={{ fontSize: 12, marginTop: 10, gap: 8, flexWrap: "wrap" }}>
@@ -200,7 +200,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
               <span style={{ fontSize: 12.5, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.04em" }}>Total Platform Users</span>
               <Users size={20} color="#2563EB" />
             </div>
-            <div style={{ fontSize: 28, fontWeight: 900, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: 28, fontWeight: 600, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
               {statsQuery.loading ? "..." : effectiveTotalUsers.toLocaleString()}
             </div>
             <div className="ta-row ta-between" style={{ fontSize: 12, marginTop: 10, gap: 8, flexWrap: "wrap" }}>
@@ -217,7 +217,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
               <span style={{ fontSize: 12.5, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.04em" }}>Published Courses</span>
               <Layers size={20} color="#059669" />
             </div>
-            <div style={{ fontSize: 28, fontWeight: 900, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: 28, fontWeight: 600, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
               {statsQuery.loading ? "..." : effectiveTotalCourses}
             </div>
             <div className="ta-row ta-between" style={{ fontSize: 12, marginTop: 10, gap: 8, flexWrap: "wrap" }}>
@@ -234,7 +234,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
               <span style={{ fontSize: 12.5, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.04em" }}>Weekly Active Users (7d)</span>
               <Activity size={20} color="#D97706" />
             </div>
-            <div style={{ fontSize: 28, fontWeight: 900, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: 28, fontWeight: 600, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
               {statsQuery.loading ? "..." : effectiveActiveInWeek.toLocaleString()}
             </div>
             <div className="ta-row ta-between" style={{ fontSize: 12, marginTop: 10, gap: 8, flexWrap: "wrap" }}>
@@ -274,7 +274,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
                     onClick={() => setActiveChartMetric(m.key)}
                     className={`ta-btn ta-btn-sm ${activeChartMetric === m.key ? "ta-btn-primary" : "ta-btn-outline"}`}
                     style={{
-                      padding: "4px 10px", borderRadius: 6, fontSize: 11.5, fontWeight: 700, cursor: "pointer"
+                      padding: "4px 10px", borderRadius: 6, fontSize: 11.5, fontWeight: 500, cursor: "pointer"
                     }}
                   >
                     {m.label}
@@ -297,7 +297,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
                   const heightPct = Math.max(val > 0 ? Math.round((val / maxTrendValue) * 100) : 6, 6);
                   return (
                     <div key={item.month || idx} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", height: "100%", justifyContent: "flex-end" }}>
-                      <div style={{ fontSize: 11, fontWeight: 800, color: "var(--primary)", marginBottom: 6 }}>
+                      <div style={{ fontSize: 11, fontWeight: 600, color: "var(--primary)", marginBottom: 6 }}>
                         {val}
                       </div>
                       <div
@@ -344,7 +344,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
                   <div key={b.feature}>
                     <div className="ta-row ta-between" style={{ fontSize: 13, marginBottom: 6 }}>
                       <span style={{ fontWeight: 700, color: "var(--text)", textTransform: "capitalize" }}>{b.feature.replace(/_/g, " ")}</span>
-                      <span style={{ fontWeight: 800, color }}>{b.pct}% ({b.count} calls)</span>
+                      <span style={{ fontWeight: 600, color }}>{b.pct}% ({b.count} calls)</span>
                     </div>
                     <div style={{ width: "100%", height: 8, background: "var(--surface-3)", borderRadius: 99, overflow: "hidden" }}>
                       <div style={{ width: `${b.pct}%`, height: "100%", background: color, borderRadius: 99 }} />
@@ -356,13 +356,13 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
               <div style={{ background: "var(--surface-3)", padding: 14, borderRadius: 8, marginTop: 8 }}>
                 <div className="ta-row ta-between" style={{ fontSize: 12.5 }}>
                   <span style={{ color: "var(--text-2)", fontWeight: 600 }}>Database Ping Round-Trip:</span>
-                  <span style={{ color: "var(--success)", fontWeight: 800 }}>
+                  <span style={{ color: "var(--success)", fontWeight: 600 }}>
                     {healthQuery.loading ? "Checking..." : healthQuery.data?.latencyMs != null ? `${healthQuery.data.latencyMs} ms` : "Unavailable"}
                   </span>
                 </div>
                 <div className="ta-row ta-between" style={{ fontSize: 12.5, marginTop: 6 }}>
                   <span style={{ color: "var(--text-2)", fontWeight: 600 }}>AI Calls (Last 7 Days):</span>
-                  <span style={{ color: "var(--text)", fontWeight: 800 }}>{aiUsageQuery.loading ? "..." : aiUsage?.last7d ?? 0}</span>
+                  <span style={{ color: "var(--text)", fontWeight: 600 }}>{aiUsageQuery.loading ? "..." : aiUsage?.last7d ?? 0}</span>
                 </div>
               </div>
             </div>
@@ -564,7 +564,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
                       {a.text}
                     </div>
                   </div>
-                  <span style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 700, flexShrink: 0, marginLeft: 10 }}>
+                  <span style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 500, flexShrink: 0, marginLeft: 10 }}>
                     {a.time}
                   </span>
                 </div>
@@ -580,8 +580,8 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
 
           <div className="ta-card" style={{ padding: "20px 22px", background: "var(--surface)", border: "1px solid var(--border)" }}>
             <div className="ta-row ta-gap8" style={{ paddingBottom: 12, borderBottom: "1px solid var(--border)" }}>
-              <Activity size={16} color={healthQuery.data?.ok ? "var(--success)" : "var(--danger)"} />
-              <div className="ta-title" style={{ fontSize: 15, fontWeight: 800 }}>Platform Health</div>
+              
+              <div className="ta-title" style={{ fontSize: 15, fontWeight: 600 }}>Platform Health</div>
             </div>
             <div style={{ fontSize: 11.5, color: "var(--text-2)", marginTop: 10, lineHeight: 1.4 }}>
               Live Supabase database telemetry check on page boot.
@@ -597,23 +597,23 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
 
           <div className="ta-card" style={{ padding: "20px 22px", background: "var(--surface)", border: "1px solid var(--border)" }}>
             <div className="ta-row ta-gap8" style={{ paddingBottom: 12, borderBottom: "1px solid var(--border)" }}>
-              <TrendingDown size={16} color="var(--danger)" />
-              <div className="ta-title" style={{ fontSize: 15, fontWeight: 800 }}>Tenant Churn History</div>
+              
+              <div className="ta-title" style={{ fontSize: 15, fontWeight: 600 }}>Tenant Churn History</div>
             </div>
             <div style={{ fontSize: 11.5, color: "var(--text-2)", marginTop: 10, lineHeight: 1.4 }}>
               Aggregated from real admin audit log events.
             </div>
             <div className="ta-row ta-gap16" style={{ marginTop: 14 }}>
-              <div><div style={{ fontSize: 20, fontWeight: 800, color: "var(--text)" }}>{churnQuery.loading ? "..." : churnQuery.data?.suspendedLast30d ?? 0}</div><div style={{ fontSize: 11, color: "var(--text-3)" }}>Suspended, 30d</div></div>
-              <div><div style={{ fontSize: 20, fontWeight: 800, color: "var(--text)" }}>{churnQuery.loading ? "..." : churnQuery.data?.suspendedLast90d ?? 0}</div><div style={{ fontSize: 11, color: "var(--text-3)" }}>Suspended, 90d</div></div>
-              <div><div style={{ fontSize: 20, fontWeight: 800, color: "var(--success)" }}>{churnQuery.loading ? "..." : churnQuery.data?.totalActive ?? 0}</div><div style={{ fontSize: 11, color: "var(--text-3)" }}>Active Tenants</div></div>
+              <div><div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{churnQuery.loading ? "..." : churnQuery.data?.suspendedLast30d ?? 0}</div><div style={{ fontSize: 11, color: "var(--text-3)" }}>Suspended, 30d</div></div>
+              <div><div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>{churnQuery.loading ? "..." : churnQuery.data?.suspendedLast90d ?? 0}</div><div style={{ fontSize: 11, color: "var(--text-3)" }}>Suspended, 90d</div></div>
+              <div><div style={{ fontSize: 20, fontWeight: 600, color: "var(--success)" }}>{churnQuery.loading ? "..." : churnQuery.data?.totalActive ?? 0}</div><div style={{ fontSize: 11, color: "var(--text-3)" }}>Active Tenants</div></div>
             </div>
           </div>
 
           <div className="ta-card" style={{ padding: "20px 22px", background: "var(--surface)", border: "1px solid var(--border)" }}>
             <div className="ta-row ta-gap8" style={{ paddingBottom: 12, borderBottom: "1px solid var(--border)" }}>
-              <Megaphone size={16} color="var(--primary)" />
-              <div className="ta-title" style={{ fontSize: 15, fontWeight: 800 }}>Campaign Attribution</div>
+              
+              <div className="ta-title" style={{ fontSize: 15, fontWeight: 600 }}>Campaign Attribution</div>
             </div>
             <div style={{ fontSize: 11.5, color: "var(--text-2)", marginTop: 10, lineHeight: 1.4 }}>
               UTM tracking grouped by campaign source.

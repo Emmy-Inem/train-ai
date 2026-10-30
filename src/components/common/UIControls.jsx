@@ -38,7 +38,7 @@ export function Tag({ children, tone, icon: Icon }) {
   const border = tone === "success" ? "rgba(16, 185, 129, 0.25)" : tone === "warning" ? "rgba(245, 158, 11, 0.25)" : tone === "danger" ? "rgba(239, 68, 68, 0.25)" : "rgba(37, 99, 235, 0.25)";
   return (
     <span style={{
-      padding: "3px 8px", borderRadius: 6, fontSize: 11, fontWeight: 700,
+      padding: "3px 8px", borderRadius: 6, fontSize: 11, fontWeight: 500,
       background: bg, color, border: `1px solid ${border}`,
       display: "inline-flex", alignItems: "center", gap: 4
     }}>
@@ -93,12 +93,12 @@ export function StatCard({ stat }) {
           {Icon && <Icon size={16} color="var(--primary, #2563EB)" />}
         </div>
         {stat.delta && (
-          <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 700, color: stat.up ? "#10B981" : "#EF4444" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 11.5, fontWeight: 500, color: stat.up ? "#10B981" : "#EF4444" }}>
             {stat.up ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}{stat.delta}
           </div>
         )}
       </div>
-      <div style={{ fontSize: 24, fontWeight: 800, marginTop: 14, color: "var(--text)", letterSpacing: "-0.02em" }}>{stat.value}</div>
+      <div style={{ fontSize: 24, fontWeight: 600, marginTop: 14, color: "var(--text)", letterSpacing: "-0.02em" }}>{stat.value}</div>
       <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 2 }}>{stat.label}</div>
     </div>
   );

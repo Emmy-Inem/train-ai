@@ -74,7 +74,7 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
                       borderRadius: 8,
                       border: "none",
                       fontSize: 11.5,
-                      fontWeight: 700,
+                      fontWeight: 500,
                       cursor: "pointer",
                       background: timeframe === t ? "var(--primary)" : "transparent",
                       color: timeframe === t ? "#FFFFFF" : "var(--text-2)",
@@ -98,10 +98,10 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
               <Star size={20} color="#F59E0B" fill="#F59E0B" />
             </div>
             <div className="ta-row ta-gap8" style={{ alignItems: "baseline", marginTop: 10 }}>
-              <span style={{ fontSize: 30, fontWeight: 900, color: "var(--text)", letterSpacing: "-0.02em" }}>{ratingVal}</span>
+              <span style={{ fontSize: 30, fontWeight: 600, color: "var(--text)", letterSpacing: "-0.02em" }}>{ratingVal}</span>
               <span style={{ fontSize: 13, color: "var(--text-3)", fontWeight: 600 }}>/ 5.0 ({totalReviews} reviews)</span>
             </div>
-            <div className="ta-row ta-gap6 ta-mt10" style={{ fontSize: 12, color: "var(--success)", fontWeight: 700 }}>
+            <div className="ta-row ta-gap6 ta-mt10" style={{ fontSize: 12, color: "var(--success)", fontWeight: 500 }}>
               <TrendingUp size={14} /> {totalReviews > 0 ? "Verified learner ratings" : "No ratings yet"}
             </div>
           </div>
@@ -111,7 +111,7 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
               <span style={{ fontSize: 12.5, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.04em" }}>Teaching Sessions</span>
               <Calendar size={20} color="#2563EB" />
             </div>
-            <div style={{ fontSize: 30, fontWeight: 900, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: 30, fontWeight: 600, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
               {sessionsQuery.loading ? "…" : sessions.length}
             </div>
             <div className="ta-row ta-gap6 ta-mt10" style={{ fontSize: 12, color: "var(--text-3)", fontWeight: 600 }}>
@@ -124,10 +124,10 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
               <span style={{ fontSize: 12.5, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.04em" }}>Learners Mentored</span>
               <Users size={20} color="#10B981" />
             </div>
-            <div style={{ fontSize: 30, fontWeight: 900, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: 30, fontWeight: 600, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
               {sessionsQuery.loading ? "…" : menteesHelped}
             </div>
-            <div className="ta-row ta-gap6 ta-mt10" style={{ fontSize: 12, color: "var(--success)", fontWeight: 700 }}>
+            <div className="ta-row ta-gap6 ta-mt10" style={{ fontSize: 12, color: "var(--success)", fontWeight: 500 }}>
               <TrendingUp size={14} /> Active learner cohort
             </div>
           </div>
@@ -137,10 +137,10 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
               <span style={{ fontSize: 12.5, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase", letterSpacing: "0.04em" }}>Gross Earnings</span>
               <DollarSign size={20} color="#2563EB" />
             </div>
-            <div style={{ fontSize: 30, fontWeight: 900, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
+            <div style={{ fontSize: 30, fontWeight: 600, color: "var(--text)", marginTop: 10, letterSpacing: "-0.02em" }}>
               ${totalEarnings.toFixed(2)}
             </div>
-            <div className="ta-row ta-gap6 ta-mt10" style={{ fontSize: 12, color: "var(--success)", fontWeight: 700 }}>
+            <div className="ta-row ta-gap6 ta-mt10" style={{ fontSize: 12, color: "var(--success)", fontWeight: 500 }}>
               <ShieldCheck size={14} /> Payout verified &amp; active
             </div>
           </div>
@@ -153,7 +153,7 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
           <div className="ta-card" style={{ padding: "22px 24px", background: "var(--surface)", border: "1px solid var(--border)" }}>
             <div className="ta-row ta-between" style={{ paddingBottom: 14, borderBottom: "1px solid var(--border)" }}>
               <div>
-                <div className="ta-title" style={{ fontSize: 16, fontWeight: 800 }}>Student Rating Breakdown</div>
+                <div className="ta-title" style={{ fontSize: 16, fontWeight: 600 }}>Student Rating Breakdown</div>
                 <div className="ta-sub" style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Verified reviews from completed cohorts and courses</div>
               </div>
               <Tag tone="warning"><Star size={12} fill="#F59E0B" /> {ratingVal} Star Avg</Tag>
@@ -162,7 +162,7 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
             <div className="ta-col ta-gap10 ta-mt16">
               {ratingDistribution.map((r) => (
                 <div key={r.stars} className="ta-row ta-gap12" style={{ alignItems: "center" }}>
-                  <span style={{ width: 44, fontSize: 12, fontWeight: 700, color: "var(--text-2)", display: "flex", alignItems: "center", gap: 4 }}>
+                  <span style={{ width: 44, fontSize: 12, fontWeight: 500, color: "var(--text-2)", display: "flex", alignItems: "center", gap: 4 }}>
                     {r.stars} <Star size={11} fill="#F59E0B" color="#F59E0B" />
                   </span>
                   <div style={{ flex: 1, height: 6, background: "var(--surface-3)", borderRadius: 3, overflow: "hidden" }}>
@@ -180,7 +180,7 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
                 <Brain size={15} color="var(--primary)" />
                 <span style={{ fontSize: 12.5, fontWeight: 600, color: "var(--text)" }}>Teaching Assessment</span>
               </div>
-              <span style={{ fontSize: 11.5, color: "var(--success)", fontWeight: 700 }}>
+              <span style={{ fontSize: 11.5, color: "var(--success)", fontWeight: 500 }}>
                 {ratedSessions.length > 0 ? "Active Feedback" : "Awaiting Feedback"}
               </span>
             </div>
@@ -190,7 +190,7 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
           <div className="ta-card" style={{ padding: "20px 22px", background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 10 }}>
             <div className="ta-row ta-between" style={{ paddingBottom: 12, borderBottom: "1px solid var(--border)" }}>
               <div>
-                <div className="ta-title" style={{ fontSize: 15, fontWeight: 800 }}>Teaching Benchmarks &amp; Health</div>
+                <div className="ta-title" style={{ fontSize: 15, fontWeight: 600 }}>Teaching Benchmarks &amp; Health</div>
                 <div className="ta-sub" style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Metrics tracked against organization targets</div>
               </div>
               <Tag tone="success">Active</Tag>
@@ -240,7 +240,7 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
                 <MessageCircle size={20} />
               </div>
               <div>
-                <div className="ta-title" style={{ fontSize: 16, fontWeight: 800 }}>Recent Student Reviews &amp; Testimonials</div>
+                <div className="ta-title" style={{ fontSize: 16, fontWeight: 600 }}>Recent Student Reviews &amp; Testimonials</div>
                 <div className="ta-sub" style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Direct feedback left by learners after sessions and project evaluations</div>
               </div>
             </div>
@@ -278,7 +278,7 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
                         <div style={{ fontSize: 11, color: "var(--text-3)" }}>{rev.date}</div>
                       </div>
                     </div>
-                    <span className="ta-row ta-gap4" style={{ color: "#F59E0B", fontWeight: 800, fontSize: 12, flexShrink: 0 }}>
+                    <span className="ta-row ta-gap4" style={{ color: "#F59E0B", fontWeight: 600, fontSize: 12, flexShrink: 0 }}>
                       <Star size={13} fill="#F59E0B" /> {rev.rating}
                     </span>
                   </div>

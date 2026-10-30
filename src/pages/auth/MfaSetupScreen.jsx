@@ -159,7 +159,7 @@ export default function MfaSetupScreen({ onClose }) {
             ) : (
               <ShieldAlert size={18} color="#2563EB" />
             )}
-            <div style={{ fontWeight: 800, fontSize: 15.5, color: "#10142A" }}>Two-factor authentication</div>
+            <div style={{ fontWeight: 600, fontSize: 15.5, color: "#10142A" }}>Two-factor authentication</div>
           </div>
           <button
             type="button"
@@ -195,7 +195,7 @@ export default function MfaSetupScreen({ onClose }) {
               className="mfa2-primary-btn"
               style={{
                 width: "100%", border: "none", cursor: busy ? "default" : "pointer", borderRadius: 8,
-                fontWeight: 700, fontSize: 14, padding: "11px 16px", color: "#fff", opacity: busy ? 0.75 : 1,
+                fontWeight: 500, fontSize: 14, padding: "11px 16px", color: "#fff", opacity: busy ? 0.75 : 1,
                 background: "#2563EB",
                 display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
               }}
@@ -228,7 +228,7 @@ export default function MfaSetupScreen({ onClose }) {
 
               {view.secret && (
                 <div style={{ width: "100%", textAlign: "center" }}>
-                  <div style={{ fontSize: 11, color: "#656C86", textTransform: "uppercase", letterSpacing: ".06em", fontWeight: 700 }}>
+                  <div style={{ fontSize: 11, color: "#656C86", textTransform: "uppercase", letterSpacing: ".06em", fontWeight: 500 }}>
                     Manual secret key
                   </div>
                   <code style={{
@@ -243,7 +243,7 @@ export default function MfaSetupScreen({ onClose }) {
             </div>
 
             <div style={{ marginTop: 14 }}>
-              <label htmlFor="mfa2-code-input" style={{ display: "block", fontSize: 11, fontWeight: 700, color: "#656C86", textTransform: "uppercase", letterSpacing: ".06em" }}>
+              <label htmlFor="mfa2-code-input" style={{ display: "block", fontSize: 11, fontWeight: 500, color: "#656C86", textTransform: "uppercase", letterSpacing: ".06em" }}>
                 6-digit verification code
               </label>
               <input
@@ -283,7 +283,7 @@ export default function MfaSetupScreen({ onClose }) {
                 className="mfa2-outline-btn"
                 style={{
                   flex: 1, padding: "10px 14px", borderRadius: 8, border: "1px solid #D8DEF5", background: "#fff",
-                  color: "#656C86", fontWeight: 700, fontSize: 13, cursor: busy ? "default" : "pointer",
+                  color: "#656C86", fontWeight: 500, fontSize: 13, cursor: busy ? "default" : "pointer",
                 }}
               >
                 Cancel
@@ -294,7 +294,7 @@ export default function MfaSetupScreen({ onClose }) {
                 className="mfa2-primary-btn"
                 style={{
                   flex: 1.4, border: "none", cursor: (busy || code.length !== 6) ? "default" : "pointer",
-                  borderRadius: 8, fontWeight: 700, fontSize: 13.5, padding: "10px 16px", color: "#fff",
+                  borderRadius: 8, fontWeight: 500, fontSize: 13.5, padding: "10px 16px", color: "#fff",
                   background: "#2563EB", opacity: (busy || code.length !== 6) ? 0.6 : 1,
                   display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
                 }}
@@ -336,7 +336,7 @@ export default function MfaSetupScreen({ onClose }) {
               className="mfa2-danger-btn"
               style={{
                 width: "100%", padding: "12px 14px", borderRadius: 8, border: "1.5px solid #FCA5A5", background: "#fff",
-                color: "#EF4444", fontWeight: 700, fontSize: 13.5, cursor: busy ? "default" : "pointer",
+                color: "#EF4444", fontWeight: 500, fontSize: 13.5, cursor: busy ? "default" : "pointer",
                 display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
               }}
             >

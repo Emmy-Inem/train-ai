@@ -140,10 +140,10 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
         <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14 }}>
           <div style={{ minWidth: 0, flex: 1 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-              <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 900, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.2, color: "#FFFFFF" }}>
+              <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 600, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.2, color: "#FFFFFF" }}>
                 {isCourseMode ? "Course Checkout" : "Buy AI Credits"}
               </h1>
-              <span style={{ background: "#2563EB", color: "#FFFFFF", padding: "2px 8px", borderRadius: 6, fontWeight: 800, fontSize: 11 }}>
+              <span style={{ background: "#2563EB", color: "#FFFFFF", padding: "2px 8px", borderRadius: 6, fontWeight: 600, fontSize: 11 }}>
                 Instant Access
               </span>
             </div>
@@ -164,8 +164,8 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
               flexShrink: 0
             }}
           >
-            <div style={{ fontSize: 20, fontWeight: 900, color: "#FFFFFF" }}>{formatAmount(amount, currency)}</div>
-            <div style={{ fontSize: 11, color: "rgba(255, 255, 255, 0.8)", fontWeight: 700 }}>Total Due ({currency})</div>
+            <div style={{ fontSize: 20, fontWeight: 600, color: "#FFFFFF" }}>{formatAmount(amount, currency)}</div>
+            <div style={{ fontSize: 11, color: "rgba(255, 255, 255, 0.8)", fontWeight: 500 }}>Total Due ({currency})</div>
           </div>
         </div>
       </div>
@@ -199,7 +199,7 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
 
       {!isCourseMode && activeTab === "request" && (
         <div className="tai-card" style={{ padding: 20, borderRadius: 14, background: "var(--surface)", border: "1px solid var(--border)" }}>
-          <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)", marginBottom: 6 }}>
+          <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)", marginBottom: 6 }}>
             Request AI Credits from Your Organization
           </div>
           <p style={{ fontSize: 12.5, color: "var(--text-2)", margin: "0 0 16px", lineHeight: 1.5 }}>
@@ -235,7 +235,7 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
 
           <button
             className="tai-btn tai-btn-primary"
-            style={{ padding: "10px 18px", fontSize: 13.5, fontWeight: 800, display: "inline-flex", alignItems: "center", gap: 8 }}
+            style={{ padding: "10px 18px", fontSize: 13.5, fontWeight: 600, display: "inline-flex", alignItems: "center", gap: 8 }}
             disabled={requestSubmitting}
             onClick={handleSubmitRequest}
           >
@@ -245,7 +245,7 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
 
           {(myRequestsQuery.data || []).length > 0 && (
             <div style={{ marginTop: 20, paddingTop: 16, borderTop: "1px solid var(--border)" }}>
-              <div style={{ fontSize: 12.5, fontWeight: 800, color: "var(--text-3)", textTransform: "uppercase", marginBottom: 10 }}>
+              <div style={{ fontSize: 12.5, fontWeight: 600, color: "var(--text-3)", textTransform: "uppercase", marginBottom: 10 }}>
                 Your Requests
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -279,7 +279,7 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
           {/* Currency Switcher Controls */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
             <div>
-              <div style={{ fontSize: 14, fontWeight: 800, color: "var(--text)" }}>Select Currency</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text)" }}>Select Currency</div>
               <div style={{ fontSize: 12, color: "var(--text-2)" }}>Choose your preferred payment denomination</div>
             </div>
             <div style={{ display: "flex", gap: 6, background: "var(--surface-3)", padding: 4, borderRadius: 10, border: "1px solid var(--border)" }}>
@@ -330,19 +330,19 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
                   onClick={() => setSelectedPackageId(p.id)}
                 >
                   {p.highlight && (
-                    <div style={{ position: "absolute", top: -11, right: 14, background: "#D97706", color: "#FFFFFF", fontSize: 10, fontWeight: 900, padding: "2px 8px", borderRadius: 99, letterSpacing: "0.04em" }}>
+                    <div style={{ position: "absolute", top: -11, right: 14, background: "#D97706", color: "#FFFFFF", fontSize: 10, fontWeight: 600, padding: "2px 8px", borderRadius: 99, letterSpacing: "0.04em" }}>
                       MOST POPULAR
                     </div>
                   )}
                   {p.badge && !p.highlight && (
-                    <div style={{ position: "absolute", top: -11, right: 14, background: "#059669", color: "#FFFFFF", fontSize: 10, fontWeight: 900, padding: "2px 8px", borderRadius: 99, letterSpacing: "0.04em" }}>
+                    <div style={{ position: "absolute", top: -11, right: 14, background: "#059669", color: "#FFFFFF", fontSize: 10, fontWeight: 600, padding: "2px 8px", borderRadius: 99, letterSpacing: "0.04em" }}>
                       {p.badge}
                     </div>
                   )}
 
                   <div>
                     <div className="tai-row tai-between" style={{ alignItems: "center", marginBottom: 6 }}>
-                      <span style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>{p.label}</span>
+                      <span style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>{p.label}</span>
                       <div
                         style={{
                           width: 20,
@@ -365,10 +365,10 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
                         <Plus size={16} color="var(--primary)" />
                       </div>
                       <div>
-                        <div style={{ fontSize: 18, fontWeight: 900, color: "var(--text)", lineHeight: 1.1 }}>
+                        <div style={{ fontSize: 18, fontWeight: 600, color: "var(--text)", lineHeight: 1.1 }}>
                           +{p.credits}
                         </div>
-                        <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase" }}>
+                        <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 500, textTransform: "uppercase" }}>
                           AI Credits
                         </div>
                       </div>
@@ -386,7 +386,7 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
                   </div>
 
                   <div style={{ borderTop: "1px solid var(--border)", paddingTop: 12, marginTop: "auto" }}>
-                    <div style={{ fontSize: 20, fontWeight: 900, color: "var(--text)" }}>
+                    <div style={{ fontSize: 20, fontWeight: 600, color: "var(--text)" }}>
                       {formatAmount(priceFor(p, currency), currency)}
                     </div>
                     <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600, marginTop: 2 }}>
@@ -405,7 +405,7 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
           ========================================================================= */}
       {(isCourseMode || activeTab === "buy") && (
       <div className="tai-card" style={{ padding: 20, borderRadius: 14, background: "var(--surface)", border: "1px solid var(--border)" }}>
-        <div style={{ fontWeight: 800, fontSize: 15, color: "var(--text)", marginBottom: 14 }}>
+        <div style={{ fontWeight: 600, fontSize: 15, color: "var(--text)", marginBottom: 14 }}>
           Payment &amp; Billing Details
         </div>
 
@@ -458,7 +458,7 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
               }}
               onClick={() => paystackAllowed && setProviderOverride("paystack")}
             >
-              <div style={{ fontWeight: 800, fontSize: 13.5, color: "var(--text)" }}>Paystack</div>
+              <div style={{ fontWeight: 600, fontSize: 13.5, color: "var(--text)" }}>Paystack</div>
               <div style={{ fontSize: 11, color: "var(--text-2)", marginTop: 2 }}>Card, Bank Transfer &amp; USSD (NGN, USD)</div>
             </div>
 
@@ -474,7 +474,7 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
               }}
               onClick={() => stripeAllowed && setProviderOverride("stripe")}
             >
-              <div style={{ fontWeight: 800, fontSize: 13.5, color: "var(--text)" }}>Stripe</div>
+              <div style={{ fontWeight: 600, fontSize: 13.5, color: "var(--text)" }}>Stripe</div>
               <div style={{ fontSize: 11, color: "var(--text-2)", marginTop: 2 }}>International Cards &amp; Apple Pay (USD, GBP, EUR)</div>
             </div>
           </div>
@@ -488,7 +488,7 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
 
         <button
           className="tai-btn tai-btn-primary"
-          style={{ width: "100%", padding: "12px", fontSize: 14, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}
+          style={{ width: "100%", padding: "12px", fontSize: 14, fontWeight: 600, display: "flex", alignItems: "center", justifyContent: "center", gap: 8 }}
           disabled={loading}
           onClick={handlePay}
         >

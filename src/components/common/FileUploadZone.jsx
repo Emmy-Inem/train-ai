@@ -133,7 +133,7 @@ function FileUploadZone({
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
             <CheckCircle2 size={22} color="var(--success)" />
             <div style={{ fontSize: 12.5, color: "var(--text-2)", fontWeight: 600 }}>{uploadedName}</div>
-            <div style={{ fontSize: 11.5, color: "var(--primary)", fontWeight: 700 }}>Click or drop to replace</div>
+            <div style={{ fontSize: 11.5, color: "var(--primary)", fontWeight: 500 }}>Click or drop to replace</div>
           </div>
         ) : (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>

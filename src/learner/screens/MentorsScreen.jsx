@@ -119,7 +119,7 @@ export function MentorsScreen({
       >
         <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 14 }}>
           <div style={{ minWidth: 0, flex: 1 }}>
-            <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 24px)", fontWeight: 900, letterSpacing: "-0.025em", margin: "0 0 4px", lineHeight: 1.2 }}>
+            <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 24px)", fontWeight: 600, letterSpacing: "-0.025em", margin: "0 0 4px", lineHeight: 1.2 }}>
               Industry Instructors &amp; Mentors
             </h1>
             <p className="tai-hero-desc" style={{ fontSize: 13, margin: 0, maxWidth: 620, lineHeight: 1.45 }}>
@@ -128,7 +128,7 @@ export function MentorsScreen({
           </div>
 
           <div className="tai-hero-subcard" style={{ textAlign: "right", flexShrink: 0, padding: "10px 16px", borderRadius: 10 }}>
-            <div style={{ fontSize: 18, fontWeight: 900, color: "var(--text)" }}>{filteredMentors.length} Active</div>
+            <div style={{ fontSize: 18, fontWeight: 600, color: "var(--text)" }}>{filteredMentors.length} Active</div>
             <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>Verified Instructors</div>
           </div>
         </div>
@@ -144,7 +144,7 @@ export function MentorsScreen({
         {selectedProfileMentor && (
           <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
             <div className="tai-row tai-between" style={{ alignItems: "center" }}>
-              <div style={{ fontWeight: 800, fontSize: 18, color: "var(--text)" }}>Instructor Profile</div>
+              <div style={{ fontWeight: 600, fontSize: 18, color: "var(--text)" }}>Instructor Profile</div>
               <button
                 className="tai-btn tai-btn-ghost tai-btn-sm"
                 onClick={() => setSelectedProfileMentor(null)}
@@ -174,7 +174,7 @@ export function MentorsScreen({
               />
               <div style={{ flex: 1, minWidth: 200 }}>
                 <div className="tai-row tai-gap6" style={{ alignItems: "center" }}>
-                  <h2 style={{ fontSize: 19, fontWeight: 800, color: "var(--text)", margin: 0 }}>
+                  <h2 style={{ fontSize: 19, fontWeight: 600, color: "var(--text)", margin: 0 }}>
                     {selectedProfileMentor.name}
                   </h2>
                   <CheckCircle2 size={18} color="var(--primary)" />
@@ -196,19 +196,19 @@ export function MentorsScreen({
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 130px), 1fr))", gap: 10 }}>
               <div style={{ background: "var(--surface-2)", borderRadius: 10, padding: "10px 14px", border: "1px solid var(--border)" }}>
                 <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>EXPERIENCE</div>
-                <div style={{ fontSize: 14, fontWeight: 800, color: "var(--text)", marginTop: 2 }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text)", marginTop: 2 }}>
                   {selectedProfileMentor.years != null ? `${selectedProfileMentor.years} years` : "Not provided"}
                 </div>
               </div>
               <div style={{ background: "var(--surface-2)", borderRadius: 10, padding: "10px 14px", border: "1px solid var(--border)" }}>
                 <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>SESSION FORMAT</div>
-                <div style={{ fontSize: 14, fontWeight: 800, color: "var(--text)", marginTop: 2 }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "var(--text)", marginTop: 2 }}>
                   1-on-1 Video Call
                 </div>
               </div>
               <div style={{ background: "var(--surface-2)", borderRadius: 10, padding: "10px 14px", border: "1px solid var(--border)" }}>
                 <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>STATUS</div>
-                <div style={{ fontSize: 14, fontWeight: 800, color: "#10B981", marginTop: 2 }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: "#10B981", marginTop: 2 }}>
                   Available
                 </div>
               </div>
@@ -239,7 +239,7 @@ export function MentorsScreen({
                         background: "rgba(37, 99, 235, 0.08)",
                         color: "var(--primary)",
                         border: "1px solid rgba(37, 99, 235, 0.2)",
-                        fontWeight: 700,
+                        fontWeight: 500,
                         borderRadius: 8,
                       }}
                     >
@@ -292,7 +292,7 @@ export function MentorsScreen({
         zIndex={9999}
       >
         <div className="tai-row tai-between" style={{ flexWrap: "wrap", gap: 10 }}>
-          <div style={{ fontWeight: 800, fontSize: 18, color: "var(--text)", minWidth: 0, flex: "1 1 200px" }}>Schedule Session</div>
+          <div style={{ fontWeight: 600, fontSize: 18, color: "var(--text)", minWidth: 0, flex: "1 1 200px" }}>Schedule Session</div>
           <button className="tai-btn tai-btn-ghost tai-btn-sm" style={{ flexShrink: 0 }} onClick={closeBooking}><X size={16} /></button>
         </div>
 
@@ -300,7 +300,7 @@ export function MentorsScreen({
           <div className="tai-row tai-gap14 tai-mt14" style={{ padding: "12px 14px", background: "var(--surface-2)", borderRadius: 8, border: "1px solid var(--border)" }}>
             <Avatar initials={sessionMentorChoice.name ? sessionMentorChoice.name.split(" ").map(n => n[0]).join("") : "I"} src={sessionMentorChoice.avatar} size={48} />
             <div style={{ minWidth: 0 }}>
-              <div style={{ fontWeight: 800, fontSize: 16, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{sessionMentorChoice.name}</div>
+              <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{sessionMentorChoice.name}</div>
               <div style={{ fontSize: 12.5, color: "var(--primary)", fontWeight: 700, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{sessionMentorChoice.title}</div>
             </div>
           </div>
@@ -409,7 +409,7 @@ export function MentorsScreen({
         {filteredMentors.length === 0 && (
           <div className="tai-card" style={{ gridColumn: "1 / -1", textAlign: "center", padding: "40px 20px", borderRadius: 12 }}>
             <Users size={32} color="var(--text-3)" style={{ margin: "0 auto 12px", opacity: 0.6 }} />
-            <div style={{ fontWeight: 800, fontSize: 16, color: "var(--text)" }}>
+            <div style={{ fontWeight: 600, fontSize: 16, color: "var(--text)" }}>
               {searchQuery ? "No instructors match your search" : "No active instructors found"}
             </div>
             <div style={{ fontSize: 13, color: "var(--text-3)", marginTop: 4, maxWidth: 420, margin: "4px auto 0" }}>
@@ -457,7 +457,7 @@ export function MentorsScreen({
                       <div className="tai-row tai-gap6" style={{ alignItems: "center" }}>
                         <span
                           style={{
-                            fontWeight: 800,
+                            fontWeight: 600,
                             fontSize: 15.5,
                             color: "var(--text)",
                             overflow: "hidden",
@@ -476,7 +476,7 @@ export function MentorsScreen({
                       </div>
                       <div style={{ fontSize: 12.5, color: "var(--text-3)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", marginTop: 2 }}>{m.title || "Instructor"}</div>
                       {m.rating > 0 && (
-                        <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 12, color: "var(--text-2)", fontWeight: 700, marginTop: 4 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 12, color: "var(--text-2)", fontWeight: 500, marginTop: 4 }}>
                           <Star size={12} color="#F59E0B" fill="#F59E0B" />
                           <span>{m.rating}</span>
                           {m.sessions > 0 && <span>• {m.sessions} sessions</span>}
@@ -488,7 +488,7 @@ export function MentorsScreen({
                   <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
                     <button
                       className="tai-btn tai-btn-ghost tai-btn-sm"
-                      style={{ padding: 4, borderRadius: 8, fontSize: 11, color: "var(--primary)", fontWeight: 700 }}
+                      style={{ padding: 4, borderRadius: 8, fontSize: 11, color: "var(--primary)", fontWeight: 500 }}
                       onClick={(e) => {
                         e.stopPropagation();
                         setSelectedProfileMentor(m);
