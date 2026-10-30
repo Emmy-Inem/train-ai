@@ -149,9 +149,9 @@ export function AdminDashboardScreen({ orgId, profileQuery, setScreen, orgSelect
         )}
 
         {/* Asymmetric 2-Column Dashboard Layout Architecture */}
-        <div className="ta-sidebar-layout">
+        <div className="ta-admin-panels">
           {/* Main Left Workspace Section */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 20, minWidth: 0 }}>
+
             {/* KPI Tracker Component */}
             <KPITrackerCard organizationId={orgId} showToast={showToast} />
 
@@ -280,10 +280,8 @@ export function AdminDashboardScreen({ orgId, profileQuery, setScreen, orgSelect
                 })}
               </div>
             </div>
-          </div>
 
-          {/* Right Side Monitoring Panel */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          {/* Monitoring cards share rows with the overview cards. */}
 
             {/* Cohort Diagnostic Insights Card - Connected to live learner risk data */}
             <div className="ta-card" style={{ padding: 20,
@@ -438,7 +436,6 @@ export function AdminDashboardScreen({ orgId, profileQuery, setScreen, orgSelect
                 ))}
               </div>
             </div>
-          </div>
         </div>
 
         <div className="ta-card">

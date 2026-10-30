@@ -240,13 +240,8 @@ export function HomeScreen({
       {/* =========================================================================
           BALANCED 2-COLUMN DASHBOARD GRID
           ========================================================================= */}
-      <div className="tai-dashboard-grid" style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}>
-        
-        {/* =========================================================================
-            LEFT COLUMN: Active Curriculum, Cohort Space & Saved Library
-            ========================================================================= */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 18, minWidth: 0, width: "100%", maxWidth: "100%", boxSizing: "border-box" }}>
-          
+      <div className="tai-dashboard-grid">
+        <section className={`tai-home-cohort${!cohort ? " tai-home-cohort-compact" : ""}`} aria-label="Your cohort">
           {/* Cohort Sprint & Milestone Card */}
           {cohortLoading ? (
             <SkeletonCard height={80} padding={16} />
@@ -346,10 +341,37 @@ export function HomeScreen({
               })()}
             </div>
           )}
+        </section>
+          {/* 1. Quick Hub Links: Learning Paths, Leaderboard, Instructors, AI Quiz */}
+          <div className="tai-card tai-home-shortcuts" style={{ padding: 16, borderRadius: 12, background: "var(--surface)", border: "1px solid var(--border)", width: "100%", boxSizing: "border-box" }}>
+            <div className="tai-row tai-between" style={{ marginBottom: 10, alignItems: "center" }}>
+              <div style={{ fontWeight: 800, fontSize: 13, color: "var(--text)" }}>Quick Access</div>
+              <span style={{ fontSize: 11, color: "var(--text-3)" }}>Learner shortcuts</span>
+            </div>
+            <div className="tai-home-shortcut-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 6, width: "100%", boxSizing: "border-box" }}>
+              <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => goTab("courses")}>
+                <BookOpen size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
+                <div style={{ fontWeight: 800, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Assigned Courses</div>
+              </div>
+              <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => push("aiQuiz")}>
+                <HelpCircle size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
+                <div style={{ fontWeight: 800, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>AI Quiz Generator</div>
+              </div>
+              <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => push("studyGroup")}>
+                <Users size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
+                <div style={{ fontWeight: 800, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Study Group</div>
+              </div>
+              <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => push("mentors")}>
+                <GraduationCap size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
+                <div style={{ fontWeight: 800, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Instructors</div>
+              </div>
+            </div>
+          </div>
+
           {/* =========================================================================
               LEFT CARD 2: Course Progress & Quick Milestone Switcher
               ========================================================================= */}
-          <div className="tai-card" style={{ padding: 18, borderRadius: 12, background: "var(--surface)", border: "1px solid var(--border)", width: "100%", boxSizing: "border-box" }}>
+          <div className="tai-card tai-home-progress" style={{ padding: 18, borderRadius: 12, background: "var(--surface)", border: "1px solid var(--border)", width: "100%", boxSizing: "border-box" }}>
             <div className="tai-row tai-between" style={{ marginBottom: 12, alignItems: "center" }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
                 <div className="tai-decoration-icon" style={{ width: 34, height: 34, borderRadius: 9, background: "rgba(37, 99, 235, 0.12)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
@@ -366,7 +388,7 @@ export function HomeScreen({
             </div>
 
             {/* 4-Metric Grid Snapshot */}
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 14 }}>
+            <div className="tai-home-metrics" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 14 }}>
               <div style={{ background: "var(--surface-3)", padding: "10px 12px", borderRadius: 8, border: "1px solid var(--border)" }}>
                 <div style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase" }}>Courses Completed</div>
                 <div style={{ fontSize: 17, fontWeight: 900, color: "var(--text)", marginTop: 2 }}>{completedCourses.length}</div>
@@ -406,10 +428,12 @@ export function HomeScreen({
             </div>
           </div>
 
+          {/* AI Coach Insights & Recommendations */}
+          <AIRecommendationsCard user={user} courses={courses} session={session} goTab={goTab} maxItems={1} showSeeAll />
           {/* =========================================================================
               LEFT CARD 3: Saved Bookmarks & Pinned Quick Links
               ========================================================================= */}
-          <div className="tai-card" style={{ padding: 18, borderRadius: 12, background: "var(--surface)", border: "1px solid var(--border)", width: "100%", boxSizing: "border-box" }}>
+          <div className="tai-card tai-home-bookmarks" style={{ padding: 18, borderRadius: 12, background: "var(--surface)", border: "1px solid var(--border)", width: "100%", boxSizing: "border-box" }}>
             <div className="tai-row tai-between" style={{ marginBottom: 12, alignItems: "center" }}>
               <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
                 <div className="tai-decoration-icon" style={{ width: 34, height: 34, borderRadius: 9, background: "rgba(37, 99, 235, 0.12)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
@@ -478,43 +502,6 @@ export function HomeScreen({
             </button>
           </div>
 
-        </div>
-
-        {/* =========================================================================
-            RIGHT COLUMN: Quick Shortcuts, Achievements, Analytics & AI Insights
-            ========================================================================= */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 18, minWidth: 0, width: "100%", maxWidth: "100%", boxSizing: "border-box" }}>
-          
-          {/* 1. Quick Hub Links: Learning Paths, Leaderboard, Instructors, AI Quiz */}
-          <div className="tai-card" style={{ padding: 16, borderRadius: 12, background: "var(--surface)", border: "1px solid var(--border)", width: "100%", boxSizing: "border-box" }}>
-            <div className="tai-row tai-between" style={{ marginBottom: 10, alignItems: "center" }}>
-              <div style={{ fontWeight: 800, fontSize: 13, color: "var(--text)" }}>Quick Access</div>
-              <span style={{ fontSize: 11, color: "var(--text-3)" }}>Learner shortcuts</span>
-            </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 6, width: "100%", boxSizing: "border-box" }}>
-              <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => goTab("courses")}>
-                <BookOpen size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
-                <div style={{ fontWeight: 800, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Assigned Courses</div>
-              </div>
-              <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => push("aiQuiz")}>
-                <HelpCircle size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
-                <div style={{ fontWeight: 800, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>AI Quiz Generator</div>
-              </div>
-              <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => push("studyGroup")}>
-                <Users size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
-                <div style={{ fontWeight: 800, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Study Group</div>
-              </div>
-              <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => push("mentors")}>
-                <GraduationCap size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
-                <div style={{ fontWeight: 800, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Instructors</div>
-              </div>
-            </div>
-          </div>
-
-          {/* AI Coach Insights & Recommendations */}
-          <AIRecommendationsCard user={user} courses={courses} session={session} goTab={goTab} maxItems={1} showSeeAll />
-
-        </div>
       </div>
     </div>
   );

@@ -701,7 +701,7 @@ export function CoursesScreen({
       {/* =========================================================================
           COURSE CARDS GRID (With Guaranteed Stock Photo Fallbacks & Zero Glitches)
           ========================================================================= */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 20 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 280px), 1fr))", gap: 20 }}>
         {filteredCatalog.length === 0 ? (
           <div className="tai-card" style={{ gridColumn: "1 / -1", textAlign: "center", padding: "clamp(32px, 5vw, 48px) 20px", borderRadius: 10 }}>
             <div className="tai-decoration-icon" style={{ width: 60, height: 60, borderRadius: 10, background: "var(--primary-tint)", display: "inline-flex", alignItems: "center", justifyContent: "center", marginBottom: 14 }}>
@@ -903,7 +903,7 @@ export function CoursesScreen({
           </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 18 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: 18 }}>
           {RECENT_RECORDINGS.map((rec) => (
             <div
               key={rec.id}

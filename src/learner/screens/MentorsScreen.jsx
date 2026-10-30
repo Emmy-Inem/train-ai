@@ -193,7 +193,7 @@ export function MentorsScreen({
             </div>
 
             {/* Quick Stats Grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 10 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 130px), 1fr))", gap: 10 }}>
               <div style={{ background: "var(--surface-2)", borderRadius: 10, padding: "10px 14px", border: "1px solid var(--border)" }}>
                 <div style={{ fontSize: 11, color: "var(--text-3)", fontWeight: 600 }}>EXPERIENCE</div>
                 <div style={{ fontSize: 14, fontWeight: 800, color: "var(--text)", marginTop: 2 }}>

@@ -369,7 +369,7 @@ export function WorkforceIntelligenceScreen({ orgId, orgSelector, currentUserId 
           {careerSteps.length === 0 && (
             <div style={{ fontSize: 12.5, color: "var(--text-3)", marginTop: 16 }}>This pathway has no courses yet.</div>
           )}
-          <div className="anim-stagger" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16, marginTop: 20 }}>
+          <div className="anim-stagger" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))", gap: 16, marginTop: 20 }}>
             {careerSteps.map((step, idx) => {
               const isActive = step.status === "in_progress";
               const tag = step.status === "completed" ? "Completed" : step.status === "in_progress" ? "In Progress" : step.status === "available" ? "Available" : "Locked";

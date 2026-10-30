@@ -104,6 +104,46 @@
   .ta .ta-card > .ta-empty, .tai .tai-card > .tai-empty { padding-block:16px; }
 }
 /* Full-page loading preserves the sidebar and the mounted page's form state. */
+/* Dashboard panels share rows rather than leaving a short, independent sidebar. */
+.tai .tai-dashboard-grid > * { min-width:0; margin-block:0; }
+.tai .tai-home-cohort { display:flex; }
+.tai .tai-home-cohort > * { width:100%; margin:0; }
+.tai .tai-dashboard-grid > .tai-card,
+.tai .tai-home-cohort > .tai-card { padding:20px !important; }
+.tai .tai-home-shortcuts { display:flex; flex-direction:column; }
+.tai .tai-home-shortcut-grid { flex:1; gap:8px !important; grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+.tai .tai-home-shortcut-grid > * { min-width:0; padding:12px !important; gap:4px; }
+.tai .tai-home-cohort-compact { grid-column:1 / -1; }
+.tai .tai-home-cohort-compact + .tai-home-shortcuts { grid-column:1 / -1; }
+.tai .tai-home-cohort-compact + .tai-home-shortcuts .tai-home-shortcut-grid { grid-template-columns:repeat(4,minmax(0,1fr)) !important; }
+.tai .tai-home-progress { grid-row:span 2; display:flex; flex-direction:column; }
+.tai .tai-home-metrics { flex:1; }
+.tai .tai-home-metrics > * { display:flex; flex-direction:column; justify-content:center; min-width:0; }
+.tai .tai-home-recommendations { display:flex; flex-direction:column; gap:12px; }
+.tai .tai-recommendation-heading { align-items:flex-start; flex-wrap:wrap; gap:8px 12px; }
+.tai .tai-recommendation-heading > :first-child { flex:1 1 180px; }
+.tai .tai-recommendation-body { min-width:0; }
+.tai .tai-recommendation-body .tai-empty { padding:12px 0; }
+.ta .ta-admin-panels { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--workspace-card-gap,16px); align-items:stretch; }
+.ta .ta-admin-panels > * { min-width:0; margin-block:0; }
+.ta .ta-admin-panels > :first-child { grid-column:1 / -1; }
+.ta .ta-admin-panels > :last-child:nth-child(even) { grid-column:1 / -1; }
+/* Gaps belong to card collections, not both the collection and each card. */
+.ta :is(.ta-grid,.ta-card-grid) > .ta-card,
+.tai :is(.tai-grid2,.tai-grid3,.tai-grid4) > .tai-card { margin-block:0; }
+.ta .ta-content > .ta-grid,
+.tai .tai-grid2,.tai .tai-grid3,.tai .tai-grid4 { gap:var(--workspace-card-gap,16px); align-content:start; }
+@media (max-width:899px) {
+  .ta .ta-admin-panels { grid-template-columns:minmax(0,1fr); }
+  .tai .tai-dashboard-grid > .tai-card,
+  .tai .tai-home-cohort > .tai-card { padding:16px !important; }
+  .tai .tai-home-shortcut-grid { grid-template-columns:repeat(4,minmax(0,1fr)) !important; }
+  .tai .tai-home-progress { grid-row:auto; }
+}
+@media (max-width:480px) {
+  .tai .tai-home-shortcut-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+  .tai .tai-home-cohort-compact + .tai-home-shortcuts .tai-home-shortcut-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+}
 .tai-screen-loading-boundary, .ta-screen-content { min-width:0; width:100%; }
 .tai-screen-loading-boundary > .ta-screen-content[hidden] { display:none !important; }
 .tai-page-skeleton { display:flex; flex-direction:column; gap:16px; width:100%; min-width:0; box-sizing:border-box; }

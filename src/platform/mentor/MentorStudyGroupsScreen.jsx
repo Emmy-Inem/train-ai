@@ -118,7 +118,7 @@ export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
         </div>
 
         {/* Two-Column Grid: Groups Roster + Selected Group Studio */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 20, alignItems: "flex-start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: 20, alignItems: "flex-start" }}>
           
           {/* Left Column: Groups List & Create Box */}
           <div className="ta-col ta-gap14">

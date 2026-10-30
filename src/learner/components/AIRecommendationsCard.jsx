@@ -92,8 +92,8 @@ export function AIRecommendationsCard({ user, courses = [], session, goTab, maxI
   const reminders = maxItems ? [] : (result?.reminders || []);
 
   return (
-    <>
-      <div className="tai-row tai-between tai-mt20">
+    <section className="tai-card tai-home-recommendations" aria-label="AI recommendations">
+      <div className="tai-row tai-between tai-recommendation-heading">
         <div className="tai-row tai-gap8" style={{ alignItems: "center" }}>
           <Brain size={16} color="var(--primary)" />
           <div className="tai-title-sm">AI Recommended for you</div>
@@ -105,7 +105,7 @@ export function AIRecommendationsCard({ user, courses = [], session, goTab, maxI
         )}
       </div>
 
-      <div className="tai-card tai-mt10" style={{ borderRadius: 10, padding: 14 }}>
+      <div className="tai-recommendation-body">
         {recQuery.loading && (
           <div className="tai-empty">Generating personalized recommendations with AI...</div>
         )}
@@ -170,6 +170,6 @@ export function AIRecommendationsCard({ user, courses = [], session, goTab, maxI
           </div>
         )}
       </div>
-    </>
+    </section>
   );
 }

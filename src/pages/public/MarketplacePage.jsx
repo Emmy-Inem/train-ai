@@ -275,7 +275,7 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
             ) : courses.length === 0 ? (
               <div style={{ textAlign: "center", padding: 60, color: "#94A3B8" }}>No courses found matching your criteria.</div>
             ) : (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: 24 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 320px), 1fr))", gap: 24 }}>
                 {courses.map((course) => {
                   const split = calculateMarketplaceSplit(course.price_amount, course.platform_commission_percent);
                   return (
@@ -375,7 +375,7 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
               </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 24 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: 24 }}>
               {plans.map((p) => (
                 <div
                   key={p.id}

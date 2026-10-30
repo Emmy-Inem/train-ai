@@ -173,7 +173,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
         {/* =========================================================================
             TOP 4 EXECUTIVE METRIC CARDS
             ========================================================================= */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))", gap: 16 }}>
           
           {/* Card 1 */}
           <div className="ta-card" style={{ padding: "20px 22px", borderRadius: 10, background: "var(--surface)", border: "1px solid var(--border)" }}>
@@ -372,7 +372,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
         {/* =========================================================================
             TENANT ORGANIZATIONS TABLE & AUDIT STREAM
             ========================================================================= */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))", gap: 24 }}>
           
           {/* Tenant Table */}
           <div className="ta-card" style={{ padding: 24, borderRadius: 10 }}>
@@ -576,7 +576,7 @@ export function OverviewScreen({ orgSelector, onNavigate }) {
         {/* =========================================================================
             LIVE DATABASE HEALTH, CHURN & CAMPAIGN ATTRIBUTION
             ========================================================================= */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: 16 }}>
 
           <div className="ta-card" style={{ padding: "20px 22px", background: "var(--surface)", border: "1px solid var(--border)" }}>
             <div className="ta-row ta-gap8" style={{ paddingBottom: 12, borderBottom: "1px solid var(--border)" }}>

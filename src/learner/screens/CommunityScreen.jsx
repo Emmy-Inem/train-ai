@@ -1656,7 +1656,7 @@ export function CommunityScreen({
             {studyGroupsQuery.loading && <div role="status" style={{ padding: 16 }}><LoadingSkeleton label="Loading study groups..." rows={3} /></div>}
             {!studyGroupsQuery.loading && !studyGroupsQuery.error && filteredGroups.length === 0 && <div style={{ padding: 16, color: "var(--text-3)" }}>No study groups are available yet. Check back or ask your instructor about your groups.</div>}
             {/* Groups Grid */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 12 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: 12 }}>
               {filteredGroups.slice(0, 2).map((g) => {
                 const isMember = myGroupIds.has(g.id);
                 const memberCount = g.member_count || g.study_group_members?.[0]?.count || (isMember ? 1 : 0);
@@ -1787,7 +1787,7 @@ export function CommunityScreen({
                 </div>
 
                 {/* Cohort Stats Ribbon */}
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 8, marginTop: 4 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 130px), 1fr))", gap: 8, marginTop: 4 }}>
                   <div style={{ padding: "8px 12px", borderRadius: 10, background: "var(--surface-3)", border: "1px solid var(--border)", display: "flex", flexDirection: "column", gap: 2 }}>
                     <span style={{ fontSize: 10.5, color: "var(--text-3)", fontWeight: 700, textTransform: "uppercase" }}>Live Sessions</span>
                     <span style={{ fontSize: 14, fontWeight: 800, color: "var(--text)" }}>{cohortSessions.length} Scheduled</span>
@@ -1890,7 +1890,7 @@ export function CommunityScreen({
               </div>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 12 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))", gap: 12 }}>
               {mentorsList.slice(0, 2).map((m) => (
                 <div
                   key={m.id}

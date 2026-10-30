@@ -501,7 +501,7 @@ export function MentorScheduleScreen({ mentorId, orgSelector }) {
         )}
 
         {tab === "availability" && (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 20 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: 20 }}>
             
             {/* Add Availability Slot Card */}
             <div className="ta-card" style={{ padding: "22px 24px", background: "var(--surface)", border: "1px solid var(--border)" }}>

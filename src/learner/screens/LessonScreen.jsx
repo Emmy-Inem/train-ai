@@ -855,7 +855,7 @@ export function LessonScreen({
                 <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 1 }}>Download files, template repos, and cheatsheets</div>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 10 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))", gap: 10 }}>
                 {lessonResources.length === 0 && <div className="tai-empty">No resources have been uploaded for this lesson.</div>}
                 {lessonResources.map((res) => {
                   const Icon = FileText;

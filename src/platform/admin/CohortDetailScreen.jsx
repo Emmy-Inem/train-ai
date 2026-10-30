@@ -143,7 +143,7 @@ function CohortCourseAssignmentSection({
         </span>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 12, marginBottom: 12 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: 12, marginBottom: 12 }}>
         <div>
           <div className="ta-label" style={{ marginBottom: 6 }}>1. Select Course</div>
           <select

@@ -945,7 +945,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                     Upload and assign a certificate to a specific learner enrolled in this course - independent of the assessment flow. Customize their printed name and theme.
                   </div>
 
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 16, marginTop: 14, alignItems: "start" }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", gap: 16, marginTop: 14, alignItems: "start" }}>
                     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                       <div>
                         <div className="ta-label">Enrolled Learner</div>
@@ -1172,7 +1172,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                 </div>
               </div>
             )}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: 20 }}>
               {coursesQuery.loading && <div className="ta-empty"><LoadingSkeleton label="Loading courses..." rows={3} /></div>}
               {!coursesQuery.loading && courses.length === 0 && <div className="ta-empty">No courses created yet.</div>}
               {courses.map((c, idx) => {

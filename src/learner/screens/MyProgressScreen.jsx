@@ -134,7 +134,7 @@ export function MyProgressScreen({ user = {}, courses = [], push, back, session,
       {/* =========================================================================
           KEY STAT TILES STRIP
           ========================================================================= */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 14 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 200px), 1fr))", gap: 14 }}>
         <div className="tai-card" style={{ padding: 18, borderRadius: 10 }}>
           <div className="tai-row tai-gap10">
             <div className="tai-decoration-icon" style={{ width: 40, height: 40, borderRadius: 8, background: "var(--primary-tint)", display: "flex", alignItems: "center", justifyContent: "center" }}>

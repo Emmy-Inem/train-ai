@@ -124,7 +124,7 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
           </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 16 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 220px), 1fr))", gap: 16 }}>
           
           <div className="ta-card" style={{ padding: "20px 22px", background: "var(--surface)", border: "1px solid var(--border)" }}>
             <div className="ta-row ta-between">
@@ -255,7 +255,7 @@ export function AdministrativeScreen({ mentorId, mentorProfileQuery, currentUser
         )}
 
         {tab === "payouts" && (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 20 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: 20 }}>
             
             <div className="ta-card" style={{ padding: "22px 24px", background: "var(--surface)", border: "1px solid var(--border)" }}>
               <div className="ta-title" style={{ fontSize: 16, fontWeight: 800 }}>Request a Payout Withdrawal</div>

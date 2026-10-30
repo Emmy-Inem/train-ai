@@ -202,7 +202,7 @@ export function AdminAnalyticsScreen({ orgId, orgSelector, setScreen, isPlatform
 
         <div className="ta-card">
           <div className="ta-label">General Overview</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12, marginTop: 14 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 160px), 1fr))", gap: 12, marginTop: 14 }}>
             <div style={{ background: "var(--surface-2)", padding: "12px 14px", borderRadius: 8 }}>
               <div style={{ fontSize: 22, fontWeight: 900, color: "var(--text)" }}>{generalOverviewQuery.data?.studyGroupCount ?? 0}</div>
               <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2 }}>Study groups</div>
@@ -223,7 +223,7 @@ export function AdminAnalyticsScreen({ orgId, orgSelector, setScreen, isPlatform
             <div className="ta-label">AI Coach Utilization</div>
             <Tag tone="primary"><Bot size={12} /> AI Coach calls</Tag>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 160px), 1fr))", gap: 12 }}>
             <div style={{ background: "var(--surface-2)", padding: "12px 14px", borderRadius: 8 }}>
               <div style={{ fontSize: 20, fontWeight: 900, color: "var(--text)" }}>{aiUsageQuery.loading ? "..." : (aiUsage?.total ?? 0).toLocaleString()}</div>
               <div style={{ fontSize: 11.5, color: "var(--text-3)", marginTop: 2 }}>All time</div>

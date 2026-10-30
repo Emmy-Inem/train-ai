@@ -548,7 +548,7 @@ export const TOKENS = `
   .tai-grid3 { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:16px; width:100%; box-sizing:border-box; }
   .tai-grid4 { display:grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap:16px; width:100%; box-sizing:border-box; }
   .tai-link { color: var(--primary); font-weight:700; font-size:13px; cursor:pointer; display:flex; align-items:center; gap:3px; }
-  .tai-dashboard-grid { display: grid; grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr); gap: 20px; align-items: start; width: 100%; max-width: 100%; box-sizing: border-box; }
+  .tai-dashboard-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--workspace-card-gap, 16px); align-items: stretch; width: 100%; max-width: 100%; box-sizing: border-box; }
 
   /* Learner Hero & Career Roadmap responsive classes */
   .tai-hero-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; }

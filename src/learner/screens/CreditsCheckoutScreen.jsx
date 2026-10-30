@@ -445,7 +445,7 @@ export function CreditsCheckoutScreen({ session, params, back, showToast, orgId 
           <label style={{ display: "block", fontSize: 12.5, fontWeight: 700, color: "var(--text)", marginBottom: 8 }}>
             Choose payment gateway
           </label>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 10 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 180px), 1fr))", gap: 10 }}>
             <div
               className={`tai-card-hover`}
               style={{

@@ -442,7 +442,7 @@ export function ProfileScreen({
         <div className="tai-col tai-gap16 anim-stagger">
           <div className="tai-card" style={{ borderRadius: 12, padding: "clamp(16px, 3vw, 24px)" }}>
             <h2 className="tai-title-sm" style={{ margin: "0 0 14px" }}>Learner Information & Identity</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 240px), 1fr))", gap: 16 }}>
               <div style={{ background: "var(--surface-2)", padding: 14, borderRadius: 8 }}>
                 <label className="tai-label">Full Name</label>
                 <div style={{ fontSize: 14, fontWeight: 700, marginTop: 4, color: "var(--text)" }}>{user.name || session?.user?.user_metadata?.full_name || user.email?.split("@")[0] || "Learner"}</div>
@@ -968,7 +968,7 @@ export function ProfileScreen({
                   </button>
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 12, marginTop: 18 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 140px), 1fr))", gap: 12, marginTop: 18 }}>
                   <div className="tai-card" style={{ textAlign: "center", padding: "14px 10px", background: "var(--surface-2)", borderRadius: 8 }}>
                     <Users size={18} color="var(--primary)" style={{ marginBottom: 6 }} />
                     <div style={{ fontSize: 20, fontWeight: 800, color: "var(--text)" }}>{referralStats?.signups ?? 0}</div>

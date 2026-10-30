@@ -199,7 +199,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
       {/* =========================================================================
           KEY STATS TILES STRIP
           ========================================================================= */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 12 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 130px), 1fr))", gap: 12 }}>
         <div className="tai-card" style={{ padding: 18, borderRadius: 10 }}>
           <div className="tai-row tai-gap10">
             <div className="tai-decoration-icon" style={{ width: 38, height: 38, borderRadius: 8, background: "var(--primary-tint)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -561,7 +561,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
                 <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Complete lessons and daily study streaks to unlock badges.</div>
               </div>
             ) : (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: 16 }}>
                 {effectiveAchievements.map((a) => {
                   const def = ACHIEVEMENT_CATALOG.find((d) => d.id === (a.achievement_slug || a.achievement_id));
                   const Icon = iconForCategory(def?.category);
@@ -595,7 +595,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
               </h3>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: 16 }}>
               {locked.map((def) => {
                 const Icon = iconForCategory(def.category);
                 const { current, threshold, percent: p } = getAchievementProgress(def, user);

@@ -431,7 +431,7 @@ export function PlatformUserReferralTracker({
       </div>
 
       {/* KPI Summary Strip */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12, marginTop: 16 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 180px), 1fr))", gap: 12, marginTop: 16 }}>
         <div style={{ padding: "12px 14px", borderRadius: 10, background: "var(--surface-2)", border: "1px solid var(--border)" }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: "var(--text-3)", textTransform: "uppercase" }}>Matched Users</div>
           <div style={{ fontSize: 22, fontWeight: 900, color: "var(--text)", marginTop: 4 }}>{filteredUsers.length}</div>

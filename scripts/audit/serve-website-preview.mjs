@@ -3,7 +3,7 @@ import path from 'node:path';
 import http from 'node:http';
 import { build } from 'esbuild';
 fs.mkdirSync('scripts/audit/.generated',{recursive:true});
-await build({entryPoints:['scripts/audit/website-preview.jsx'],bundle:true,format:'esm',outdir:'scripts/audit/.generated/website',loader:{'.png':'file','.jpg':'file','.svg':'file'},logLevel:'error',define:{'import.meta.env':'{}'},plugins:[{name:'isolated-services',setup(b){
+await build({entryPoints:['scripts/audit/website-preview.jsx'],bundle:true,external:['/fonts/*'],format:'esm',outdir:'scripts/audit/.generated/website',loader:{'.png':'file','.jpg':'file','.svg':'file'},logLevel:'error',define:{'import.meta.env':'{}'},plugins:[{name:'isolated-services',setup(b){
  b.onLoad({filter:/[\\/]useSupabaseQuery\.js$/},async args=>({contents:(await fs.promises.readFile(args.path,'utf8')).replace('Promise.resolve().then(fetcher)','Promise.resolve().then(async () => { globalThis.__auditQueries?.push(fetcher.toString()); const slow = (globalThis.__auditSlowQueries || []).some(name => fetcher.toString().includes(name)); const delay = slow ? globalThis.__auditSlowDelay : globalThis.__auditQueryDelay; if (delay) await new Promise(resolve => setTimeout(resolve, delay)); return fetcher(); })'),loader:'js'}));
  b.onLoad({filter:/[\\/]api[\\/](platform|learner|schemaHelper)\.js$/},async args=>({contents:(await fs.promises.readFile(args.path,'utf8')).replace(/export async function (fetch\w+)\(([^)]*)\) \{/g, '$& globalThis.__auditApiCalls?.push("$1");'),loader:'js'}));
  b.onLoad({filter:/[\\/]authService\.js$/},async args=>({contents:(await fs.promises.readFile(args.path,'utf8')).replace('export async function fetchMyRoles() {','export async function fetchMyRoles() { if (globalThis.__auditRoleError) throw globalThis.__auditRoleError;'),loader:'js'}));
@@ -15,7 +15,7 @@ await build({entryPoints:['scripts/audit/website-preview.jsx'],bundle:true,forma
 }}]});
 if (process.argv.includes('--build-only')) process.exit(0);
 const html='<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Train AI local website audit</title><link rel="stylesheet" href="/website-preview.css"></head><body><div id="root"></div><script type="module" src="/website-preview.js"></script></body></html>';
-const mime={'.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.json':'application/json','.ico':'image/x-icon'};
+const mime={'.woff2':'font/woff2','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.json':'application/json','.ico':'image/x-icon'};
 http.createServer((req,res)=>{
  const url=new URL(req.url,'http://127.0.0.1:5188');
  if(url.pathname==='/audit-mobile'){res.setHeader('Content-Type','text/html; charset=utf-8');res.end('<!doctype html><html><head><title>390px responsive audit</title></head><body style="margin:0"><iframe title="390px mobile website" src="/" style="width:390px;height:844px;border:0"></iframe></body></html>');return;}

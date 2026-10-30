@@ -181,7 +181,7 @@ export function KPITrackerCard({ organizationId, showToast }) {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 140px), 1fr))",
           gap: 12,
           marginBottom: 16,
           padding: "12px 16px",
