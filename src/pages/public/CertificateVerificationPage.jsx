@@ -38,7 +38,7 @@ export default function CertificateVerificationPage({ certCode, onGoHome }) {
         minHeight: "100vh",
         background: "#0B0F19",
         color: "#F1F5F9",
-        fontFamily: "var(--font-sans, 'Plus Jakarta Sans', sans-serif)",
+        fontFamily: "var(--font-sans, 'Inter', sans-serif)",
         padding: "40px 20px",
         display: "flex",
         flexDirection: "column",

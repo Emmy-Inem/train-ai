@@ -228,10 +228,8 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
     <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
 
-    <!-- Typography Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Preload the shared, self-hosted interface font. -->
+    <link rel="preload" href="/fonts/inter/InterVariable-4.1.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- JSON-LD Structured Data Schema -->
     <script type="application/ld+json">
@@ -275,7 +273,7 @@
   </head>
   <body>
     <div id="root">
-      <div id="tai-initial-loader" style="min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #F8FAFC; color: #64748B; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; padding: 20px; box-sizing: border-box; transition: background 0.2s ease;">
+      <div id="tai-initial-loader" style="min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #F8FAFC; color: #64748B; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; padding: 20px; box-sizing: border-box; transition: background 0.2s ease;">
         <img src="/train-ai-logo.png" alt="Train AI" style="height: 44px; width: auto; object-fit: contain; margin-bottom: 24px;" />
         <div style="width: 140px; height: 4px; border-radius: 99px; background: #E2E8F0; overflow: hidden; position: relative; margin-bottom: 16px;">
           <div style="position: absolute; top: 0; left: 0; width: 60%; height: 100%; background: #2563EB; border-radius: 99px;"></div>

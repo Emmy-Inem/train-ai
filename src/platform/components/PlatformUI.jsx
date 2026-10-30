@@ -75,7 +75,7 @@ export const TOKENS = `
     --shadow-card: 0 1px 3px 0 rgba(15, 23, 42, 0.04), 0 4px 14px -2px rgba(15, 23, 42, 0.03);
     --shadow-hover: 0 8px 24px -4px rgba(37, 99, 235, 0.12), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
     --shadow-btn: 0 4px 14px -2px rgba(37, 99, 235, 0.32);
-    --font: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-family: var(--font);
     color: var(--text);
     background: var(--bg);

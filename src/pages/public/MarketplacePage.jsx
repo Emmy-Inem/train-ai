@@ -76,7 +76,7 @@ export default function MarketplacePage({ onGoHome, onBookDemo, onSignIn }) {
         minHeight: "100vh",
         background: "#0B0F19",
         color: "#F1F5F9",
-        fontFamily: "var(--font-sans, 'Plus Jakarta Sans', sans-serif)",
+        fontFamily: "var(--font-sans, 'Inter', sans-serif)",
       }}
     >
       <SeoHead title="AI & Technology Course Marketplace | Train AI" description={MARKETPLACE_DESCRIPTION} path="/marketplace" schema={MARKETPLACE_SCHEMA} />

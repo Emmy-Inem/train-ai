@@ -115,7 +115,7 @@ const styles = {
     background: "#F8FAFC",
     position: "relative",
     overflow: "hidden",
-    fontFamily: "'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
     padding: 24,
   },
   content: {

@@ -121,7 +121,7 @@ export default function OnboardingScreen({ onComplete }) {
 const styles = {
   outer: {
     position: "relative", overflow: "hidden", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
-    background: "#F4F6FC", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", padding: 20,
+    background: "#F4F6FC", fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", padding: 20,
   },
   glow: {
     position: "absolute", top: -160, left: "50%", transform: "translateX(-50%)", width: 520, height: 340, borderRadius: "50%",

@@ -116,7 +116,7 @@ export default function OnboardingPage({ onComplete }) {
 const styles = {
   outer: {
     minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
-    background: "#F8FAFC", fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", padding: 16,
+    background: "#F8FAFC", fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif", padding: 16,
   },
   card: {
     width: "100%", maxWidth: 420, background: "#FFFFFF", borderRadius: 10, padding: 24,

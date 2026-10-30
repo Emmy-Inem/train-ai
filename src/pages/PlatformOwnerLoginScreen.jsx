@@ -122,7 +122,7 @@ export function PlatformOwnerLoginScreen({ onAuthenticated }) {
   }
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#0F172A", fontFamily: "var(--font-sans, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif)" }}>
+    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#0F172A", fontFamily: "var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif)" }}>
       <style>{`
         @keyframes ownerFadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
         .owner-card { animation: ownerFadeUp .3s ease; }

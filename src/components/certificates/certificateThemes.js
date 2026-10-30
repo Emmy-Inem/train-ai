@@ -21,7 +21,7 @@ export const CERTIFICATE_THEMES = {
     sealType: "neon_hologram",
     signatureFont: "'Caveat', 'Dancing Script', cursive, sans-serif",
     borderPattern: "circuit",
-    fontFamily: "'Plus Jakarta Sans', -apple-system, sans-serif",
+    fontFamily: "'Inter', -apple-system, sans-serif",
     tagline: "VERIFIED AI & TECHNOLOGY MASTERY"
   },
   classic_academic: {
@@ -53,7 +53,7 @@ export const CERTIFICATE_THEMES = {
     sealType: "emerald_shield",
     signatureFont: "'Sacramento', 'Dancing Script', cursive",
     borderPattern: "geometric",
-    fontFamily: "'Plus Jakarta Sans', Inter, sans-serif",
+    fontFamily: "'Inter', sans-serif",
     tagline: "PROFESSIONAL CREDENTIAL OF EXCELLENCE"
   },
   future_innovator: {
@@ -69,7 +69,7 @@ export const CERTIFICATE_THEMES = {
     sealType: "aurora_laurel",
     signatureFont: "'Satisfy', 'Caveat', cursive",
     borderPattern: "modern_aurora",
-    fontFamily: "'Plus Jakarta Sans', sans-serif",
+    fontFamily: "'Inter', sans-serif",
     tagline: "INNOVATION & SKILL ATTAINMENT CITATION"
   }
 };

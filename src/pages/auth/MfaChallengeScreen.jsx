@@ -139,7 +139,7 @@ export default function MfaChallengeScreen({ onVerified, onSignOut }) {
 const styles = {
   outer: {
     position: "relative", overflow: "hidden", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
-    background: "#F4F6FC", fontFamily: "var(--font-sans, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif)", padding: 20,
+    background: "#F4F6FC", fontFamily: "var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif)", padding: 20,
   },
   glowTop: { display: "none" },
   glowBottom: { display: "none" },

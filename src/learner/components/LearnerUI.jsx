@@ -81,7 +81,7 @@ export const TOKENS = `
     --glass-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
     --glass-blur-sm: none;
     --glass-blur-md: none;
-    --font: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-family: var(--font);
     color: var(--text);
     transition: background .25s ease, color .25s ease;

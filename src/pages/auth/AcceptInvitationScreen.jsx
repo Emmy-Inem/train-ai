@@ -321,7 +321,7 @@ export default function AcceptInvitationScreen({ token, session, onAccepted, onN
 const styles = {
   outer: {
     position: "relative", overflow: "hidden", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
-    background: "#F8FAFC", fontFamily: "var(--font-sans, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif)", padding: 20,
+    background: "#F8FAFC", fontFamily: "var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif)", padding: 20,
   },
   glowTop: { display: "none" },
   glowBottom: { display: "none" },

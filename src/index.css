@@ -1,5 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 @import './workspace.css';
+
+/* Inter 4.1, self-hosted under the SIL Open Font License (public/fonts/inter/LICENSE.txt). */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter/InterVariable-4.1.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter/InterVariable-Italic-4.1.woff2') format('woff2');
+}
+
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -8,7 +24,7 @@
 }
 
 :root {
-  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
   
   /* Brand Palette (Deep Midnight Navy & Royal Electric Blue/Blurple) */

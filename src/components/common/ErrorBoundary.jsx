@@ -114,7 +114,7 @@ export default class ErrorBoundary extends React.Component {
             alignItems: "center",
             justifyContent: "center",
             padding: "clamp(20px, 4vw, 40px) 20px",
-            fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
             boxSizing: "border-box"
           }}
         >

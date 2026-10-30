@@ -2197,7 +2197,7 @@ export default function AuthPage({
 const styles = {
   outer: {
     minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
-    background: "#F8FAFC", fontFamily: "var(--font-sans, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif)", padding: 20,
+    background: "#F8FAFC", fontFamily: "var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif)", padding: 20,
   },
   card: {
     width: "100%", maxWidth: 400, background: "#FFFFFF", borderRadius: 10, padding: "32px 28px",
