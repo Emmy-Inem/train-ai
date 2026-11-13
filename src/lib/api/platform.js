@@ -1806,16 +1806,18 @@ export async function fetchLearningPathsAdmin(orgId) {
   ];
 
   if (!supabase) return DEMO_PATHS;
-  if (!orgId || orgId === "demo-org-id") return [];
-  const resolvedOrgId = await resolveOrganizationId(orgId);
+  if (orgId === "demo-org-id") return [];
+  const resolvedOrgId = orgId ? await resolveOrganizationId(orgId) : null;
   try {
     let query = supabase
       .from("learning_paths")
       .select("*, learning_path_courses(*, courses(id, title))")
       .order("title", { ascending: true });
 
-    if (orgId && orgId !== "demo-org-id") {
+    if (resolvedOrgId) {
       query = query.or(`organization_id.eq.${resolvedOrgId},organization_id.is.null`);
+    } else {
+      query = query.is("organization_id", null);
     }
 
     const { data, error } = await query;
@@ -1828,6 +1830,7 @@ export async function fetchLearningPathsAdmin(orgId) {
       description: p.description,
       level: p.level_label || "beginner",
       category: p.category || null,
+      organizationId: p.organization_id || null,
       isPublished: !!p.is_published,
       courseIds: (p.learning_path_courses || [])
         .sort((a, b) => a.order_index - b.order_index)
@@ -1843,70 +1846,36 @@ export async function fetchLearningPathsAdmin(orgId) {
 }
 
 export async function createLearningPath({ title, description, level, category, courseIds, isPublished = true }, organizationId, createdBy) {
-  if (!supabase) return null;
-  const { data: path, error } = await supabase
-    .from("learning_paths")
-    .insert({
-      title,
-      description,
-      level_label: level,
-      // `category` is a real learning_paths column that create/update never
-      // wrote, so a category set in the UI silently vanished on save - and
-      // the learner-facing path catalog groups on exactly that column.
-      category: category || null,
-      organization_id: organizationId,
-      created_by: createdBy,
-      is_published: !!isPublished,
-    })
-    .select()
-    .single();
+  if (!supabase) throw new Error("Connect the organization database before saving a learning path.");
+  void createdBy; // The database records the authenticated caller as the author.
+  const { data: pathId, error } = await supabase.rpc("save_learning_path", {
+    p_path_id: null,
+    p_organization_id: organizationId || null,
+    p_title: title,
+    p_description: description || null,
+    p_level: level || "beginner",
+    p_category: category || null,
+    p_course_ids: courseIds || [],
+    p_is_published: !!isPublished,
+  });
   if (error) throw error;
-  if (courseIds?.length) {
-    // unlock_rule/is_required are written explicitly so a path created here
-    // behaves as a guided sequential journey straight away. They were left
-    // null before, which the learner-side unlock logic reads as "no rule"
-    // and therefore unlocks every step at once.
-    const rows = courseIds.map((cid, i) => ({ path_id: path.id, course_id: cid, order_index: i, unlock_rule: "complete_previous", is_required: true }));
-    const { error: pcErr } = await supabase.from("learning_path_courses").insert(rows);
-    if (pcErr) throw pcErr;
-  }
-  return path;
+  return fetchLearningPathById(pathId);
 }
 
-export async function updateLearningPath(id, { title, description, level, category, courseIds }) {
-  if (!supabase) return;
-  const patch = { title, description, level_label: level };
-  if (category !== undefined) patch.category = category || null;
-  const { error } = await supabase
-    .from("learning_paths")
-    .update(patch)
-    .eq("id", id);
+export async function updateLearningPath(id, { title, description, level, category, courseIds, isPublished }, organizationId) {
+  if (!supabase) throw new Error("Connect the organization database before saving a learning path.");
+  const { data: pathId, error } = await supabase.rpc("save_learning_path", {
+    p_path_id: id,
+    p_organization_id: organizationId ?? null,
+    p_title: title,
+    p_description: description || null,
+    p_level: level || "beginner",
+    p_category: category || null,
+    p_course_ids: courseIds || [],
+    p_is_published: !!isPublished,
+  });
   if (error) throw error;
-  // Same replace-all-rows strategy as lessons: this path *does* always
-  // submit the complete, reordered course list. Per-step edits that must
-  // preserve unlock_rule/is_required go through updatePathCourse instead.
-  const { data: existingRows } = await supabase
-    .from("learning_path_courses")
-    .select("course_id, unlock_rule, is_required, prerequisite_course_ids")
-    .eq("path_id", id);
-  // Carry each step's existing rule forward across the replace, so
-  // reordering or renaming a path no longer quietly resets every unlock
-  // rule back to the default.
-  const prior = Object.fromEntries((existingRows || []).map((r) => [r.course_id, r]));
-  const { error: delErr } = await supabase.from("learning_path_courses").delete().eq("path_id", id);
-  if (delErr) throw delErr;
-  if (courseIds?.length) {
-    const rows = courseIds.map((cid, i) => ({
-      path_id: id,
-      course_id: cid,
-      order_index: i,
-      unlock_rule: prior[cid]?.unlock_rule || "complete_previous",
-      is_required: prior[cid]?.is_required !== false,
-      prerequisite_course_ids: prior[cid]?.prerequisite_course_ids || [],
-    }));
-    const { error: insErr } = await supabase.from("learning_path_courses").insert(rows);
-    if (insErr) throw insErr;
-  }
+  return fetchLearningPathById(pathId);
 }
 
 // No delete function existed alongside create/update - added for the new
@@ -1914,14 +1883,17 @@ export async function updateLearningPath(id, { title, description, level, catego
 // automatically (path_id references learning_paths(id) on delete cascade,
 // 0001_init_schema.sql), so only the parent row needs removing here.
 export async function deleteLearningPath(id) {
-  if (!supabase || !id) return;
+  if (!supabase || !id) throw new Error("Connect the organization database before deleting a learning path.");
   const { error } = await supabase.from("learning_paths").delete().eq("id", id);
   if (error) throw error;
 }
 
 export async function togglePublishLearningPath(id, isPublished) {
-  if (!supabase || !id) return;
-  const { error } = await supabase.from("learning_paths").update({ is_published: isPublished }).eq("id", id);
+  if (!supabase || !id) throw new Error("Connect the organization database before updating a learning path.");
+  const { error } = await supabase.rpc("set_learning_path_published", {
+    p_path_id: id,
+    p_is_published: !!isPublished,
+  });
   if (error) throw error;
 }
 
@@ -5423,25 +5395,19 @@ export async function fetchLearningPathCourses(pathId) {
 }
 
 export async function addCourseToPath(pathId, courseId, orderIndex) {
-  if (!supabase || !pathId || !courseId) return null;
-  const { data, error } = await supabase
-    .from("learning_path_courses")
-    .insert({
-      path_id: pathId,
-      course_id: courseId,
-      order_index: Number.isFinite(orderIndex) ? orderIndex : 0,
-      unlock_rule: "complete_previous",
-      is_required: true,
-    })
-    .select()
-    .single();
+  if (!supabase || !pathId || !courseId) throw new Error("Choose a saved path and course before adding a step.");
+  void orderIndex; // The database appends at the current final position atomically.
+  const { data, error } = await supabase.rpc("add_learning_path_course", {
+    p_path_id: pathId,
+    p_course_id: courseId,
+  });
   if (error) throw error;
-  return data;
+  return { id: data, pathId, courseId, unlockRule: "complete_previous", isRequired: true };
 }
 
 export async function removeCourseFromPath(pathCourseId) {
-  if (!supabase || !pathCourseId) return;
-  const { error } = await supabase.from("learning_path_courses").delete().eq("id", pathCourseId);
+  if (!supabase || !pathCourseId) throw new Error("Choose a pathway step to remove.");
+  const { error } = await supabase.rpc("remove_learning_path_course", { p_step_id: pathCourseId });
   if (error) throw error;
 }
 
@@ -5462,9 +5428,15 @@ export async function updatePathCourse(pathCourseId, patch = {}) {
 // there is no transient-collision problem to work around.
 export async function reorderPathCourses(rows) {
   if (!supabase || !rows?.length) return;
-  for (let i = 0; i < rows.length; i++) {
-    await supabase.from("learning_path_courses").update({ order_index: i }).eq("id", rows[i].id);
+  const pathId = rows[0]?.path_id || rows[0]?.pathId;
+  if (!pathId || rows.some((row) => (row.path_id || row.pathId) !== pathId)) {
+    throw new Error("Could not determine the learning path for this order.");
   }
+  const { error } = await supabase.rpc("reorder_learning_path_courses", {
+    p_path_id: pathId,
+    p_step_ids: rows.map((row) => row.id),
+  });
+  if (error) throw error;
 }
 
 // Path metadata only - leaves the course sequence untouched, unlike
@@ -5485,16 +5457,17 @@ export async function updateLearningPathMeta(pathId, { title, description, level
 // How many learners have actually started each path, keyed by path id. The
 // admin list previously showed a course count but nothing about uptake, so
 // an unused path looked identical to the org's most popular one.
-export async function fetchLearningPathEnrollmentCounts() {
+export async function fetchLearningPathEnrollmentCounts(organizationId, includeGlobalOwnerCounts = false) {
   if (!supabase) return {};
-  const { data, error } = await supabase.from("learning_path_enrollments").select("path_id, status");
-  if (error) { console.warn("Path enrollment count warning:", error); return {}; }
+  if (organizationId === "demo-org-id" || (!organizationId && !includeGlobalOwnerCounts)) return {};
+  const resolvedOrgId = organizationId ? await resolveOrganizationId(organizationId) : null;
+  const { data, error } = await supabase.rpc("get_learning_path_enrollment_counts", {
+    p_organization_id: resolvedOrgId,
+  });
+  if (error) throw new Error(error.message || "Could not load learning path enrollments.");
   const counts = {};
   for (const row of data || []) {
-    const bucket = counts[row.path_id] || { total: 0, completed: 0 };
-    bucket.total += 1;
-    if (row.status === "completed") bucket.completed += 1;
-    counts[row.path_id] = bucket;
+    counts[row.path_id] = { total: Number(row.total) || 0, completed: Number(row.completed) || 0 };
   }
   return counts;
 }
@@ -5503,28 +5476,26 @@ export async function fetchLearningPathEnrollmentCounts() {
 // push a journey out rather than waiting for learners to find it. Uses the
 // same existence check enrollInLearningPath (lib/api/learner.js) uses -
 // learning_path_enrollments has no declared unique constraint to upsert on.
-export async function assignLearningPathToUsers(pathId, userIds) {
-  if (!supabase || !pathId) return { success: false, error: "Missing path." };
+export async function assignLearningPathToUsers(pathId, userIds, organizationId) {
+  if (!supabase || !pathId) return { success: false, error: "Connect the organization database and choose a learning path." };
   const ids = [...new Set((userIds || []).filter(Boolean))];
   if (!ids.length) return { success: false, error: "Select at least one learner." };
-  let enrolled = 0;
-  const failed = [];
-  for (const userId of ids) {
-    try {
-      const { data: existing } = await supabase
-        .from("learning_path_enrollments")
-        .select("id").eq("user_id", userId).eq("path_id", pathId).maybeSingle();
-      if (existing) continue;
-      const { error } = await supabase
-        .from("learning_path_enrollments")
-        .insert({ user_id: userId, path_id: pathId, status: "in_progress", current_course_index: 0 });
-      if (error) throw error;
-      enrolled++;
-    } catch (e) {
-      failed.push({ userId, reason: e?.message || "Could not enroll" });
-    }
+  if (!organizationId || organizationId === "demo-org-id") {
+    return { success: false, error: "Choose a saved organization before assigning this path." };
   }
-  return { success: failed.length === 0, enrolled, failed };
+  const resolvedOrgId = await resolveOrganizationId(organizationId);
+  const { data, error } = await supabase.rpc("assign_learning_path_to_users", {
+    p_path_id: pathId,
+    p_organization_id: resolvedOrgId,
+    p_user_ids: ids,
+  });
+  if (error) return { success: false, error: error.message || "Could not assign this learning path." };
+  return {
+    success: !!data?.success,
+    enrolled: Number(data?.enrolled) || 0,
+    alreadyEnrolled: Number(data?.already_enrolled) || 0,
+    error: data?.error || null,
+  };
 }
 
 export async function fetchMyLearnerActivityAlerts() {

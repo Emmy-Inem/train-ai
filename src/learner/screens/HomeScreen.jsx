@@ -6,7 +6,7 @@ import { Skeleton, SkeletonCard } from "../../components/common/Skeleton.jsx";
 import {
   BookOpen, Users, ChevronRight, Zap,
   BarChart3, Bookmark,
-  GraduationCap, HelpCircle, ShieldCheck, Play
+  GraduationCap, HelpCircle, ShieldCheck, Play, Compass
 } from "lucide-react";
 import { calculateCohortProgress } from "../../lib/api/cohorts.js";
 
@@ -348,7 +348,11 @@ export function HomeScreen({
               <div style={{ fontWeight: 600, fontSize: 13, color: "var(--text)" }}>Quick Access</div>
               <span style={{ fontSize: 11, color: "var(--text-3)" }}>Learner shortcuts</span>
             </div>
-            <div className="tai-home-shortcut-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 6, width: "100%", boxSizing: "border-box" }}>
+            <div className="tai-home-shortcut-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(64px, 1fr))", gap: 6, width: "100%", boxSizing: "border-box" }}>
+              <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => goTab("learningPaths")}>
+                <Compass size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
+                <div style={{ fontWeight: 600, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Learning Paths</div>
+              </div>
               <div className="tai-card-hover" style={{ cursor: "pointer", padding: "10px 3px", textAlign: "center", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", minWidth: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }} onClick={() => goTab("courses")}>
                 <BookOpen size={18} color="var(--primary)" style={{ margin: "0 auto" }} />
                 <div style={{ fontWeight: 600, fontSize: 10.5, marginTop: 4, color: "var(--text)", wordBreak: "break-word", lineHeight: 1.2 }}>Assigned Courses</div>

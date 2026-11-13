@@ -79,6 +79,17 @@ test('Course loading resolves a saved slug and surfaces database failures',async
  const failed=fixture({failTable:'courses'});await assert.rejects(failed.api.fetchPublishedCourses(org),/Could not load courses/);
 });
 test('Empty published learning paths do not create fictional career tracks',async()=>{const f=fixture();assert.equal((await f.api.fetchPublishedLearningPaths(org)).length,0);});
+test('Learning path assignment uses a tenant-scoped database function',async()=>{
+ const f=fixture({rpcData:{success:true,enrolled:1,already_enrolled:2}});
+ const result=await f.api.assignLearningPathToUsers('path-id',[user,user,otherUser],org);
+ assert.deepEqual(JSON.parse(JSON.stringify(result)),{success:true,enrolled:1,alreadyEnrolled:2,error:null});
+ assert.equal(f.calls[0].rpc,'assign_learning_path_to_users');assert.equal(f.calls[0].args.p_organization_id,org);assert.deepEqual(JSON.parse(JSON.stringify(f.calls[0].args.p_user_ids)),[user,otherUser]);
+});
+test('Learning path enrollment totals use the organization-scoped function',async()=>{
+ const f=fixture({rpcData:[{path_id:'path-id',total:4,completed:1}]});
+ assert.deepEqual(JSON.parse(JSON.stringify(await f.api.fetchLearningPathEnrollmentCounts(org))),{'path-id':{total:4,completed:1}});
+ assert.equal(f.calls.find(call=>call.rpc)?.rpc,'get_learning_path_enrollment_counts');
+});
 test('Admin learning path errors do not return sample paths',async()=>{const f=fixture({failTable:'learning_paths'});await assert.rejects(f.api.fetchLearningPathsAdmin(org),/Could not load learning paths/);});
 test('Batched record lookups surface failed chunks instead of silently dropping records',async()=>{const f=fixture({failTable:'course_enrollments'});await assert.rejects(f.api.safeInQuery('course_enrollments','*','user_id',Array.from({length:35},(_,i)=>String(i))),error=>error.message==='fixture database unavailable');});
 test('A failed learning record is not replaced by fictional progress',async()=>{const f=fixture({rpcError:{message:'fixture failure'}});await assert.rejects(f.api.fetchMemberLearningTrack(user,org),/Could not load this member/);assert.equal(f.calls.length,1);});

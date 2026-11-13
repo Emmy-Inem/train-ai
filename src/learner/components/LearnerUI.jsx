@@ -963,9 +963,10 @@ export function DesktopSidebar({
       label: "Courses",
       icon: BookOpen,
       defaultScreen: "courses",
-      screens: ["courses", "courseDetail", "lesson"],
+      screens: ["courses", "learningPaths", "courseDetail", "lesson"],
       subItems: [
-        { key: "courses", label: "All Courses", icon: BookOpen }
+        { key: "courses", label: "All Courses", icon: BookOpen },
+        { key: "learningPaths", label: "Learning Paths", icon: Compass }
       ]
     },
     {

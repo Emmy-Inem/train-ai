@@ -261,7 +261,7 @@ export default function TrainAIPlatformApp({ session, isActive = true, onSwitchT
                   {screen === "demos" && <DemoRequestsScreen orgSelector={orgSelector} />}
                   {screen === "people" && <PeopleScreen key={`${effectiveOrgId || "none"}:${ownerOrgViewRequest || "default"}`} orgId={effectiveOrgId} orgSelector={orgSelector} setScreen={setScreen} currentUserId={session?.user?.id} />}
                   {screen === "content" && <ContentScreen allowDiscovery orgId={effectiveOrgId} orgSelector={orgSelector} setScreen={setScreen} selectedCourseId={selectedCourseId} setSelectedCourseId={setSelectedCourseId} currentUserId={session?.user?.id} />}
-                  {screen === "paths" && <LearningPathsScreen orgId={effectiveOrgId} orgSelector={orgSelector} setScreen={setScreen} />}
+                  {screen === "paths" && <LearningPathsScreen orgId={effectiveOrgId} orgSelector={orgSelector} setScreen={setScreen} isPlatformOwner={isSuperAdminUser} />}
                   {/* Course Builder is its own Learning nav entry - same
                       ContentScreen, mounted with the builder wizard already
                       open. */}

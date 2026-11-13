@@ -9,6 +9,7 @@ import { isRealDatabaseId } from "../lib/mockDataManager.js";
 import { HomeScreen } from "./screens/HomeScreen.jsx";
 import { PageLoadingBoundary } from "../components/common/PageLoadingBoundary.jsx";
 import { CoursesScreen } from "./screens/CoursesScreen.jsx";
+import { LearningPathsScreen } from "./screens/LearningPathsScreen.jsx";
 import { CourseDetailScreen } from "./screens/CourseDetailScreen.jsx";
 import { LessonScreen } from "./screens/LessonScreen.jsx";
 import { AIQuizScreen } from "./screens/AIQuizScreen.jsx";
@@ -173,6 +174,8 @@ export default function TrainAILearnerApp({ isActive = true, onSwitchToPlatform,
       const hasAssigned = (cohortCoursesQuery.data?.length > 0) || (complianceAssignmentsQuery.data?.length > 0) || (enrollmentsQuery.data?.length > 0);
       setCourseSourceTab(hasAssigned ? "assigned" : "all");
       goTab("courses");
+    } else if (key === "learningPaths") {
+      goTab("learningPaths");
     } else if (key === "myCourses" || key === "myProgress") {
       push("myProgress");
     } else if (key === "ai") {
@@ -678,7 +681,7 @@ export default function TrainAILearnerApp({ isActive = true, onSwitchToPlatform,
   }, [sessionMentorChoice?.id]);
 
   const activeTabKey = ["home", "courses", "ai", "community"].includes(screen) ? screen
-    : ["courseDetail", "lesson"].includes(screen) ? "courses"
+    : ["courseDetail", "lesson", "learningPaths"].includes(screen) ? "courses"
     : ["insights"].includes(screen) ? "ai"
     : ["postDetail", "mentors", "mentorDetail", "cohort"].includes(screen) ? "community"
     : null;
@@ -756,6 +759,7 @@ export default function TrainAILearnerApp({ isActive = true, onSwitchToPlatform,
   const screenQueries = {
     home: [learnerData.coursesQuery, enrollmentsQuery, cohortMembershipQuery],
     courses: [learnerData.coursesQuery, enrollmentsQuery, learningPathsQuery],
+    learningPaths: [learningPathsQuery, pathEnrollmentsQuery, enrollmentsQuery],
     courseDetail: [learnerData.coursesQuery, courseLessonsQuery, courseReviewsQuery],
     lesson: [courseLessonsQuery, lessonProgressQuery],
     community: [postsQuery, studyGroupsQuery, mentorsQuery],
@@ -901,6 +905,17 @@ export default function TrainAILearnerApp({ isActive = true, onSwitchToPlatform,
                   />
                 );
               })()}
+              {screen === "learningPaths" && (
+                <LearningPathsScreen
+                  userId={session?.user?.id}
+                  learningPathsQuery={learningPathsQuery}
+                  pathEnrollmentsQuery={pathEnrollmentsQuery}
+                  courseEnrollments={enrollmentsQuery.data || []}
+                  push={push}
+                  back={back}
+                  showToast={showToast}
+                />
+              )}
               {screen === "courseDetail" && (() => {
                 const ca = (complianceAssignmentsQuery.data || []).find(a => (a.course_id || a.courses?.id) === params.id);
                 const rawCourse = courseById(params.id);

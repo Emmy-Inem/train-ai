@@ -665,18 +665,21 @@ export async function fetchPublishedLearningPaths(organizationId) {
   ];
 
   if (!supabase) return DEMO_PATHS;
-  if (!organizationId || organizationId === "demo-org-id") return [];
-  const orgId = await resolveOrganizationId(organizationId);
+  const orgId = organizationId && organizationId !== "demo-org-id"
+    ? await resolveOrganizationId(organizationId)
+    : null;
   let query = supabase
     .from("learning_paths")
-    .select("*, learning_path_courses(*, courses(id, title, description, level, category, duration_hours, cover_image_url))")
+    .select("*, learning_path_courses(*, courses(id, title, description, level, category, duration_hours, cover_image_url, is_published, archived_at))")
     .eq("is_published", true)
     .order("title", { ascending: true });
-  if (organizationId && organizationId !== "demo-org-id") {
+  if (orgId) {
     query = query.or(`organization_id.eq.${orgId},organization_id.is.null`);
+  } else {
+    query = query.is("organization_id", null);
   }
   const { data, error } = await query;
-  if (error) throw new Error("Could not load learning paths. Please retry.");
+  if (error) throw new Error(error.message || "Could not load learning paths. Please retry.");
   
   const formattedPaths = (data || []).map((p) => ({
     id: p.id,
@@ -684,6 +687,7 @@ export async function fetchPublishedLearningPaths(organizationId) {
     description: p.description || "",
     category: p.category || null,
     level: p.level_label || "All Levels",
+    organizationId: p.organization_id || null,
     courses: (p.learning_path_courses || [])
       .sort((a, b) => (a.order_index ?? 0) - (b.order_index ?? 0))
       .map((pc) => ({
@@ -695,11 +699,12 @@ export async function fetchPublishedLearningPaths(organizationId) {
         category: pc.courses?.category || p.category || "General",
         coverImageUrl: pc.courses?.cover_image_url || null,
         hours: pc.courses?.duration_hours || 4,
+        isPublished: pc.courses?.is_published !== false && !pc.courses?.archived_at,
         isRequired: pc.is_required !== false,
         unlockRule: pc.unlock_rule || "complete_previous",
         prerequisiteCourseIds: pc.prerequisite_course_ids || [],
         orderIndex: pc.order_index ?? 0,
-      })).filter(c => c.id),
+      })).filter(c => c.id && c.isPublished !== false),
   })).filter(p => p.courses && p.courses.length > 0);
 
   return formattedPaths;
@@ -730,8 +735,9 @@ export function resolvePathProgress(path, enrollments = []) {
     if (c.unlockRule === "complete_previous" && idx > 0) {
       const prev = all[idx - 1];
       isUnlocked = !!byCourse.get(prev.id)?.completed;
-    } else if ((c.prerequisiteCourseIds || []).length > 0) {
-      isUnlocked = c.prerequisiteCourseIds.every((id) => !!byCourse.get(id)?.completed);
+    }
+    if ((c.prerequisiteCourseIds || []).length > 0) {
+      isUnlocked = isUnlocked && c.prerequisiteCourseIds.every((id) => !!byCourse.get(id)?.completed);
     }
     if (idx === 0) isUnlocked = true;
     return {
@@ -880,78 +886,58 @@ export async function syncLearningPathProgress(userId, pathId, { currentIndex, i
     .update(patch)
     .eq("user_id", userId)
     .eq("path_id", pathId);
-  if (error) console.warn("Path progress sync warning:", error);
+  if (error) throw new Error(error.message || "Could not save your learning path progress.");
 }
 
 export async function fetchMyLearningPathEnrollments(userId) {
-  let localList = [];
-  try {
-    const localKey = `trainai_path_enrollments_${userId}`;
-    localList = JSON.parse(localStorage.getItem(localKey) || "[]");
-  } catch {}
-
-  if (!supabase || !userId) return localList;
-
-  try {
-    const { data, error } = await supabase
-      .from("learning_path_enrollments")
-      .select("*")
-      .eq("user_id", userId);
-    if (error) {
-      console.warn("Learning path enrollments fetch warning:", error);
-      return localList;
-    }
-    const dbList = data || [];
-    const merged = new Map(localList.map(e => [e.path_id || e.id, e]));
-    dbList.forEach(e => merged.set(e.path_id || e.id, e));
-    return Array.from(merged.values());
-  } catch (e) {
-    console.warn("fetchMyLearningPathEnrollments catch:", e);
-    return localList;
+  if (!userId) return [];
+  if (!supabase) {
+    try { return JSON.parse(localStorage.getItem(`trainai_path_enrollments_${userId}`) || "[]"); }
+    catch { return []; }
   }
+  const { data, error } = await supabase
+    .from("learning_path_enrollments")
+    .select("*")
+    .eq("user_id", userId);
+  if (error) throw new Error(error.message || "Could not load your learning paths.");
+  return data || [];
 }
 
 export async function enrollInLearningPath(userId, pathId) {
-  if (!userId || !pathId) return null;
+  if (!userId || !pathId) throw new Error("Sign in and choose a learning path before starting.");
   const timestamp = new Date().toISOString();
-  const enrollmentObj = { user_id: userId, path_id: pathId, status: "in_progress", current_course_index: 0, created_at: timestamp };
+  const enrollmentObj = { user_id: userId, path_id: pathId, status: "in_progress", current_course_index: 0, enrolled_at: timestamp };
 
-  // 1. Resilient local storage write
-  try {
-    const localKey = `trainai_path_enrollments_${userId}`;
-    const list = JSON.parse(localStorage.getItem(localKey) || "[]");
-    if (!list.some(e => (e.path_id || e.id) === pathId)) {
+  if (!supabase) {
+    try {
+      const localKey = `trainai_path_enrollments_${userId}`;
+      const list = JSON.parse(localStorage.getItem(localKey) || "[]");
+      const existing = list.find((entry) => (entry.path_id || entry.id) === pathId);
+      if (existing) return existing;
       list.push(enrollmentObj);
       localStorage.setItem(localKey, JSON.stringify(list));
-    }
-  } catch {}
-
-  if (!supabase) return enrollmentObj;
-
-  // 2. Supabase write
-  try {
-    const { data: existing } = await supabase
-      .from("learning_path_enrollments")
-      .select("*")
-      .eq("user_id", userId)
-      .eq("path_id", pathId)
-      .maybeSingle();
-    if (existing) return existing;
-
-    const { data, error } = await supabase
-      .from("learning_path_enrollments")
-      .insert(enrollmentObj)
-      .select()
-      .maybeSingle();
-    if (error) {
-      console.warn("enrollInLearningPath DB notice:", error);
-      return enrollmentObj;
-    }
-    return data || enrollmentObj;
-  } catch (e) {
-    console.warn("enrollInLearningPath catch:", e);
+    } catch {}
     return enrollmentObj;
   }
+
+  const { data: authData, error: authError } = await supabase.auth.getUser();
+  if (authError) throw authError;
+  if (authData?.user?.id !== userId) throw new Error("Sign in as the learner before starting this path.");
+  const { data, error } = await supabase
+    .from("learning_path_enrollments")
+    .upsert(enrollmentObj, { onConflict: "user_id,path_id", ignoreDuplicates: true })
+    .select()
+    .maybeSingle();
+  if (error) throw new Error(error.message || "Could not start this learning path.");
+  if (data) return data;
+  const { data: existing, error: readError } = await supabase
+    .from("learning_path_enrollments")
+    .select("*")
+    .eq("user_id", userId)
+    .eq("path_id", pathId)
+    .maybeSingle();
+  if (readError) throw new Error(readError.message || "Could not confirm this learning path.");
+  return existing || enrollmentObj;
 }
 
 // Course bookmarking (Course UI brief: "Keep: ... Bookmarking. Bookmarked

@@ -37,7 +37,7 @@ const UNLOCK_LABEL = {
 /* ==========================================================================
    Builder - one path's ordered course sequence, with unlock rules
    ========================================================================= */
-function PathBuilder({ path, orgId, onBack, onChanged }) {
+function PathBuilder({ path, orgId, onBack, onChanged, readOnly = false }) {
   const showToast = useContext(ToastContext);
   const stepsQuery = useSupabaseQuery(async () => fetchLearningPathCourses(path.id), [path.id]);
   const coursesQuery = useSupabaseQuery(async () => fetchCourses(), []);
@@ -76,9 +76,9 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
     }
   }
 
-  const filteredMembers = members.filter((m) =>
+  const filteredMembers = members.filter((m) => m.status === "active" && (
     !assignSearch.trim() || (m.display_name || "").toLowerCase().includes(assignSearch.trim().toLowerCase())
-  );
+  ));
 
   return (
     <div className="ta-fade">
@@ -86,7 +86,7 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
         title={`Build: ${path.title}`}
         sub="Order the courses, then decide what each step needs before it opens"
         right={
-          <button className="ta-btn ta-btn-primary" onClick={() => setAssignOpen(true)} disabled={steps.length === 0}>
+          <button className="ta-btn ta-btn-primary" onClick={() => setAssignOpen(true)} disabled={!path.isPublished || steps.length === 0 || !orgId}>
             <Send size={15} /> Assign to learners
           </button>
         }
@@ -118,8 +118,10 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
           <div style={{ fontSize: 12, color: "var(--text-2)", marginTop: 4 }}>
             Learners work through these top to bottom. A locked step opens only once the step above it is complete.
           </div>
+          {readOnly && <div className="ta-mt8" style={{ fontSize: 12, color: "var(--text-2)" }}>This shared platform path can be viewed and assigned here, but only the platform owner can change its course sequence.</div>}
 
           {stepsQuery.loading && <div className="ta-empty ta-mt12"><LoadingSkeleton label="Loading the sequence..." rows={3} /></div>}
+          {stepsQuery.error && <div className="ta-empty ta-mt12" role="alert">Could not load the course sequence. {stepsQuery.error} <button className="ta-btn ta-btn-outline" onClick={stepsQuery.refetch}>Retry</button></div>}
           {!stepsQuery.loading && steps.length === 0 && (
             <div className="ta-empty ta-mt12">
               No courses in this path yet. Add the first one from the list below.
@@ -149,19 +151,19 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
                       </div>
                     </div>
                     <div className="ta-row ta-gap6" style={{ flexShrink: 0 }}>
-                      <button className="ta-iconbtn" disabled={busy || idx === 0} aria-label="Move up"
+                      <button className="ta-iconbtn" disabled={readOnly || busy || idx === 0} aria-label="Move up"
                         onClick={() => {
                           const next = [...steps];
                           [next[idx - 1], next[idx]] = [next[idx], next[idx - 1]];
                           run(() => reorderPathCourses(next), "Order updated.");
                         }}><GripVertical size={14} /></button>
-                      <button className="ta-iconbtn" disabled={busy || idx === steps.length - 1} aria-label="Move down"
+                      <button className="ta-iconbtn" disabled={readOnly || busy || idx === steps.length - 1} aria-label="Move down"
                         onClick={() => {
                           const next = [...steps];
                           [next[idx + 1], next[idx]] = [next[idx], next[idx + 1]];
                           run(() => reorderPathCourses(next), "Order updated.");
                         }}><ArrowDown size={14} /></button>
-                      <button className="ta-iconbtn" disabled={busy} aria-label="Remove step"
+                      <button className="ta-iconbtn" disabled={readOnly || busy} aria-label="Remove step"
                         onClick={() => run(() => removeCourseFromPath(step.id), `"${step.course?.title || "Course"}" removed from this path.`)}>
                         <Trash2 size={14} color="var(--danger)" />
                       </button>
@@ -172,7 +174,7 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
                     {/* unlock_rule - a real column that had no control anywhere */}
                     <button
                       className="ta-btn ta-btn-outline ta-btn-sm"
-                      disabled={busy || idx === 0}
+                      disabled={readOnly || busy || idx === 0}
                       title={idx === 0 ? "The first step is always open" : (UNLOCK_LABEL[step.unlockRule] || "Open")}
                       onClick={() => run(
                         () => updatePathCourse(step.id, { unlockRule: step.unlockRule === "complete_previous" ? "manual" : "complete_previous" }),
@@ -186,7 +188,7 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
                     {/* is_required - likewise */}
                     <button
                       className="ta-btn ta-btn-outline ta-btn-sm"
-                      disabled={busy}
+                      disabled={readOnly || busy}
                       onClick={() => run(
                         () => updatePathCourse(step.id, { isRequired: !step.isRequired }),
                         step.isRequired ? "Marked optional." : "Marked required."
@@ -209,7 +211,7 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
         </div>
 
         {/* ---- Add a course ---- */}
-        <div className="ta-card">
+        {!readOnly && <div className="ta-card">
           <div className="ta-row ta-between" style={{ gap: 10, flexWrap: "wrap" }}>
             <div className="ta-row ta-gap8">
 
@@ -226,6 +228,7 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
           </div>
 
           {coursesQuery.loading && <div className="ta-empty ta-mt12"><LoadingSkeleton label="Loading courses..." rows={3} /></div>}
+          {coursesQuery.error && <div className="ta-empty ta-mt12" role="alert">Could not load courses. {coursesQuery.error} <button className="ta-btn ta-btn-outline" onClick={coursesQuery.refetch}>Retry</button></div>}
           {!coursesQuery.loading && addableCourses.length === 0 && (
             <div className="ta-empty ta-mt12">
               {allCourses.length === 0
@@ -258,7 +261,7 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
               </div>
             ))}
           </div>
-        </div>
+        </div>}
       </div>
 
       {/* ---- Assign this path to learners ---- */}
@@ -271,6 +274,8 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
           Enrolls the selected learners in this path so it shows on their Learning Paths screen
           straight away, instead of waiting for them to find it.
         </div>
+        {!path.isPublished && <div className="ta-empty ta-mt12">Publish this path before assigning it to learners.</div>}
+        {membersQuery.error && <div className="ta-empty ta-mt12" role="alert">Could not load organization members. {membersQuery.error} <button className="ta-btn ta-btn-outline" onClick={membersQuery.refetch}>Retry</button></div>}
 
         <div className="ta-search ta-mt12">
           <Search size={14} />
@@ -308,19 +313,25 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
           <button className="ta-btn ta-btn-outline" onClick={() => setAssignOpen(false)}>Cancel</button>
           <button
             className="ta-btn ta-btn-primary"
-            disabled={assigning || assignIds.size === 0}
+            disabled={!path.isPublished || assigning || assignIds.size === 0}
             onClick={async () => {
               setAssigning(true);
               try {
-                const res = await assignLearningPathToUsers(path.id, [...assignIds]);
+                const res = await assignLearningPathToUsers(path.id, [...assignIds], orgId);
+                if (!res.success) {
+                  showToast(res.error || "Could not assign this learning path.");
+                  return;
+                }
                 showToast(
                   res.enrolled
-                    ? `${res.enrolled} learner${res.enrolled === 1 ? "" : "s"} enrolled${res.failed?.length ? `, ${res.failed.length} failed` : ""}.`
+                    ? `${res.enrolled} learner${res.enrolled === 1 ? "" : "s"} enrolled${res.alreadyEnrolled ? `; ${res.alreadyEnrolled} already enrolled` : ""}.`
                     : (res.error || "Everyone selected was already enrolled.")
                 );
                 setAssignIds(new Set());
                 setAssignOpen(false);
                 onChanged?.();
+              } catch (err) {
+                showToast(err?.message || "Could not assign this learning path.");
               } finally {
                 setAssigning(false);
               }
@@ -337,11 +348,11 @@ function PathBuilder({ path, orgId, onBack, onChanged }) {
 /* ==========================================================================
    Screen
    ========================================================================= */
-export function LearningPathsScreen({ orgId, orgSelector, setScreen }) {
+export function LearningPathsScreen({ orgId, orgSelector, setScreen, isPlatformOwner = false }) {
   const showToast = useContext(ToastContext);
   const pathsQuery = useSupabaseQuery(async () => fetchLearningPathsAdmin(orgId), [orgId]);
   const coursesQuery = useSupabaseQuery(async () => fetchCourses(), []);
-  const enrollmentCountsQuery = useSupabaseQuery(async () => fetchLearningPathEnrollmentCounts(), []);
+  const enrollmentCountsQuery = useSupabaseQuery(async () => fetchLearningPathEnrollmentCounts(orgId, isPlatformOwner), [orgId, isPlatformOwner]);
   const paths = pathsQuery.data || [];
   const courses = coursesQuery.data || [];
   const enrollmentCounts = enrollmentCountsQuery.data || {};
@@ -373,6 +384,7 @@ export function LearningPathsScreen({ orgId, orgSelector, setScreen }) {
     setDescription(path.description || "");
     setLevel(path.level || "beginner");
     setCategory(path.category || "");
+    setPublishOnCreate(!!path.isPublished);
     setSelectedCourseIds(path.courseIds || []);
   }
 
@@ -409,6 +421,7 @@ export function LearningPathsScreen({ orgId, orgSelector, setScreen }) {
         level,
         category: category.trim(),
         courseIds: selectedCourseIds,
+        isPublished: publishOnCreate,
       };
       if (editingId === "new") {
         const created = await createLearningPath({ ...payload, isPublished: publishOnCreate }, orgId, null);
@@ -420,7 +433,8 @@ export function LearningPathsScreen({ orgId, orgSelector, setScreen }) {
         if (created?.id && selectedCourseIds.length) setBuilderPathId(created.id);
         return;
       }
-      await updateLearningPath(editingId, payload);
+      const editingPath = paths.find((path) => path.id === editingId);
+      await updateLearningPath(editingId, payload, editingPath?.organizationId ?? orgId);
       showToast("Learning path updated.");
       pathsQuery.refetch();
       closeEditor();
@@ -459,6 +473,7 @@ export function LearningPathsScreen({ orgId, orgSelector, setScreen }) {
       <PathBuilder
         path={builderPath}
         orgId={orgId}
+        readOnly={!isPlatformOwner && !builderPath.organizationId}
         onBack={() => { setBuilderPathId(null); pathsQuery.refetch(); enrollmentCountsQuery.refetch(); }}
         onChanged={() => { pathsQuery.refetch(); enrollmentCountsQuery.refetch(); }}
       />
@@ -506,7 +521,7 @@ export function LearningPathsScreen({ orgId, orgSelector, setScreen }) {
               ))}
             </div>
 
-            {editingId === "new" && (
+            {(
               <div className="ta-row ta-between ta-mt16" style={{ gap: 10 }}>
                 <div style={{ minWidth: 0 }}>
                   <div style={{ fontWeight: 700, fontSize: 13 }}>Publish immediately</div>
@@ -613,6 +628,7 @@ export function LearningPathsScreen({ orgId, orgSelector, setScreen }) {
         <div className="ta-col ta-gap12">
           {pathsQuery.loading && <div className="ta-empty"><LoadingSkeleton label="Loading learning paths..." rows={3} /></div>}
           {pathsQuery.error && <div className="ta-empty" role="alert">Could not load learning paths. <button className="ta-btn ta-btn-outline" onClick={pathsQuery.refetch}>Retry</button></div>}
+          {enrollmentCountsQuery.error && <div className="ta-empty" role="alert">Enrollment totals could not be loaded. {enrollmentCountsQuery.error} <button className="ta-btn ta-btn-outline" onClick={enrollmentCountsQuery.refetch}>Retry</button></div>}
           {!pathsQuery.loading && !pathsQuery.error && paths.length === 0 && (
             <div className="ta-empty">
               <MapIcon size={28} style={{ opacity: 0.4, marginBottom: 8 }} />
@@ -645,6 +661,7 @@ export function LearningPathsScreen({ orgId, orgSelector, setScreen }) {
               img = fallbackTrackImages[idx % fallbackTrackImages.length];
             }
             const uptake = enrollmentCounts[p.id] || { total: 0, completed: 0 };
+            const canManagePath = isPlatformOwner || !!p.organizationId;
 
             return (
               <div key={p.id} className="ta-card ta-card-hover" style={{ padding: 0, overflow: "hidden", borderRadius: 10, display: "flex", flexDirection: "column", background: "var(--surface)", border: "1px solid var(--border)" }}>
@@ -679,16 +696,18 @@ export function LearningPathsScreen({ orgId, orgSelector, setScreen }) {
                   <div className="ta-col ta-gap8" style={{ marginTop: 14, paddingTop: 10, borderTop: "1px solid var(--border)" }}>
                     <div className="ta-row ta-between">
                       <div className="ta-row ta-gap8">
-                        <Switch on={p.isPublished} onChange={() => handleTogglePublish(p)} />
+                      <div style={!canManagePath ? { pointerEvents: "none", opacity: 0.65 } : undefined}>
+                        <Switch on={p.isPublished} onChange={canManagePath ? () => handleTogglePublish(p) : undefined} />
+                      </div>
                         <span style={{ fontSize: 11.5, color: "var(--text-3)" }}>{p.isPublished ? "Live" : "Draft"}</span>
                       </div>
-                      <button className="ta-iconbtn" onClick={() => handleDelete(p)} aria-label="Delete"><Trash2 size={15} color="var(--danger)" /></button>
+                      {(isPlatformOwner || p.organizationId) && <button className="ta-iconbtn" onClick={() => handleDelete(p)} aria-label="Delete"><Trash2 size={15} color="var(--danger)" /></button>}
                     </div>
                     <div className="ta-row ta-gap6">
                       <button className="ta-btn ta-btn-primary ta-btn-sm" style={{ flex: 1 }} onClick={() => setBuilderPathId(p.id)}>
-                        <Route size={13} /> Build journey
+                        <Route size={13} /> {(!isPlatformOwner && !p.organizationId) ? "View / assign" : "Build journey"}
                       </button>
-                      <button className="ta-btn ta-btn-outline ta-btn-sm" onClick={() => openEdit(p)}>Edit</button>
+                      {(isPlatformOwner || p.organizationId) && <button className="ta-btn ta-btn-outline ta-btn-sm" onClick={() => openEdit(p)}>Edit</button>}
                     </div>
                   </div>
                 </div>
