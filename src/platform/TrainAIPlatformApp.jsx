@@ -55,7 +55,7 @@ const ManagerDashboardScreen = lazyScreen(() => import("./manager/ManagerDashboa
 const LeaderboardScreen = lazyScreen(() => import("../learner/screens/LeaderboardScreen.jsx"), "LeaderboardScreen");
 const CommunityScreen = lazyScreen(() => import("../learner/screens/CommunityScreen.jsx"), "CommunityScreen");
 
-export default function TrainAIPlatformApp({ session, isActive = true, onSwitchToLearner, onSwitchDashboard, userRoles = [], superAdminSelectedOrgId, setSuperAdminSelectedOrgId, onSignOut } = {}) {
+export default function TrainAIPlatformApp({ session, isActive = true, onSwitchToLearner, onSwitchDashboard, userRoles = [], superAdminSelectedOrgId, setSuperAdminSelectedOrgId, ownerOrgViewRequest = 0, onSignOut } = {}) {
   const { profileQuery, orgId } = usePlatformData(session, userRoles);
 
   const userEmail = session?.user?.email || profileQuery?.data?.email || "";
@@ -99,6 +99,16 @@ export default function TrainAIPlatformApp({ session, isActive = true, onSwitchT
     mentor: "dashboard",
     manager: "dashboard",
   });
+
+  useEffect(() => {
+    if (!ownerOrgViewRequest) return;
+    try {
+      sessionStorage.removeItem("ta_people_tab");
+      sessionStorage.removeItem("ta_people_filter_referral");
+    } catch {}
+    setRequestedWorkspace("admin");
+    setScreenByWorkspace((current) => ({ ...current, admin: "people" }));
+  }, [ownerOrgViewRequest]);
   const [selectedCohortId, setSelectedCohortId] = useState(null);
   const [selectedLearnerForChat, setSelectedLearnerForChat] = useState(null);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
@@ -249,7 +259,7 @@ export default function TrainAIPlatformApp({ session, isActive = true, onSwitchT
                 <>
                   {screen === "dashboard" && <AdminDashboardScreen orgId={effectiveOrgId} profileQuery={profileQuery} setScreen={setScreen} orgSelector={orgSelector} isPlatformOwner={isSuperAdminUser} />}
                   {screen === "demos" && <DemoRequestsScreen orgSelector={orgSelector} />}
-                  {screen === "people" && <PeopleScreen orgId={effectiveOrgId} orgSelector={orgSelector} setScreen={setScreen} currentUserId={session?.user?.id} />}
+                  {screen === "people" && <PeopleScreen key={`${effectiveOrgId || "none"}:${ownerOrgViewRequest || "default"}`} orgId={effectiveOrgId} orgSelector={orgSelector} setScreen={setScreen} currentUserId={session?.user?.id} />}
                   {screen === "content" && <ContentScreen allowDiscovery orgId={effectiveOrgId} orgSelector={orgSelector} setScreen={setScreen} selectedCourseId={selectedCourseId} setSelectedCourseId={setSelectedCourseId} currentUserId={session?.user?.id} />}
                   {screen === "paths" && <LearningPathsScreen orgId={effectiveOrgId} orgSelector={orgSelector} setScreen={setScreen} />}
                   {/* Course Builder is its own Learning nav entry - same

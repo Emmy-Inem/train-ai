@@ -738,6 +738,14 @@ export function OrganizationsScreen({ orgSelector, onSwitchToOrgWorkspace, onLau
         orgSelector={orgSelector}
       />
       <div className="ta-content" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+        {orgsQuery.error && (
+          <div className="ta-card" role="alert" style={{ padding: 14, borderColor: "var(--danger)" }}>
+            <div className="ta-row ta-between" style={{ gap: 12, flexWrap: "wrap" }}>
+              <span>Could not load organizations. Check your connection and retry.</span>
+              <button className="ta-btn ta-btn-outline ta-btn-sm" onClick={orgsQuery.refetch}>Retry</button>
+            </div>
+          </div>
+        )}
         {/* =========================================================================
             ORGANIZATIONS HERO BANNER
             ========================================================================= */}
@@ -1048,11 +1056,11 @@ export function OrganizationsScreen({ orgSelector, onSwitchToOrgWorkspace, onLau
                           className="ta-btn ta-btn-outline ta-btn-sm"
                           onClick={() => {
                             orgSelector?.onSelectOrg?.(o.id);
-                            onSwitchToOrgWorkspace?.();
+                            onSwitchToOrgWorkspace?.(o.id);
                             showToast(`Switched Super Admin context to ${o.name}`);
                           }}
                         >
-                          <ExternalLink size={13} /> View
+                          <ExternalLink size={13} /> View members
                         </button>
                         <button className="ta-btn ta-btn-ghost ta-btn-sm" onClick={() => setManagingOrgId(o.id)}>
                           <Settings size={13} /> Manage
@@ -1133,11 +1141,11 @@ export function OrganizationsScreen({ orgSelector, onSwitchToOrgWorkspace, onLau
                               className="ta-btn ta-btn-outline ta-btn-sm"
                               onClick={() => {
                                 orgSelector?.onSelectOrg?.(o.id);
-                                onSwitchToOrgWorkspace?.();
+                                onSwitchToOrgWorkspace?.(o.id);
                                 showToast(`Switched Super Admin context to ${o.name}`);
                               }}
                             >
-                              <ExternalLink size={13} /> View
+                              <ExternalLink size={13} /> View members
                             </button>
                             <button className="ta-btn ta-btn-ghost ta-btn-sm" onClick={() => setManagingOrgId(o.id)}>
                               <Settings size={13} /> Manage

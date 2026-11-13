@@ -42,6 +42,7 @@ export default function PlatformOwnerApp({
   userRoles: userRolesProp,
   superAdminSelectedOrgId: controlledOrgId,
   setSuperAdminSelectedOrgId: controlledSetOrgId,
+  onOpenOrganizationMembers,
   onSignOut
 } = {}) {
   const { profileQuery } = usePlatformData(session, userRolesProp);
@@ -168,7 +169,13 @@ export default function PlatformOwnerApp({
                 {screen === "orgs" && (
                   <OrganizationsScreen
                     orgSelector={orgSelector}
-                    onSwitchToOrgWorkspace={() => onSwitchDashboard && onSwitchDashboard(DASHBOARDS.ORGANISATION)}
+                    onSwitchToOrgWorkspace={(organizationId) => {
+                      if (organizationId && onOpenOrganizationMembers) {
+                        onOpenOrganizationMembers(organizationId);
+                        return;
+                      }
+                      onSwitchDashboard && onSwitchDashboard(DASHBOARDS.ORGANISATION);
+                    }}
                     onLaunchOnboarding={() => setScreen("onboarding")}
                     currentUserId={session?.user?.id}
                   />

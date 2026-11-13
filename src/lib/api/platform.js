@@ -1075,17 +1075,13 @@ export async function fetchAllOrganizationsWithUserCounts() {
       ? window.location.origin
       : "https://trainailtd.com";
 
-  let orgs = [];
+  let orgs;
   if (supabase) {
-    try {
-      orgs = await fetchAllOrganizations();
-    } catch {
-      orgs = [];
-    }
-  }
-
-  // Fallback to project orgs if fetchAllOrganizations returns empty (e.g. unseeded remote db or RLS restriction)
-  if (!orgs || !orgs.length) {
+    // Keep real database errors visible to the caller. Showing demo organizations
+    // after an RLS or network failure made the owner directory look valid while
+    // hiding the actual organizations and their member lists.
+    orgs = await fetchAllOrganizations();
+  } else {
     const projData = DEMO_PROJECT_DATA[activeProject] || DEMO_PROJECT_DATA.digital_training;
     orgs = projData.orgs || [];
   }
@@ -1094,8 +1090,11 @@ export async function fetchAllOrganizationsWithUserCounts() {
     let dbCount = 0;
     if (supabase) {
       try {
-        const { count } = await supabase.from("user_profiles").select("id", { count: "exact", head: true }).eq("organization_id", o.id);
-        dbCount = count || 0;
+        const [{ count: profileCount }, { count: memberCount }] = await Promise.all([
+          supabase.from("user_profiles").select("id", { count: "exact", head: true }).eq("organization_id", o.id),
+          supabase.from("organization_members").select("user_id", { count: "exact", head: true }).eq("organization_id", o.id),
+        ]);
+        dbCount = Math.max(profileCount || 0, memberCount || 0);
       } catch {}
     }
     const slug = o.slug || (String(o.name || "").toLowerCase().includes("sara") ? "sara-foundation" : String(o.name || o.id).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""));

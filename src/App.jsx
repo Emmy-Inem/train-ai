@@ -235,6 +235,13 @@ export default function App() {
   // one component with an internal workspace switch that could just keep
   // this in its own local state.
   const [superAdminSelectedOrgId, setSuperAdminSelectedOrgId] = useState("");
+  const [ownerOrgViewRequest, setOwnerOrgViewRequest] = useState(0);
+
+  function openOrganizationMembers(organizationId) {
+    if (organizationId) setSuperAdminSelectedOrgId(organizationId);
+    setOwnerOrgViewRequest((request) => request + 1);
+    switchDashboard(DASHBOARDS.ORGANISATION);
+  }
 
   function switchDashboard(target) {
     const userEmail = session?.user?.email || "";
@@ -562,23 +569,6 @@ export default function App() {
       </>
     );
   }
-  if (isOwnerPortalURL && ownerPortalAuthenticated && isPlatformOwnerEmail(session?.user?.email) && userRoles.includes("super_admin")) {
-    return (
-      <>
-        <OfflineIndicator mode={offlineMode} />
-        {roleConnectionWarning && <WorkspaceConnectionNotice onRetry={() => setRoleRefresh(value => value + 1)} />}
-        <PlatformOwnerApp
-          session={session}
-          onSwitchDashboard={switchDashboard}
-          userRoles={userRoles}
-          superAdminSelectedOrgId={superAdminSelectedOrgId}
-          setSuperAdminSelectedOrgId={setSuperAdminSelectedOrgId}
-          onSignOut={handleGlobalSignOut}
-        />
-      </>
-    );
-  }
-
   // needsOnboarding is intentionally always false now - see the effect above
   // for why (Admin-Managed Grouping: learners no longer self-select a track/
   // level before entering the app; admins assign cohorts/courses instead).
@@ -610,6 +600,7 @@ export default function App() {
           userRoles={userRoles}
           superAdminSelectedOrgId={superAdminSelectedOrgId}
           setSuperAdminSelectedOrgId={setSuperAdminSelectedOrgId}
+          ownerOrgViewRequest={ownerOrgViewRequest}
           onSignOut={handleGlobalSignOut}
         />
       </RetainedWorkspace>}
@@ -621,6 +612,7 @@ export default function App() {
           userRoles={userRoles}
           superAdminSelectedOrgId={superAdminSelectedOrgId}
           setSuperAdminSelectedOrgId={setSuperAdminSelectedOrgId}
+          onOpenOrganizationMembers={openOrganizationMembers}
           onSignOut={handleGlobalSignOut}
         />
       </RetainedWorkspace>}
