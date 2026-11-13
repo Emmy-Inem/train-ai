@@ -39,7 +39,7 @@ export function LearningPathsScreen({
       }
     })().catch((error) => showToast?.(error?.message || "Could not update pathway progress."));
     return () => { cancelled = true; };
-  }, [userId, paths, courseEnrollments, enrollmentByPath, learningPathsQuery?.loading, pathEnrollmentsQuery?.loading, pathEnrollmentsQuery?.refetch, showToast]);
+  }, [userId, paths, courseEnrollments, enrollmentByPath, learningPathsQuery?.loading, pathEnrollmentsQuery?.loading, pathEnrollmentsQuery?.refetch]);
 
   async function startPath(path) {
     if (!userId || !path?.id) return;
