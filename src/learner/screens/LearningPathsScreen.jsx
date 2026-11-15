@@ -1,7 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { ArrowRight, BookOpen, CheckCircle2, Compass, Lock, Map, Play } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, Compass, Lock, Map, Play, Repeat } from "lucide-react";
 import { ProgressBar, Tag, TopBar } from "../components/LearnerUI.jsx";
-import { resolvePathProgress, enrollInLearningPath, syncLearningPathProgress } from "../../lib/api/learner.js";
+import {
+  resolvePathProgress, enrollInLearningPath, leaveLearningPath, syncLearningPathProgress,
+} from "../../lib/api/learner.js";
+import { isRealDatabaseId } from "../../lib/mockDataManager.js";
 
 export function LearningPathsScreen({
   userId,
@@ -27,6 +30,12 @@ export function LearningPathsScreen({
     }
     return entries;
   }, [pathEnrollments, startedPaths]);
+  const currentPathIds = useMemo(
+    () => new Set([...enrollmentByPath.entries()]
+      .filter(([, enrollment]) => enrollment.status === "in_progress")
+      .map(([pathId]) => pathId)),
+    [enrollmentByPath]
+  );
 
   useEffect(() => {
     if (!userId || learningPathsQuery?.loading || pathEnrollmentsQuery?.loading) return undefined;
@@ -36,7 +45,6 @@ export function LearningPathsScreen({
       for (const path of paths) {
         const enrollment = enrollmentByPath.get(path.id);
         if (!enrollment || enrollment.status === "completed") continue;
-
         const progress = resolvePathProgress(path, courseEnrollments);
         const requiredSteps = progress.steps.filter((step) => step.isRequired !== false);
         const isComplete = requiredSteps.length > 0 && requiredSteps.every((step) => step.isCompleted);
@@ -58,15 +66,29 @@ export function LearningPathsScreen({
     });
     return () => { cancelled = true; };
   }, [
-    userId,
-    paths,
-    courseEnrollments,
-    enrollmentByPath,
-    learningPathsQuery?.loading,
-    pathEnrollmentsQuery?.loading,
-    pathEnrollmentsQuery?.refetch,
-    showToast,
+    userId, paths, courseEnrollments, enrollmentByPath,
+    learningPathsQuery?.loading, pathEnrollmentsQuery?.loading,
+    pathEnrollmentsQuery?.refetch, showToast,
   ]);
+
+  async function removePathEnrollment(pathId) {
+    if (!isRealDatabaseId(pathId)) {
+      // Demo paths have no database rows; keep their selection in the same
+      // per-learner local store used by enrollInLearningPath.
+      const key = `trainai_path_enrollments_${userId}`;
+      try {
+        const entries = JSON.parse(localStorage.getItem(key) || "[]");
+        localStorage.setItem(key, JSON.stringify(
+          entries.filter((entry) => (entry.path_id || entry.id) !== pathId)
+        ));
+      } catch (error) {
+        throw new Error("Could not change your demo learning path.", { cause: error });
+      }
+      return;
+    }
+    const result = await leaveLearningPath(userId, pathId);
+    if (!result?.success) throw new Error(result?.error || "Could not leave your current learning path.");
+  }
 
   async function startPath(path) {
     if (!userId) {
@@ -75,22 +97,40 @@ export function LearningPathsScreen({
     }
     if (!path?.id || !path.courses?.length || busyPathId) return;
 
+    const otherActivePaths = [...currentPathIds].filter((pathId) => pathId !== path.id);
+    if (otherActivePaths.length) {
+      const names = otherActivePaths
+        .map((pathId) => paths.find((item) => item.id === pathId)?.title)
+        .filter(Boolean);
+      const prompt = names.length
+        ? `Switch to “${path.title}”? This will leave your current path${names.length > 1 ? "s" : ""}: ${names.join(", ")}. Your course progress will be kept.`
+        : `Switch to “${path.title}”? Your current path enrollment will end, but your course progress will be kept.`;
+      if (typeof window !== "undefined" && !window.confirm(prompt)) return;
+    }
+
     setBusyPathId(path.id);
     try {
+      // Enroll in the new path first so a failure to start it never removes
+      // access to the learner's existing path.
       const enrollment = await enrollInLearningPath(userId, path.id);
-      setStartedPaths((previous) => ({
-        ...previous,
-        [path.id]: enrollment || {
-          user_id: userId,
-          path_id: path.id,
-          status: "in_progress",
-          current_course_index: 0,
-        },
-      }));
-      // Do not block the UI waiting for Realtime or the query cycle. The local
-      // enrollment above immediately changes the button to Continue.
+      const leaving = [];
+      for (const oldPathId of otherActivePaths) {
+        try {
+          await removePathEnrollment(oldPathId);
+          leaving.push(oldPathId);
+        } catch (error) {
+          showToast?.(error?.message || "The new path started, but the previous path could not be closed.");
+        }
+      }
+      setStartedPaths((previous) => {
+        const next = { ...previous, [path.id]: enrollment || {
+          user_id: userId, path_id: path.id, status: "in_progress", current_course_index: 0,
+        } };
+        leaving.forEach((pathId) => { delete next[pathId]; });
+        return next;
+      });
       pathEnrollmentsQuery?.refetch?.();
-      showToast?.(`You started ${path.title}.`);
+      showToast?.(otherActivePaths.length ? `Switched to ${path.title}.` : `You started ${path.title}.`);
     } catch (error) {
       showToast?.(error?.message || "Could not start this learning path.");
     } finally {
@@ -130,18 +170,11 @@ export function LearningPathsScreen({
         {loading && <div className="tai-card" role="status" style={{ padding: 20 }}>Loading learning paths…</div>}
         {error && (
           <div className="tai-card" role="alert" style={{ padding: 18 }}>
-            <div style={{ color: "var(--danger)", marginBottom: 10 }}>
-              Learning paths could not be loaded: {error}
-            </div>
-            <button
-              className="tai-btn tai-btn-outline"
-              onClick={() => {
-                learningPathsQuery?.refetch?.();
-                pathEnrollmentsQuery?.refetch?.();
-              }}
-            >
-              Retry
-            </button>
+            <div style={{ color: "var(--danger)", marginBottom: 10 }}>Learning paths could not be loaded: {error}</div>
+            <button className="tai-btn tai-btn-outline" onClick={() => {
+              learningPathsQuery?.refetch?.();
+              pathEnrollmentsQuery?.refetch?.();
+            }}>Retry</button>
           </div>
         )}
         {!loading && !error && paths.length === 0 && (
@@ -168,24 +201,17 @@ export function LearningPathsScreen({
           const isComplete = pathEnrollment?.status === "completed" || (
             requiredSteps.length > 0 && completedRequired === requiredSteps.length
           );
+          const canSwitchToPath = !isEnrolled && currentPathIds.size > 0;
 
           return (
-            <article
-              key={path.id}
-              className="tai-card"
-              style={{ padding: 18, display: "flex", flexDirection: "column", gap: 14 }}
-            >
+            <article key={path.id} className="tai-card" style={{ padding: 18, display: "flex", flexDirection: "column", gap: 14 }}>
               <div className="tai-row tai-between" style={{ gap: 12, alignItems: "flex-start", flexWrap: "wrap" }}>
                 <div style={{ minWidth: 0, flex: "1 1 240px" }}>
                   <div className="tai-row tai-gap8" style={{ flexWrap: "wrap" }}>
                     <h2 style={{ margin: 0, fontSize: 17, overflowWrap: "anywhere" }}>{path.title || "Learning Path"}</h2>
                     {isEnrolled && <Tag tone={isComplete ? "success" : undefined}>{isComplete ? "Completed" : "In progress"}</Tag>}
                   </div>
-                  {path.description && (
-                    <p style={{ margin: "6px 0 0", fontSize: 13, color: "var(--text-2)", lineHeight: 1.45 }}>
-                      {path.description}
-                    </p>
-                  )}
+                  {path.description && <p style={{ margin: "6px 0 0", fontSize: 13, color: "var(--text-2)", lineHeight: 1.45 }}>{path.description}</p>}
                   <div style={{ marginTop: 7, color: "var(--text-3)", fontSize: 11.5, textTransform: "capitalize" }}>
                     {path.level || "All levels"}{path.category ? ` · ${path.category}` : ""} · {progress.total} courses · {progress.totalHours} hours
                   </div>
@@ -195,9 +221,10 @@ export function LearningPathsScreen({
                     className="tai-btn tai-btn-primary"
                     disabled={!userId || !progress.total || busyPathId !== null}
                     onClick={() => startPath(path)}
-                    aria-label={`Start ${path.title || "learning path"}`}
+                    aria-label={`${canSwitchToPath ? "Switch to" : "Start"} ${path.title || "learning path"}`}
                   >
-                    <Play size={14} /> {busyPathId === path.id ? "Starting…" : "Start path"}
+                    {canSwitchToPath ? <Repeat size={14} /> : <Play size={14} />}
+                    {busyPathId === path.id ? "Starting…" : canSwitchToPath ? "Switch path" : "Start path"}
                   </button>
                 ) : (
                   <button
@@ -226,11 +253,7 @@ export function LearningPathsScreen({
               ) : (
                 <div className="tai-col tai-gap8">
                   {progress.steps.map((step, index) => (
-                    <div
-                      key={step.pathCourseId || step.id}
-                      className="tai-row tai-between"
-                      style={{ gap: 12, padding: "10px 12px", borderRadius: 9, background: "var(--surface-2)", flexWrap: "wrap" }}
-                    >
+                    <div key={step.pathCourseId || step.id} className="tai-row tai-between" style={{ gap: 12, padding: "10px 12px", borderRadius: 9, background: "var(--surface-2)", flexWrap: "wrap" }}>
                       <div className="tai-row tai-gap10" style={{ minWidth: 0, flex: "1 1 220px" }}>
                         <div style={{ width: 25, height: 25, borderRadius: "50%", background: step.isCompleted ? "var(--success-bg)" : "var(--surface)", color: step.isCompleted ? "var(--success)" : "var(--text-2)", display: "grid", placeItems: "center", flexShrink: 0, fontSize: 11, fontWeight: 700 }}>
                           {step.isCompleted ? <CheckCircle2 size={15} /> : index + 1}
@@ -245,17 +268,11 @@ export function LearningPathsScreen({
                       {!isEnrolled ? (
                         <span style={{ color: "var(--text-3)", fontSize: 11, flexShrink: 0 }}>Start path to unlock</span>
                       ) : step.isUnlocked ? (
-                        <button
-                          className="tai-btn tai-btn-outline tai-btn-sm"
-                          disabled={busyPathId !== null}
-                          onClick={() => openStep(path, step, index, progress)}
-                        >
+                        <button className="tai-btn tai-btn-outline tai-btn-sm" disabled={busyPathId !== null} onClick={() => openStep(path, step, index, progress)}>
                           <BookOpen size={13} /> {step.isCompleted ? "Review" : step.isEnrolled ? "Continue" : "Open course"}
                         </button>
                       ) : (
-                        <span className="tai-row tai-gap6" style={{ color: "var(--text-3)", fontSize: 11, flexShrink: 0 }}>
-                          <Lock size={13} /> Locked
-                        </span>
+                        <span className="tai-row tai-gap6" style={{ color: "var(--text-3)", fontSize: 11, flexShrink: 0 }}><Lock size={13} /> Locked</span>
                       )}
                     </div>
                   ))}
