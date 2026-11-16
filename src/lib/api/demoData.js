@@ -143,9 +143,9 @@ export const DEMO_CERTIFICATES = [
 ];
 
 export const DEMO_COHORT = {
-  id: "demo-cohort-1", name: "Q1 Onboarding Cohort",
+  id: "cap-cohort-3", name: "Career Acceleration Programme (CAP) · Cohort 3",
   memberNames: ["Amara Chen", "David Osei", "Priya Nair", "Marcus Webb"],
-  endsAt: "2026-04-01",
+  endsAt: "2026-06-30",
 };
 
 export const DEMO_STUDY_GROUP = { id: "demo-group-1", name: "AI Fundamentals Study Circle", memberCount: 3 };

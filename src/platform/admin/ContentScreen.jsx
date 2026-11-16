@@ -2,7 +2,7 @@ import { LoadingSkeleton } from "./../../components/common/PageLoadingBoundary.j
 import { CourseImage } from "../../components/common/CourseImage.jsx";
 import React, { useState, useEffect, useContext } from "react";
 import { TopBar, Tag, ToastContext, Switch } from "../components/PlatformUI.jsx";
-import { Plus, ArrowLeft, Save, Trash2, BookOpen, Layers, Users, Eye, CheckCircle2, Clock, DollarSign, Upload, FileText, Settings, ShieldCheck, X, Check, GraduationCap, Award, ChevronUp, ChevronDown, Brain } from "lucide-react";
+import { Plus, ArrowLeft, Save, Trash2, BookOpen, Layers, Users, Eye, CheckCircle2, Clock, DollarSign, Upload, FileText, Settings, ShieldCheck, X, Check, GraduationCap, Award, ChevronUp, ChevronDown, Brain, Sparkles } from "lucide-react";
 import { useSupabaseQuery } from "../../lib/useSupabaseQuery.js";
 import { fetchCourses, updateCourse, deleteCourse, replaceCourseLessons, fetchCourseApplications, decideCourseApplication, fetchCourseEnrolledLearners, fetchAssessmentAttemptsForCourse, overrideAssessmentScore, fetchCertificateRequestsForCourse, reviewCertificate, upsertCertificateTemplate, fetchAssessmentForCourseWithQuestions, createAssessmentForCourse, addAssessmentQuestion, deleteAssessmentQuestion, checkEffectiveOrgPermission, issueCertificateDirectly, fetchCourseMaterials, addCourseMaterial, deleteCourseMaterial, fetchCourseQualityReview, submitCourseQualityReview } from "../../lib/api/platform.js";
 import { fetchCertificateForCourse } from "../../lib/api/learner.js";
@@ -1135,7 +1135,7 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
                 </div>
 
                 <div className="ta-hero-actions">
-                  {allowDiscovery && <button className="ta-btn ta-btn-outline" onClick={() => setDiscoveryOpen(v => !v)}><Brain size={16} /> Find YouTube courses</button>}
+                  {allowDiscovery && <button className="ta-btn ta-btn-outline" onClick={() => setDiscoveryOpen(v => !v)}><Sparkles size={16} /> Create courses with AI</button>}
                   <button
                     className="ta-btn ta-btn-primary"
                     style={{
@@ -1175,15 +1175,8 @@ export function ContentScreen({ orgId, orgSelector, setScreen, selectedCourseId,
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 260px), 1fr))", gap: 20 }}>
               {coursesQuery.loading && <div className="ta-empty"><LoadingSkeleton label="Loading courses..." rows={3} /></div>}
               {!coursesQuery.loading && courses.length === 0 && <div className="ta-empty">No courses created yet.</div>}
-              {courses.map((c, idx) => {
-                const fallbackImages = [
-                  "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&auto=format&fit=crop&q=80",
-                  "https://images.unsplash.com/photo-1450133064473-71024230f91b?w=600&auto=format&fit=crop&q=80",
-                  "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&auto=format&fit=crop&q=80",
-                  "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80",
-                  "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=80"
-                ];
-                const coverImg = c.cover_image_url || fallbackImages[idx % fallbackImages.length];
+              {courses.map((c) => {
+                const coverImg = c.cover_image_url || c.coverImageUrl || c.image || "/course-placeholder.svg";
 
                 return (
                   <div key={c.id} className="ta-card ta-card-hover" style={{ display: "flex", flexDirection: "column", height: "100%", padding: 0, overflow: "hidden", borderRadius: 10, border: "1px solid var(--border)" }}>

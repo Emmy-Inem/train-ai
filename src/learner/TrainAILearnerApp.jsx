@@ -188,7 +188,8 @@ export default function TrainAILearnerApp({ isActive = true, onSwitchToPlatform,
       setCommunityTab("summary");
       push("community", { tab: "summary" });
     } else if (key === "communityFeed" || key === "feed") {
-      push("communityFeed");
+      setCommunityTab("summary");
+      push("community", { tab: "summary" });
     } else if (key === "cohort") {
       push("cohort");
     } else if (key === "leaderboard" || key === "rank") {

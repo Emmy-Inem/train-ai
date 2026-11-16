@@ -216,8 +216,8 @@ export function MenteesScreen({ mentorId, orgSelector, setScreen, setSelectedLea
                   </td>
                 </tr>
               )}
-                  {filteredMentees.map((m, idx) => {
-                    const avatarUrl = m.avatar || `https://images.unsplash.com/photo-${1534528741775 + (idx * 5000)}?w=150&auto=format&fit=crop&q=80`;
+                  {filteredMentees.map((m) => {
+                    const avatarUrl = m.avatar || m.avatar_url || null;
                     const riskTone = m.risk === "high" ? "danger" : m.risk === "medium" ? "warning" : m.risk === "unknown" ? "neutral" : "success";
                     const riskLabel = m.risk === "high" ? "High Risk" : m.risk === "medium" ? "Needs Attention" : m.risk === "unknown" ? "No Data" : "On Track";
 
@@ -225,12 +225,16 @@ export function MenteesScreen({ mentorId, orgSelector, setScreen, setSelectedLea
                       <tr key={m.id}>
                         <td>
                           <div className="ta-row ta-gap10">
-                            <img 
-                              src={avatarUrl} 
-                              alt={m.name} 
-                              style={{ width: 34, height: 34, borderRadius: 10, objectFit: "cover", border: "1px solid var(--border)" }}
-                              onError={(e) => { e.target.style.display = "none"; }}
-                            />
+                            {avatarUrl ? (
+                              <img 
+                                src={avatarUrl} 
+                                alt={m.name} 
+                                style={{ width: 34, height: 34, borderRadius: 10, objectFit: "cover", border: "1px solid var(--border)" }}
+                                onError={(e) => { e.target.style.display = "none"; }}
+                              />
+                            ) : (
+                              <Avatar initials={m.initials || (m.name || "L").slice(0, 2).toUpperCase()} size={34} />
+                            )}
                             <div>
                               <div style={{ fontWeight: 700, fontSize: 13.5 }}>{m.name || "Learner"}</div>
                               <div style={{ fontSize: 11, color: "var(--text-3)" }}>{m.email || (m.name ? `${m.name.toLowerCase().replace(/\s+/g, ".")}@trainailtd.com` : "learner@trainailtd.com")}</div>

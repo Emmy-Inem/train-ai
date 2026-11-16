@@ -99,7 +99,7 @@ export function HomeScreen({
               >
                 <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <CourseImage
-                    src={continueCourse.coverImageUrl || "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&auto=format&fit=crop&q=80"}
+                    src={continueCourse.coverImageUrl || continueCourse.image || "/course-placeholder.svg"}
                     alt={continueCourse.title}
                     style={{ width: 48, height: 48, borderRadius: 8, objectFit: "cover", flexShrink: 0, border: "1px solid rgba(255,255,255,0.2)" }}
                   />
@@ -423,7 +423,7 @@ export function HomeScreen({
                 onClick={() => push("myProgress")}
               >
                 <BarChart3 size={13} color="var(--primary)" />
-                <span>Analytics</span>
+                <span>Analytics (Validating)</span>
               </button>
               <button
                 className="tai-btn tai-btn-outline"

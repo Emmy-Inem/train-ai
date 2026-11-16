@@ -1325,10 +1325,7 @@ export function CommunityScreen({
                 <button
                   className="tai-btn tai-btn-outline tai-btn-sm"
                   style={{ borderRadius: 999, padding: "5px 12px", fontSize: 12 }}
-                  onClick={() => {
-                    if (push) push("communityFeed");
-                    else setViewAllPosts((prev) => !prev);
-                  }}
+                  onClick={() => setViewAllPosts((prev) => !prev)}
                 >
                   {`View All Posts (${posts.length})`}
                 </button>
@@ -1581,12 +1578,9 @@ export function CommunityScreen({
                 <button
                   className="tai-btn tai-btn-outline tai-btn-sm"
                   style={{ borderRadius: 999, padding: "6px 20px", fontSize: 12.5, fontWeight: 500 }}
-                  onClick={() => {
-                    if (push) push("communityFeed");
-                    else setViewAllPosts(true);
-                  }}
+                  onClick={() => setViewAllPosts(true)}
                 >
-                  View All {filteredPosts.length} Posts in Community Feed →
+                  View All {filteredPosts.length} Community Discussions →
                 </button>
               </div>
             )}

@@ -71,112 +71,14 @@ const CATEGORIES = [
   { id: "business", label: "Tech-Preneur & Business" }
 ];
 
-// Topic-accurate curated photography for courses across all tracks
-const TOPIC_STOCK_PHOTOS = {
-  figma_design_systems: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=80",
-  design_thinking: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&auto=format&fit=crop&q=80",
-  spatial_visionos: "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=800&auto=format&fit=crop&q=80",
-  ui_prototyping: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&auto=format&fit=crop&q=80",
-  fullstack_ai: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80",
-  frontend_react: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80",
-  backend_node_api: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80",
-  prompt_engineering: "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=800&auto=format&fit=crop&q=80",
-  cloud_kubernetes: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80",
-  python_data_science: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
-  data_analyst_sql: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop&q=80",
-  product_management: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80",
-  cybersecurity_compliance: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=80",
-  digital_marketing_growth: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
-  entrepreneurship_venture: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format&fit=crop&q=80",
-  business_opportunity: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&auto=format&fit=crop&q=80",
-  technical_leadership: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
-};
-
-const CURATED_STOCK_PHOTOS = Object.values(TOPIC_STOCK_PHOTOS);
-
-const COURSE_UNIQUE_THUMBNAILS = {
-  "course-figma-ai": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&auto=format&fit=crop&q=80",
-  "course-spatial-ui": "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?w=800&auto=format&fit=crop&q=80",
-  "course-fullstack-ai": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80",
-  "course-prompt-pro": "https://images.unsplash.com/photo-1677442136019-21780efad99a?w=800&auto=format&fit=crop&q=80",
-  "course-cloud-devops": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80",
-  "course-data-python": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80",
-  "course-product-analytics": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop&q=80",
-  "course-compliance-101": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop&q=80",
-  "course-techpreneur-business": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&auto=format&fit=crop&q=80",
-  "course-techpreneur-experimentation": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&auto=format&fit=crop&q=80",
-  "course-foundations": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop&q=80",
-  "course-design-thinking": "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&auto=format&fit=crop&q=80"
-};
-
-function getSafeCoverImage(course, idx = 0) {
-  if (course?.id && COURSE_UNIQUE_THUMBNAILS[course.id]) {
-    return COURSE_UNIQUE_THUMBNAILS[course.id];
-  }
-  if (course?.coverImageUrl && course.coverImageUrl.startsWith("http") && !course.coverImageUrl.includes("picsum.photos") && !course.coverImageUrl.includes("placeholder")) {
+function getSafeCoverImage(course) {
+  if (course?.coverImageUrl && course.coverImageUrl.startsWith("http") && !course.coverImageUrl.includes("picsum.photos") && !course.coverImageUrl.includes("placeholder") && !course.coverImageUrl.includes("unsplash.com")) {
     return course.coverImageUrl;
   }
-  if (course?.image && course.image.startsWith("http") && !course.image.includes("picsum.photos") && !course.image.includes("placeholder")) {
+  if (course?.image && course.image.startsWith("http") && !course.image.includes("picsum.photos") && !course.image.includes("placeholder") && !course.image.includes("unsplash.com")) {
     return course.image;
   }
-  
-  const text = `${course?.title || ""} ${course?.category || ""} ${course?.tagline || ""} ${course?.description || ""}`.toLowerCase();
-  
-  if (text.includes("figma") || text.includes("design system") || (text.includes("ui") && text.includes("system"))) {
-    return TOPIC_STOCK_PHOTOS.figma_design_systems;
-  }
-  if (text.includes("spatial") || text.includes("visionos") || text.includes("3d") || text.includes("realitykit")) {
-    return TOPIC_STOCK_PHOTOS.spatial_visionos;
-  }
-  if (text.includes("design think") || text.includes("wireframe") || text.includes("user experience") || text.includes("ux research")) {
-    return TOPIC_STOCK_PHOTOS.design_thinking;
-  }
-  if (text.includes("prototyp") || text.includes("ui design") || text.includes("ux design")) {
-    return TOPIC_STOCK_PHOTOS.ui_prototyping;
-  }
-  if (text.includes("prompt") || text.includes("llm") || text.includes("agent") || text.includes("langchain") || text.includes("gpt")) {
-    return TOPIC_STOCK_PHOTOS.prompt_engineering;
-  }
-  if (text.includes("full-stack") || text.includes("fullstack") || text.includes("web app")) {
-    return TOPIC_STOCK_PHOTOS.fullstack_ai;
-  }
-  if (text.includes("react") || text.includes("frontend") || text.includes("javascript") || text.includes("html") || text.includes("css")) {
-    return TOPIC_STOCK_PHOTOS.frontend_react;
-  }
-  if (text.includes("node") || text.includes("backend") || text.includes("fastapi") || text.includes("database") || text.includes("postgres") || text.includes("sql")) {
-    return TOPIC_STOCK_PHOTOS.backend_node_api;
-  }
-  if (text.includes("cloud") || text.includes("kubernetes") || text.includes("docker") || text.includes("devops") || text.includes("ci/cd")) {
-    return TOPIC_STOCK_PHOTOS.cloud_kubernetes;
-  }
-  if (text.includes("python") || text.includes("machine learning") || text.includes("pandas") || text.includes("data science")) {
-    return TOPIC_STOCK_PHOTOS.python_data_science;
-  }
-  if (text.includes("analytics") || text.includes("data analyst") || text.includes("statistics") || text.includes("bi")) {
-    return TOPIC_STOCK_PHOTOS.data_analyst_sql;
-  }
-  if (text.includes("security") || text.includes("cyber") || text.includes("compliance") || text.includes("protection")) {
-    return TOPIC_STOCK_PHOTOS.cybersecurity_compliance;
-  }
-  if (text.includes("product") || text.includes("scrum") || text.includes("agile") || text.includes("roadmap")) {
-    return TOPIC_STOCK_PHOTOS.product_management;
-  }
-  if (text.includes("marketing") || text.includes("seo") || text.includes("growth") || text.includes("funnel")) {
-    return TOPIC_STOCK_PHOTOS.digital_marketing_growth;
-  }
-  if (text.includes("entrepreneur") || text.includes("startup") || text.includes("founder")) {
-    return TOPIC_STOCK_PHOTOS.entrepreneurship_venture;
-  }
-  if (text.includes("business") || text.includes("opportunity") || text.includes("venture")) {
-    return TOPIC_STOCK_PHOTOS.business_opportunity;
-  }
-  if (text.includes("leadership") || text.includes("management") || text.includes("executive")) {
-    return TOPIC_STOCK_PHOTOS.technical_leadership;
-  }
-
-  const keys = Object.keys(TOPIC_STOCK_PHOTOS);
-  const hash = (course?.id || course?.title || "").split("").reduce((acc, char) => acc + char.charCodeAt(0), 0) + idx;
-  return TOPIC_STOCK_PHOTOS[keys[hash % keys.length]];
+  return "/course-placeholder.svg";
 }
 
 const SPOTLIGHT_SLIDES = [];
@@ -360,7 +262,7 @@ export function CoursesScreen({
           instructor: "Train AI Academy",
           instructorRole: "Course Team",
           instructorAvatar: null,
-          coverImage: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
+          coverImage: "/course-placeholder.svg",
           cta: "Review Completed Material",
           action: "explore",
           lessonsText: `${fallbackTrackCourses.length} Courses Complete`

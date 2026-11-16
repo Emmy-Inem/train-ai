@@ -70,11 +70,11 @@ export function YouTubeCourseDiscovery({
       <div className="yt-heading">
         <div>
           <h2>
-            <Sparkles size={20} /> Find YouTube courses with AI
+            <Sparkles size={20} /> Create courses with AI
           </h2>
           <p>
-            Describe the skill and audience. Review suggestions before adding
-            them to your library.
+            Describe the skills, curriculum goals, and target audience. AI discovers
+            and structures courses for your review before publishing.
           </p>
         </div>
         <button
@@ -137,7 +137,7 @@ export function YouTubeCourseDiscovery({
         }}
       >
         <label>
-          What should learners learn?
+          What skills or curriculum should AI structure?
           <textarea
             className="ta-input"
             required
@@ -146,7 +146,7 @@ export function YouTubeCourseDiscovery({
             rows={3}
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            placeholder="Find beginner product management courses covering roadmaps, user research and prioritization, taught in English."
+            placeholder="e.g. Comprehensive beginner Data Analysis course covering SQL, Excel, and Power BI dashboards with real-world exercises."
           />
         </label>
         <div className="yt-search-row">
@@ -167,8 +167,8 @@ export function YouTubeCourseDiscovery({
             className="ta-btn ta-btn-primary"
             disabled={loading || !connection?.ready || !!busy}
           >
-            <Search size={16} />
-            {busy === "search" ? "Finding courses…" : "Find courses"}
+            <Sparkles size={16} />
+            {busy === "search" ? "Creating courses with AI…" : "Create courses with AI"}
           </button>
         </div>
         <p className="yt-muted">

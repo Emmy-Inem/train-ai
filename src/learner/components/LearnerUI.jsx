@@ -970,7 +970,7 @@ export function DesktopSidebar({
     },
     {
       key: "ai",
-      label: "Learning tools",
+      label: "AI",
       icon: Zap,
       defaultScreen: "ai",
       screens: ["ai", "aiQuiz"],
@@ -984,10 +984,9 @@ export function DesktopSidebar({
       label: "Connect",
       icon: Users,
       defaultScreen: "community",
-      screens: ["community", "communityFeed", "cohort", "mentors", "studyGroup", "messages", "leaderboard"],
+      screens: ["community", "cohort", "mentors", "studyGroup", "messages", "leaderboard"],
       subItems: [
         { key: "community", label: "Community", icon: Users },
-        { key: "communityFeed", label: "Feed", icon: MessageSquare },
         { key: "cohort", label: "Cohort", icon: Layers },
         { key: "mentors", label: "Instructors", icon: GraduationCap },
         { key: "studyGroup", label: "Study Group", icon: Users },
@@ -1136,7 +1135,7 @@ export function CourseThumb({ course, size = 56, rounded = 8 }) {
       </div>
     );
   }
-  const imgSrc = course.coverImageUrl || `https://picsum.photos/seed/${course.id}/160/160`;
+  const imgSrc = course.coverImageUrl || course.image || "/course-placeholder.svg";
   return (
     <div style={{
       width: size, height: size, borderRadius: rounded, flexShrink: 0, overflow: "hidden", position: "relative",

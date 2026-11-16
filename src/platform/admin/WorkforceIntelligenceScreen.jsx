@@ -68,7 +68,7 @@ export function WorkforceIntelligenceScreen({ orgId, orgSelector, currentUserId 
         status: prog?.pace === "behind" ? "Needs Attention" : avgProg >= 85 ? "High Performer" : "On Track",
         readiness: `${avgProg}%`,
         avgProgress: avgProg,
-        avatar: m.avatar_url || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+        avatar: m.avatar_url || null
       };
     });
 

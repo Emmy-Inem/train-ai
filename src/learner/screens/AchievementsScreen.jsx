@@ -94,7 +94,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
         instructor: cert.courses?.instructor || user.organization || "Train AI",
         skills: [cert.courses?.category || "Core Curriculum", "Applied Mastery"],
         verificationUrl: `${getCanonicalDomain()}/verify/${cert.certificate_number || cert.id}`,
-        bannerImage: cert.courses?.coverImageUrl || cert.courses?.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80"
+        bannerImage: cert.courses?.coverImageUrl || cert.courses?.image || "/course-placeholder.svg"
       }));
     }
     const completedCourses = (courses || []).filter(c => (c.progress || 0) >= 100);
@@ -110,7 +110,7 @@ export function AchievementsScreen({ user = {}, courses = [], achievements = [],
       instructor: c.instructor || user.organization || "Train AI",
       skills: [c.category || "General", "Track Completion"],
       verificationUrl: `${getCanonicalDomain()}/verify/TAI-${c.id}`,
-      bannerImage: c.coverImageUrl || c.image || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&auto=format&fit=crop&q=80"
+      bannerImage: c.coverImageUrl || c.image || "/course-placeholder.svg"
     }));
   })();
 

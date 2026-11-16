@@ -1,6 +1,6 @@
 import { LoadingSkeleton } from "./../../components/common/PageLoadingBoundary.jsx";
 import React, { useState, useContext } from "react";
-import { TopBar, StatCard, ProgressBar, Tag, ToastContext } from "../components/PlatformUI.jsx";
+import { TopBar, StatCard, ProgressBar, Tag, Avatar, ToastContext } from "../components/PlatformUI.jsx";
 import { AnalysisNotesCard } from "../components/AnalysisNotesCard.jsx";
 import { Plus, Users, Layers, BookOpen, Target, UserCheck, Mail, Flag, MoreHorizontal, AlertTriangle, ChevronRight, Star, CalendarClock, Lock, Radio, Brain, CheckCircle2, Zap } from "lucide-react";
 import { useSupabaseQuery } from "../../lib/useSupabaseQuery.js";
@@ -347,12 +347,16 @@ export function AdminDashboardScreen({ orgId, profileQuery, setScreen, orgSelect
                 {(riskQuery.data || []).map((s, idx) => (
                   <div key={s.name} className="ta-row ta-between" style={{ padding: "10px 12px", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", cursor: "pointer", transition: "all 0.15s ease", gap: 10, flexWrap: "wrap" }} onClick={() => setScreen("people")}>
                     <div className="ta-row ta-gap10" style={{ minWidth: 0 }}>
-                      <img
-                        src={s.avatar || `https://images.unsplash.com/photo-${1534528741775 + (idx * 5000)}?w=150&auto=format&fit=crop&q=80`}
-                        alt={s.name}
-                        style={{ width: 34, height: 34, borderRadius: 10, objectFit: "cover", border: "1px solid var(--border)", flexShrink: 0 }}
-                        onError={(e) => { e.target.style.display = "none"; }}
-                      />
+                      {s.avatar ? (
+                        <img
+                          src={s.avatar}
+                          alt={s.name}
+                          style={{ width: 34, height: 34, borderRadius: 10, objectFit: "cover", border: "1px solid var(--border)", flexShrink: 0 }}
+                          onError={(e) => { e.target.style.display = "none"; }}
+                        />
+                      ) : (
+                        <Avatar initials={(s.name || "ST").slice(0, 2).toUpperCase()} size={34} />
+                      )}
                       <div style={{ minWidth: 0 }}>
                         <div style={{ fontWeight: 700, fontSize: 13, overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", lineHeight: 1.3 }}>{s.name}</div>
                         <div style={{ fontSize: 11, color: "var(--text-3)" }}>
@@ -390,12 +394,16 @@ export function AdminDashboardScreen({ orgId, profileQuery, setScreen, orgSelect
                 {(mentorsQuery.data || []).map((m, idx) => (
                   <div key={m.name} className="ta-row ta-between" style={{ padding: "10px 12px", background: "var(--surface-3)", borderRadius: 8, border: "1px solid var(--border)", cursor: "pointer", transition: "all 0.15s ease", gap: 10, flexWrap: "wrap" }} onClick={() => setScreen("people")}>
                     <div className="ta-row ta-gap10" style={{ minWidth: 0 }}>
-                      <img
-                        src={m.avatar || `https://images.unsplash.com/photo-${1573496359142 + (idx * 5000)}?w=150&auto=format&fit=crop&q=80`}
-                        alt={m.name}
-                        style={{ width: 32, height: 32, borderRadius: 10, objectFit: "cover", border: "1px solid var(--border)", flexShrink: 0 }}
-                        onError={(e) => { e.target.style.display = "none"; }}
-                      />
+                      {m.avatar ? (
+                        <img
+                          src={m.avatar}
+                          alt={m.name}
+                          style={{ width: 32, height: 32, borderRadius: 10, objectFit: "cover", border: "1px solid var(--border)", flexShrink: 0 }}
+                          onError={(e) => { e.target.style.display = "none"; }}
+                        />
+                      ) : (
+                        <Avatar initials={(m.name || "IN").slice(0, 2).toUpperCase()} size={32} />
+                      )}
                       <div style={{ minWidth: 0 }}>
                         <div style={{ fontWeight: 700, fontSize: 13, overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical", lineHeight: 1.3 }}>{m.name}</div>
                         <div style={{ fontSize: 11, color: "var(--text-3)" }}>{m.sessions} session{m.sessions === 1 ? "" : "s"}</div>

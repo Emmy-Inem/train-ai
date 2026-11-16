@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TopBar, Tag, ProgressBar } from "../components/PlatformUI.jsx";
+import { TopBar, Tag, ProgressBar, Avatar } from "../components/PlatformUI.jsx";
 import { 
   Users, Calendar, DollarSign, TrendingUp, Clock, 
   MessageCircle, CheckCircle2, Award, Brain, ThumbsUp,
@@ -39,7 +39,7 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
     .map((s, idx) => ({
       id: s.id || idx,
       studentName: s.learner_name || s.user_profiles?.display_name || "Enrolled Learner",
-      avatar: s.user_profiles?.avatar_url || "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80",
+      avatar: s.user_profiles?.avatar_url || null,
       course: s.course_title || s.title || "Mentorship Session",
       rating: s.rating || 5,
       date: s.scheduled_at ? new Date(s.scheduled_at).toLocaleDateString() : "Recent",
@@ -272,7 +272,11 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
                 <div>
                   <div className="ta-row ta-between" style={{ gap: 8, marginBottom: 8 }}>
                     <div className="ta-row ta-gap10" style={{ minWidth: 0 }}>
-                      <img src={rev.avatar} alt="" style={{ width: 34, height: 34, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
+                      {rev.avatar ? (
+                        <img src={rev.avatar} alt="" style={{ width: 34, height: 34, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
+                      ) : (
+                        <Avatar initials={rev.studentName ? rev.studentName.slice(0, 2).toUpperCase() : "EL"} size={34} />
+                      )}
                       <div style={{ minWidth: 0 }}>
                         <div style={{ fontWeight: 700, fontSize: 13, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{rev.studentName}</div>
                         <div style={{ fontSize: 11, color: "var(--text-3)" }}>{rev.date}</div>

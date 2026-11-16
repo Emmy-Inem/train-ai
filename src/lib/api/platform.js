@@ -5654,8 +5654,8 @@ export async function fetchMemberLearningTrack(userId, organizationId, cohortId 
     ],
     cohorts: [
       {
-        id: "demo-cohort-1",
-        name: cohortName,
+        id: "cap-cohort-3",
+        name: cohortName || "Career Acceleration Programme (CAP) · Cohort 3",
         memberRowId: `cm-${cleanUserId}`,
       },
     ],

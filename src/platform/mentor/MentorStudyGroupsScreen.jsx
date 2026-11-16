@@ -14,12 +14,7 @@ import {
 import { isMockDataEnabled } from "../../lib/mockDataManager.js";
 import { getCanonicalDomain } from "../../services/emailService.js";
 
-const DEFAULT_GROUP_IMAGES = [
-  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&auto=format&fit=crop&q=80"
-];
+const DEFAULT_GROUP_IMAGE = "/course-placeholder.svg";
 
 export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
   const showToast = useContext(ToastContext);
@@ -33,33 +28,33 @@ export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
   const groupsQuery = useSupabaseQuery(async () => (mentorId ? fetchMyManagedStudyGroups(mentorId) : []), [mentorId]);
   const rawGroups = groupsQuery.data || [];
 
-  // Fallback demo study groups so the UI is rich and interactive
+  // Fallback demo study groups aligned with CAP and FLIP
   const defaultGroups = [
     {
       id: "demo-group-1",
-      name: "Spatial UI & WebGL Guild",
-      courses: { title: "Spatial UI & VisionOS Tokens" },
-      description: "Weekly collaborative deep-dive into three.js shaders, spatial audio rendering, and design token pipelines.",
-      membersCount: 18,
-      nextMeetup: "Thursday @ 6:00 PM EST",
-      image: DEFAULT_GROUP_IMAGES[0]
+      name: "CAP Study Circle",
+      courses: { title: "Career Acceleration Programme (CAP)" },
+      description: "Weekly collaborative review for CAP cohort members.",
+      membersCount: 0,
+      nextMeetup: "TBD",
+      image: DEFAULT_GROUP_IMAGE
     },
     {
       id: "demo-group-2",
-      name: "LLM Agents & Neural Search Circle",
-      courses: { title: "Enterprise AI Architecture" },
-      description: "Capstone peer reviews, LangChain orchestration debug labs, and vector benchmark comparisons.",
-      membersCount: 24,
-      nextMeetup: "Saturday @ 2:00 PM EST",
-      image: DEFAULT_GROUP_IMAGES[1]
+      name: "FLIP Fellowship Working Group",
+      courses: { title: "FLIP Fellowship" },
+      description: "Collaborative research and venture peer-reviews for FLIP fellows.",
+      membersCount: 0,
+      nextMeetup: "TBD",
+      image: DEFAULT_GROUP_IMAGE
     }
   ];
 
-  const groups = rawGroups.length > 0 ? rawGroups.map((g, i) => ({
+  const groups = rawGroups.length > 0 ? rawGroups.map((g) => ({
     ...g,
-    image: DEFAULT_GROUP_IMAGES[i % DEFAULT_GROUP_IMAGES.length],
-    membersCount: g.members_count || 12,
-    nextMeetup: "Every Wednesday @ 5:00 PM"
+    image: g.image || g.cover_image || DEFAULT_GROUP_IMAGE,
+    membersCount: g.members_count || 0,
+    nextMeetup: g.next_meetup || "TBD"
   })) : (isMockDataEnabled() ? defaultGroups : []);
 
   const activeGroup = groups.find((g) => g.id === selectedGroupId) || groups[0];
