@@ -1,7 +1,7 @@
 import { LoadingSkeleton } from "./../../components/common/PageLoadingBoundary.jsx";
 import React, { useState, useEffect } from "react";
 import { TopBar, Avatar, Switch, initialsOf } from "../components/LearnerUI.jsx";
-import { Moon, ShieldCheck, Download, LogOut, ChevronRight, Trophy, Accessibility, Camera, AlertTriangle, Trash2, Clock, Smartphone, Bell, Flame, User, CheckCircle2, Lock, BookOpen, Brain, Target, CreditCard, Mail, Sliders, Shield, MessageSquare, Send, Check, Gift, Copy, Users, Star, Award, Eye, EyeOff, KeyRound } from "lucide-react";
+import { Moon, ShieldCheck, Download, LogOut, ChevronRight, Trophy, Accessibility, Camera, AlertTriangle, Trash2, Clock, Smartphone, Bell, Flame, User, CheckCircle2, Lock, BookOpen, Brain, Target, CreditCard, Mail, Sliders, Shield, MessageSquare, Send, Check, Gift, Copy, Users, Star, Award, Eye, EyeOff, KeyRound, Compass, ArrowRight } from "lucide-react";
 import { exportUserData, submitDSARRequest, fetchUserDSARRequests } from "../../lib/api/gdprService.js";
 import { fetchNotificationPreferences, upsertNotificationPreferences } from "../../lib/api/schemaHelper.js";
 import { submitPlatformFeedback, updateWeeklyGoal } from "../../lib/api/platform.js";
@@ -633,6 +633,23 @@ export function ProfileScreen({
                   {v} Lessons
                 </button>
               ))}
+            </div>
+          </div>
+
+          <div className="tai-card" style={{ borderRadius: 12, padding: "clamp(16px, 3vw, 24px)" }}>
+            <div className="tai-row tai-between" style={{ flexWrap: "wrap", gap: 12 }}>
+              <div className="tai-row tai-gap12">
+                <div className="tai-decoration-icon" style={{ width: 38, height: 38, borderRadius: 10, background: "rgba(59, 130, 246, 0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <Compass size={18} color="var(--primary)" />
+                </div>
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: "var(--text)" }}>Learning Path</div>
+                  <div style={{ fontSize: 12, color: "var(--text-3)", marginTop: 2 }}>Browse guided career pathways, view your course progression, or switch your active track</div>
+                </div>
+              </div>
+              <button type="button" className="tai-btn tai-btn-primary tai-btn-sm" onClick={() => push?.("learningPaths")}>
+                Manage Learning Path <ArrowRight size={14} />
+              </button>
             </div>
           </div>
 

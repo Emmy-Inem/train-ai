@@ -963,10 +963,9 @@ export function DesktopSidebar({
       label: "Courses",
       icon: BookOpen,
       defaultScreen: "courses",
-      screens: ["courses", "learningPaths", "courseDetail", "lesson"],
+      screens: ["courses", "courseDetail", "lesson"],
       subItems: [
-        { key: "courses", label: "All Courses", icon: BookOpen },
-        { key: "learningPaths", label: "Learning Paths", icon: Compass }
+        { key: "courses", label: "All Courses", icon: BookOpen }
       ]
     },
     {
@@ -998,14 +997,15 @@ export function DesktopSidebar({
     },
     {
       key: "account",
-      label: "Account",
+      label: "Settings",
       icon: Settings,
       defaultScreen: "settings",
-      screens: ["achievements", "myProgress", "notifications", "settings", "profile"],
+      screens: ["settings", "profile", "learningPaths", "achievements", "myProgress", "notifications"],
       subItems: [
+        { key: "learningPaths", label: "Learning Paths", icon: Compass },
+        { key: "settings", label: "Profile & Settings", icon: Settings },
         { key: "achievements", label: "Progress & Achievements", icon: Award },
-        { key: "notifications", label: "Notifications", icon: Bell, badge: unreadNotifs },
-        { key: "settings", label: "Settings", icon: Settings }
+        { key: "notifications", label: "Notifications", icon: Bell, badge: unreadNotifs }
       ]
     }
   ];
