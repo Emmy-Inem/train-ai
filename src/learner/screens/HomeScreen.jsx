@@ -63,11 +63,15 @@ export function HomeScreen({
                 <h1 className="tai-hero-title" style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 600, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.2, color: "#FFFFFF" }}>
                   Welcome back, {userFirstName || "Learner"}
                 </h1>
-                <span
-                  style={{ background: "#2563EB", color: "#FFFFFF", padding: "3px 10px", borderRadius: 6, fontWeight: 600, fontSize: 11.5, letterSpacing: "0.02em", border: "1px solid rgba(255, 255, 255, 0.25)", display: "inline-flex", alignItems: "center" }}
+                <button
+                  type="button"
+                  onClick={() => goTab?.("learningPaths")}
+                  aria-label="Browse learning paths"
+                  title="Browse learning paths published by your organization"
+                  style={{ background: "#2563EB", color: "#FFFFFF", padding: "3px 10px", borderRadius: 6, fontWeight: 600, fontSize: 11.5, letterSpacing: "0.02em", border: "1px solid rgba(255, 255, 255, 0.25)", display: "inline-flex", alignItems: "center", cursor: "pointer", fontFamily: "inherit", textAlign: "left" }}
                 >
                   {activePathway?.title ? `Pathway: ${activePathway.title}` : (continueCourse?.category ? `${continueCourse.category} Track` : "No active pathway yet")}
-                </span>
+                </button>
               </div>
               <p className="tai-hero-desc" style={{ fontSize: 13.5, margin: 0, color: "#F8FAFC", fontWeight: 500, lineHeight: 1.45 }}>
                 {continueCourse ? `Pick up where you left off in ${continueCourse.title}.` : "Explore your courses to get started."}

@@ -203,6 +203,22 @@ export function CoursesScreen({
     title: p.title || p.name || "Pathway",
     courseIds: new Set((p.courses || []).map(c => c.id))
   }));
+  const browseLearningPathsLink = (
+    <div className="tai-card" style={{ padding: "14px 16px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+      <div className="tai-row tai-gap10" style={{ minWidth: 0 }}>
+        <Compass size={20} color="var(--primary)" style={{ flexShrink: 0 }} />
+        <div>
+          <div style={{ fontSize: 13, fontWeight: 700 }}>Choose a Learning Path</div>
+          <div style={{ fontSize: 11.5, color: "var(--text-2)", marginTop: 2 }}>
+            {learningPathsQuery?.loading ? "Checking available paths…" : pathwayOptions.length ? `${pathwayOptions.length} published path${pathwayOptions.length === 1 ? "" : "s"} available` : "Browse guided course journeys or check back when your organization publishes one."}
+          </div>
+        </div>
+      </div>
+      <button className="tai-btn tai-btn-primary tai-btn-sm" onClick={() => push?.("learningPaths")}>
+        Browse paths <ArrowRight size={14} />
+      </button>
+    </div>
+  );
   const statusFilter = courseLevelFilter; // "all" | "in_progress" | "completed"
   const [sortBy, setSortBy] = useState("popular");
   const [bookmarkedIds, setBookmarkedIds] = useState({});
@@ -422,6 +438,7 @@ export function CoursesScreen({
     <div className="tai-fade-in">
       <LearningGoalPreference userId={userId || user?.id}/>
       <TopBar title="Courses" sub="Your organization's published learning content" />
+      {browseLearningPathsLink}
       <div className="tai-card" role={coursesError ? "alert" : "status"} style={{ padding: 28, marginTop: 16, textAlign: "center" }}>
         <BookOpen size={28} style={{ marginBottom: 12 }} />
         <h2>{coursesError ? "Courses could not be loaded" : "No courses available yet"}</h2>
@@ -434,6 +451,7 @@ export function CoursesScreen({
   return (
     <div className="tai-fade-in" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
       <LearningGoalPreference userId={userId || user?.id}/>
+      {browseLearningPathsLink}
       
       {/* =========================================================================
           DYNAMIC MOVING SPOTLIGHT HERO CAROUSEL (LEARNER TRACK FOCUSED)
