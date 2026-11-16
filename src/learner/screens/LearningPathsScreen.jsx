@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { ArrowRight, BookOpen, CheckCircle2, Compass, Lock, Map, Play, Repeat } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, Compass, Lock, Map as MapIcon, Play, Repeat } from "lucide-react";
 import { ProgressBar, Tag, TopBar } from "../components/LearnerUI.jsx";
 import {
   resolvePathProgress, enrollInLearningPath, leaveLearningPath, syncLearningPathProgress,
@@ -200,7 +200,7 @@ export function LearningPathsScreen({
         )}
         {!loading && !error && paths.length === 0 && (
           <div className="tai-card" style={{ padding: 24, textAlign: "center" }}>
-            <Map size={28} color="var(--primary)" style={{ marginBottom: 8 }} />
+            <MapIcon size={28} color="var(--primary)" style={{ marginBottom: 8 }} />
             <div style={{ fontWeight: 700 }}>No published learning paths yet</div>
             <div style={{ color: "var(--text-2)", fontSize: 13, marginTop: 5 }}>
               Published paths from your organization will appear here. You can browse available courses in the meantime.
