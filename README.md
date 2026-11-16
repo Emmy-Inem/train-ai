@@ -18,6 +18,7 @@ A learning-platform build spanning frontend, backend, and mobile:
 - **Mobile**: real native Android (Gradle) and iOS (Xcode) project shells,
   generated via Capacitor, wrapping the same web app, with responsive layouts
   for both apps (see "Cross-platform optimizations").
+- **Programs**: Active cohorts aligned to the **Career Acceleration Programme (CAP)** and **FLIP Fellowship** initiatives.
 
 Read this whole file before opening an issue about something "missing" - several things below are hard platform limits (e.g. no tool can compile a
 signed iOS app outside macOS+Xcode), not oversights.
