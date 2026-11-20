@@ -272,11 +272,12 @@ export function MentorAnalyticsScreen({ mentorId, mentorProfileQuery, orgSelecto
                 <div>
                   <div className="ta-row ta-between" style={{ gap: 8, marginBottom: 8 }}>
                     <div className="ta-row ta-gap10" style={{ minWidth: 0 }}>
-                      {rev.avatar ? (
-                        <img src={rev.avatar} alt="" style={{ width: 34, height: 34, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
-                      ) : (
-                        <Avatar initials={rev.studentName ? rev.studentName.slice(0, 2).toUpperCase() : "EL"} size={34} />
-                      )}
+                      <Avatar
+                        src={rev.avatar}
+                        initials={rev.studentName ? rev.studentName.slice(0, 2).toUpperCase() : "EL"}
+                        size={34}
+                        style={{ borderRadius: "50%", flexShrink: 0 }}
+                      />
                       <div style={{ minWidth: 0 }}>
                         <div style={{ fontWeight: 700, fontSize: 13, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{rev.studentName}</div>
                         <div style={{ fontSize: 11, color: "var(--text-3)" }}>{rev.date}</div>

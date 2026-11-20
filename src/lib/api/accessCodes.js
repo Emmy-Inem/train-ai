@@ -167,7 +167,7 @@ export async function fetchAccessCodeRedemptions(accessCodeId) {
     return (data || []).map((r) => ({
       ...r,
       user_name: r.user_profiles?.display_name || "Learner",
-      user_email: r.user_profiles?.email || "learner@trainailtd.com",
+      user_email: r.user_profiles?.email || "learner@gmail.com",
     }));
   } catch (error) {
     console.error("Could not load access-code redemptions:", error);
@@ -212,7 +212,7 @@ export async function redeemAccessCode(code, userId) {
     access_code_id: matched.id,
     user_id: userId || "user-current",
     user_name: "Active Learner",
-    user_email: "learner@trainailtd.com",
+    user_email: "learner@gmail.com",
     organization_id: matched.organization_id,
     cohort_id: matched.cohort_id,
     trial_started_at: new Date().toISOString(),

@@ -225,19 +225,10 @@ export function MenteesScreen({ mentorId, orgSelector, setScreen, setSelectedLea
                       <tr key={m.id}>
                         <td>
                           <div className="ta-row ta-gap10">
-                            {avatarUrl ? (
-                              <img 
-                                src={avatarUrl} 
-                                alt={m.name} 
-                                style={{ width: 34, height: 34, borderRadius: 10, objectFit: "cover", border: "1px solid var(--border)" }}
-                                onError={(e) => { e.target.style.display = "none"; }}
-                              />
-                            ) : (
-                              <Avatar initials={m.initials || (m.name || "L").slice(0, 2).toUpperCase()} size={34} />
-                            )}
+                            <Avatar src={avatarUrl} initials={m.initials || (m.name || "L").slice(0, 2).toUpperCase()} size={34} style={{ borderRadius: 10 }} />
                             <div>
                               <div style={{ fontWeight: 700, fontSize: 13.5 }}>{m.name || "Learner"}</div>
-                              <div style={{ fontSize: 11, color: "var(--text-3)" }}>{m.email || (m.name ? `${m.name.toLowerCase().replace(/\s+/g, ".")}@trainailtd.com` : "learner@trainailtd.com")}</div>
+                              <div style={{ fontSize: 11, color: "var(--text-3)" }}>{m.email || (m.name ? `${m.name.toLowerCase().replace(/[^a-z0-9]/g, ".")}@gmail.com` : "learner@gmail.com")}</div>
                             </div>
                           </div>
                         </td>

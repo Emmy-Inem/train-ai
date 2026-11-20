@@ -581,7 +581,10 @@ export default function TrainAILearnerApp({ isActive = true, onSwitchToPlatform,
       // throwaway one when a learner or the instructor books a session.
       meetingUrl: m.personal_meeting_url || m.meeting_url || "",
       name: m.name || m.user_profiles?.display_name || "Instructor",
-      avatar: m.avatar || m.user_profiles?.avatar_url || m.avatar_url || null,
+      avatar: (() => {
+        const av = m.avatar || m.user_profiles?.avatar_url || m.avatar_url || null;
+        return (typeof av === "string" && /(?:unsplash\.com|pexels\.com|pravatar\.cc|randomuser\.me|picsum\.photos|ui-avatars\.com|dicebear\.com)/i.test(av)) ? null : av;
+      })(),
       title: m.title || "Instructor",
       tagline: m.tagline || "",
       rate: m.hourly_rate || 0,

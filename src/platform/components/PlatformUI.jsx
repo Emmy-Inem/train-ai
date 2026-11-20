@@ -732,10 +732,14 @@ export const TOKENS = `
 // where one is set and fall back to initials otherwise. Without it the
 // People screen had no way to render a real avatar at all, which is why it
 // was previously generating throwaway stock-photo URLs per table row.
+export function isDemoOrStockAvatar(src) {
+  return typeof src === "string" && /(?:unsplash\.com|pexels\.com|pravatar\.cc|randomuser\.me|picsum\.photos|ui-avatars\.com|dicebear\.com)/i.test(src);
+}
+
 export function Avatar({ initials, size = 36, style = {}, src }) {
   const [failed, setFailed] = useState(false);
   useEffect(() => setFailed(false), [src]);
-  const isStockPhoto = typeof src === "string" && /(?:unsplash\.com|pexels\.com|pravatar\.cc|randomuser\.me|picsum\.photos|ui-avatars\.com|dicebear\.com)/i.test(src);
+  const isStockPhoto = isDemoOrStockAvatar(src);
   if (src && !isStockPhoto && !failed) {
     return (
       <img

@@ -1,7 +1,7 @@
 import { LoadingSkeleton } from "./../../components/common/PageLoadingBoundary.jsx";
 import { useAssignmentRefresh } from "../../lib/useAssignmentRefresh.js";
 import React, { useState, useContext } from "react";
-import { TopBar, StatCard, Tag, ToastContext } from "../components/PlatformUI.jsx";
+import { TopBar, StatCard, Tag, Avatar, ToastContext } from "../components/PlatformUI.jsx";
 import { AnalysisNotesCard } from "../components/AnalysisNotesCard.jsx";
 import { 
   Users, Layers, CheckCircle2, Calendar, Radio, Star,
@@ -333,11 +333,12 @@ export function MentorDashboardScreen({ mentorId, currentUserId, profileQuery, o
                 {studentRisks.map(s => (
                   <div key={s.name} className="ta-row ta-between" style={{ padding: "10px 12px", borderRadius: 8, background: "var(--surface-3)", flexWrap: "wrap", gap: 10 }}>
                     <div className="ta-row ta-gap10" style={{ minWidth: 0, flex: "1 1 160px" }}>
-                      {s.avatar ? <img
+                      <Avatar
                         src={s.avatar}
-                        alt={s.name}
-                        style={{ width: 38, height: 38, borderRadius: 10, objectFit: "cover", border: "1px solid var(--border)", flexShrink: 0 }}
-                      /> : <span aria-hidden="true" style={{ width: 38, height: 38, display: "grid", placeItems: "center", borderRadius: 10, background: "var(--surface-3)" }}>{s.name.slice(0, 1).toUpperCase()}</span>}
+                        initials={(s.name || "ST").slice(0, 2).toUpperCase()}
+                        size={38}
+                        style={{ borderRadius: 10, flexShrink: 0, border: "1px solid var(--border)" }}
+                      />
                       <div style={{ minWidth: 0 }}>
                         <div style={{ fontSize: 13, fontWeight: 700, color: "var(--text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.name}</div>
                         <div style={{ fontSize: 11, color: "var(--text-3)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.role} • {s.lastActive}</div>

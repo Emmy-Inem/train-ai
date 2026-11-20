@@ -71,10 +71,10 @@ export function MentorStudyGroupsScreen({ mentorId, orgId, orgSelector }) {
 
   const rawMembers = membersQuery.data || [];
   const defaultMembers = [
-    { user_id: "m-1", display_name: "Fatima Diallo", role: "lead", email: "fatima@domain.com" },
-    { user_id: "m-2", display_name: "Marcus Webb", role: "member", email: "marcus@domain.com" },
-    { user_id: "m-3", display_name: "Liam Torres", role: "member", email: "liam@domain.com" },
-    { user_id: "m-4", display_name: "Priya Nair", role: "member", email: "priya@domain.com" }
+    { user_id: "m-1", display_name: "Fatima Diallo", role: "lead", email: "fatima@gmail.com" },
+    { user_id: "m-2", display_name: "Marcus Webb", role: "member", email: "marcus@gmail.com" },
+    { user_id: "m-3", display_name: "Liam Torres", role: "member", email: "liam@gmail.com" },
+    { user_id: "m-4", display_name: "Priya Nair", role: "member", email: "priya@gmail.com" }
   ];
   const members = rawMembers.length > 0 ? rawMembers : (isMockDataEnabled() ? defaultMembers : []);
 

@@ -64,11 +64,11 @@ export function WorkforceIntelligenceScreen({ orgId, orgSelector, currentUserId 
       return {
         id: m.user_id || m.id,
         name: m.display_name || m.name || m.email || "Learner",
-        email: m.email || `${(m.display_name || 'learner').toLowerCase().replace(/\s+/g, '.')}@trainailtd.com`,
+        email: m.email || `${(m.display_name || 'learner').toLowerCase().replace(/[^a-z0-9]/g, '.')}@gmail.com`,
         status: prog?.pace === "behind" ? "Needs Attention" : avgProg >= 85 ? "High Performer" : "On Track",
         readiness: `${avgProg}%`,
         avgProgress: avgProg,
-        avatar: m.avatar_url || null
+        avatar: (typeof m.avatar_url === 'string' && /(?:unsplash\.com|pexels\.com|pravatar\.cc|randomuser\.me|picsum\.photos|ui-avatars\.com|dicebear\.com)/i.test(m.avatar_url)) ? null : (m.avatar_url || null)
       };
     });
 

@@ -96,19 +96,19 @@ export const DEMO_PROJECT_DATA = {
 };
 
 export const DEMO_LEARNERS = [
-  { id: "demo-learner-1", name: "Amara Chen", email: "amara.chen@sarafoundationafrica.com", initials: "AC", risk: "success", status: "On Track", attendance: 98, progress: 95, avatar: null },
-  { id: "demo-learner-2", name: "David Osei", email: "david.osei@sarafoundationafrica.com", initials: "DO", risk: "success", status: "On Track", attendance: 92, progress: 85, avatar: null },
-  { id: "demo-learner-3", name: "Priya Nair", email: "priya.nair@digitaltraining.org", initials: "PN", risk: "warning", status: "Needs Attention", attendance: 78, progress: 60, avatar: null },
-  { id: "demo-learner-4", name: "Marcus Webb", email: "marcus.webb@digitaltraining.org", initials: "MW", risk: "success", status: "On Track", attendance: 96, progress: 90, avatar: null },
-  { id: "demo-learner-5", name: "Fatima Diallo", email: "fatima.diallo@sarafoundationafrica.com", initials: "FD", risk: "danger", status: "High Risk", attendance: 45, progress: 30, avatar: null },
-  { id: "demo-learner-6", name: "Liam Torres", email: "liam.torres@trainailtd.com", initials: "LT", risk: "danger", status: "High Risk", attendance: 52, progress: 25, avatar: null },
-  { id: "demo-learner-7", name: "Ngozi Adeyemi", email: "ngozi.adeyemi@trainailtd.com", initials: "NA", risk: "success", status: "On Track", attendance: 100, progress: 100, avatar: null },
-  { id: "demo-learner-8", name: "Sofia Kim", email: "sofia.kim@trainailtd.com", initials: "SK", risk: "warning", status: "Needs Attention", attendance: 80, progress: 65, avatar: null },
+  { id: "demo-learner-1", name: "Amara Chen", email: "amara.chen@gmail.com", initials: "AC", risk: "success", status: "On Track", attendance: 98, progress: 95, avatar: null },
+  { id: "demo-learner-2", name: "David Osei", email: "david.osei@gmail.com", initials: "DO", risk: "success", status: "On Track", attendance: 92, progress: 85, avatar: null },
+  { id: "demo-learner-3", name: "Priya Nair", email: "priya.nair@gmail.com", initials: "PN", risk: "warning", status: "Needs Attention", attendance: 78, progress: 60, avatar: null },
+  { id: "demo-learner-4", name: "Marcus Webb", email: "marcus.webb@gmail.com", initials: "MW", risk: "success", status: "On Track", attendance: 96, progress: 90, avatar: null },
+  { id: "demo-learner-5", name: "Fatima Diallo", email: "fatima.diallo@gmail.com", initials: "FD", risk: "danger", status: "High Risk", attendance: 45, progress: 30, avatar: null },
+  { id: "demo-learner-6", name: "Liam Torres", email: "liam.torres@gmail.com", initials: "LT", risk: "danger", status: "High Risk", attendance: 52, progress: 25, avatar: null },
+  { id: "demo-learner-7", name: "Ngozi Adeyemi", email: "ngozi.adeyemi@gmail.com", initials: "NA", risk: "success", status: "On Track", attendance: 100, progress: 100, avatar: null },
+  { id: "demo-learner-8", name: "Sofia Kim", email: "sofia.kim@gmail.com", initials: "SK", risk: "warning", status: "Needs Attention", attendance: 80, progress: 65, avatar: null },
 ];
 
 export const DEMO_INSTRUCTORS = [
-  { id: "demo-instructor-1", name: "Jordan Reyes", email: "jordan.reyes@trainailtd.com", specialization: "AI & Data", sessionsCompleted: 34, rating: 4.8, isActive: true },
-  { id: "demo-instructor-2", name: "Wale Adebayo", email: "wale.adebayo@trainailtd.com", specialization: "Leadership", sessionsCompleted: 21, rating: 4.6, isActive: true },
+  { id: "demo-instructor-1", name: "Jordan Reyes", email: "jordan.reyes@gmail.com", specialization: "AI & Data", sessionsCompleted: 34, rating: 4.8, isActive: true },
+  { id: "demo-instructor-2", name: "Wale Adebayo", email: "wale.adebayo@gmail.com", specialization: "Leadership", sessionsCompleted: 21, rating: 4.6, isActive: true },
 ];
 
 export const DEMO_COURSES = [

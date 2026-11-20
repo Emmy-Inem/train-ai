@@ -1,6 +1,6 @@
 import { LoadingSkeleton } from "./../../components/common/PageLoadingBoundary.jsx";
 import React, { useState, useContext } from "react";
-import { TopBar, Tag, ToastContext } from "../components/PlatformUI.jsx";
+import { TopBar, Tag, Avatar, ToastContext } from "../components/PlatformUI.jsx";
 import { 
   CheckCircle2, MessageCircle, Search, Filter, Brain, 
   Send, ThumbsUp, HelpCircle, BookOpen, Clock, ChevronDown, 
@@ -244,10 +244,11 @@ export function DiscussionsScreen({ mentorId, orgSelector }) {
                 {/* Question Header: Student info & Status */}
                 <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: 220, flex: "1 1 260px" }}>
-                    <img
+                    <Avatar
                       src={d.menteeAvatar}
-                      alt=""
-                      style={{ width: 40, height: 40, borderRadius: 8, objectFit: "cover", flexShrink: 0, border: "1px solid var(--border)" }}
+                      initials={(d.mentee || "ST").slice(0, 2).toUpperCase()}
+                      size={40}
+                      style={{ borderRadius: 8, flexShrink: 0, border: "1px solid var(--border)" }}
                     />
                     <div style={{ minWidth: 0, flex: 1 }}>
                       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 6 }}>

@@ -1,6 +1,6 @@
 import { LoadingSkeleton } from "./../../components/common/PageLoadingBoundary.jsx";
 import React, { useState, useContext, useEffect } from "react";
-import { TopBar, ToastContext, Tag, Switch } from "../components/PlatformUI.jsx";
+import { TopBar, ToastContext, Tag, Switch, Avatar } from "../components/PlatformUI.jsx";
 import { Plus, Trash2, BadgeCheck, Link as LinkIcon, Bell, Calendar, FolderOpen, User } from "lucide-react";
 import FileUploadZone from "../../components/common/FileUploadZone.jsx";
 import { updateUserAvatar, updateUserDisplayName } from "../../lib/api/platform.js";
@@ -383,9 +383,12 @@ export function MentorSettingsScreen({ mentorId, mentorProfileQuery, currentUser
                   <div className="ta-sub" style={{ fontSize: 12, marginTop: 2 }}>This information is visible to enrolled learners and co-instructors.</div>
                   
                   <div className="ta-row ta-gap16 ta-mt16" style={{ alignItems: "center" }}>
-                    <div style={{ width: 68, height: 68, borderRadius: "50%", background: "var(--surface-2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22, fontWeight: 600, overflow: "hidden", border: "2px solid var(--border)" }}>
-                      {userProfile?.avatar_url ? <img src={userProfile.avatar_url} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : (displayName || "I").slice(0, 2).toUpperCase()}
-                    </div>
+                    <Avatar
+                      src={userProfile?.avatar_url}
+                      initials={(displayName || "I").slice(0, 2).toUpperCase()}
+                      size={68}
+                      style={{ borderRadius: "50%", border: "2px solid var(--border)" }}
+                    />
                     <FileUploadZone
                       bucket="uploads"
                       pathPrefix={`avatars/${currentUserId}`}

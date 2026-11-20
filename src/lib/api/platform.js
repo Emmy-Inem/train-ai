@@ -262,7 +262,7 @@ function generateDemoOrgMembers(organizationId, baseOrigin) {
     return {
       id: i.id,
       display_name: i.name,
-      email: i.email || `${i.name.toLowerCase().replace(/\s+/g, ".")}@trainailtd.com`,
+      email: i.email || `${i.name.toLowerCase().replace(/\s+/g, ".")}@gmail.com`,
       role: "mentor",
       status: "active",
       joined_at: joinedAt,
@@ -282,7 +282,7 @@ function generateDemoOrgMembers(organizationId, baseOrigin) {
     {
       id: "demo-manager-id",
       display_name: "Demo Manager",
-      email: "manager@trainailtd.com",
+      email: "manager@gmail.com",
       role: "manager",
       status: "active",
       joined_at: new Date(Date.now() - 20 * dayMs).toISOString(),
@@ -405,7 +405,7 @@ async function loadOrgMembers(organizationId) {
 
     const orgSlug = resolvedOrgInfo?.slug || (String(organizationId || "").includes("sara") ? "sara-foundation" : "tech-learning");
     const isSara = orgSlug.includes("sara") || organizationId === "sara-org-1";
-    const defaultDomain = isSara ? "sarafoundationafrica.com" : "trainailtd.com";
+    const defaultDomain = "gmail.com";
 
     return combined.map((p) => {
       const hasEmail = Boolean(p.email && p.email.includes("@"));
@@ -414,6 +414,9 @@ async function loadOrgMembers(organizationId) {
       const effectiveEmail = isLinkClicked
         ? null
         : (p.email || (p.display_name ? `${p.display_name.toLowerCase().replace(/[^a-z0-9]/g, ".")}@${defaultDomain}` : null));
+
+      const isStock = typeof p.avatar_url === "string" && /(?:unsplash\.com|pexels\.com|pravatar\.cc|randomuser\.me|picsum\.photos|ui-avatars\.com|dicebear\.com)/i.test(p.avatar_url);
+      const isStockAvatar = typeof p.avatar === "string" && /(?:unsplash\.com|pexels\.com|pravatar\.cc|randomuser\.me|picsum\.photos|ui-avatars\.com|dicebear\.com)/i.test(p.avatar);
 
       const cleanDisplayName =
         p.display_name && !p.display_name.startsWith("Prospective Student")
@@ -430,6 +433,8 @@ async function loadOrgMembers(organizationId) {
       return {
         ...p,
         email: effectiveEmail,
+        avatar: isStockAvatar ? null : (p.avatar || null),
+        avatar_url: isStock ? null : (p.avatar_url || null),
         status: effectiveStatus,
         display_name: cleanDisplayName,
         organization_id: p.organization_id || resolvedOrgUuid || organizationId,
@@ -640,7 +645,7 @@ async function loadOrgMembers(organizationId) {
       effectiveOrgId === "sara-org-1" ||
       String(orgObj?.slug || orgObj?.name || p.organization || "").toLowerCase().includes("sara");
     const rawEmail = directory?.email || p.email || om?.email || null;
-    const defaultDomain = isSara ? "sarafoundationafrica.com" : "trainailtd.com";
+    const defaultDomain = "gmail.com";
     const hasEmail = Boolean(rawEmail && rawEmail.includes("@"));
     const isLinkClicked = (p.status === "link_clicked" || om?.status === "link_clicked") && !hasEmail;
     const email = rawEmail || null;
@@ -683,10 +688,15 @@ async function loadOrgMembers(organizationId) {
             ? email.split("@")[0].replace(/[._-]/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())
             : (effectiveStatus === "link_clicked" ? "Prospective Student" : "Member")));
 
+    const isStock = typeof p.avatar_url === "string" && /(?:unsplash\.com|pexels\.com|pravatar\.cc|randomuser\.me|picsum\.photos|ui-avatars\.com|dicebear\.com)/i.test(p.avatar_url);
+    const isStockAvatar = typeof p.avatar === "string" && /(?:unsplash\.com|pexels\.com|pravatar\.cc|randomuser\.me|picsum\.photos|ui-avatars\.com|dicebear\.com)/i.test(p.avatar);
+
     return {
       ...p,
       role: ({ member: "learner", instructor: "mentor", people_manager: "manager", owner: "admin" })[directory?.role || om?.role] || directory?.role || om?.role || p.role || "learner",
       email,
+      avatar: isStockAvatar ? null : (p.avatar || null),
+      avatar_url: isStock ? null : (p.avatar_url || null),
       status: effectiveStatus,
       display_name: cleanDisplayName,
       joined_at: joinedAt,
@@ -725,7 +735,7 @@ export async function fetchUsersInOrg(organizationId, { includeCandidates = fals
   const demo = [
     ...DEMO_LEARNERS.map((l) => ({ id: l.id, name: l.name, email: l.email || "", initials: l.initials, role: "learner" })),
     ...DEMO_INSTRUCTORS.map((i) => ({ id: i.id, name: i.name, email: i.email || "", initials: i.name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase(), role: "instructor" })),
-    { id: "demo-manager-id", name: "Demo Manager", email: "manager@trainailtd.com", initials: "DM", role: "manager" },
+    { id: "demo-manager-id", name: "Demo Manager", email: "manager@gmail.com", initials: "DM", role: "manager" },
   ];
 
   if (!supabase || organizationId === "demo-org-id") {
@@ -2238,7 +2248,7 @@ export async function fetchCohortsWithStats(organizationId) {
     courses: 1,
     learningProgress: 71,
     status: "active",
-    instructor: { id: "demo-instructor-1", name: "Jordan Reyes", email: "jordan.reyes@trainailtd.com" },
+    instructor: { id: "demo-instructor-1", name: "Jordan Reyes", email: "jordan.reyes@gmail.com" },
   }];
 
   if (!supabase) {
@@ -2317,11 +2327,11 @@ export async function fetchCohortDetail(cohortId) {
   if (!supabase) {
     if (cohortId !== DEMO_COHORT.id && !String(cohortId).includes("cohort") && !String(cohortId).includes("demo")) return null;
     const memberList = [
-      { userId: "demo-instructor-1", name: "Jordan Reyes", progress: 100, isInstructor: true, role: "instructor", email: "jordan.reyes@trainailtd.com" },
-      { userId: "demo-learner-1", name: "Amara Chen", progress: 100, isInstructor: false, role: "learner", email: "amara.chen@example.com" },
-      { userId: "demo-learner-2", name: "David Osei", progress: 85, isInstructor: false, role: "learner", email: "david.osei@example.com" },
-      { userId: "demo-learner-3", name: "Priya Nair", progress: 60, isInstructor: false, role: "learner", email: "priya.nair@example.com" },
-      { userId: "demo-learner-4", name: "Marcus Webb", progress: 100, isInstructor: false, role: "learner", email: "marcus.webb@example.com" },
+      { userId: "demo-instructor-1", name: "Jordan Reyes", progress: 100, isInstructor: true, role: "instructor", email: "jordan.reyes@gmail.com" },
+      { userId: "demo-learner-1", name: "Amara Chen", progress: 100, isInstructor: false, role: "learner", email: "amara.chen@gmail.com" },
+      { userId: "demo-learner-2", name: "David Osei", progress: 85, isInstructor: false, role: "learner", email: "david.osei@gmail.com" },
+      { userId: "demo-learner-3", name: "Priya Nair", progress: 60, isInstructor: false, role: "learner", email: "priya.nair@gmail.com" },
+      { userId: "demo-learner-4", name: "Marcus Webb", progress: 100, isInstructor: false, role: "learner", email: "marcus.webb@gmail.com" },
     ];
     const mappedMembers = memberList.map((m) => ({
       id: `cm-${m.userId}`,
@@ -2343,7 +2353,7 @@ export async function fetchCohortDetail(cohortId) {
         starts_at: "2026-01-01",
         ends_at: DEMO_COHORT.endsAt,
         created_by: "demo-instructor-1",
-        instructor: instructorsOut[0] || { id: "demo-instructor-1", name: "Jordan Reyes", email: "jordan.reyes@trainailtd.com" },
+        instructor: instructorsOut[0] || { id: "demo-instructor-1", name: "Jordan Reyes", email: "jordan.reyes@gmail.com" },
       },
       members: mappedMembers,
       instructors: instructorsOut,
@@ -5544,7 +5554,7 @@ export async function fetchMemberLearningTrack(userId, organizationId, cohortId 
   const matchedDemo = DEMO_LEARNERS.find((d) => d.id === cleanUserId || d.name === cleanUserId || d.email === cleanUserId);
 
   const displayName = matchedRoster?.display_name || matchedClick?.display_name || matchedDemo?.name || (cleanUserId.includes("@") ? cleanUserId.split("@")[0].replace(/[._-]/g, " ") : "Learner");
-  const email = matchedRoster?.email || matchedClick?.email || matchedDemo?.email || (cleanUserId.includes("@") ? cleanUserId : "learner@example.com");
+  const email = matchedRoster?.email || matchedClick?.email || matchedDemo?.email || (cleanUserId.includes("@") ? cleanUserId : "learner@gmail.com");
   const cohortName = matchedRoster?.cohort_name || (DEMO_COHORT.memberNames?.includes(displayName) ? DEMO_COHORT.name : "Active Learning Cohort");
   const role = matchedRoster?.role || matchedDemo?.role || "learner";
   const joinedAt = matchedRoster?.joined_at || matchedRoster?.created_at || new Date(Date.now() - 3600000 * 24 * 5).toISOString();

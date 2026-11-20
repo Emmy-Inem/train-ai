@@ -50,44 +50,7 @@ export function getOrCreateVisitorId() {
   }
 }
 
-export const BASELINE_CONFIRMED_LINK_CLICKS = [
-  {
-    id: "click-visitor-sara-4f92-sara-foundation",
-    user_id: "click-visitor-sara-4f92-sara-foundation",
-    visitor_id: "v_sara4f92",
-    display_name: "Prospective Student (Visitor #4F92)",
-    email: null,
-    role: "learner",
-    cohort_name: "Awaiting Signup",
-    status: "link_clicked",
-    organization_id: "sara-org-1",
-    organization_slug: "sara-foundation",
-    organization_name: "Sara Foundation Africa",
-    joined_at: new Date(Date.now() - 3600000 * 3.5).toISOString(),
-    created_at: new Date(Date.now() - 3600000 * 3.5).toISOString(),
-    last_active_at: new Date(Date.now() - 3600000 * 2).toISOString(),
-    join_source: "shareable_link",
-    referral_link: "https://trainailtd.com/?join=sara-foundation",
-  },
-  {
-    id: "click-visitor-sara-7b18-sara-foundation",
-    user_id: "click-visitor-sara-7b18-sara-foundation",
-    visitor_id: "v_sara7b18",
-    display_name: "Prospective Student (Visitor #7B18)",
-    email: null,
-    role: "learner",
-    cohort_name: "Awaiting Signup",
-    status: "link_clicked",
-    organization_id: "sara-org-1",
-    organization_slug: "sara-foundation",
-    organization_name: "Sara Foundation Africa",
-    joined_at: new Date(Date.now() - 3600000 * 1.8).toISOString(),
-    created_at: new Date(Date.now() - 3600000 * 1.8).toISOString(),
-    last_active_at: new Date(Date.now() - 3600000 * 1.2).toISOString(),
-    join_source: "shareable_link",
-    referral_link: "https://trainailtd.com/?join=sara-foundation",
-  }
-];
+export const BASELINE_CONFIRMED_LINK_CLICKS = [];
 
 /**
  * Retrieves all visitors who clicked an organization referral/invite link.
@@ -100,6 +63,15 @@ export function getLinkClicksRoster(orgIdOrSlug = null, resolvedOrgInfo = null) 
     let list = raw ? JSON.parse(raw) : [];
     if (!Array.isArray(list)) list = [];
 
+    // Filter out legacy demo signups
+    list = list.filter((m) => {
+      const id = String(m?.id || m?.user_id || "").toLowerCase();
+      const email = String(m?.email || "").toLowerCase();
+      if (id.startsWith("user-sara-fellow-") || id.startsWith("user-dt-learner-")) return false;
+      if (email.endsWith("@sarafoundationafrica.com") || email.endsWith("@digitaltraining.org")) return false;
+      return true;
+    });
+
     // Ensure confirmed baseline clicks are always merged in
     const existingIds = new Set(list.map((c) => c.id || c.visitor_id));
     let stateChanged = false;
@@ -111,14 +83,22 @@ export function getLinkClicksRoster(orgIdOrSlug = null, resolvedOrgInfo = null) 
       }
     }
 
-    // Clean up any stale placeholder text previously saved in email field
-    list = list.map((c) => {
-      if (c.email && !c.email.includes("@")) {
-        stateChanged = true;
-        return { ...c, email: null };
-      }
-      return c;
-    });
+    // Clean up any stale placeholder text previously saved in email field and filter out legacy demo clicks
+    list = list
+      .filter((c) => {
+        const id = String(c?.id || c?.visitor_id || "").toLowerCase();
+        const email = String(c?.email || "").toLowerCase();
+        if (id.startsWith("click-visitor-sara-")) return false;
+        if (email.endsWith("@sarafoundationafrica.com") || email.endsWith("@digitaltraining.org")) return false;
+        return true;
+      })
+      .map((c) => {
+        if (c.email && !c.email.includes("@")) {
+          stateChanged = true;
+          return { ...c, email: null };
+        }
+        return c;
+      });
 
     // If this browser has an active pending join intent, synthesize a click entry
     const pendingRaw = getRosterStorage(PENDING_ORG_JOIN_STORAGE_KEY);
@@ -291,59 +271,7 @@ export function recordLinkClickInRoster(orgIdOrSlug, options = {}) {
   }
 }
 
-export const BASELINE_CONFIRMED_REFERRAL_SIGNUPS = [
-  {
-    id: "user-sara-fellow-amara",
-    user_id: "user-sara-fellow-amara",
-    display_name: "Amara Chen",
-    email: "amara.chen@sarafoundationafrica.com",
-    role: "learner",
-    status: "active",
-    organization_id: "sara-org-1",
-    organization_slug: "sara-foundation",
-    organization_name: "Sara Foundation Africa",
-    cohort_name: "CAP Cohort 3 - AI Foundations",
-    joined_at: new Date(Date.now() - 3600000 * 24 * 7).toISOString(),
-    created_at: new Date(Date.now() - 3600000 * 24 * 7).toISOString(),
-    last_active_at: new Date(Date.now() - 3600000 * 2).toISOString(),
-    join_source: "shareable_link",
-    referral_link: "https://trainailtd.com/?join=sara-foundation",
-  },
-  {
-    id: "user-sara-fellow-david",
-    user_id: "user-sara-fellow-david",
-    display_name: "David Osei",
-    email: "david.osei@sarafoundationafrica.com",
-    role: "learner",
-    status: "active",
-    organization_id: "sara-org-1",
-    organization_slug: "sara-foundation",
-    organization_name: "Sara Foundation Africa",
-    cohort_name: "CAP Cohort 3 - AI Foundations",
-    joined_at: new Date(Date.now() - 3600000 * 24 * 5).toISOString(),
-    created_at: new Date(Date.now() - 3600000 * 24 * 5).toISOString(),
-    last_active_at: new Date(Date.now() - 3600000 * 4).toISOString(),
-    join_source: "shareable_link",
-    referral_link: "https://trainailtd.com/?join=sara-foundation",
-  },
-  {
-    id: "user-dt-learner-priya",
-    user_id: "user-dt-learner-priya",
-    display_name: "Priya Nair",
-    email: "priya.nair@digitaltraining.org",
-    role: "learner",
-    status: "active",
-    organization_id: "tech-learning",
-    organization_slug: "tech-learning",
-    organization_name: "Digital Training Organization",
-    cohort_name: "Q1 Onboarding Cohort",
-    joined_at: new Date(Date.now() - 3600000 * 24 * 3).toISOString(),
-    created_at: new Date(Date.now() - 3600000 * 24 * 3).toISOString(),
-    last_active_at: new Date(Date.now() - 3600000 * 6).toISOString(),
-    join_source: "direct_signup",
-    referral_link: "https://trainailtd.com/?join=tech-learning",
-  }
-];
+export const BASELINE_CONFIRMED_REFERRAL_SIGNUPS = [];
 
 /**
  * Retrieves all students/learners who signed up or joined an organization via invite/referral link.
@@ -355,6 +283,15 @@ export function getReferralSignupsRoster(orgIdOrSlug = null, resolvedOrgInfo = n
     const raw = getRosterStorage(REFERRAL_SIGNUPS_ROSTER_KEY);
     let list = raw ? JSON.parse(raw) : [];
     if (!Array.isArray(list)) list = [];
+
+    // Filter out legacy demo signups
+    list = list.filter((m) => {
+      const id = String(m?.id || m?.user_id || "").toLowerCase();
+      const email = String(m?.email || "").toLowerCase();
+      if (id.startsWith("user-sara-fellow-") || id.startsWith("user-dt-learner-")) return false;
+      if (email.endsWith("@sarafoundationafrica.com") || email.endsWith("@digitaltraining.org")) return false;
+      return true;
+    });
 
     // Ensure confirmed baseline signups are always merged in
     const existingIds = new Set(list.map((c) => c.id || c.user_id));
