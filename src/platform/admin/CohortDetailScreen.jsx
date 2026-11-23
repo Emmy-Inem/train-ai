@@ -53,7 +53,7 @@ function CohortCourseAssignmentSection({
 
   const filteredMembers = members.filter((m) => {
     if (!memberFilter.trim()) return true;
-    const name = m.user_profiles?.display_name || "";
+    const name = m.user_profiles?.display_name || m.display_name || m.name || m.email || "";
     return name.toLowerCase().includes(memberFilter.toLowerCase().trim());
   });
 
@@ -385,7 +385,18 @@ export function CohortDetailScreen({ orgId, cohortId, currentUserId, session, on
 
   const memberUserIds = new Set(members.map((m) => m.user_id));
   const availableUsers = orgUsers.filter((u) => !memberUserIds.has(u.id));
-  const availableInstructors = orgUsers.filter(u => (u.status || "active") === "active" && !members.some(m => m.user_id === u.id && m.cohort_role === "instructor"));
+  const potentialInstructors = [
+    ...allOrgInstructors.map(i => ({ id: i.id || i.user_id, name: i.display_name || i.name, email: i.email, status: i.status || "active" })),
+    ...orgUsers
+  ];
+  const seenInstIds = new Set();
+  const availableInstructors = potentialInstructors.filter((u) => {
+    if (!u.id || seenInstIds.has(u.id)) return false;
+    seenInstIds.add(u.id);
+    const isActive = (u.status || "active") === "active";
+    const alreadyInstructor = members.some((m) => m.user_id === u.id && (m.cohort_role === "instructor" || m.isInstructor));
+    return isActive && !alreadyInstructor;
+  });
 
   const [selectedInstructorToAdd, setSelectedInstructorToAdd] = useState("");
   const [addingInstructor, setAddingInstructor] = useState(false);
@@ -1150,7 +1161,8 @@ export function CohortDetailScreen({ orgId, cohortId, currentUserId, session, on
         {selectedStudent && (
           <MemberDetailModal
             member={selectedStudent}
-            orgId={orgId}
+            orgId={cohort?.organization_id || orgId}
+            cohortId={cohort?.id || cohortId}
             cohorts={cohort ? [{ id: cohort.id, name: cohort.name }] : []}
             initialTab="track"
             onClose={() => setSelectedStudent(null)}

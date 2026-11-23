@@ -112,10 +112,10 @@ function downloadDirectoryCsv(rows, progressByMemberId) {
 /* ==========================================================================
    Member record drawer - the whole of one member, in one place
    ========================================================================= */
-export function MemberDetailModal({ member, orgId, cohorts, initialTab = "track", onClose, onChanged, showToast, onIssueCertificate }) {
+export function MemberDetailModal({ member, orgId, cohortId: contextCohortId = null, cohorts, initialTab = "track", onClose, onChanged, showToast, onIssueCertificate }) {
   const detailQuery = useSupabaseQuery(
-    async () => (member ? fetchUserDetailForAdmin(member.id, orgId) : null),
-    [member?.id, orgId]
+    async () => (member ? fetchUserDetailForAdmin(member.id, orgId, contextCohortId) : null),
+    [member?.id, orgId, contextCohortId]
   );
   const detail = detailQuery.data;
 
@@ -247,7 +247,7 @@ export function MemberDetailModal({ member, orgId, cohorts, initialTab = "track"
       {detailQuery.error && tab !== "track" && <div className="ta-empty" role="alert">{detailQuery.error} <button className="ta-btn ta-btn-outline" onClick={detailQuery.refetch}>Retry</button></div>}
       {detailQuery.loading && <div className="ta-empty ta-mt16"><LoadingSkeleton label="Loading this member's record..." rows={3} /></div>}
 
-      {tab === "track" && <MemberLearningTrack orgId={orgId} userId={member.id} member={member} learningTrackQuery={detailQuery} />}
+      {tab === "track" && <MemberLearningTrack orgId={orgId} userId={member.id} cohortId={contextCohortId} member={member} learningTrackQuery={detailQuery} />}
 
       {!detailQuery.loading && !detailQuery.error && tab === "overview" && (
         <div className="ta-mt16">

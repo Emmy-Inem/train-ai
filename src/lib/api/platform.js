@@ -5247,8 +5247,8 @@ export async function removeOrgMember(userId, organizationId) {
 
 // One member's full record, assembled for the directory's detail drawer
 // and student track inspector.
-export async function fetchUserDetailForAdmin(userId, organizationId) {
-  return fetchMemberLearningTrack(userId, organizationId);
+export async function fetchUserDetailForAdmin(userId, organizationId, cohortId = null) {
+  return fetchMemberLearningTrack(userId, organizationId, cohortId);
 }
 
 // Re-issues a pending invitation. There is no "resend" RPC in the schema, so

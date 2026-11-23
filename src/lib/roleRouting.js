@@ -122,7 +122,6 @@ export const DASHBOARDS = {
 
 export const PLATFORM_OWNER_EMAILS = [
   "trainailtd@gmail.com",
-  "trainai@gmail.com",
 ];
 
 export function isPlatformOwnerEmail(email = "") {
@@ -135,7 +134,7 @@ export function isPlatformOwnerEmail(email = "") {
   ) {
     return false;
   }
-  return PLATFORM_OWNER_EMAILS.includes(normalized) || normalized === "trainailtd@gmail.com";
+  return normalized === "trainailtd@gmail.com";
 }
 
 export function hasStaffOrAdminRole(roles = []) {
