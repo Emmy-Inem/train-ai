@@ -1,3 +1,4 @@
+import { cohortSessionPayload } from '../cohortSessionDraft.js';
 import { supabase, activeProject } from "../supabaseClient.js";
 import { fetchMemberLearningInterests } from "./capProgram.js";
 import { sharePendingRead } from "../pendingReads.js";
@@ -2735,20 +2736,25 @@ export async function deleteCohortResource(id) {
 // (NOT NULL timestamptz), join_url, recording_url, created_at, updated_at.
 // Same csess_write_admin RLS gate as cohort_resources above.
 export async function createCohortSession({ cohortId, title, startsAt, joinUrl, description, createdBy }) {
-  if (!supabase || !cohortId || !title?.trim() || !startsAt || !createdBy) return null;
+  const payload = cohortSessionPayload({ cohortId, title, startsAt, joinUrl, description, createdBy });
+  if (!supabase) throw new Error('Connect to your workspace before scheduling a session.');
   const { data, error } = await supabase
     .from("cohort_sessions")
-    .insert({
-      cohort_id: cohortId,
-      created_by: createdBy,
-      title: title.trim(),
-      description: description?.trim() || null,
-      starts_at: startsAt,
-      join_url: joinUrl?.trim() || null,
-    })
+    .insert(payload)
     .select()
     .single();
   if (error) throw error;
+  if (!data?.id) throw new Error('The session was not saved. Please try again.');
+  return data;
+}
+
+export async function updateCohortSession({ id, cohortId, title, startsAt, joinUrl, description, createdBy }) {
+  if (!id) throw new Error('Choose a session to update.');
+  const { created_by, ...payload } = cohortSessionPayload({ cohortId, title, startsAt, joinUrl, description, createdBy });
+  if (!supabase) throw new Error('Connect to your workspace before updating a session.');
+  const { data, error } = await supabase.from('cohort_sessions').update(payload).eq('id', id).eq('cohort_id', cohortId).select().single();
+  if (error) throw error;
+  if (!data?.id) throw new Error('The session was not updated. Check your access and try again.');
   return data;
 }
 

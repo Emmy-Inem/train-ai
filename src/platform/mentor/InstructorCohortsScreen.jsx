@@ -1,10 +1,11 @@
+import { CohortSessionsPanel } from "../components/CohortSessionsPanel.jsx";
 import { LoadingSkeleton } from "./../../components/common/PageLoadingBoundary.jsx";
 import { useAssignmentRefresh } from "../../lib/useAssignmentRefresh.js";
 import React, { useContext, useState } from "react";
 import { TopBar, ToastContext } from "../components/PlatformUI.jsx";
 import { MemberLearningTrack } from "../components/MemberLearningTrack.jsx";
 import { useSupabaseQuery } from "../../lib/useSupabaseQuery.js";
-import { fetchMentorActiveCohorts, fetchInstructorCohortWorkspace, addCohortResource, createCohortSession } from "../../lib/api/platform.js";
+import { fetchMentorActiveCohorts, fetchInstructorCohortWorkspace, addCohortResource } from "../../lib/api/platform.js";
 
 export function InstructorCohortsScreen({ currentUserId, cohortId, onOpenCohort, onBack, profileQuery }) {
   const showToast = useContext(ToastContext);
@@ -19,7 +20,6 @@ export function InstructorCohortsScreen({ currentUserId, cohortId, onOpenCohort,
     setBusy(true);
     try {
       if (kind === "resource") await addCohortResource({ cohortId, createdBy: currentUserId, title: values.title, externalUrl: values.url });
-      else await createCohortSession({ cohortId, createdBy: currentUserId, title: values.title, startsAt: new Date(values.startsAt).toISOString(), joinUrl: values.url });
       form.reset(); query.refetch(); showToast(kind === "resource" ? "Resource added." : "Session scheduled.");
     } catch (error) { showToast(error.message); }
     finally { setBusy(false); }
@@ -43,10 +43,7 @@ export function InstructorCohortsScreen({ currentUserId, cohortId, onOpenCohort,
           {(data.resources || []).map(resource => <p key={resource.id}>{resource.title}{/^https?:\/\//i.test(resource.external_url || "") && <> · <a href={resource.external_url} target="_blank" rel="noreferrer">Open resource</a></>}</p>)}
           <form onSubmit={e => save(e, "resource")} className="ta-col ta-gap10"><label>Resource title<input className="ta-input" name="title" required maxLength="200" /></label><label>Resource link<input className="ta-input" name="url" type="url" pattern="https?://.*" required /></label><button className="ta-btn ta-btn-primary" disabled={busy}>Add resource</button></form>
         </section>
-        <section className="ta-card ta-mt16" style={{ padding: 20 }}><h2>Sessions</h2>
-          {(data.sessions || []).map(session => <p key={session.id}>{session.title} · {new Date(session.starts_at).toLocaleString()}{/^https?:\/\//i.test(session.join_url || "") && <> · <a href={session.join_url} target="_blank" rel="noreferrer">Join session</a></>}</p>)}
-          <form onSubmit={e => save(e, "session")} className="ta-col ta-gap10"><label>Session title<input className="ta-input" name="title" required maxLength="200" /></label><label>Starts at<input className="ta-input" name="startsAt" type="datetime-local" required /></label><label>Meeting link<input className="ta-input" name="url" type="url" pattern="https?://.*" required /></label><button className="ta-btn ta-btn-primary" disabled={busy}>Schedule session</button></form>
-        </section>
+        <div className="ta-mt16"><CohortSessionsPanel key={cohortId} cohortId={cohortId} currentUserId={currentUserId} sessions={data.sessions || []} onChanged={query.refetch} /></div>
       </>}
     </div></div>;
 }

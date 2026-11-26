@@ -13,11 +13,12 @@ import {
   assignCohortInstructor, fetchCohortDetail, updateCohort, addCohortMember, removeCohortMember,
   createCohortPost, assignCohortLearnerCourse, removeCohortLearnerCourse,
   fetchUsersInOrg, fetchCourses, fetchOrgInstructors,
-  addCohortResource, deleteCohortResource, createCohortSession, deleteCohortSession,
+  addCohortResource, deleteCohortResource,
   bulkAddCohortMembersByEmail, batchAssignTrackCoursesToCohort,
 } from "../../lib/api/platform.js";
 import CapCohort3Screen from "../../learner/screens/CapCohort3Screen.jsx";
 import { MemberDetailModal } from "./PeopleScreen.jsx";
+import { CohortSessionsPanel } from "../components/CohortSessionsPanel.jsx";
 
 
 // Cohort detail/space - reached from CohortsScreen by clicking a cohort card.
@@ -519,23 +520,6 @@ export function CohortDetailScreen({ orgId, cohortId, currentUserId, session, on
     showToast(`"${title}" removed`);
   }
 
-  // --- Sessions ---
-  const [sessionTitle, setSessionTitle] = useState("");
-  const [sessionStartsAt, setSessionStartsAt] = useState("");
-  async function handleScheduleSession() {
-    if (!sessionTitle.trim() || !sessionStartsAt || !cohortId || !currentUserId) return;
-    await createCohortSession({ cohortId, title: sessionTitle, startsAt: new Date(sessionStartsAt).toISOString(), createdBy: currentUserId });
-    setSessionTitle("");
-    setSessionStartsAt("");
-    detailQuery.refetch();
-    showToast("Session scheduled");
-  }
-  async function handleDeleteSession(id, title) {
-    await deleteCohortSession(id);
-    detailQuery.refetch();
-    showToast(`"${title}" removed`);
-  }
-
   if (!cohortId) return <div className="ta-empty">No cohort selected.</div>;
 
   return (
@@ -551,6 +535,7 @@ export function CohortDetailScreen({ orgId, cohortId, currentUserId, session, on
           <button className="ta-btn ta-btn-outline ta-btn-sm" onClick={onBack}>
             <ArrowLeft size={14} /> Back to cohorts
           </button>
+          <button type="button" className="ta-btn ta-btn-primary ta-btn-sm" style={{ marginLeft: 8 }} onClick={() => setTab("sessions")}>Add session</button>
         </div>
         {detailQuery.error && <div role="alert" className="ta-empty">{detailQuery.error} <button className="ta-btn ta-btn-outline" onClick={detailQuery.refetch}>Retry</button></div>}
         {detailQuery.loading && <div className="ta-empty"><LoadingSkeleton label="Loading cohort..." rows={3} /></div>}
@@ -675,21 +660,23 @@ export function CohortDetailScreen({ orgId, cohortId, currentUserId, session, on
 
         {cohort && (
           <>
-            <div className="ta-tabs ta-mt16">
+            <div className="ta-tabs ta-mt16" role="group" aria-label="Cohort sections">
               {[
                 { k: "members", label: `Members (${members.length})` },
                 { k: "courses", label: `Course assignments (${learnerCourses.length})` },
                 { k: "assignedlearner", label: "Assigned to Learner" },
                 { k: "progressmatrix", label: "Progress Matrix" },
                 { k: "activity", label: `Activity (${posts.length})` },
-                { k: "resources", label: "Resources & sessions" },
+                { k: "sessions", label: `Sessions (${sessions.length})` },
+                { k: "resources", label: "Resources" },
                 ...(/cap.*3|accelerator/i.test(cohort.name || "") ? [{ k: "cap", label: "CAP programme & learner goals" }] : []),
               ].map((t) => (
-                <div key={t.k} className={`ta-tab ${tab === t.k ? "active" : ""}`} onClick={() => setTab(t.k)}>{t.label}</div>
+                <button type="button" key={t.k} className={`ta-tab ${tab === t.k ? "active" : ""}`} aria-pressed={tab === t.k} onClick={() => setTab(t.k)}>{t.label}</button>
               ))}
             </div>
 
             {tab === "cap" && <div className="ta-mt16"><CapCohort3Screen key={cohortId} cohortId={cohortId} cohortName={cohort.name} session={session || {user:{id:currentUserId}}} showToast={showToast} courses={cohortCourses.map(cc=>cc.courses).filter(Boolean)}/></div>}
+            {tab === "sessions" && <div className="ta-mt16"><CohortSessionsPanel key={cohortId} cohortId={cohortId} currentUserId={currentUserId || session?.user?.id} sessions={sessions} onChanged={detailQuery.refetch} allowRemove /></div>}
             {tab === "members" && (
               <div style={{ display: "flex", flexDirection: "column", gap: 16 }} className="ta-mt16">
                 {/* 1. Dedicated Instructors & Mentors Management */}
@@ -1115,7 +1102,7 @@ export function CohortDetailScreen({ orgId, cohortId, currentUserId, session, on
             )}
 
             {tab === "resources" && (
-              <div className="ta-grid ta-grid-2 ta-mt16">
+              <div className="ta-mt16">
                 <div className="ta-card" style={{ borderRadius: 10 }}>
                   <div className="ta-title">Resources</div>
                   <div className="ta-row ta-gap8 ta-mt12" style={{ flexWrap: "wrap" }}>
@@ -1130,24 +1117,6 @@ export function CohortDetailScreen({ orgId, cohortId, currentUserId, session, on
                       <div className="ta-row ta-gap8" style={{ flexShrink: 0 }}>
                         {r.external_url && <a href={r.external_url} target="_blank" rel="noreferrer" style={{ color: "var(--primary)" }}>Open</a>}
                         <button className="ta-btn ta-btn-danger ta-btn-sm" onClick={() => handleDeleteResource(r.id, r.title)}><Trash2 size={13} /></button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="ta-card" style={{ borderRadius: 10 }}>
-                  <div className="ta-title">Sessions</div>
-                  <div className="ta-row ta-gap8 ta-mt12" style={{ flexWrap: "wrap" }}>
-                    <input className="ta-input" style={{ flex: 1, minWidth: 140 }} placeholder="Session title" value={sessionTitle} onChange={(e) => setSessionTitle(e.target.value)} />
-                    <input type="datetime-local" className="ta-input" style={{ flex: 1, minWidth: 160 }} value={sessionStartsAt} onChange={(e) => setSessionStartsAt(e.target.value)} />
-                    <button className="ta-btn ta-btn-primary ta-btn-sm" onClick={handleScheduleSession} disabled={!sessionTitle.trim() || !sessionStartsAt}><Plus size={14} /> Schedule</button>
-                  </div>
-                  {sessions.length === 0 && <div className="ta-empty ta-mt12">No sessions scheduled.</div>}
-                  {sessions.map((s) => (
-                    <div key={s.id} className="ta-row ta-between ta-mt12" style={{ fontSize: 13, gap: 8, flexWrap: "wrap" }}>
-                      <span style={{ fontWeight: 600, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{s.title}</span>
-                      <div className="ta-row ta-gap8" style={{ flexShrink: 0, flexWrap: "wrap" }}>
-                        <span style={{ color: "var(--text-2)" }}>{s.starts_at ? new Date(s.starts_at).toLocaleString() : "N/A"}</span>
-                        <button className="ta-btn ta-btn-danger ta-btn-sm" onClick={() => handleDeleteSession(s.id, s.title)}><Trash2 size={13} /></button>
                       </div>
                     </div>
                   ))}

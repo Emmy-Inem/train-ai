@@ -1,0 +1,17 @@
+.cohort-sessions-panel { display:flex; flex-direction:column; gap:16px; min-width:0; }
+.cohort-sessions-panel h2 { margin:0; font-size:20px; font-weight:500; }
+.cohort-sessions-panel h3 { margin:0; font-size:16px; font-weight:500; }
+.cohort-sessions-panel p { margin:0; font-size:14px; line-height:1.6; overflow-wrap:anywhere; }
+.cohort-sessions-panel .cohort-session-form { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.cohort-sessions-panel .cohort-session-form label { display:flex; flex-direction:column; gap:8px; min-width:0; font-size:14px; }
+.ta .cohort-sessions-panel .ta-input { width:100%; min-width:0; max-width:100%; box-sizing:border-box; font-size:16px; min-height:48px; }
+.cohort-sessions-panel input[type=date], .cohort-sessions-panel input[type=time] { display:block; appearance:auto; -webkit-appearance:auto; }
+.cohort-sessions-panel .cohort-session-wide { grid-column:1/-1; }
+.cohort-sessions-panel .cohort-session-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:14px; }
+.cohort-sessions-panel .cohort-session-list li { display:flex; justify-content:space-between; align-items:start; gap:14px; border-top:1px solid var(--border); padding-top:14px; }
+.cohort-sessions-panel .cohort-session-list li > div { min-width:0; overflow-wrap:anywhere; }
+.cohort-sessions-panel .cohort-session-actions { display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-size:13px; }
+.cohort-sessions-panel .cohort-session-list .cohort-session-actions { justify-content:flex-end; max-width:55%; }
+.cohort-sessions-panel .ta-btn { min-height:44px; white-space:normal; }
+.cohort-sessions-panel .support-error { color:#b91c1c; }
+@media(max-width:600px) { .cohort-sessions-panel .cohort-session-form { grid-template-columns:minmax(0,1fr); } .cohort-sessions-panel .cohort-session-list li { flex-direction:column; } .cohort-sessions-panel .cohort-session-list .cohort-session-actions { max-width:100%; justify-content:flex-start; } }
